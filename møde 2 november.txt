@@ -1,0 +1,30 @@
+Noter fra mødet i fredags:
+
+Faktura i stedet for leverandør database
+Skal kun have en liste med faktura
+
+Varenummer på stump ved bestilling ved leverandør
+Ern nummer.
+
+
+Booking af materiale:
+Bekræftigselsmail ved booking, ordrebekræftigesel og levering tilbage
+SB og Admin loggede ind med sde mail
+
+Hvis man kommer ud over sidste afleveings dato skal låneren have en mail hver dag, hver fredag skal ejeren have en mail om at låneren ikke har afleveret.
+
+
+Database: 
+Database lokation delt op i to tables + ændring i lokations navn
+Der var tale om felter med enheder tilknyttet.
+
+
+ 
+Kontaktform:
+Kontakt person på productet. Hvis der er noget galt. Samhæng med kontakt form. 
+
+Kontaktliste:
+Lav en liste på kontakt person for at vælge person
+
+Kalender:
+Kalenderen styling med information på kalenderen ala googles kalender
