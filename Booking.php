@@ -14,9 +14,9 @@ include "Includes/navbar.php";
 include "Includes/footer.php";
 ?>
 <script>
-   $(document).ready(function(){
-   //     $(document.getElementsByName("item_1")).on('change',function(){
-        function ChangeEnhed(){
+    /*
+   $(document).ready(function ChangeEnhed(){
+      $(document.getElementsByName("item_1")).on('change',function(){
 
             let countryID = $(this).val();
             if(countryID){
@@ -33,13 +33,12 @@ include "Includes/footer.php";
                 $('#enhed_2').html('<option value="">Select an Item</option>');
                 //$('#city').html('<option value="">Select state first</option>');
             }
-        }
 
   });
- //   });
+   });*/
     function ChangeLayers() {
 
-
+        // Switch to different layer
         if($('#layer_1').css('display') === 'block')
         {
             window.alert("layer 1 is block");
@@ -57,13 +56,36 @@ include "Includes/footer.php";
 
         }
     }
+    function ChangeEnhed(id) {
+        let product_id = "#item_" + id.toString();
+        let countryID = $(product_id).val();//$('#'+product_id.).val();
+        let enheds = "enhed_" + id.toString();
+        window.alert(countryID);
+        window.alert(enheds);
+
+        //Ajax go to php site to get the Enheds of Chosen Product
+        if(countryID){
+            $.ajax({
+                type:'POST',
+                url:'includes/BookingDropDownList.php',
+                data:'item_id='+countryID,
+                success:function(html){
+                    $('#'+enheds).html(html);
+                    //$('#city').html('<option value="">Select state first</option>');
+                }
+            });
+        }else{
+            $('#'+enheds).html('<option value="">Select an Item</option>');
+            //$('#city').html('<option value="">Select state first</option>');
+        }
+
+    }
 </script>
-<p>hello</p>
 <button onclick="ChangeLayers()">Change Layer</button>
 <form action="includes/BookingSend.php" method="post">
     <div id="layer_1" class="layer1">
         <p>Layer 1</p>
-        <select id="item_1" name="item_1" onchange="ChangeEnhed()">
+        <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
             <option value="">Select Item</option>
             <?php
 
@@ -85,13 +107,16 @@ include "Includes/footer.php";
 
             ?>
         </select>
-        <select id="enhed_2" name="enhed_2">
+        <select id="enhed_1" name="enhed_1">
             <option>Select an Item</option>
         </select>
     </div>
+
+    <!-- ################################################################################################################ -->
+
     <div id="layer_2" class="layer2" >
         <p>Layer 2</p>
-        <select id="item_2" name="item_1" onchange="ChangeEnhed()">
+        <select id="item_2" name="item_2" onchange="ChangeEnhed(2)">
             <option value="">Select Item</option>
             <?php
 
