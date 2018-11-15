@@ -1,0 +1,38 @@
+
+
+
+::placeholder{
+    color: rgb(161, 161, 167) !important;
+
+}
+
+*{
+    color: rgb(229, 229, 238) !important;
+
+}
+
+.container{
+  margin-top: 5rem;
+}
+.Login-Form{
+  min-width: 40vw;
+  max-width: 60vw;
+  color: white !important;
+  background: rgba(26,26,26,0.7);
+  padding: 20px;
+  margin: auto;
+}
+
+
+#title2{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 5rem;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+body {
+  color: #ffffff;
+  background: #04cba8 url("../img/robot-meets-man.png") no-repeat center;
+
+}
