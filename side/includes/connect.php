@@ -1,6 +1,6 @@
 <?php
 $user = 'root';
-$password = 'root';
+$password = '';
 $db = 'sdetest';
 $host = 'localhost';
 $db = 3306;
