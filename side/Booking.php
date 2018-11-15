@@ -1,18 +1,17 @@
 
 <html>
-    <?php
-    include "includes/session/php";
-    include "includes/header.php";
-    ?>
-
-<style>
-
-</style>
-<body>
 <?php
-include "Includes/navbar.php";
-include "Includes/footer.php";
+
+
+include 'includes/connect.php';
+include "includes/header.php";
+include "includes/navbar.php";
+include "includes/footer.php";
+
+
+
 ?>
+
 <script>
     /*
    $(document).ready(function ChangeEnhed(){
@@ -57,6 +56,7 @@ include "Includes/footer.php";
         }
     }
     function ChangeEnhed(id) {
+        window.alert("www");
         let product_id = "#item_" + id.toString();
         let countryID = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
@@ -67,7 +67,7 @@ include "Includes/footer.php";
         if(countryID){
             $.ajax({
                 type:'POST',
-                url:'includes/BookingDropDownList.php',
+                url:'./includes/BookingDropDownList.php',
                 data:'item_id='+countryID,
                 success:function(html){
                     $('#'+enheds).html(html);
@@ -82,7 +82,7 @@ include "Includes/footer.php";
     }
 </script>
 <button onclick="ChangeLayers()">Change Layer</button>
-<form action="includes/BookingSend.php" method="post">
+<form action="./includes/BookingSend.php" method="post">
     <div id="layer_1" class="layer1">
         <p>Layer 1</p>
         <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
