@@ -1,4 +1,5 @@
 <?php
+include ('session.php');
 function redirect($url, $statusCode = 303)
 {
     header('Location: ' . $url, true, $statusCode);
@@ -13,11 +14,9 @@ for ($i = 1; $i < $length; $i++){
     if (!empty($_POST['item_'.$i])) {
 
 
-        echo " This is visible ". $i;
 
         $item = $_POST['item_'.$i];
         $enheder = $_POST['enhed_'.$i];
-        echo " Product: ".$item;
         $sql = "SELECT product_enhed.id FROM product_enhed INNER JOIN products ON product_enhed.products_id = products.id WHERE products.id = " . $item .
             " AND product_enhed.product_status_id = 3";
 
@@ -28,7 +27,6 @@ for ($i = 1; $i < $length; $i++){
 
 
             while ($row = $result->fetch_assoc() AND $enhedCounter < $enheder) {
-                echo " added Product ".$item;
                 $newSql = "UPDATE product_enhed SET product_status_id = 1 WHERE product_enhed.id = " . $row['id'];
                 // echo "<div> <img class=card-img-top src=/Photo/".$row["image"]." alt=CopyRight  > </div>";
                 $mysqli->query($newSql);

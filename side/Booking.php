@@ -56,7 +56,6 @@ include "includes/footer.php";
         }
     }
     function ChangeEnhed(id) {
-        window.alert("www");
         let product_id = "#item_" + id.toString();
         let countryID = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
@@ -79,6 +78,10 @@ include "includes/footer.php";
             //$('#city').html('<option value="">Select state first</option>');
         }
 
+    }
+
+    function AddSelect(layer_id) {
+        $('#layer_'+layer_id).html(select)
     }
 </script>
 <button onclick="ChangeLayers()">Change Layer</button>
@@ -110,6 +113,8 @@ include "includes/footer.php";
         <select id="enhed_1" name="enhed_1">
             <option>Select an Item</option>
         </select>
+        <button type="button">+</button>
+
     </div>
 
     <!-- ################################################################################################################ -->
@@ -141,13 +146,11 @@ include "includes/footer.php";
         <select id="enhed_2" name="enhed_2">
             <option>Select an Item</option>
         </select>
+        <button type="button">+</button>
+
     </div>
 
-<div style="display: block">
-    <p>
-        hello world
-    </p>
-</div>
+
     <input type="submit" value="Book">
 </form>
 
