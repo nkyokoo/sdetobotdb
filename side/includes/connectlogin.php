@@ -1,5 +1,6 @@
 <?php
   include "connect.php";
+  include "login.php";
 
 
   if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -7,7 +8,7 @@
       $myusername = $_POST['username'];
       $mypassword = $_POST['password'];
 
-      $sql = "SELECT .id, username, password, rank FROM sdetest WHERE username = $myusername AND password = $mypassword";
+      $sql = "SELECT 'id', 'username', 'password', 'rank' FROM sdetest WHERE 'username' = $myusername AND 'password' = $mypassword";
 
 
     var_dump($sql);
