@@ -18,12 +18,12 @@ include "includes/footer.php";
    $(document).ready(function ChangeEnhed(){
       $(document.getElementsByName("item_1")).on('change',function(){
 
-            let countryID = $(this).val();
-            if(countryID){
+            let productValue = $(this).val();
+            if(productValue){
                 $.ajax({
                     type:'POST',
                     url:'includes/BookingDropDownList.php',
-                    data:'item_id='+countryID,
+                    data:'item_id='+productValue,
                     success:function(html){
                         $('#enhed_2').html(html);
                         //$('#city').html('<option value="">Select state first</option>');
@@ -59,15 +59,15 @@ include "includes/footer.php";
     function ChangeEnhed(id) {
 
         let product_id = "#item_" + id.toString();
-        let countryID = $(product_id).val();//$('#'+product_id.).val();
+        let productValue = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
 
         //Ajax go to php site to get the Enheds of Chosen Product
-        if(countryID){
+        if(productValue){
             $.ajax({
                 type:'POST',
                 url:'./includes/BookingDropDownList.php',
-                data:'item_id='+countryID,
+                data:'item_id='+productValue,
                 success:function(html){
                     $('#'+enheds).html(html);
                     //$('#city').html('<option value="">Select state first</option>');
