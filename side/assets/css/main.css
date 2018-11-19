@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+
+h1, h2, h3 {
+  color: black;
+
+}
+p {
+    color: black;
+}
+nav {
+    background-coler: white;
+}
+nav.navside{
+    background-color: rgba(0,0,0, 50);
+}
