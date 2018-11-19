@@ -37,10 +37,9 @@ include "includes/footer.php";
    });*/
     function ChangeLayers() {
 
-        // Switch to different layer
+        // Switch between layers
         if($('#layer_1').css('display') === 'block')
         {
-            window.alert("layer 1 is block");
 
             document.getElementById("layer_2").style.display = "block";
             document.getElementById("layer_1").style.display = "none";
@@ -48,20 +47,19 @@ include "includes/footer.php";
 
         }
         else {
-            window.alert("layer 1 is none");
 
             document.getElementById("layer_1").style.display = "block";
             document.getElementById("layer_2").style.display = "none";
 
         }
     }
+
+    //Populate Options for Product Enheder/Devices.
     function ChangeEnhed(id) {
 
         let product_id = "#item_" + id.toString();
         let countryID = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
-        window.alert(countryID);
-        window.alert(enheds);
 
         //Ajax go to php site to get the Enheds of Chosen Product
         if(countryID){
@@ -80,11 +78,14 @@ include "includes/footer.php";
         }
 
     }
+    //Global variables doesn't reset data after each use. Global only resets when you refresh DOM.
     let layer1Limit = 10;
     let layer1SelectionCounter = 1;
 
     let layer2Limit = 20;
     let layer2SelectionCounter = 11;
+
+    //Add Selection boxes
     function AddSelect(layer_id) {
         if (layer_id === 1){
 
@@ -92,17 +93,21 @@ include "includes/footer.php";
 
 
                 layer1SelectionCounter += 1;
+
+                //New Selection Box ready to add
                 let select = "<select id='item_"+layer1SelectionCounter+"' name='item_"+layer1SelectionCounter+"' onchange='ChangeEnhed("+layer1SelectionCounter+")'>" +
                     "        </select>" +
                     "        <select id='enhed_"+layer1SelectionCounter+"' name='enhed_"+layer1SelectionCounter+"'>"+
                     "            <option>Select an Item</option>" +
                     "        </select>";
+
+                //I'm using Append instead of InnerHTML because InnerHTML remove the old data then add the new ones while Append just add the new data to old.
                 let e = document.createElement('div');
                 let div = document.getElementById('select_list_1');
                 e.innerHTML = select;
                 div.appendChild(e);
 
-                PopulateOptionForSelection(layer1SelectionCounter);
+                PopulateOptionForProductSelection(layer1SelectionCounter);
 
 
             }
@@ -121,26 +126,12 @@ include "includes/footer.php";
                 e.innerHTML = select;
                 div.appendChild(e);
 
-                PopulateOptionForSelection(layer2SelectionCounter);            }
+                PopulateOptionForProductSelection(layer2SelectionCounter);            }
         }
-
-
-        /*
-        let layer = document.getElementById('layer_'+layer_id);
-        let layer1 = 1;
-        let layer2 = 1;
-        if (layer_id === 1) {
-            layer1 += 1;
-            let select = document.createElement("select");
-            select.id = layer1.toString();
-            layer.appendChild(select);
-        }
-        else {
-
-        }
-*/
     }
-    function PopulateOptionForSelection(id) {
+
+    //Populate Options for Product selections
+    function PopulateOptionForProductSelection(id) {
         $.ajax({
             type:'POST',
             url:'./includes/DropdownListProducts_Function.php',
