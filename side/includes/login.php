@@ -12,11 +12,11 @@
             <div class="col">
                 <div class="container">
                     <div id="loginForm" class="Login-Form">
-                        <form action="../includes/connectlogin.php" method="post"">
+                        <form action="connectlogin.php" method="post"">
                             <div class="form-group">
-                                <label for="InputEmailLogin">Email</label>
-                                <input type="email" class="form-control" id="InputEmailLogin" aria-describedby="emailHelp" placeholder="example@domain.com" name="username" required>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label for="InputNameLogin">Name</label>
+                                <input type="Name" class="form-control" id="InputNameLogin" aria-describedby="NameHelp" placeholder="Username" name="username" required>
+                                <small id="NameHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="InputPasswordLogin">Password</label>

@@ -1,15 +1,18 @@
 <?php
-  include "../includes/connect.php";
+  include "connect.php";
+  include "login.php";
 
-  var_dump($link);
-  die;
+
   if($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    $sql = "SELECT `id`, `username`, `password`, `rank` FROM `usertest` WHERE username = ".$myusername." AND password = ".$mypassword;
+      $myusername = $_POST['username'];
+      $mypassword = $_POST['password'];
 
-    $myusername = $_POST['username'];
-    $mypassword = $_POST['password'];
+      $sql = "SELECT 'id', 'username', 'password', 'rank' FROM sdetest WHERE 'username' = $myusername AND 'password' = $mypassword";
 
+
+    var_dump($sql);
+    die;
 
 
     $result = $success->query($sql);
@@ -21,7 +24,7 @@
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-      session_register("myusername");
+      ses("myusername");
       $_SESSION['rank'] = $row['rank'];
       $_SESSION['login_user'] = $myusername;
 
