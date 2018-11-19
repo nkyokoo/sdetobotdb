@@ -98,15 +98,15 @@ include "includes/footer.php";
                     "        <select id='enhed_"+layer1SelectionCounter+"' name='enhed_"+layer1SelectionCounter+"'>"+
                     "            <option>Select an Item</option>" +
                     "        </select>";
-                let e = document.createElement('span');
-                let div = document.getElementById('layer_1');
+                let e = document.createElement('div');
+                let div = document.getElementById('select_list_1');
                 e.innerHTML = select;
                 div.appendChild(e);
-            //    div.appendChild(document.createTextNode(select));
-             //   div.innerHTML += select;
+                //    div.appendChild(document.createTextNode(select));
+                //   div.innerHTML += select;
 
                 PopulateOptionForSelection(layer1SelectionCounter);
-              // layer1SelectionCounter.value = item_value;
+                // layer1SelectionCounter.value = item_value;
 
             }
 
@@ -166,14 +166,16 @@ include "includes/footer.php";
 
         <p>Layer 1</p>
         <div id="select_list_1">
-        <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
-            <?php
-            include ('includes/DropdownListProducts_Function.php');
-            ?>
-        </select>
-        <select id="enhed_1" name="enhed_1">
-            <option>Select an Item</option>
-        </select>
+            <div>
+                <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
+                    <?php
+                    include ('includes/DropdownListProducts_Function.php');
+                    ?>
+                </select>
+                <select id="enhed_1" name="enhed_1">
+                    <option>Select an Item</option>
+                </select>
+            </div>
         </div>
         <button type="button" onclick="AddSelect(1);">Add new</button>
 
@@ -186,17 +188,16 @@ include "includes/footer.php";
 
         <p>Layer 2</p>
         <div id="select_list_2">
-        <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
-            <?php
-
-            include ('includes/DropdownListProducts_Function.php');
-
-
-            ?>
-        </select>
-        <select id="enhed_11" name="enhed_11">
-            <option>Select an Item</option>
-        </select>
+            <div>
+                <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
+                    <?php
+                    include ('includes/DropdownListProducts_Function.php');
+                    ?>
+                </select>
+                <select id="enhed_11" name="enhed_11">
+                    <option>Select an Item</option>
+                </select>
+            </div>
         </div>
         <button type="button" onclick="AddSelect(2)">+</button>
 
