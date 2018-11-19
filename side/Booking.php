@@ -2,7 +2,7 @@
 <html>
 <?php
 
-
+include ('includes/session.php');
 include 'includes/connect.php';
 include "includes/header.php";
 include "includes/navbar.php";
@@ -56,6 +56,7 @@ include "includes/footer.php";
         }
     }
     function ChangeEnhed(id) {
+
         let product_id = "#item_" + id.toString();
         let countryID = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
@@ -79,74 +80,125 @@ include "includes/footer.php";
         }
 
     }
+    let layer1Limit = 10;
+    let layer1SelectionCounter = 1;
 
+    let layer2Limit = 20;
+    let layer2SelectionCounter = 11;
     function AddSelect(layer_id) {
-        $('#layer_'+layer_id).html(select)
+        if (layer_id === 1){
+
+            if (layer1SelectionCounter <= layer1Limit){
+
+                window.alert("Data value before adding "+layer1SelectionCounter);
+
+                layer1SelectionCounter += 1;
+                let select = "<select id='item_"+layer1SelectionCounter+"' name='item_"+layer1SelectionCounter+"' onchange='ChangeEnhed("+layer1SelectionCounter+")'>" +
+                    "        </select>" +
+                    "        <select id='enhed_"+layer1SelectionCounter+"' name='enhed_"+layer1SelectionCounter+"'>"+
+                    "            <option>Select an Item</option>" +
+                    "        </select>";
+                let e = document.createElement('span');
+                let div = document.getElementById('layer_1');
+                e.innerHTML = select;
+                div.appendChild(e);
+            //    div.appendChild(document.createTextNode(select));
+             //   div.innerHTML += select;
+
+                PopulateOptionForSelection(layer1SelectionCounter);
+              // layer1SelectionCounter.value = item_value;
+
+            }
+
+        }/*else {
+            if (layer2SelectionCounter <= layer2Limit){
+                window.alert("Data value before adding "+layer2SelectionCounter);
+
+                layer2SelectionCounter += 1;
+                let select = "<div><select id='item_"+layer2SelectionCounter+"' name='item_"+layer2SelectionCounter+"' onchange='ChangeEnhed("+layer2SelectionCounter+")'>" +
+                    "        </select>" +
+                    "        <select id='enhed_"+layer2SelectionCounter+"' name='enhed_"+layer2SelectionCounter+"'>"+
+                    "            <option>Select an Item</option>" +
+                    "        </select> </div>";
+                let div = document.getElementById('select_list_2');
+                //div.innerHTML += select;
+                //$('#select_list_1').html(select);
+              //  $('#item_'+id).html("html");
+
+                PopulateOptionForSelection(layer2SelectionCounter);
+            }
+        }*/
+
+
+        /*
+        let layer = document.getElementById('layer_'+layer_id);
+        let layer1 = 1;
+        let layer2 = 1;
+        if (layer_id === 1) {
+            layer1 += 1;
+            let select = document.createElement("select");
+            select.id = layer1.toString();
+            layer.appendChild(select);
+        }
+        else {
+
+        }
+*/
+    }
+    function PopulateOptionForSelection(id) {
+        $.ajax({
+            type:'POST',
+            url:'./includes/DropdownListProducts_Function.php',
+            data:'item_id='+id,
+            success:function(html){
+                alert(html);
+                $('#item_'+id).html(html);
+
+                //$('#city').html('<option value="">Select state first</option>');
+            }
+        });
     }
 </script>
 <button onclick="ChangeLayers()">Change Layer</button>
 <form action="./includes/BookingSend.php" method="post">
-    <div id="layer_1" class="layer1">
+    <div id="layer_1" class="layer1" >
+        <span id="increment_1" style="display: none">1</span>
+
         <p>Layer 1</p>
+        <div id="select_list_1">
         <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
-            <option value="">Select Item</option>
             <?php
-
-            $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
-            $sql = "SELECT * FROM booking.products";
-            $result = $mysqli->query($sql);
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()){
-
-
-                    // echo "<div> <img class=card-img-top src=/Photo/".$row["image"]." alt=CopyRight  > </div>";
-
-                    echo "<option value=".$row['id'].">".$row['product_name']."</option>";
-
-
-                }
-            }
-            $mysqli->close();
-
+            include ('includes/DropdownListProducts_Function.php');
             ?>
         </select>
         <select id="enhed_1" name="enhed_1">
             <option>Select an Item</option>
         </select>
-        <button type="button">+</button>
+        </div>
+        <button type="button" onclick="AddSelect(1);">Add new</button>
 
     </div>
 
     <!-- ################################################################################################################ -->
 
     <div id="layer_2" class="layer2" >
+        <data id="increment_2" value="11"></data>
+
         <p>Layer 2</p>
-        <select id="item_2" name="item_2" onchange="ChangeEnhed(2)">
-            <option value="">Select Item</option>
+        <div id="select_list_2">
+        <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
             <?php
 
-            $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
-            $sql = "SELECT * FROM booking.products";
-            $result = $mysqli->query($sql);
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()){
+            include ('includes/DropdownListProducts_Function.php');
 
-
-                    // echo "<div> <img class=card-img-top src=/Photo/".$row["image"]." alt=CopyRight  > </div>";
-
-                    echo "<option value=".$row['id'].">".$row['product_name']."</option>";
-
-
-                }
-            }
-            $mysqli->close();
 
             ?>
         </select>
-        <select id="enhed_2" name="enhed_2">
+        <select id="enhed_11" name="enhed_11">
             <option>Select an Item</option>
         </select>
-        <button type="button">+</button>
+        </div>
+        <button type="button" onclick="AddSelect(2)">+</button>
 
     </div>
 

@@ -5,6 +5,8 @@
             $sql = "SELECT * FROM booking.products";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
+
+                echo "<option value=''>Select Item</option>";
                 while($row = $result->fetch_assoc()){
 
 
