@@ -14,6 +14,7 @@ include "includes/footer.php";
 
 <script>
     /*
+    //Prototype of ChangeEnhed
    $(document).ready(function ChangeEnhed(){
       $(document.getElementsByName("item_1")).on('change',function(){
 
