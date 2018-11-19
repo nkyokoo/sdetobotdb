@@ -90,7 +90,6 @@ include "includes/footer.php";
 
             if (layer1SelectionCounter <= layer1Limit){
 
-                window.alert("Data value before adding "+layer1SelectionCounter);
 
                 layer1SelectionCounter += 1;
                 let select = "<select id='item_"+layer1SelectionCounter+"' name='item_"+layer1SelectionCounter+"' onchange='ChangeEnhed("+layer1SelectionCounter+")'>" +
@@ -102,32 +101,28 @@ include "includes/footer.php";
                 let div = document.getElementById('select_list_1');
                 e.innerHTML = select;
                 div.appendChild(e);
-                //    div.appendChild(document.createTextNode(select));
-                //   div.innerHTML += select;
 
                 PopulateOptionForSelection(layer1SelectionCounter);
-                // layer1SelectionCounter.value = item_value;
+
 
             }
 
-        }/*else {
+        }else {
             if (layer2SelectionCounter <= layer2Limit){
-                window.alert("Data value before adding "+layer2SelectionCounter);
 
                 layer2SelectionCounter += 1;
-                let select = "<div><select id='item_"+layer2SelectionCounter+"' name='item_"+layer2SelectionCounter+"' onchange='ChangeEnhed("+layer2SelectionCounter+")'>" +
+                let select = "<select id='item_"+layer2SelectionCounter+"' name='item_"+layer2SelectionCounter+"' onchange='ChangeEnhed("+layer2SelectionCounter+")'>" +
                     "        </select>" +
                     "        <select id='enhed_"+layer2SelectionCounter+"' name='enhed_"+layer2SelectionCounter+"'>"+
                     "            <option>Select an Item</option>" +
-                    "        </select> </div>";
+                    "        </select>";
+                let e = document.createElement('div');
                 let div = document.getElementById('select_list_2');
-                //div.innerHTML += select;
-                //$('#select_list_1').html(select);
-              //  $('#item_'+id).html("html");
+                e.innerHTML = select;
+                div.appendChild(e);
 
-                PopulateOptionForSelection(layer2SelectionCounter);
-            }
-        }*/
+                PopulateOptionForSelection(layer2SelectionCounter);            }
+        }
 
 
         /*
