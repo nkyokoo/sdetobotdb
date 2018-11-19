@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 body {
@@ -16,4 +17,12 @@ nav {
 }
 nav.navside{
     background-color: rgba(0,0,0, 50);
+}
+  
+.layer1{
+    display: block;
+}
+ .layer2{
+    display: none;
+
 }
