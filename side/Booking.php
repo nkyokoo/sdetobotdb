@@ -62,7 +62,7 @@ include "includes/footer.php";
         let productValue = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
 
-        //Ajax go to php site to get the Enheds of Chosen Product
+        //Ajax go to php site to get the Enheds of Chosen Productm
         if(productValue){
             $.ajax({
                 type:'POST',
