@@ -22,7 +22,7 @@ include "includes/footer.php";
 
         $.ajax({
             type:'post',
-            url:'Booking.php',
+            url:'something.php',
             data: {kategori: kategori_id,produkt: produkt_id,virksomhed: virksomhed_id,lokale: lokale_id,hylde: hylde_id,plads: plads_id,antal: antal_id,description: description_id},
             success:function () {
                 alert("You've succeed in creating a new product!");
@@ -38,29 +38,29 @@ include "includes/footer.php";
     <form>
         <div>
             <select id="kategori_id">
-                <option>Kategori</option>
+                <option value="">Kategori</option>
             </select>
 
             <input id="produkt_id" type="text" placeholder="Produkt navn">
 
             <select id="virksomhed_id">
-                <option>Virksomhed</option>
+                <option value="">Virksomhed</option>
             </select>
 
             <select id="lokale_id">
-                <option>Lokale</option>
+                <option value="">Lokale</option>
             </select>
 
             <select id="hylde_id">
-                <option>Hylde</option>
+                <option value="">Hylde</option>
             </select>
 
             <select id="plads_id">
-                <option>Plads</option>
+                <option value="">Plads</option>
             </select>
 
             <select id="antal_id">
-                <option>Antal</option>
+                <option value="">Antal</option>
             </select>
         </div>
         <textarea id="description_id" placeholder="Description" rows="6" cols="30" ></textarea>
