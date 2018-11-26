@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","root","sdetest", 3306);
+$con = mysqli_connect("localhost","root","","sdedb", 3306);
 
 
 // Check connection

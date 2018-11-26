@@ -1,7 +1,10 @@
 <?php
   include "connect.php";
-  include "login.php";
-
+function redirect($url, $statusCode = 303)
+{
+    header('Location: ' . $url, true, $statusCode);
+    die();
+}
 
   if($_SERVER["REQUEST_METHOD"] === "POST"){
 
@@ -11,7 +14,6 @@
       $sql = "SELECT 'id', 'username', 'password', 'rank' FROM sdetest WHERE 'username' = $myusername AND 'password' = $mypassword";
 
 
-    var_dump($sql);
     die;
 
 
@@ -28,8 +30,9 @@
       $_SESSION['rank'] = $row['rank'];
       $_SESSION['login_user'] = $myusername;
 
-      header("../frontinclude/welcome.php");
+       redirect("./frontinclude/welcome.php",200);
     } else {
+        redirect("login.php",200);
       $error = "Dit brugernavn eller adgangskode er forkert";
     }
 
