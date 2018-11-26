@@ -62,7 +62,7 @@ include "includes/footer.php";
         let productValue = $(product_id).val();//$('#'+product_id.).val();
         let enheds = "enhed_" + id.toString();
 
-        //Ajax go to php site to get the Enheds of Chosen Product
+        //Ajax go to php site to get the Enheds of Chosen Productm
         if(productValue){
             $.ajax({
                 type:'POST',
@@ -90,7 +90,7 @@ include "includes/footer.php";
     function AddSelect(layer_id) {
         if (layer_id === 1){
 
-            if (layer1SelectionCounter <= layer1Limit){
+            if (layer1SelectionCounter < layer1Limit){
 
 
                 layer1SelectionCounter += 1;
@@ -114,7 +114,7 @@ include "includes/footer.php";
             }
 
         }else {
-            if (layer2SelectionCounter <= layer2Limit){
+            if (layer2SelectionCounter < layer2Limit){
 
                 layer2SelectionCounter += 1;
                 let select = "<select id='item_"+layer2SelectionCounter+"' name='item_"+layer2SelectionCounter+"' onchange='ChangeEnhed("+layer2SelectionCounter+")'>" +

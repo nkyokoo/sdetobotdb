@@ -14,15 +14,12 @@
     -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
 }
-
-
 #login-button {
     -webkit-transition: width 2s; /* Safari */
     -webkit-transition-timing-function: linear; /* Safari */
     transition: width 2s;
     transition-timing-function: linear;
 }
-
 #login-button:hover {
     width: 80px;
 }
@@ -44,7 +41,6 @@
 .lead{
     color: #f0e9f8;
 }
-
 #title2{
   text-align: center;
   font-size: 4rem;
