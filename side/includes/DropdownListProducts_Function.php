@@ -1,7 +1,7 @@
 <?php
 
 
-            $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
+     /*       $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
             $sql = "SELECT * FROM booking.products";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
@@ -17,5 +17,7 @@
 
                 }
             }
-            $mysqli->close();
+            $mysqli->close();*/
+
+     echo "hello workd";
 

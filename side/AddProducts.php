@@ -12,7 +12,7 @@ include "includes/footer.php";
     function BtnAddProduct() {
 
         let kategori_id = document.getElementById(kategori_id).val();
-        let produkt_id = document.getElementById(produkt_id).val();
+        let produkt_navn = document.getElementById(produkt_navn);
         let virksomhed_id = document.getElementById(virksomhed_id).val();
         let lokale_id = document.getElementById(lokale_id).val();
         let hylde_id = document.getElementById(hylde_id).val();
@@ -20,15 +20,23 @@ include "includes/footer.php";
         let antal_id = document.getElementById(antal_id).val();
         let description_id = document.getElementById(description_id).val();
 
-        $.ajax({
+      /*  $.ajax({
             type:'post',
-            url:'something.php',
-            data: {kategori: kategori_id,produkt: produkt_id,virksomhed: virksomhed_id,lokale: lokale_id,hylde: hylde_id,plads: plads_id,antal: antal_id,description: description_id},
-            success:function () {
-                alert("You've succeed in creating a new product!");
-
+            url:'includes/AddProductToDatabase.php',
+            data: 'produkt_navn='+produkt_navn,
+            success:function (data) {
+               // alert("You've succeed in creating a new product!");
+                alert(data);
+                alert("sht");
             }
-        })
+        });*/
+
+        $.post( "includes/AddProductToDatabase.php", {
+            name: "John",
+            time: "2pm"
+        } );
+
+
     }
 </script>
 
@@ -41,7 +49,7 @@ include "includes/footer.php";
                 <option value="">Kategori</option>
             </select>
 
-            <input id="produkt_id" type="text" placeholder="Produkt navn">
+            <input id="produkt_navn" type="text" placeholder="Produkt navn">
 
             <select id="virksomhed_id">
                 <option value="">Virksomhed</option>
@@ -64,7 +72,7 @@ include "includes/footer.php";
             </select>
         </div>
         <textarea id="description_id" placeholder="Description" rows="6" cols="30" ></textarea>
-        <input type="submit" value="Tilføj" onclick="BtnAddProduct()">
+        <input type="button" value="Tilføj" onclick="BtnAddProduct()">
     </form>
 </div>
 
