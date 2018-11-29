@@ -41,18 +41,19 @@ if ($result = $mysql->query("SELECT id FROM product_location WHERE product_locat
         echo " location_id : ".$location;
     }
 }
-//
-/*
+
+//Check for Category if existb
+
+//Check for Leverandoer if exist
+
 //Add Product to Database
 if ($stmt = $mysql->prepare('INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL,?,?,?,?,?,?)')){
 
     $stmt->bind_param("sisiis");
 }
-*/
 
 
-//$sql = "INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL, '".$_POST['product_navn'] ."', '".$_POST['']."', 'ja', '2', '1', 'No comment.');";
 
 
-                                                                                                         //                             data: {kategori,produkt_navn,virksomhed,lokale,hylde,plads,antal,description},
+
 
