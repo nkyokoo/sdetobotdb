@@ -25,15 +25,46 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
         let description = $(description_id).val();
         let flytbar = $(flytbar_id).val();
         let leverandoer = $(leverandoer_id).val();
+        let array = [kategori,virksomhed,lokale,hylde,plads,leverandoer];
 
+        for (let i = 0; i<array.length;i++){
+            if (array[i] === "andet"){
+                switch (i) {
+                    case 0:
+                        array[i] = $(kategori_id_andet).val();
+                        break;
+                    case 1:
+                        array[i] = $(virksomhed_id_andet).val();
+
+                        break;
+                    case 2:
+                        array[i] = $(lokale_id_andet).val();
+
+                        break;
+                    case 3:
+                        array[i] = $(hylde_id_andet).val();
+
+                        break;
+                    case 4:
+                        array[i] = $(plads_id_andet).val();
+
+                        break;
+                    case 5:
+                        array[i] = $(leverandoer_id_andet).val();
+
+                        break;
+
+                }
+            }
+        }
         $.ajax({
             type:'post',
-            url:'includes/AddProductToDatabase.php',
-            data: {kategori: kategori,produkt_navn: produkt_navn,virksomhed: virksomhed,lokale: lokale,hylde: hylde,plads: plads,antal: antal,description: description,flytbar:flytbar,leverandoer:leverandoer},
+            url:'includes/addproducttodatabase.php',
+            data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],hylde: array[3],plads: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
             success:function (data) {
                // alert("You've succeed in creating a new product!");
                 alert(data);
-                alert("sht");
+                alert("You've successfully inserted data into the database");
             }
         });
 
@@ -41,14 +72,32 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
 
 
     }
+
+    function AddNewInputOfAndet(CurrentEventId) {
+                        let andetPlaceHolerName = CurrentEventId;
+                        andetPlaceHolerName = andetPlaceHolerName.slice(0,-3);
+                        let addHTML = "<input type='text' id='"+CurrentEventId+"_andet' placeholder='Ny "+andetPlaceHolerName+"'>";
+                        let CurrentValue = document.getElementById(CurrentEventId).value ;
+
+                        if (CurrentValue === "andet"){
+                           let container = document.getElementById(CurrentEventId);
+                           let createdElement = document.createElement('span');
+                           createdElement.innerHTML = addHTML;
+                           container.insertAdjacentElement("afterend", createdElement);
+                        }else {
+                            if ($("#"+CurrentEventId+"_andet")){
+                                $("#"+CurrentEventId+"_andet").remove();
+                            }
+                        }
+    }
 </script>
 
 <!-- #############################-------- SCRIPT -------############################################ -->
 
 <div>
-    <form action="includes/AddProductToDatabase.php" method="post">
+    <form action="includes/addproducttodatabase.php" method="post">
         <div>
-            <select id="kategori_id">
+            <select id="kategori_id" onchange="AddNewInputOfAndet(this.id)">
                 <option value="">Kategori</option>
                 <?php
                 $sql = "SELECT * FROM booking.category";
@@ -58,6 +107,8 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                     }
+                    echo "<option value='andet'>Andet</option>";
+
                 }
 
                 ?>
@@ -65,7 +116,7 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
 
             <input id="produkt_id" type="text"  placeholder="Produkt navn">
 
-            <select id="virksomhed_id">
+            <select id="virksomhed_id" onchange="AddNewInputOfAndet(this.id)">
 
                 <?php
                 echo "<option value=''>Virksomhed</option>";
@@ -78,11 +129,13 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                         while ($row = $result->fetch_assoc()){
                             echo "<option value='".$row['adress']."'>".$row['adress']."</option>";
                         }
+                        echo "<option value='andet'>Andet</option>";
+
                     }
                 ?>
             </select>
 
-            <select id="lokale_id">
+            <select id="lokale_id" onchange="AddNewInputOfAndet(this.id)">
                 <option value="">Lokale</option>
                 <?php
 
@@ -94,11 +147,13 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['lokale']."'>".$row['lokale']."</option>";
                     }
+                    echo "<option value='andet'>Andet</option>";
+
                 }
                 ?>
             </select>
 
-            <select id="hylde_id">
+            <select id="hylde_id" onchange="AddNewInputOfAndet(this.id)">
                 <option value="">Hylde</option>
                 <?php
 
@@ -110,11 +165,13 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['hylde']."'>".$row['hylde']."</option>";
                     }
+                    echo "<option value='andet'>Andet</option>";
+
                 }
                 ?>
             </select>
 
-            <select id="plads_id">
+            <select id="plads_id" onchange="AddNewInputOfAndet(this.id)">
                 <option value="">Plads</option>
                 <?php
 
@@ -126,6 +183,8 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['plads']."'>".$row['plads']."</option>";
                     }
+                    echo "<option value='andet'>Andet</option>";
+
                 }
                 ?>
             </select>
@@ -135,8 +194,8 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                 <option value="nej">nej</option>
 
             </select>
-            <input id="antal_id" type="number" placeholder="Antal">
-            <select id="leverandoer_id">
+            <input id="antal_id" type="number" placeholder="Antal" min="0" max="999" >
+            <select id="leverandoer_id" onchange="AddNewInputOfAndet(this.id)">
                 <option value="1">Leverandør</option>
                 <?php
 
@@ -148,6 +207,7 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['leverandoer_name']."</option>";
                     }
+                    echo "<option value='andet'>Andet</option>";
                 }
                 ?>
             </select>

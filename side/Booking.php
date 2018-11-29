@@ -1,12 +1,10 @@
 
-<html>
 <?php
 
 include ('includes/session.php');
-include 'includes/connect.php';
-include "includes/header.php";
-include "includes/navbar.php";
-include "includes/footer.php";
+//include 'includes/connect.php';
+include ("includes/header.php");
+include ("includes/navbar.php");
 
 
 
@@ -66,7 +64,7 @@ include "includes/footer.php";
         if(productValue){
             $.ajax({
                 type:'POST',
-                url:'./includes/BookingDropDownList.php',
+                url:'./includes/bookingdropdownlist.php',
                 data:'item_id='+productValue,
                 success:function(html){
                     $('#'+enheds).html(html);
@@ -135,7 +133,7 @@ include "includes/footer.php";
     function PopulateOptionForProductSelection(id) {
         $.ajax({
             type:'POST',
-            url:'./includes/DropdownListProducts_Function.php',
+            url:'./includes/dropdownlistproducts_function.php',
             data:'item_id='+id,
             success:function(html){
                 alert(html);
@@ -147,7 +145,7 @@ include "includes/footer.php";
     }
 </script>
 <button onclick="ChangeLayers()">Change Layer</button>
-<form action="./includes/BookingSend.php" method="post">
+<form action="./includes/bookingsend.php" method="post">
     <div id="layer_1" class="layer1" >
         <span id="increment_1" style="display: none">1</span>
 
@@ -156,7 +154,7 @@ include "includes/footer.php";
             <div>
                 <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
                     <?php
-                    include ('includes/DropdownListProducts_Function.php');
+                    include ('includes/dropdownlistproducts_function.php');
                     ?>
                 </select>
                 <select id="enhed_1" name="enhed_1">
@@ -178,7 +176,7 @@ include "includes/footer.php";
             <div>
                 <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
                     <?php
-                    include ('includes/DropdownListProducts_Function.php');
+                    include ('includes/dropdownlistproducts_function.php');
                     ?>
                 </select>
                 <select id="enhed_11" name="enhed_11">
@@ -194,5 +192,7 @@ include "includes/footer.php";
     <input type="submit" value="Book">
 </form>
 
-</body>
-</html>
+<?php
+include "includes/footer.php";
+
+?>
