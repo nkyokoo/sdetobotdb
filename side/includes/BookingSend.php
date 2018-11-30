@@ -6,7 +6,6 @@ function redirect($url, $statusCode = 303)
     die();
 }
 echo "I'm on right site";
-$mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
 $length = 2;
 for ($i = 1; $i < $length; $i++){
     $enhedCounter = 0;

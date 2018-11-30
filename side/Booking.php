@@ -1,5 +1,5 @@
 
-<html>
+
 <?php
 
 include ('includes/session.php');
@@ -13,30 +13,8 @@ include "includes/footer.php";
 ?>
 
 <script>
-    /*
-    //Prototype of ChangeEnhed
-   $(document).ready(function ChangeEnhed(){
-      $(document.getElementsByName("item_1")).on('change',function(){
 
-            let productValue = $(this).val();
-            if(productValue){
-                $.ajax({
-                    type:'POST',
-                    url:'includes/BookingDropDownList.php',
-                    data:'item_id='+productValue,
-                    success:function(html){
-                        $('#enhed_2').html(html);
-                        //$('#city').html('<option value="">Select state first</option>');
-                    }
-                });
-            }else{
-                $('#enhed_2').html('<option value="">Select an Item</option>');
-                //$('#city').html('<option value="">Select state first</option>');
-            }
-
-  });
-   });*/
-    function ChangeLayers() {
+    let ChangeLayers = () => {
 
         // Switch between layers
         if($('#layer_1').css('display') === 'block')
@@ -56,7 +34,7 @@ include "includes/footer.php";
     }
 
     //Populate Options for Product Enheder/Devices.
-    function ChangeEnhed(id) {
+    let ChangeEnhed = (id) => {
 
         let product_id = "#item_" + id.toString();
         let productValue = $(product_id).val();//$('#'+product_id.).val();
@@ -87,7 +65,7 @@ include "includes/footer.php";
     let layer2SelectionCounter = 11;
 
     //Add Selection boxes
-    function AddSelect(layer_id) {
+    let AddSelect = (layer_id) => {
         if (layer_id === 1){
 
             if (layer1SelectionCounter <= layer1Limit){
@@ -132,7 +110,7 @@ include "includes/footer.php";
     }
 
     //Populate Options for Product selections
-    function PopulateOptionForProductSelection(id) {
+    let PopulateOptionForProductSelection = (id) => {
         $.ajax({
             type:'POST',
             url:'./includes/DropdownListProducts_Function.php',
@@ -194,5 +172,3 @@ include "includes/footer.php";
     <input type="submit" value="Book">
 </form>
 
-</body>
-</html>
