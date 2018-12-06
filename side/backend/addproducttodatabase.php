@@ -216,7 +216,7 @@ class addproducttodatabase{
         }
         $mysql->close();
     }
-//Add Product to Database
+//Add Product to Database with bug. 
 
         private function addToDB(){
 
