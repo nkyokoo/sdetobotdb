@@ -28,15 +28,15 @@ function ChangeLayers() {
     if($('#layer_1').css('display') === 'block')
     {
 
-        document.getElementById("layer_2").style.display = "block";
-        document.getElementById("layer_1").style.display = "none";
+        document.getElementById("layer_2").style.display = 'block';
+        document.getElementById("layer_1").style.display = 'none';
 
 
     }
     else {
 
-        document.getElementById("layer_1").style.display = "block";
-        document.getElementById("layer_2").style.display = "none";
+        document.getElementById("layer_1").style.display = 'block';
+        document.getElementById("layer_2").style.display = 'none';
 
     }
 }
@@ -52,7 +52,7 @@ function ChangeEnhed(id) {
     if(productValue){
         $.ajax({
             type:'POST',
-            url:'./includes/bookingdropdownlist.php',
+            url:'api/api_bookingdropdownlist.php',
             data:'item_id='+productValue,
             success:function(html){
                 $('#'+enheds).html(html);
@@ -120,8 +120,8 @@ function AddSelect(layer_id) {
 //Populate Options for Product selections
 function PopulateOptionForProductSelection(id) {
     $.ajax({
-        type:'POST',
-        url:'./includes/dropdownlistproducts_function.php',
+        type:'post',
+        url:'../backend/dropdownlistproducts_function.php',
         data:'item_id='+id,
         success:function(html){
             alert(html);

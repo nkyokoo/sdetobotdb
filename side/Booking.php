@@ -9,14 +9,12 @@ include ("includes/navbar.php");
 
 
 ?>
-<script src="assets/js/booking.js">
-
-
+<script type="text/javascript" src="assets/js/booking.js">
 </script>
 
 <button onclick="ChangeLayers()">Change Layer</button>
-<form action="./includes/bookingsend.php" method="post">
-    <div id="layer_1" class="layer1" >
+<form action="api/api_bookingsend.php" method="post">
+    <div id="layer_1" class="layer1" style="display: block" >
         <span id="increment_1" style="display: none">1</span>
 
         <p>Layer 1</p>
@@ -24,7 +22,7 @@ include ("includes/navbar.php");
             <div>
                 <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
                     <?php
-                    include ('includes/dropdownlistproducts_function.php');
+                    include "backend/dropdownlistproducts_function.php";
                     ?>
                 </select>
                 <select id="enhed_1" name="enhed_1">
@@ -32,21 +30,21 @@ include ("includes/navbar.php");
                 </select>
             </div>
         </div>
-        <button type="button" onclick="AddSelect(1);">Add new</button>
+        <button type="button" onclick="AddSelect(1);">Add New Item</button>
 
     </div>
 
     <!-- ################################################################################################################ -->
 
-    <div id="layer_2" class="layer2" >
-        <data id="increment_2" value="11"></data>
+    <div id="layer_2" class="layer2" style="display: none" >
+        <span id="increment_1" style="display: none">1</span>
 
         <p>Layer 2</p>
         <div id="select_list_2">
             <div>
                 <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
                     <?php
-                    include ('includes/dropdownlistproducts_function.php');
+                    include "backend/dropdownlistproducts_function.php";
                     ?>
                 </select>
                 <select id="enhed_11" name="enhed_11">
@@ -54,7 +52,7 @@ include ("includes/navbar.php");
                 </select>
             </div>
         </div>
-        <button type="button" onclick="AddSelect(2)">+</button>
+        <button type="button" onclick="AddSelect(2)">Add New Item</button>
 
     </div>
 
