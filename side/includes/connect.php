@@ -7,6 +7,7 @@ class DBConnection
         if (mysqli_connect_errno()) {
             return null;
         } else {
+            $con->set_charset("utf8");
             return $con;
         }
     }

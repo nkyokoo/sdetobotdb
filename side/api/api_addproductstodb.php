@@ -15,6 +15,8 @@ try
     $class->setAntal($_POST['antal']);
     $class->setLeverandoer($_POST['leverandoer']);
     $class->setDescription($_POST['description']);
+
+
     $class->main();
 }
 catch (Exception $e)

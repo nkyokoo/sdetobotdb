@@ -14,12 +14,17 @@ class addproducttodatabase{
     private $antal ;
     private $leverandoer;
     private $description;
-
+    private $product;
     // get id
     private $location;
     // Setter, Set data on Variable
+    public function setProduct($id){
+        $this->product = $id;
+
+    }
     public function setLocation($location){
         $this->location = $location;
+
     }
     public function setKategori($kategori){
         $this->kategori = $kategori;
@@ -53,6 +58,9 @@ class addproducttodatabase{
     }
 
     // Getter, Get data from Variable
+    public function getProduct(){
+        return $this->product ;
+    }
     public function getLocation(){
         return $this->location ;
     }
@@ -92,7 +100,9 @@ class addproducttodatabase{
         $this->checkIfLocationExist();
         $this->checkIfCategoryExist();
         $this->checkifSupplierExist();
-        $this->addToDB();
+        $this->addProductToDB();
+        $this->addEnhedtoDB();
+
     }
 
     private function arraysAndSecurity()
@@ -135,23 +145,23 @@ class addproducttodatabase{
 
             } else
             {
-                $location = $mysql->prepare('INSERT INTO `product_location` (`id`, `adress`, `lokale`, `hylde`, `plads`) VALUES (NULL, ?, ?, ?, ?)');
+                $location = $mysql->prepare('INSERT INTO `product_location` (`adress`, `lokale`, `hylde`, `plads`) VALUES (?, ?, ?, ?)');
                 $location->bind_param("ssss", $array[2], $array[3], $array[4], $array[5]);
                 $location->execute();
                 $this->setLocation($location->insert_id);
 
             }
+            $mysql->close();
 
         } catch (Exception $e) {
             die("Error " . $e->getMessage());
         }
-        $mysql->close();
 
     }
 
 
 //Check for Category if exist
-
+//Can only work after I set my database column 'id' to A_I.
     private function checkIfCategoryExist()
     {
 
@@ -170,22 +180,19 @@ class addproducttodatabase{
             }
             else
             {
-                $intIdTest = 4;
-                $stmt = $mysql->prepare('INSERT INTO `category` (`id`, `category_name`) VALUES (NULL, ?)');
-                $stmt->bind_param("is" ,$array[0]);
+                $stmt = $mysql->prepare('INSERT INTO `category` (`category_name`) VALUES (?)');
+                $stmt->bind_param("s" ,$array[0]);
                 $stmt->execute();
                 $idContainer = $stmt->insert_id;
-                echo "is this ".$this->getKategori();
 
-                echo "am I died2";
                 $this->setKategori($idContainer);
             }
 
+            $mysql->close();
 
         }catch (Exception $exception){
             die("Error ". $exception->getMessage()) ;
         }
-        $mysql->close();
     }
 
 //Check for Leverandoer if exist
@@ -205,45 +212,69 @@ class addproducttodatabase{
                 $valueToSplitContainer = $array[6];
                 $splittedValueArray = explode(',', $valueToSplitContainer);
                 echo $splittedValueArray[0]." ".$splittedValueArray[1]." ".$splittedValueArray[2];
-                $stmt = $mysql->prepare("INSERT INTO leverandoer (id,leverandoer_name,leverandoer_adress,leverandoer_phonenr) values (null,?,?,?)");
+                $stmt = $mysql->prepare("INSERT INTO leverandoer (leverandoer_name,leverandoer_adress,leverandoer_phonenr) values (?,?,?)");
                 $stmt->bind_param("ssi",$splittedValueArray[0],$splittedValueArray[1],$splittedValueArray[2]);
                 $stmt->execute();
                 $this->setLeverandoer($stmt->insert_id);
                 echo $stmt->insert_id;
             }
+            $mysql->close();
+
         }catch (Exception $exception){
             die("Error: ". $exception);
         }
-        $mysql->close();
     }
 //Add Product to Database
 
-        private function addToDB(){
+    private function addProductToDB(){
 
 
-            try {
-                $con = new DBConnection();
-                $mysql = $con->getConnection();
-                $product = $this->getProduktNavn();
-                $location = (int)$this->getLocation();
-                $flytbar = $this->getFlytbar();
-                $category = (int)$this->getKategori();
-                $leverandoer = (int)$this->getLeverandoer();
-                $description = $this->getDescription();
-                $execute = $mysql->prepare('INSERT INTO `products` (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL,?,?,?,?,?,?)');
-                echo $this->getProduktNavn() ."Location =". $this->getLocation() . $this->getFlytbar() ." Kategori =". $this->getKategori() . " leverandoer =". $this->getLeverandoer() . $this->getDescription();
-                $execute->bind_param("sisiis", $product,$location, $flytbar, $category, $leverandoer, $description);
-                $execute->error_list;
-                $execute->execute();
-            } catch (Exception $e) {
-                die("Error: ".$e);
-            }
+        try {
 
+            $product = $this->getProduktNavn();
+            $flytbar = $this->getFlytbar();
+            $description = $this->getDescription();
+            $location = $this->getLocation();
+            $category = $this->getKategori();
+            $leverandoer = $this->getLeverandoer();
+
+
+
+            $con = new DBConnection();
+            $mysql = $con->getConnection();
+            $stmt = $mysql->prepare('INSERT INTO `products` (`product_name`,  `flytbar` , `description`,`product_location_id`, `category_id`, `leverandør_id`) VALUES (?,?,?,?,?,?)');
+            echo $this->getProduktNavn() . "Location =" . $this->getLocation() . $this->getFlytbar() . " Kategori =" . $this->getKategori() . " leverandoer =" . $this->getLeverandoer() . $this->getDescription();
+            $stmt->bind_param("sssiii", $product, $flytbar, $description, $location, $category, $leverandoer);
+            $stmt->execute();
+           $this->setProduct($mysql->insert_id);
             $mysql->close();
+
+        } catch (Exception $e) {
+            die("Error: ".$e);
         }
 
+    }
 
+    //Add enheds to Database
+    private function addEnhedtoDB(){
 
+        try {
+            $con = new DBConnection();
+            $mysql = $con->getConnection();
+            $productID =$this->getProduct();
+            echo "product id =".$productID." and antal is =". $this->getAntal();
+            $stmt = $mysql->prepare("INSERT INTO `product_enhed` (`Enhed_number`, `product_status_id`, `products_id`) VALUES (?, 4, ?)");
+
+            for ($enhedNumber = 1; $enhedNumber<= $this->getAntal(); $enhedNumber++) {
+                $convertEnhedNumberToString = (string)$enhedNumber;
+                $stmt->bind_param("si", $convertEnhedNumberToString, $productID);
+                $stmt->execute();
+            }
+            $mysql->close();
+        } catch (Exception $e) {
+            die("Error: ".$e);
+        }
+    }
 }
 
 
