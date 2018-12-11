@@ -224,7 +224,7 @@ class addproducttodatabase{
             die("Error: ". $exception);
         }
     }
-//Add Product to Database
+//Add Product to Database with bug. 
 
     private function addProductToDB(){
 
