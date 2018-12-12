@@ -15,9 +15,14 @@ echo"
       <meta name='keywords' content='sde,robot'>
 
       <title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
+
       <link rel='stylesheet' href='../assets/css/main.css' type='text/css'>
       <link rel='icon' type='image/x-icon' href='favicon.ico'>
       <link rel='stylesheet' href='../assets/css/bootstrap.min.css'>
+
+
+      
+
 
 
   </head>

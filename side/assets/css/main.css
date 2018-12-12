@@ -3,9 +3,11 @@
 body {
     color: white;
 }
-
+*{
+    color:black;
+}
 h1, h2, h3 {
-  color: black;
+  color: black ;
 
 }
 p {
