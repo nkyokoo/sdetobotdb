@@ -1,4 +1,6 @@
 <?php
-echo "<div class='bar-login'>
+echo "
+<link rel='stylesheet' href='../assets/css/sidebar.css'>
+<div class='sidebar'>
 
 </div> ";
