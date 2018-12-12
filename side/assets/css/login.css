@@ -9,7 +9,7 @@
     background-color: #002e2d;
     position: absolute;
     height: 100%;
-    width: 10rem;
+    width: 12rem;
     z-index: 2;
     float: left;
     -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);

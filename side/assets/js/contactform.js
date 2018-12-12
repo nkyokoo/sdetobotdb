@@ -1,19 +1,20 @@
-$(document).ready(() => {
+ let sendMail = () => {
+     let content = document.getElementById('Message-input')
+     let category = document.getElementById('categoryList')
+     let title = document.getElementById('messageTitle')
 
-    $.get("/api/getcategories.php", (data) => {
-        let categoryList = document.getElementById("categoryList")
-        let option;
-        for (let category of data) {
-            console.log(category)
-            option  = document.createElement('option');
-            option.innerText = category.id + " - " + category.name
-            categoryList.appendChild(option)
-            console.log(option)
+     if (title.value !== "" && content.value !== "" && category.value !== "") {
+         $.post("api/sendEmail.php", {
+             title:  category.options[category.selectedIndex].value + "-" + title.value,
+             content: content.value,
 
-        }
-
-
-    });
+         },  (data) => {
+             alert(data)
+         })
+     } else {
+         alert("error")
 
 
-});
+     }
+
+ }
