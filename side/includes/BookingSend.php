@@ -6,7 +6,6 @@ function redirect($url, $statusCode = 303)
     die();
 }
 echo "I'm on right site";
-$mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
 $length = 2;
 
 //Loop The Selections and add to Database if the Selection has Value
