@@ -97,11 +97,14 @@ class addproducttodatabase{
     //running all my functions ###############################################################################
     public function main()
     {
-        $this->checkIfLocationExist();
-        $this->checkIfCategoryExist();
-        $this->checkifSupplierExist();
-        $this->addProductToDB();
-        $this->addEnhedtoDB();
+        try {
+            $this->checkIfLocationExist();
+            $this->checkIfCategoryExist();
+            $this->checkifSupplierExist();
+            $this->addProductToDB();
+            $this->addEnhedtoDB();
+        } catch (Exception $e) {
+        }
 
     }
 

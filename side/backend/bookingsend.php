@@ -81,7 +81,7 @@ class bookingsend{
             }
 
         }
-//redirect("../Booking.php",false);
+//redirect("../booking.php",false);
 
         $mysqli->close();
 //SELECT * FROM `product_enhed` INNER JOIN products ON product_enhed.Enhed_number = products.id WHERE products.id = 1
