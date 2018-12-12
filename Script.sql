@@ -18,7 +18,7 @@ CREATE SCHEMA IF NOT EXISTS SDEdb DEFAULT CHARACTER SET utf8 ;
 USE SDEdb ;
 
 -- -----------------------------------------------------
--- Table SDEdb.category
+-- Table SDEdb.api
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS SDEdb.category (
   id INT(11) NOT NULL,

@@ -1,12 +1,21 @@
 <?php
-$con = mysqli_connect("localhost","root","root","booking", 3306);
+class DBConnection
+{
 
 
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+    public function getConnection()
+    {
+
+        $con = new mysqli("localhost", "root", "", "booking", 3306);
+
+
+        if (mysqli_connect_errno()) {
+            return null;
+        } else {
+            return $con;
+        }
+    }
+}
 
 ?>
 

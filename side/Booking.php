@@ -11,9 +11,6 @@ include ("includes/navbar.php");
 ?>
 <script src="assets/js/booking.js">
 
-
-</script>
-
 <button onclick="ChangeLayers()">Change Layer</button>
 <form action="./includes/bookingsend.php" method="post">
     <div id="layer_1" class="layer1" >
@@ -62,7 +59,7 @@ include ("includes/navbar.php");
     <input type="submit" value="Book">
 </form>
 
-<?php
 include "includes/footer.php";
 
 ?>
+
