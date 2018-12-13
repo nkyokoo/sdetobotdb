@@ -174,7 +174,6 @@ class addproducttodatabase{
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
             if (is_numeric($this->getKategori())){
-                echo "am I died1";
 
                 $result = $mysql->query("SELECT id FROM `category` WHERE id = ".$this->getKategori());
                 $row = $result->fetch_assoc();
@@ -214,12 +213,10 @@ class addproducttodatabase{
             {
                 $valueToSplitContainer = $array[6];
                 $splittedValueArray = explode(',', $valueToSplitContainer);
-                echo $splittedValueArray[0]." ".$splittedValueArray[1]." ".$splittedValueArray[2];
                 $stmt = $mysql->prepare("INSERT INTO leverandoer (leverandoer_name,leverandoer_adress,leverandoer_phonenr) values (?,?,?)");
                 $stmt->bind_param("ssi",$splittedValueArray[0],$splittedValueArray[1],$splittedValueArray[2]);
                 $stmt->execute();
                 $this->setLeverandoer($stmt->insert_id);
-                echo $stmt->insert_id;
             }
             $mysql->close();
 
@@ -246,7 +243,6 @@ class addproducttodatabase{
             $con = new DBConnection();
             $mysql = $con->getConnection();
             $stmt = $mysql->prepare('INSERT INTO `products` (`product_name`,  `flytbar` , `description`,`product_location_id`, `category_id`, `leverandør_id`) VALUES (?,?,?,?,?,?)');
-            echo $this->getProduktNavn() . "Location =" . $this->getLocation() . $this->getFlytbar() . " Kategori =" . $this->getKategori() . " leverandoer =" . $this->getLeverandoer() . $this->getDescription();
             $stmt->bind_param("sssiii", $product, $flytbar, $description, $location, $category, $leverandoer);
             $stmt->execute();
            $this->setProduct($mysql->insert_id);
@@ -265,7 +261,6 @@ class addproducttodatabase{
             $con = new DBConnection();
             $mysql = $con->getConnection();
             $productID =$this->getProduct();
-            echo "product id =".$productID." and antal is =". $this->getAntal();
             $stmt = $mysql->prepare("INSERT INTO `product_enhed` (`Enhed_number`, `product_status_id`, `products_id`) VALUES (?, 4, ?)");
 
             for ($enhedNumber = 1; $enhedNumber<= $this->getAntal(); $enhedNumber++) {
