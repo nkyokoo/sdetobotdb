@@ -86,7 +86,6 @@ function ChangeEnhed(id) {
 function AddSelect(layer_id) {
     try {
         let checkIfProductIsSelected = document.getElementById("item_"+layerSelectionCounter[layer_id -1]);
-        alert("my Value is ="+checkIfProductIsSelected.value);
         if (checkIfProductIsSelected.value > 0){
 
             if (layer_id === 1) {
