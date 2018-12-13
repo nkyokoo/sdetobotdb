@@ -4,7 +4,17 @@ include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php
 try {
     $connection = new DBConnection();
     $mysqli = $connection->getConnection();
-    $sql = "SELECT * FROM products";
+    $selectedSelections = $_POST['selectedProducts'];
+    $layer = $_POST['layer_id'];
+
+        if (!isset($selectedSelections[$layer])){
+            $selectedSelections = "0";
+        }
+
+
+    //$select = mysqli_real_escape_string($selectedSelections);
+    $sql = "SELECT * FROM products WHERE id NOT IN (".$selectedSelections[$layer].")";
+    echo $sql;
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
 
