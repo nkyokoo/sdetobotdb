@@ -1,10 +1,21 @@
 <?php
-$user = 'root';
-$password = 'root';
-$db = 'sdetest';
-$host = 'localhost';
-$db = 3306;
+class DBConnection
+{
 
 
-$link = mysqli_connect($host, $username, $password, $db);
+    public function getConnection()
+    {
+
+        $con = new mysqli("localhost", "root", "", "booking", 3306);
+
+
+        if (mysqli_connect_errno()) {
+            return null;
+        } else {
+            return $con;
+        }
+    }
+}
+
 ?>
+

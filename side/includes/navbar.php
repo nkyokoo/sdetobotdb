@@ -1,7 +1,14 @@
 <?php
- ?>
-<nav class="navbar-top">
-  <a class="navbarText" href="#">
-    <img src="../images/unnamed.png" type="png" class="images">
-  </a>
+
+    echo "<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+    <a class='navbar-brand' style=' href='/'></a>
+    <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+        <ul class='navbar-nav'>
+        </ul>
+    </div>
 </nav>
+"
+
+
+ ?>
+
