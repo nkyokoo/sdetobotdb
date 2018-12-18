@@ -1,14 +1,16 @@
-function BtnAddProduct() {myBlock:{
+
+//Send AddProducts.php data to php.
+function btnAddProduct() {myBlock:{
     try {
         let kategori = $(kategori_id).val();
-      //  let produkt_navn = $(produkt_id).val();
+        let produkt_navn = $(produkt_id).val();
         let virksomhed = $(virksomhed_id).val();
         let lokale = $(lokale_id).val();
         let hylde = $(hylde_id).val();
         let plads = $(plads_id).val();
-    //    let antal = $(antal_id).val();
-  //      let description = $(description_id).val();
-//        let flytbar = $(flytbar_id).val();
+        let antal = $(antal_id).val();
+       let description = $(description_id).val();
+       let flytbar = $(flytbar_id).val();
         let leverandoer = $(leverandoer_id).val();
         let array = [kategori,virksomhed,lokale,hylde,plads,leverandoer];
         let arrayName = ["#kategori_id_andet","#virksomhed_id_andet","#lokale_id_andet","#hylde_id_andet","#plads_id_andet","#leverandoer_id_Leverandorandet"];
@@ -54,12 +56,10 @@ function BtnAddProduct() {myBlock:{
         alert(e.errorCode);
     }
 
-
-
-
 }}
 
-function AddNewInputOfAndet(CurrentEventId) {
+//If you chose selection with ANDET add textbox or remove it.
+function addNewInputOfAndet(CurrentEventId) {
 
     try {
         if (CurrentEventId === "leverandoer_id") {
@@ -98,3 +98,4 @@ function AddNewInputOfAndet(CurrentEventId) {
     } catch (e) {
     }
 }
+

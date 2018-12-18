@@ -21,7 +21,7 @@ $mysqli = $con->getConnection();
 <div>
     <form>
         <div>
-            <select id="kategori_id" onchange="AddNewInputOfAndet(this.id)" required>
+            <select id="kategori_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Kategori</option>
                 <?php
                 $sql = "SELECT * FROM booking.category";
@@ -40,7 +40,7 @@ $mysqli = $con->getConnection();
 
             <input id="produkt_id" type="text"  placeholder="Produkt navn" required>
 
-            <select id="virksomhed_id" onchange="AddNewInputOfAndet(this.id)" required>
+            <select id="virksomhed_id" onchange="addNewInputOfAndet(this.id)" required>
 
                 <?php
                 echo "<option value=''>Virksomhed</option>";
@@ -59,7 +59,7 @@ $mysqli = $con->getConnection();
                 ?>
             </select>
 
-            <select id="lokale_id" onchange="AddNewInputOfAndet(this.id)"required>
+            <select id="lokale_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Lokale</option>
                 <?php
 
@@ -77,7 +77,7 @@ $mysqli = $con->getConnection();
                 ?>
             </select>
 
-            <select id="hylde_id" onchange="AddNewInputOfAndet(this.id)"required>
+            <select id="hylde_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Hylde</option>
                 <?php
 
@@ -95,7 +95,7 @@ $mysqli = $con->getConnection();
                 ?>
             </select>
 
-            <select id="plads_id" onchange="AddNewInputOfAndet(this.id)"required>
+            <select id="plads_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Plads</option>
                 <?php
 
@@ -119,7 +119,7 @@ $mysqli = $con->getConnection();
 
             </select>
             <input id="antal_id" type="number" placeholder="Antal" min="0" max="999" required>
-            <select id="leverandoer_id" onchange="AddNewInputOfAndet(this.id)" required>
+            <select id="leverandoer_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="1">Leverandør</option>
                 <?php
 
@@ -137,7 +137,7 @@ $mysqli = $con->getConnection();
             </select>
         </div>
         <textarea id="description_id" placeholder="Description" rows="6" cols="30" required></textarea>
-        <input type="button" value="Tilføj"  onclick="BtnAddProduct()">
+        <input type="button" value="Tilføj"  onclick="btnAddProduct()">
     </form>
 </div>
 <?php
