@@ -1,40 +1,34 @@
 let timeout;
 let idleTimer = 0;
-
+export {checkIfIdle}
 //Check Mouse Activity
 $(document).ready(function () {
-    clearTimeout(timeout);
-    timeout = setInterval(function(){checkIfIdle();}, 1000); // 1 minute
+
+    timeout = setInterval(function(){checkIfIdle();}, 1000) ;// 1 second = 1000ms
 
     //check if mouse is moving
     document.onmousemove = function(){
         idleTimer = 0;
-        let d = document.getElementById("test");
-
-        d.innerHTML = idleTimer;
-
     };
 
     //check if you press any key.
     document.onkeypress = function () {
         idleTimer = 0;
-        let d = document.getElementById("test");
-
-        d.innerHTML = idleTimer;
-
-        // alert("Get real");
     };
+
 });
 
-//check if you're idle too long.
+
+//check if you're idle too long and incrementing.
 function checkIfIdle() {
     idleTimer++;
-    let d = document.getElementById("test");
 
-    d.innerHTML = idleTimer;
+    if (idleTimer > 9){ //10 min
+        //Stop the timer
+        clearInterval(timeout);
+        //popup message or Timeout box if any.
 
-    if (idleTimer > 19){ //20 min
-        alert("Timeout!");
         //Go to a Page
     }
 }
+

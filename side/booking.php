@@ -10,7 +10,7 @@ include ("includes/navbar.php");
 
 ?>
 <script type="text/javascript" src="assets/js/booking.js"></script>
-<script type="text/javascript" src="assets/js/idletimer.js"></script>
+<script type="text/javascript" src="assets/js/bookingtimer.js"></script>
 <div><p>Timer</p> <p id="test">0</p></div>
 <button onclick="ChangeLayers()">Change Layer</button>
 <form action="api/api_bookingsend.php" method="post">
