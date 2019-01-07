@@ -6,7 +6,8 @@ let idleTimer = 0;
 
 //Check Mouse Activity
 window.addEventListener('ready',function () {
-    import {checkIfIdle} from "./idletimer.js";
+
+
 
 
 $(document).ready(function() {
@@ -37,4 +38,3 @@ $(document).ready(function() {
 });
 
 //check if you're idle too long.
-
