@@ -1,6 +1,5 @@
 let timeout;
 let idleTimer = 0;
-export {checkIfIdle}
 //Check Mouse Activity
 $(document).ready(function () {
 
@@ -21,7 +20,7 @@ $(document).ready(function () {
 
 //check if you're idle too long and incrementing.
 function checkIfIdle() {
-    idleTimer++;
+     idleTimer++;
 
     if (idleTimer > 9){ //10 min
         //Stop the timer
