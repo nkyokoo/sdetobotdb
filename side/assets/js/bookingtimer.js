@@ -46,5 +46,11 @@ function checkIfIdle() {
             location.reload();
         }
 
+
     }
 }
+
+
+
+
+
