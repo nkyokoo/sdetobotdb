@@ -1,4 +1,3 @@
-
 let timeout;
 let idleTimer = 0;
 //Check Mouse Activity
