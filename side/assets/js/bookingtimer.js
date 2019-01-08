@@ -29,16 +29,18 @@ function checkIfIdle() {
     let x = document.getElementById("test");
     x.innerHTML = idleTimer;
     let idleLimit = 29;
-    let idleReloadLimit = 14;
-    if (idleTimer > idleReloadLimit){ //Max idle LIMIT
-        //Stop the timer
-        if (idleTimer > idleLimit){
+    let idleSiteReloadLimit = 14;
+    if (idleTimer > idleSiteReloadLimit){ //Reaching the booking idle limit, reload page
+        
+        if (idleTimer > idleLimit){ //Max idle LIMIT, redirect
+            //Stop the timer
             clearInterval(timeout);
             //The customer has been idle for too long.
 
             //Redirect to idle settings
 
         }else {
+            //Stop the timer
             clearInterval(timeout);
             //popup message or Timeout box if any.
 
