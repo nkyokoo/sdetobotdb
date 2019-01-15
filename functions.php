@@ -53,7 +53,7 @@ function register(){
 			header('location: home.php');
 		}else{
 			$query = "INSERT INTO users (name, email, user_group_id, password) 
-					  VALUES('$name', '$email', 'user', '$password')";
+					  VALUES('$name', '$email', '3', '$password')";
 			mysqli_query($db, $query);
 
 			// get id of the created user
