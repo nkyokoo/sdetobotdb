@@ -1,15 +1,8 @@
 <?php 
-include('../auth.php');
-
-if (!isAdmin()) {
-	$_SESSION['msg'] = "Du skal være logget ind først, for at se denne side.";
+	include('../auth.php');
+	if (!isLoggedIn()) {
+	$_SESSION['msg'] = "You must log in first";
 	header('location: ../index.php');
-}
-
-if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['user']);
-	header("location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -30,18 +23,10 @@ if (isset($_GET['logout'])) {
 	
 	<link rel="stylesheet" type="text/css" href="../assets/css/_stylesheets.css">
     <link rel='icon' type='image/x-icon' href='favicon.ico'>
-	<style>
-	.header {
-		background: #003366;
-	}
-	button[name=register_btn] {
-		background: #003366;
-	}
-	</style>
 </head>
 <body>
 	<div class="header">
-		<h2>Admin - Dashboard</h2>
+		<h2>Låne System</h2>
 	</div>
 	<div class="content">
 		<!-- notification message -->
@@ -55,21 +40,18 @@ if (isset($_GET['logout'])) {
 				</h3>
 			</div>
 		<?php endif ?>
-
 		<!-- logged in user information -->
 		<div class="profile_info">
-			<img src="../assets/images/admin.png"  >
+			<img src="../assets/images/user.png"  >
 
 			<div>
 				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['name']; ?></strong></br>
-					<i><?php echo $_SESSION['user']['email']; ?></i>
+					<strong><?php echo $_SESSION['user']['name']; ?></strong>
 
 					<small>
-						<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i>
+						<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i> 
 						<br>
-						<a href="home.php?logout='1'" style="color: red;"> Log ud</a>
-                       &nbsp; <a href="create_user.php"> + Tilføj bruger</a>
+						<a href="index.php?logout='1'" style="color: red;">logout</a>
 					</small>
 
 				<?php endif ?>

@@ -1,14 +1,14 @@
 <?php 
 session_start();
 
-// connect to database
+// CONNECT TO DATABASE
 $db = mysqli_connect('localhost', 'root', 'root', 'sdetest');
 
 // variable declaration
 $name = "";
 $email    = "";
 $errors   = array(); 
-
+//------------------------------------------------------------------------------------//
 // call the register() function if register_btn is clicked
 if (isset($_POST['register_btn'])) {
 	register();
@@ -28,16 +28,16 @@ function register(){
 
 	// form validation: ensure that the form is correctly filled
 	if (empty($name)) { 
-		array_push($errors, "name is required"); 
+		array_push($errors, "Navn er påkrævet"); 
 	}
 	if (empty($email)) { 
-		array_push($errors, "Email is required"); 
+		array_push($errors, "Email er påkrævet"); 
 	}
 	if (empty($password_1)) { 
-		array_push($errors, "Password is required"); 
+		array_push($errors, "Password er påkrævet"); 
 	}
 	if ($password_1 != $password_2) {
-		array_push($errors, "The two passwords do not match");
+		array_push($errors, "passwords matcher ikke hinanden");
 	}
 
 	// register user if there are no errors in the form
@@ -49,8 +49,8 @@ function register(){
 			$query = "INSERT INTO users (name, email, user_group_id, password) 
 					  VALUES('$name', '$email', '$user_group_id', '$password')";
 			mysqli_query($db, $query);
-			$_SESSION['success']  = "New user successfully created!!";
-			header('location: home.php');
+			$_SESSION['success']  = "Ny bruger er oprettet!";
+			header('location: admin/home.php');
 		}else{
 			$query = "INSERT INTO users (name, email, user_group_id, password) 
 					  VALUES('$name', '$email', '3', '$password')";
@@ -60,12 +60,12 @@ function register(){
 			$logged_in_user_id = mysqli_insert_id($db);
 
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
-			$_SESSION['success']  = "You are now logged in";
-			header('location: index.php');				
+			$_SESSION['success']  = "Du er nu logget ind";
+			header('location: user/index.php');				
 		}
 	}
 }
-
+//------------------------------------------------------------------------------------//
 // return user array from their id
 function getUserById($id){
 	global $db;
@@ -102,14 +102,14 @@ function isLoggedIn()
 		return false;
 	}
 }
-
+//------------------------------------------------------------------------------------//
 // log user out if logout button clicked
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: login.php");
+	header("location: index.php");
 }
-
+//------------------------------------------------------------------------------------//
 // call the login() function if register_btn is clicked
 if (isset($_POST['login_btn'])) {
 	login();
@@ -125,10 +125,10 @@ function login(){
 
 	// make sure form is filled properly
 	if (empty($name)) {
-		array_push($errors, "name is required");
+		array_push($errors, "Navn er påkrævet");
 	}
 	if (empty($password)) {
-		array_push($errors, "Password is required");
+		array_push($errors, "Password er påkrævet");
 	}
 
 	// attempt login if no errors on form
@@ -144,13 +144,13 @@ function login(){
 			if ($logged_in_user['user_group_id'] == '1') {
 
 				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
+				$_SESSION['success']  = "Du er nu logget ind!";
 				header('location: admin/home.php');		  
 			}else{
 				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
+				$_SESSION['success']  = "Du er nu logget ind!";
 
-				header('location: index.php');
+				header('location:  user/index.php');
 			}
 		}else {
 			array_push($errors, "Wrong name/password combination");
@@ -158,7 +158,7 @@ function login(){
 	}
 }
 
-// ...
+//------------------------------------------------------------------------------------//
 function isAdmin()
 {
 	if (isset($_SESSION['user']) && $_SESSION['user']['user_group_id'] == '1' ) {
@@ -167,3 +167,4 @@ function isAdmin()
 		return false;
 	}
 }
+//------------------------------------------------------------------------------------//
