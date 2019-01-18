@@ -4,51 +4,48 @@ let idleTimer = 0;
 $(document).ready(function () {
 
 
-    timeout = setInterval(checkIfIdle, 1000) ;// 1 second = 1000ms
+    try {
+        //Doing certain Events every 1000ms
+        timeout = setInterval(checkIfIdle, 60000);// 1 second = 1000ms
 
-    //check if mouse is moving
-    document.onmousemove = function(){
-        idleTimer = 0;
-        let x = document.getElementById("test");
-        x.innerHTML = idleTimer;
-    };
+        //check if mouse is moving
+        document.onmousemove = function () {
+            idleTimer = 0;
+            let x = document.getElementById("test");
+            x.innerHTML = idleTimer;
+        };
 
-    //check if you press any key.
-    document.onkeypress = function () {
-        idleTimer = 0;
-        let x = document.getElementById("test");
-        x.innerHTML = idleTimer;
-    };
+        //check if you press any key.
+        document.onkeypress = function () {
+            idleTimer = 0;
+            let x = document.getElementById("test");
+            x.innerHTML = idleTimer;
+        };
+    } catch (e) {
+    }
 
 });
 
 
 //check if you're idle too long and incrementing.
 function checkIfIdle() {
-    idleTimer++;
-    let x = document.getElementById("test");
-    x.innerHTML = idleTimer;
-    let idleLimit = 29;
-    let idleSiteReloadLimit = 14;
-    if (idleTimer > idleSiteReloadLimit){ //Reaching the booking idle limit, reload page
-        
-        if (idleTimer > idleLimit){ //Max idle LIMIT, redirect
+    try {
+        idleTimer++;
+        let x = document.getElementById("test");
+        x.innerHTML = idleTimer;
+        let idleLimit = 14;
+        if (idleTimer > idleLimit) { //Reaching the booking idle limit, reload page
+
             //Stop the timer
             clearInterval(timeout);
-            //The customer has been idle for too long.
-
-            //Redirect to idle settings
-
-        }else {
-            //Stop the timer
-            clearInterval(timeout);
-            //popup message or Timeout box if any.
+            //popup message or Timeout box if any if clicked Reload Page.
 
             //Reload Page.
             location.reload();
+
+
         }
-
-
+    } catch (e) {
     }
 }
 

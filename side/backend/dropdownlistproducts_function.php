@@ -1,38 +1,47 @@
 <?php
-include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+include "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
 
-try {
-    $connection = new DBConnection();
-    $mysqli = $connection->getConnection();
-    $selectedSelections = $_POST['selectedProducts'];
-    $layer = $_POST['layer_id'];
-
-        if (!isset($selectedSelections[$layer])){
-            $selectedSelections = "0";
-        }
+class dropDownlistProducts_Function{
 
 
-    //$select = mysqli_real_escape_string($selectedSelections);
-    $sql = "SELECT * FROM products WHERE id NOT IN (".$selectedSelections[$layer].")";
-    echo $sql;
-    $result = $mysqli->query($sql);
-    if ($result->num_rows > 0) {
+    function addProductsForSelection(){
 
-        echo "<option value=''>Select Item</option>";
-        while ($row = $result->fetch_assoc()) {
+        try {
+            $connection = new DBConnection();
+            $mysqli = $connection->getConnection();
+
+            //Current products in use
+            $selectedSelections = $_POST['selectedProducts'];
+
+            //To make sure the variable isn't null or NaN
+            if (!isset($selectedSelections)){
+                $selectedSelections = "0";
+            }
+            //Select products to Selection box which you haven't choosing yet
+            // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
+            $sql = "SELECT id,product_name FROM school_products WHERE id NOT IN (".$selectedSelections.")";
+            $result = $mysqli->query($sql);
+            if ($result->num_rows > 0) {
+
+                //Default Selection
+                echo "<option value=''>Select Item</option>";
+
+                //Populate Selection box with data from DB
+                while ($row = $result->fetch_assoc()) {
 
 
-            // echo "<div> <img class=card-img-top src=/Photo/".$row["image"]." alt=CopyRight  > </div>";
 
-            echo "<option value=" . $row['id'] . ">" . $row['product_name'] . "</option>";
+                    echo "<option value=" . $row['id'] . ">" . $row['product_name'] . "</option>";
 
 
+                }
+
+            }
+
+            $mysqli->close();
+        } catch (Exception $e) {
         }
     }
-    $mysqli->close();
-} catch (Exception $e) {
 }
 
-
-?>
 

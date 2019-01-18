@@ -13,16 +13,17 @@ include ("includes/navbar.php");
 <script type="text/javascript" src="assets/js/bookingtimer.js"></script>
 <div><p>Timer</p> <p id="test">0</p></div>
 <button onclick="ChangeLayers()">Change Layer</button>
+<p>Layer <p id="layerText">1</p> </p>
+
 <form action="api/api_bookingsend.php" method="post">
     <div id="layer_1" class="layer1" style="display: block" >
         <span id="increment_1" style="display: none">1</span>
 
-        <p>Layer 1</p>
         <div id="select_list_1">
             <div>
                 <select id="item_1" name="item_1" onchange="ChangeEnhed(1)">
                     <?php
-                    include "backend/dropdownlistproducts_function.php";
+                    include_once ('api/api_dropdownlistproducts_function.php');
                     ?>
                 </select>
                 <select id="enhed_1" name="enhed_1">
@@ -30,7 +31,7 @@ include ("includes/navbar.php");
                 </select>
             </div>
         </div>
-        <button type="button" onclick="AddSelect(1);">Add New Item</button>
+        <button type="button" onclick="AddSelect(0);">Add New Item</button>
 
     </div>
 
@@ -38,13 +39,11 @@ include ("includes/navbar.php");
 
     <div id="layer_2" class="layer2" style="display: none" >
         <span id="increment_1" style="display: none">1</span>
-
-        <p>Layer 2</p>
         <div id="select_list_2">
             <div>
                 <select id="item_11" name="item_11" onchange="ChangeEnhed(11)">
                     <?php
-                    include "backend/dropdownlistproducts_function.php";
+                    $class->addProductsForSelection();
                     ?>
                 </select>
                 <select id="enhed_11" name="enhed_11">
@@ -52,7 +51,7 @@ include ("includes/navbar.php");
                 </select>
             </div>
         </div>
-        <button type="button" onclick="AddSelect(2)">Add New Item</button>
+        <button type="button" onclick="AddSelect(1)">Add New Item</button>
 
     </div>
 

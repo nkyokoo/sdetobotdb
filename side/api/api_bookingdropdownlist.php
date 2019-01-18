@@ -2,7 +2,7 @@
 include "../backend/bookingdropdownlist.php";
 
 try {
-    $class = new bookingdropdownlist();
+    $class = new bookingSelectEnheder();
     $class->createOptionsForSelection();
 } catch (Exception $e) {
 
