@@ -176,9 +176,14 @@ class addProductToDatabase{
             $array = $this->arraysAndSecurity();
 
 
-            if (is_numeric($array[4])) {
+            //Substring
+            //if the value is P8 then it takes first index => P
+            $firstletter = substr($array[4],0,1);
+            //Substring
+            //if the value is P8 then it start at index 1 and end when string ends.
+            $number = substr($array[4],1);
 
-                $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = " . $array[4]." or type = ".$array[5]);
+                $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[4]."' or type = '".$firstletter."' and nr =".$number);
                 //Check if svf Exist in Database
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
@@ -187,7 +192,7 @@ class addProductToDatabase{
 
 
                 }
-            }
+
             //else Insert a new svf row to Database with prepared statement
             else
             {
@@ -223,9 +228,14 @@ class addProductToDatabase{
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
 
-
-
-            $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = " . $array[5]." or type = ".$array[5]);
+            //Substring
+            //if the value is P8 then it takes first index => P
+             $firstletter = substr($array[5],0,1);
+             //Substring
+            //if the value is P8 then it start at index 1 and end when string ends.
+            $number = substr($array[5],1);
+            //Check in database if what you've input is in the database.
+            $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[5]."' or type ='".$firstletter."' and nr = ".$number);
             //Check if thp exist Exist in Database
             if ($result->num_rows > 0)
             {
@@ -238,7 +248,6 @@ class addProductToDatabase{
             //else Insert a new SVF row to Database with prepared statement
             else
             {
-                $array = $this->arraysAndSecurity();
                 $substring = $array[5];
                 // Substring because the value(S2) needs to be split into type and number (Type = S, Number = 2)
                 //get string from index 0 to 1 char length.

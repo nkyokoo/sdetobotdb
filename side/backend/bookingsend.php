@@ -16,6 +16,8 @@ class bookingSend{
             echo "If You cant see the content then try disable ADDBLOCK";
             $con = new DBConnection();
             $mysqli = $con->getConnection();
+            // Length is a Upper Limit Counter for Outer Loop. It'll increase
+            // Length => Next Product in line to be checked in db along with $i => Current Product
             $length = 2;
             //Layer 1
             //Loop The Selections and send to Database if the Selection has Value
@@ -23,7 +25,7 @@ class bookingSend{
                 $enhedCounter = 0;
                 //Get The Item IDs from Booking.php
 
-                    //if item and its units aren't empty do something
+                    //Check if items and its units aren't empty
                 if (!empty($_POST['item_' . $i]) and !empty($_POST['enhed_' . $i])) {
                     $item = $_POST['item_' . $i];
                     $enheder = $_POST['enhed_' . $i];
@@ -35,11 +37,12 @@ class bookingSend{
                     $result = $mysqli->query($sql);
 
                     if ($result->num_rows >= $enheder) {
+                        //Increase Upper Limit if there's more Enheder/Units available.
                         $length += 1;
 
 
                         while ($row = $result->fetch_assoc() AND $enhedCounter < $enheder) {
-                            //Update the status of the reserved units/enhed from (3 = Available) to (1 = Reserved) and $row['id'] = unit ID for product.
+                            //Update the status of the reserved units/enhed from (1 = Available) to (2 = Reserved) and $row['id'] = unit ID for product.
                             $newSql = "UPDATE product_unit_e SET product_unit_e.current_status_id = 2 WHERE product_unit_e.id = " . $row['id'];
                             $mysqli->query($newSql);
                             $enhedCounter += 1;
