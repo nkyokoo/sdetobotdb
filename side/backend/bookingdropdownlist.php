@@ -13,8 +13,8 @@ class bookingSelectEnheder{
             //Check if the chosen Product is a Product.
             if (!empty($_POST['item_id'])) {
                 $enhedCounter = 1;
-
-                $sql = "SELECT product_enhed.Enhed_number FROM booking.product_enhed where products_id = " . $selectedItem . " AND product_status_id = 3";
+                    //Select all Units of specific Product where Status is 1 => Available
+                $sql = "SELECT id FROM product_unit_e where products_id = " . $selectedItem . " AND current_status_id = 1";
                 $result = $mysqli->query($sql);
 
                 //Check if there's any Units/Enhed available
