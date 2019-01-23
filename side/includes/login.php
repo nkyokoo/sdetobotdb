@@ -1,7 +1,6 @@
 
 <?php
 echo"
-      <link rel='stylesheet' href='../assets/css/login.css' type='text/css'>
 <div class='bar-login'>
         <p class='lead'>
         Dette låne system er lavet af <a href='https://itd.sde.dk' target='_blank'><strong>IT & DATA SKP</strong></a>. Alle rettigheder forbeholdes til

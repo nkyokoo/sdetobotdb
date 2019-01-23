@@ -7,10 +7,9 @@
 
 .bar-login{
     background-color: #002e2d;
-    position: absolute;
     height: 100%;
-    width: 12rem;
-    z-index: 2;
+    width: 10rem;
+    z-index: 1;
     float: left;
     -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
@@ -34,7 +33,6 @@
 .login-shadow{
     background: rgba(26,26,26,0.5);
     position: absolute;
-    z-index:1;
     margin: 0;
     padding: 0;
     width: 100%;

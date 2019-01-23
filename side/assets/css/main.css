@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 body {
@@ -26,15 +27,4 @@ nav.navside{
  .layer2{
     display: none;
 
-}
-body {
-     color: #ffffff;
-     background: #04cba8 no-repeat center;
-     height: 90vh;
-
- }
-.navbar-brand{
-    background: url("../img/header_logo.svg") no-repeat;
-    height: 3rem !important;
-    width: 12rem !important;
 }

@@ -5,9 +5,9 @@
 
 include "includes/header.php";
 include "includes/navbar.php";
-
-$mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
-
+include_once "includes/connect.php";
+$con = new DBConnection();
+$mysqli = $con->getConnection();
 
 
 
@@ -19,12 +19,12 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
 <!-- #############################-------- SCRIPT -------############################################ -->
 
 <div>
-    <form action="includes/addproducttodatabase.php" method="post">
+    <form>
         <div>
-            <select id="kategori_id" onchange="AddNewInputOfAndet(this.id)">
+            <select id="kategori_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Kategori</option>
                 <?php
-                $sql = "SELECT * FROM booking.category";
+                $sql = "SELECT id,category_name FROM category";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
@@ -38,38 +38,38 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                 ?>
             </select>
 
-            <input id="produkt_id" type="text"  placeholder="Produkt navn">
+            <input id="produkt_id" type="text"  placeholder="Produkt navn" required>
 
-            <select id="virksomhed_id" onchange="AddNewInputOfAndet(this.id)">
+            <select id="virksomhed_id" onchange="addNewInputOfAndet(this.id)" required>
 
                 <?php
                 echo "<option value=''>Virksomhed</option>";
 
+                //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
+                $sql = "SELECT id,school_name FROM `product_school_address`  GROUP BY school_name";
+                $result = $mysqli->query($sql);
 
-                $sql = "SELECT adress FROM `product_location` WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress)";
-                   $result = $mysqli->query($sql);
-
-                    if ($result->num_rows > 0){
-                        while ($row = $result->fetch_assoc()){
-                            echo "<option value='".$row['adress']."'>".$row['adress']."</option>";
-                        }
-                        echo "<option value='andet'>Andet</option>";
-
+                if ($result->num_rows > 0){
+                    while ($row = $result->fetch_assoc()){
+                        echo "<option value='".$row['id']."'>".$row['school_name']."</option>";
                     }
+                    echo "<option value='_Virksomhedandet'>Andet</option>";
+
+                }
                 ?>
             </select>
 
-            <select id="lokale_id" onchange="AddNewInputOfAndet(this.id)">
+            <select id="lokale_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Lokale</option>
                 <?php
 
 
-                $sql = "SELECT lokale FROM `product_location` WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY lokale)";
+                $sql = "SELECT id,room FROM `location_room` group by room";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['lokale']."'>".$row['lokale']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['room']."</option>";
                     }
                     echo "<option value='andet'>Andet</option>";
 
@@ -77,67 +77,68 @@ $mysqli = new mysqli("localhost", "root", "root", "booking", 3307);
                 ?>
             </select>
 
-            <select id="hylde_id" onchange="AddNewInputOfAndet(this.id)">
-                <option value="">Hylde</option>
+
+
+            <select id="svf_id" onchange="addNewInputOfAndet(this.id)" required>
+                <option value="">Skab/Væg/Floor</option>
                 <?php
 
 
-                $sql = "SELECT hylde FROM `product_location` WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY hylde)";
+                $sql = "SELECT id,type,nr FROM product_location_type_svf GROUP BY type,nr";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['hylde']."'>".$row['hylde']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
                     echo "<option value='andet'>Andet</option>";
 
                 }
                 ?>
             </select>
-
-            <select id="plads_id" onchange="AddNewInputOfAndet(this.id)">
-                <option value="">Plads</option>
+            <select id="thp_id" onchange="addNewInputOfAndet(this.id)" required>
+                <option value="">Hylde/Tavle/Plads</option>
                 <?php
 
 
-                $sql = "SELECT plads FROM `product_location` WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY plads)";
+                $sql = "SELECT id,type,nr FROM product_location_type_thp GROUP BY type,nr";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['plads']."'>".$row['plads']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
                     echo "<option value='andet'>Andet</option>";
 
                 }
                 ?>
             </select>
-            <select id="flytbar_id">
+            <select id="flytbar_id"required>
                 <option value="">Flytbar</option>
                 <option value="ja">ja</option>
                 <option value="nej">nej</option>
 
             </select>
-            <input id="antal_id" type="number" placeholder="Antal" min="0" max="999" >
-            <select id="leverandoer_id" onchange="AddNewInputOfAndet(this.id)">
-                <option value="1">Leverandør</option>
+            <input id="antal_id" type="number" placeholder="Antal" min="0" max="999" required>
+            <select id="leverandoer_id" onchange="addNewInputOfAndet(this.id)" required>
+                <option value="">Leverandør</option>
                 <?php
 
 
-                $sql = "SELECT id,leverandoer_name FROM booking.leverandoer";
+                $sql = "SELECT id,name FROM supplier_company";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['leverandoer_name']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['name']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
+                    echo "<option value='_Leverandorandet'>Andet</option>";
                 }
                 ?>
             </select>
         </div>
-        <textarea id="description_id" placeholder="Description" rows="6" cols="30" ></textarea>
-        <input type="button" value="Tilføj"  onclick="BtnAddProduct()">
+        <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
+        <input type="button" value="Tilføj"  onclick="btnAddProductToDB()">
     </form>
 </div>
 <?php
