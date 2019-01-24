@@ -1,9 +1,8 @@
+
 <?php
 //echo "INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL, '".$_POST['produkt_navn'] ."', '".$_POST['']."', '".$_POST['flytbar']."', '".$_POST['kategori']."', '".$_POST['leverandoer']."', '".$_POST['description']."');";
 include_once "../includes/connect.php";
-
 class addProductToDatabase{
-
     private $kategori;
     private $produktNavn ;
     private $virksomhed ;
@@ -19,9 +18,7 @@ class addProductToDatabase{
     // Setter, Set data on a Variable
     public function setProduct($id){
         $this->product = $id;
-
     }
-
     public function setKategori($kategori){
         $this->kategori = $kategori;
     }
@@ -52,12 +49,10 @@ class addProductToDatabase{
     public function setFlytbar($flytbar){
         $this->flytbar = $flytbar;
     }
-
     // Getter, Get data from a Variable
     public function getProduct(){
         return $this->product ;
     }
-
     public function getKategori(){
         return $this->kategori ;
     }
@@ -92,7 +87,6 @@ class addProductToDatabase{
     public function main()
     {
         try {
-
             $this->checkIfLocationExist();
             $this->checkIfCategoryExist();
             $this->checkifSupplierExist();
@@ -103,13 +97,11 @@ class addProductToDatabase{
             $this->addEnhedtoDB();
         } catch (Exception $e) {
         }
-
     }
     //Insert all Product Data into an array for easier way to do group 'Prevent html special char and string'
     private function arraysAndSecurity()
     {
         //                              ar[0]            ar[1]               ar[2]             ar[3]           ar[4]         ar[5]         ar[6]               ar[7]
-
         $connection = new DBConnection();
         $mysql = $connection->getConnection();
         $array = array($this->getKategori(), $this->getProduktNavn(), $this->getVirksomhed(), $this->getLokale(), $this->getSVF(), $this->getTHP(), $this->getLeverandoer(), $this->getDescription());
@@ -125,31 +117,23 @@ class addProductToDatabase{
         $mysql->close();
         return $array;
     }
-
     private function checkIfLocationExist()
     {
-
-
 //Check if Location exist else make new.
         try {
             //$mysql = new mysqli('localhost', 'root', 'root', 'booking', 3307);
             $connection = new DBConnection();
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
-
-
             if (is_numeric($array[3])){
-
-            $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = " . $array[3]);
-            //Check if Location Exist in Database
-            if ($result->num_rows > 0)
-            {
-                $row = $result->fetch_assoc();
-                $container = $row['id'];
-                $this->setLokale($container);
-
-
-            }
+                $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = " . $array[3]);
+                //Check if Location Exist in Database
+                if ($result->num_rows > 0)
+                {
+                    $row = $result->fetch_assoc();
+                    $container = $row['id'];
+                    $this->setLokale($container);
+                }
             }
             //else Insert a new Location to Database with prepared statement
             else
@@ -161,11 +145,9 @@ class addProductToDatabase{
                 $this->setLokale($location->insert_id);
             }
             $mysql->close();
-
         } catch (Exception $e) {
             die("Error " . $e->getMessage());
         }
-
     }
 // Check if SVF Exist
     private function checkIfSVFExist(){
@@ -174,25 +156,27 @@ class addProductToDatabase{
             $connection = new DBConnection();
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
-
-
             //Substring
             //if the value is P8 then it takes first index => P
+            if (!is_numeric($array[4])){
+
             $firstletter = substr($array[4],0,1);
             //Substring
             //if the value is P8 then it start at index 1 and end when string ends.
             $number = substr($array[4],1);
-
-                $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[4]."' or type = '".$firstletter."' and nr =".$number);
-                //Check if svf Exist in Database
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $container = $row['id'];
-                    $this->setSVF($container);
+            }
+            else
+                $firstletter = "False";
+            $number = 0;
 
 
-                }
-
+            $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[4]."' or type = '".$firstletter."' and nr =".$number);
+            //Check if svf Exist in Database
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $container = $row['id'];
+                $this->setSVF($container);
+            }
             //else Insert a new svf row to Database with prepared statement
             else
             {
@@ -210,16 +194,12 @@ class addProductToDatabase{
                 $location->execute();
                 //Get the ID from new Location and set setLocation variable with the new data
                 $this->setSVF($location->insert_id);
-
             }
             $mysql->close();
-
         } catch (Exception $e) {
             die("Error " . $e->getMessage());
         }
-
     }
-
 // Check if THP Exist
     private function checkIfTHPExist(){
         try {
@@ -227,11 +207,10 @@ class addProductToDatabase{
             $connection = new DBConnection();
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
-
             //Substring
             //if the value is P8 then it takes first index => P
-             $firstletter = substr($array[5],0,1);
-             //Substring
+            $firstletter = substr($array[5],0,1);
+            //Substring
             //if the value is P8 then it start at index 1 and end when string ends.
             $number = substr($array[5],1);
             //Check in database if what you've input is in the database.
@@ -242,8 +221,6 @@ class addProductToDatabase{
                 $row = $result->fetch_assoc();
                 $container = $row['id'];
                 $this->setTHP($container);
-
-
             }
             //else Insert a new SVF row to Database with prepared statement
             else
@@ -263,84 +240,64 @@ class addProductToDatabase{
                 $location->execute();
                 //Get the ID from new Location and set setLocation variable with the new data
                 $this->setTHP($location->insert_id);
-
             }
             $mysql->close();
-
         } catch (Exception $e) {
             die("Error " . $e->getMessage());
         }
-
     }
-
 // Check if Product_school_Address Exist and insert into school_name_short
 // Address/Virksomhed
-private function checkIfAddressExist(){
-    try{
-        $connection = new DBConnection();
-        $mysql = $connection->getConnection();
-        $array = $this->arraysAndSecurity();
-        //Check if Address Exist in the Database.
-        //If array doesn't contain ','
-        if (strpos($array[2],',') == false){
-            $result = $mysql->query("SELECT school_address_short.id FROM school_address_short INNER JOIN product_school_address ON school_address_short.product_school_address_id = ".$array[2]);
-
-            if ($result->num_rows > 0){
-
-
-                $row = $result->fetch_assoc();
-                $this->setVirksomhed($row['id']);
-
+    private function checkIfAddressExist(){
+        try{
+            $connection = new DBConnection();
+            $mysql = $connection->getConnection();
+            $array = $this->arraysAndSecurity();
+            //Check if Address Exist in the Database.
+            //If array doesn't contain ','
+            if (strpos($array[2],',') == false){
+                $result = $mysql->query("SELECT school_address_short.id FROM school_address_short INNER JOIN product_school_address ON school_address_short.product_school_address_id = ".$array[2]);
+                if ($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                    $this->setVirksomhed($row['id']);
+                }
             }
+            // Else Insert a new Address to the Database with Prepared statement
+            else
+            {
+                $explodedarray = explode(',',$array[2]);
+                $stmt = $mysql->prepare('INSERT INTO `product_school_address` (school_name,city,zip_code,address) VALUES (?,?,?,?)');
+                $stmt->bind_param("ssis" ,$explodedarray[0],$explodedarray[2],$explodedarray[3],$explodedarray[4]);
+                $stmt->execute();
+                //get the ID from the new Category
+                $idContainer = $stmt->insert_id;
+                $newSql = $mysql->prepare('INSERT INTO `school_address_short` (company_name_short,product_school_address_id) VALUES (?,?)');
+                $newSql->bind_param("si",$explodedarray[1],$idContainer);
+                $newSql->execute();
+                $idContainer = $newSql->insert_id;
+                //Set setkategori variable with the new data.
+                $this->setVirksomhed($idContainer);
+            }
+            $mysql->close();
+        }catch (Exception $exception){
+            die("Error ". $exception->getMessage()) ;
         }
-
-        // Else Insert a new Address to the Database with Prepared statement
-        else
-        {
-            $explodedarray = explode(',',$array[2]);
-            $stmt = $mysql->prepare('INSERT INTO `product_school_address` (school_name,city,zip_code,address) VALUES (?,?,?,?)');
-            $stmt->bind_param("ssis" ,$explodedarray[0],$explodedarray[2],$explodedarray[3],$explodedarray[4]);
-            $stmt->execute();
-            //get the ID from the new Category
-            $idContainer = $stmt->insert_id;
-
-            $newSql = $mysql->prepare('INSERT INTO `school_address_short` (company_name_short,product_school_address_id) VALUES (?,?)');
-            $newSql->bind_param("si",$explodedarray[1],$idContainer);
-            $newSql->execute();
-            $idContainer = $newSql->insert_id;
-            //Set setkategori variable with the new data.
-            $this->setVirksomhed($idContainer);
-        }
-
-        $mysql->close();
-
-    }catch (Exception $exception){
-        die("Error ". $exception->getMessage()) ;
     }
-}
-
 //Check for Category if exist
 //Can only work after I set my database column 'id' to A_I.
     private function checkIfCategoryExist()
     {
-
-
         try{
             $connection = new DBConnection();
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
             //Check if Category Exist in the Database.
             if (is_numeric($array[0])){
-
                 $result = $mysql->query("SELECT id FROM `category` WHERE id = ".$array[0]);
-
-            if ($result->num_rows > 0){
-
-
-                $row = $result->fetch_assoc();
-                $this->setKategori($row['id']);
-
-            }
+                if ($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                    $this->setKategori($row['id']);
+                }
             }
             // Else Insert a new Category to the Database with Prepared statement
             else
@@ -353,14 +310,11 @@ private function checkIfAddressExist(){
                 //Set setkategori variable with the new data.
                 $this->setKategori($idContainer);
             }
-
             $mysql->close();
-
         }catch (Exception $exception){
             die("Error ". $exception->getMessage()) ;
         }
     }
-
 //Check for Leverandoer if exist
     private function checkifSupplierExist(){
         try{
@@ -368,11 +322,8 @@ private function checkIfAddressExist(){
             $mysql = $con->getConnection();
             $array = $this->arraysAndSecurity();
             //Check if Leverandoer/Supplier exist in the Database
-
             if (is_numeric($array[6])) {
-
                 $result = $mysql->query("SELECT id FROM `supplier_company` WHERE id = " . $array[6]);
-
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $this->setLeverandoer($row['id']);
@@ -390,16 +341,12 @@ private function checkIfAddressExist(){
                 $this->setLeverandoer($stmt->insert_id);
             }
             $mysql->close();
-
         }catch (Exception $exception){
             die("Error: ". $exception);
         }
     }
-
 //Add Product to Database with bug.
     private function addProductToDB(){
-
-
         try {
             //Get all the data from the variables we've set and stored in empty variables.
             $product = $this->getProduktNavn();
@@ -408,28 +355,21 @@ private function checkIfAddressExist(){
             $category = $this->getKategori();
             $leverandoer = $this->getLeverandoer();
             $virksomhed = $this->getVirksomhed();
-
-
             $con = new DBConnection();
             $mysql = $con->getConnection();
-
             // Adding the Information we've gathered and Create a Product which is inserted into the Dataabase.
             $stmt = $mysql->prepare('INSERT INTO `school_products` (product_name,  movable , description,`school_name_short_id`, `category_id`, `supplier_company_id`) VALUES (?,?,?,?,?,?)');
             $stmt->bind_param("sssiii", $product, $flytbar, $description, $virksomhed, $category, $leverandoer);
             $stmt->execute();
             //Set setProduct with ID from the new Product we've added.
-           $this->setProduct($stmt->insert_id);
+            $this->setProduct($stmt->insert_id);
             $mysql->close();
-
         } catch (Exception $e) {
             die("Error: ".$e);
         }
-
     }
-
     //Add units/enheds to Database
     private function addEnhedtoDB(){
-
         try {
             $con = new DBConnection();
             $mysql = $con->getConnection();
@@ -440,11 +380,11 @@ private function checkIfAddressExist(){
             $antal = $this->getAntal();
             //Get the Product ID from the new Product and insert into a new variable.
             // prepare a sql script for inserting X Total of Units/Enheds for the new Product.
-            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_name,unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?,?, 3, ?,?,?,?)");
+            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 3, ?,?,?,?)");
             //Looping sql insert script X times for each Unit/Enhed.
             for ($enhedNumber = 1; $enhedNumber<= $antal; $enhedNumber++) {
                 $convertEnhedNumberToString = "Unit_".(string)$enhedNumber;
-                $stmt->bind_param("ssiiii", $convertEnhedNumberToString,$convertEnhedNumberToString, $product_id,$lokale,$svf,$thp);
+                $stmt->bind_param("siiii", $convertEnhedNumberToString, $product_id,$lokale,$svf,$thp);
                 $stmt->execute();
             }
             $mysql->close();
