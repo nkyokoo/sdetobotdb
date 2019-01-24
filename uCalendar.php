@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<div id="scheduler"></div> <!--main container for the scheduler, it is initialize in here after function is called on line-->
+<div id="scheduler"> <!--main container for the scheduler, it is initialize in here after function is called on line-->
 
 <!-- templates that show events in the scheduler, the allDayEvent ones are the ones at the top of the page
 
@@ -219,41 +219,39 @@ hope you understand -->
             }, 100);
         });
     });
+  </script>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-
-</script>
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p id="info" style="font-size: large;"></p>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="info" style="font-size: large;"></p>
+        </div>
     </div>
-</div>
 
-<script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
 
-</script>
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
+
+</div>
 
 
 

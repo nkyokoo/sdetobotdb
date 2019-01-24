@@ -14,7 +14,15 @@
 </head>
 <body>
 
-<div id="scheduler"></div>
+<div id="scheduler">
+
+
+<script>
+
+
+
+
+</script>
 
 <script id="event-template" type="text/x-kendo-template">
     <div class="item-template">
@@ -39,8 +47,8 @@
             {
                 id: 0,
                 title: "New Item",
-                start: new Date("2018-12-03T09:35"),
-                end: new Date("2018-12-03T09:55"),
+                start: new Date("2019-1-03T09:35"),
+                end: new Date("2019-1-03T09:55"),
                 description: "Just random description"
             },
             {
@@ -97,9 +105,9 @@
         $("#scheduler").kendoScheduler({   //initializing the scheduler
             height: 100,
             views: [
-                {type: "day"},
+                {type: "day", selected: true},
                 {type: "week", selected: true},
-                {type: "month"}
+                {type: "month", selected: false},
             ],
             timezone: "Etc/UTC",
             date: kendo.date.today(),
@@ -176,7 +184,8 @@
     });
 
 
-</script>
+  </script>
+</div>
 
 
 </body>
