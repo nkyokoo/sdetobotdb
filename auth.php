@@ -107,7 +107,7 @@ function isLoggedIn()
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: index.php");
+	header("location: ../index.php");
 }
 //------------------------------------------------------------------------------------//
 // call the login() function if register_btn is clicked

@@ -49,8 +49,8 @@
 		</p>
 	</form>
 
-	<footer class="footer">
-
+	<footer class="footer" style="margin-top:346px;">
+		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p> 
 	</footer>
 </body>
 </html>

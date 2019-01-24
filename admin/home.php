@@ -40,10 +40,32 @@ if (isset($_GET['logout'])) {
 	</style>
 </head>
 <body>
-	<div class="header">
-		<h2>Admin - Dashboard</h2>
+
+	<div class="nav">
+		<div class="navbar">
+			
+		</div>
+		<!-- logged in user information -->
+		<div class="profile_info">
+			<img src="../assets/images/admin.png"  >
+
+			<div>
+				<?php  if (isset($_SESSION['user'])) : ?>
+					<strong><?php echo $_SESSION['user']['name']; ?></strong> <i><?php echo $_SESSION['user']['email']; ?></i>
+					<a href="../index.php?logout='1'" style="color:#D10068; text-decoration:none;"> Log ud</a>
+
+				<?php endif ?>
+			</div>
+		</div>
 	</div>
-	<div class="content">
+
+	<small>
+		<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i>
+		<br>
+        &nbsp; <a href="create_user.php">+ Tilføj bruger</a>
+	</small>
+
+	<div class="alert">
 		<!-- notification message -->
 		<?php if (isset($_SESSION['success'])) : ?>
 			<div class="error success" >
@@ -55,26 +77,6 @@ if (isset($_GET['logout'])) {
 				</h3>
 			</div>
 		<?php endif ?>
-
-		<!-- logged in user information -->
-		<div class="profile_info">
-			<img src="../assets/images/admin.png"  >
-
-			<div>
-				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['name']; ?></strong></br>
-					<i><?php echo $_SESSION['user']['email']; ?></i>
-
-					<small>
-						<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i>
-						<br>
-						<a href="home.php?logout='1'" style="color: red;"> Log ud</a>
-                       &nbsp; <a href="create_user.php"> + Tilføj bruger</a>
-					</small>
-
-				<?php endif ?>
-			</div>
-		</div>
 	</div>
 </body>
 </html>

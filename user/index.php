@@ -25,10 +25,25 @@
     <link rel='icon' type='image/x-icon' href='favicon.ico'>
 </head>
 <body>
-	<div class="header">
-		<h2>Låne System</h2>
+	<div class="nav">
+		<div class="navbar">
+			
+		</div>
+		<!-- logged in user information -->
+		<div class="profile_info">
+			<img src="../assets/images/user.png"  >
+
+			<div>
+				<?php  if (isset($_SESSION['user'])) : ?>
+					<strong><?php echo $_SESSION['user']['name']; ?></strong> <i><?php echo $_SESSION['user']['email']; ?></i></br>
+					<a href="../index.php?logout='1'" style="color:#D10068; text-decoration:none;"> Log ud</a>
+
+				<?php endif ?>
+			</div>
+		</div>
 	</div>
-	<div class="content">
+
+	<div class="alert">
 		<!-- notification message -->
 		<?php if (isset($_SESSION['success'])) : ?>
 			<div class="error success" >
@@ -40,23 +55,51 @@
 				</h3>
 			</div>
 		<?php endif ?>
-		<!-- logged in user information -->
-		<div class="profile_info">
-			<img src="../assets/images/user.png"  >
+	</div>
 
-			<div>
-				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['name']; ?></strong>
-
-					<small>
-						<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i> 
-						<br>
-						<a href="index.php?logout='1'" style="color: red;">logout</a>
-					</small>
-
-				<?php endif ?>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<!--
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Date</th>
+								<th class="column2">Order ID</th>
+								<th class="column3">Name</th>
+								<th class="column4">Price</th>
+							</tr>
+						</thead>
+						-->
+						<tbody>
+								<tr>
+									<td class="column1">Intel Core i3</td>
+									<td class="column2">Beskrivelse</td>
+									<td class="column3">Antal lån</td>
+									<td class="column4">Book</td>
+								</tr>
+								<tr>
+									<td class="column1">Intel Core i3</td>
+									<td class="column2">Beskrivelse</td>
+									<td class="column3">Antal lån</td>
+									<td class="column4">Book</td>
+								</tr>
+								<tr>
+									<td class="column1">Intel Core i3</td>
+									<td class="column2">Beskrivelse</td>
+									<td class="column3">Antal lån</td>
+									<td class="column4">Book</td>
+								</tr>							
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<footer class="footer">
+		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p> 
+	</footer>
 </body>
 </html>
