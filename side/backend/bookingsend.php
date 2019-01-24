@@ -135,8 +135,9 @@ class bookingSend{
             $startDate = "2001-11-03"; // When to loan date
             $endDate = "2001-12-02"; //End Loan date
             $reminderDate = "2001-12-01"; // 2 days before end date.
-            $stmt = $mysqli->prepare("INSERT INTO `product_rentals`(`reserved_date`, `start_date`, `end_date`, `reminder_date`, `wish_list_id`) VALUES (?,?,?,?,?)");
-            $stmt->bind_param("ssssi",$reservedDate,$startDate,$endDate,$reminderDate,$wishListID);
+            $availability = 1; // 0 = false and 1 = true, availability = if rental list have been loaned out yet.
+            $stmt = $mysqli->prepare("INSERT INTO `product_rentals`(`reserved_date`, `start_date`, `end_date`, `reminder_date`, `wish_list_id`,`available`) VALUES (?,?,?,?,?,?)");
+            $stmt->bind_param("ssssi",$reservedDate,$startDate,$endDate,$reminderDate,$wishListID,$availability);
             $stmt->execute();
             $rentalID = $stmt->insert_id;
             $mysqli->close();
