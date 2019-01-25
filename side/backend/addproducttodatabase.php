@@ -165,9 +165,11 @@ class addProductToDatabase{
             //if the value is P8 then it start at index 1 and end when string ends.
             $number = substr($array[4],1);
             }
-            else
+            else{
+
                 $firstletter = "False";
-            $number = 0;
+            $number = -1;
+            }
 
 
             $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[4]."' or type = '".$firstletter."' and nr =".$number);
@@ -209,10 +211,18 @@ class addProductToDatabase{
             $array = $this->arraysAndSecurity();
             //Substring
             //if the value is P8 then it takes first index => P
-            $firstletter = substr($array[5],0,1);
-            //Substring
-            //if the value is P8 then it start at index 1 and end when string ends.
-            $number = substr($array[5],1);
+            if (!is_numeric($array[5])){
+
+                $firstletter = substr($array[5],0,1);
+                //Substring
+                //if the value is P8 then it start at index 1 and end when string ends.
+                $number = substr($array[5],1);
+            }
+            else{
+
+                $firstletter = "False";
+                $number = -1;
+            }
             //Check in database if what you've input is in the database.
             $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[5]."' or type ='".$firstletter."' and nr = ".$number);
             //Check if thp exist Exist in Database
