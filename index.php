@@ -19,30 +19,34 @@
     <link rel='icon' type='image/x-icon' href='favicon.ico'>
 </head>
 <body>
+
 	<div class="header">
 		<h2>SDE - Login</h2>
 	</div>
-	<form method="post" action="index.php">
 
-		<?php echo display_error(); ?>
+	<div class="content">
+		<form method="post" action="index.php">
 
-		<div class="input-group">
-			<label>Navn</label>
-			<input type="text" name="name" >
-		</div>
-		<div class="input-group">
-			<label>Password</label>
-			<input type="password" name="password">
-		</div>
-		<div class="input-group">
-			<button type="submit" class="btn" name="login_btn">Login</button>
-		</div>
-		<p>
-			Ingen bruger? opret en <a href="register.php">her</a>
-		</p>
-	</form>
+			<?php echo display_error(); ?>
 
-	<footer class="footer">
+			<div class="input-group">
+				<label>Navn</label>
+				<input type="text" name="name" >
+			</div>
+			<div class="input-group">
+				<label>Password</label>
+				<input type="password" name="password">
+			</div>
+			<div class="input-group">
+				<button type="submit" class="btn" name="login_btn">Login</button>
+			</div>
+			<p>
+				Ingen bruger? opret en <a href="register.php">her</a>
+			</p>
+		</form>
+	</div>
+
+	<footer class="login_footer">
 		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p> 
 	</footer>
 </body>

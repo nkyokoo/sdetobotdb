@@ -1,15 +1,26 @@
+/*//////////////////////////////////////////////////////////////////
+[ Init ]*/
+
 body {
 	font-size: 120%;
 	background-image:url('../images/bg.png');
 	background-size:100%;
 	background-repeat:no-repeat;
 	background-color:#204B52;
+  background-attachment: fixed;
 }
 
 * { 
 	margin: 0px; 
 	padding: 0px; 
 }
+
+.content {
+  padding:16px;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Loginpage ]*/
 
 .header {
 	width: 40%;
@@ -71,6 +82,26 @@ form, .content {
 	border-radius: 5px;
 }
 
+.login_footer {
+  background-color:black;
+  color:white;
+  height:30px;
+  margin-top:460px;
+  padding-top:5px;
+  text-align:center;
+  width:100%;
+  position:fixed;
+  bottom:0;
+}
+
+.login_footer a {
+  color:white;
+  text-decoration:none;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Alarms ]*/
+
 .error {
 	width: 50%; 
 	margin: 0px auto; 
@@ -89,6 +120,9 @@ form, .content {
 	margin-bottom: 20px;
 }
 
+/*//////////////////////////////////////////////////////////////////
+[ Userpage/Adminpage - Header ]*/
+
 .nav	{
 	width:100%;
 	height:80px;
@@ -100,28 +134,6 @@ form, .content {
 
 .navbar	{
 	width:50%;
-}
-
-nav	{
-
-}
-
-ul {
-	display:flex;
-	flex-direction:row;
-	list-style:none;
-}
-
-li {
-	padding:0 0 0 5px;
-}
-
-a {
-	text-decoration:none;
-}
-
-a:hover	{
-
 }
 
 .profile_info img {
@@ -146,8 +158,18 @@ a:hover	{
 	clear: both;
 }
 
+.stickyNav {
+  position:fixed;
+  top:0;
+  width:100%;
+}
+
+.stickyNav + .content {
+  padding-top:102px;
+}
+
 /*//////////////////////////////////////////////////////////////////
-[ Table ]*/
+[ Userpage - Table ]*/
 
 .limiter {
   width: 100%;
@@ -155,7 +177,7 @@ a:hover	{
 }
 
 .container-table100 {
-  width: 80%;
+  width: 100%;
   min-height: 405px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -227,34 +249,38 @@ tbody tr:nth-child(even) {
 tbody tr {
   font-family: OpenSans-Regular;
   font-size: 15px;
-  color: #808080;
+  color: #555555;
   line-height: 1.2;
   font-weight: unset;
 }
 
 tbody tr:hover {
-  color: #555555;
   background-color: #f5f5f5;
   cursor: pointer;
 }
 
 .column1 {
-	width: 245px;
+	width: 100px;
 }
 
 .column2 {
-  	width: 245px;
+  	width: 200px;
+    padding-top:20px;
+    padding-bottom:20px;
 }
 
 .column3 {
-  	width: 170px;
-  	text-align: right;
+  	width: 50px;
+  	text-align: center;
 }
 
 .column4 {
-	width: 222px;
-  	text-align: right;
-  	padding-right: 62px;
+	width: 50px;
+  	text-align: center;
+}
+
+#item-count {
+  margin:5px 5px 5px 5px;
 }
 
 
@@ -291,33 +317,23 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Date";
+    content: "Navn";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Order ID";
+    content: "Beskrivelse";
   }
   table tbody tr td:nth-child(3):before {
-    content: "Name";
+    content: "Antal";
   }
   table tbody tr td:nth-child(4):before {
-    content: "Price";
-  }
-  table tbody tr td:nth-child(5):before {
-    content: "Quantity";
-  }
-  table tbody tr td:nth-child(6):before {
-    content: "Total";
+    content: "Book";
   }
 
-  .column4,
-  .column5,
-  .column6 {
+  .column4 {
     text-align: left;
   }
 
   .column4,
-  .column5,
-  .column6,
   .column1,
   .column2,
   .column3 {
@@ -343,13 +359,24 @@ tbody tr:hover {
 	background-color:black;
 	color:white;
 	height:30px;
-	margin-top:500px;
+	margin-top:150px;
 	padding-top:5px;
 	text-align:center;
 	width:100%;
+  position:fixed;
 }
 
 .footer a	{
 	color:white;
 	text-decoration:none;
+}
+
+.stickyFooter {
+  position:fixed;
+  bottom:0;
+  width:100%;
+}
+
+.stickyFooter + .content {
+  padding-top:102px;
 }

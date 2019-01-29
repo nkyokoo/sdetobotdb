@@ -25,7 +25,7 @@
     <link rel='icon' type='image/x-icon' href='favicon.ico'>
 </head>
 <body>
-	<div class="nav">
+	<div class="nav" id="myNav">
 		<div class="navbar">
 			
 		</div>
@@ -43,56 +43,39 @@
 		</div>
 	</div>
 
-	<div class="alert">
-		<!-- notification message -->
-		<?php if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
-				<h3>
-					<?php 
-						echo $_SESSION['success']; 
-						unset($_SESSION['success']);
-					?>
-				</h3>
-			</div>
-		<?php endif ?>
-	</div>
-
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100">
-					<table>
-						<!--
-						<thead>
-							<tr class="table100-head">
-								<th class="column1">Date</th>
-								<th class="column2">Order ID</th>
-								<th class="column3">Name</th>
-								<th class="column4">Price</th>
-							</tr>
-						</thead>
-						-->
-						<tbody>
-								<tr>
-									<td class="column1">Intel Core i3</td>
-									<td class="column2">Beskrivelse</td>
-									<td class="column3">Antal lån</td>
-									<td class="column4">Book</td>
+	<div class="content">
+		<div class="alert">
+			<!-- notification message -->
+			<?php if (isset($_SESSION['success'])) : ?>
+				<div class="error success" >
+					<h3>
+						<?php 
+							echo $_SESSION['success']; 
+							unset($_SESSION['success']);
+						?>
+					</h3>
+				</div>
+			<?php endif ?>
+		</div>
+	
+		<div class="limiter">
+			<div class="container-table100">
+				<div class="wrap-table100">
+					<div class="table100">
+						<table>
+							<thead>
+								<tr class="table100-head">
+									<th class="column1">Navn</th>
+									<th class="column2">Beskrivelse</th>
+									<th class="column3">Antal</th>
+									<th class="column4">Book</th>
 								</tr>
-								<tr>
-									<td class="column1">Intel Core i3</td>
-									<td class="column2">Beskrivelse</td>
-									<td class="column3">Antal lån</td>
-									<td class="column4">Book</td>
-								</tr>
-								<tr>
-									<td class="column1">Intel Core i3</td>
-									<td class="column2">Beskrivelse</td>
-									<td class="column3">Antal lån</td>
-									<td class="column4">Book</td>
-								</tr>							
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<?php include('../includes/usertable.php') ?>	
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -101,5 +84,26 @@
 	<footer class="footer">
 		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p> 
 	</footer>
+
+
+<script type="text/javascript">
+	// When the user scrolls the page, execute myFunction
+	window.onscroll = function() {myFunction()};
+
+	// Get the header
+	var header = document.getElementById("myNav");
+
+	// Get the offset position of the navbar
+	var sticky = header.offsetTop;
+
+	// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+	function myFunction() {
+	  if (window.pageYOffset > sticky) {
+	    header.classList.add("stickyNav");
+	  } else {
+	    header.classList.remove("stickyNav");
+	  }
+	} 
+</script>	
 </body>
 </html>
