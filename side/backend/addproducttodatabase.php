@@ -125,16 +125,16 @@ class addProductToDatabase{
             $connection = new DBConnection();
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
-            if (is_numeric($array[3])){
-                $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = " . $array[3]);
-                //Check if Location Exist in Database
-                if ($result->num_rows > 0)
-                {
-                    $row = $result->fetch_assoc();
-                    $container = $row['id'];
-                    $this->setLokale($container);
-                }
+
+            $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = " . $array[3]." OR location_room.room =".$array[3]);
+            //Check if Location Exist in Database
+            if ($result->num_rows > 0)
+            {
+                $row = $result->fetch_assoc();
+                $container = $row['id'];
+                $this->setLokale($container);
             }
+
             //else Insert a new Location to Database with prepared statement
             else
             {
@@ -160,15 +160,15 @@ class addProductToDatabase{
             //if the value is P8 then it takes first index => P
             if (!is_numeric($array[4])){
 
-            $firstletter = substr($array[4],0,1);
-            //Substring
-            //if the value is P8 then it start at index 1 and end when string ends.
-            $number = substr($array[4],1);
+                $firstletter = substr($array[4],0,1);
+                //Substring
+                //if the value is P8 then it start at index 1 and end when string ends.
+                $number = substr($array[4],1);
             }
             else{
 
                 $firstletter = "False";
-            $number = -1;
+                $number = -1;
             }
 
 
@@ -302,13 +302,13 @@ class addProductToDatabase{
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
             //Check if Category Exist in the Database.
-            if (is_numeric($array[0])){
-                $result = $mysql->query("SELECT id FROM `category` WHERE id = ".$array[0]);
-                if ($result->num_rows > 0){
-                    $row = $result->fetch_assoc();
-                    $this->setKategori($row['id']);
-                }
+
+            $result = $mysql->query("SELECT id FROM `category` WHERE id = ".$array[0]." OR category_name =".$array[0]);
+            if ($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                $this->setKategori($row['id']);
             }
+
             // Else Insert a new Category to the Database with Prepared statement
             else
             {

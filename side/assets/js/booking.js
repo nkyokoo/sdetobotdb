@@ -60,7 +60,33 @@ function ChangeLayers() {
     }
 }
 
+function addToCart(productID) {
+    try {
+        let product = document.getElementById(productID);
+        let getChosenValueOfProduct = product.value;
+
+        if (getChosenValueOfProduct > 0) {
+            $.ajax({
+                type: 'POST',
+                url: 'api/api_eventsforcarts.php',
+                data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
+                success: function () {
+                    let btn = document.getElementById('btn' + productID);
+                    btn.innerHTML = 'Added';
+                    btn.disabled = true;
+                    product.disabled = true;
+                }
+            })
+        } else {
+            alert('ingen varer af dette produkt er på lager');
+        }
+    } catch (e) {
+    }
+
+}
+
 //Populate Options for Product Enheder/Devices.
+/*
 function ChangeEnhed(id) {
 
     try {
@@ -90,6 +116,7 @@ function ChangeEnhed(id) {
 }
 
 //Add Selection boxes
+
 function AddSelect(layer_id) {
     try {
         let checkIfProductIsSelected = document.getElementById("item_"+layerSelectionCounter[layer_id]);
@@ -142,3 +169,4 @@ function PopulateOptionForProductSelection(layer_ID,item_ID) {
     } catch (e) {
     }
 }
+*/
