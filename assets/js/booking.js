@@ -1,37 +1,18 @@
 
-/*
-//Prototype of ChangeEnhed
-$(document).ready(function ChangeEnhed(){
-  $(document.getElementsByName("item_1")).on('change',function(){
+//Always running when DOM is ready
+$(document).ready(function() {
+    //Trigger instances if it contain this name.
 
-        let productValue = $(this).val();
-        if(productValue){
-            $.ajax({
-                type:'POST',
-                url:'includes/BookingDropDownList.php',
-                data:'item_id='+productValue,
-                success:function(html){
-                    $('#enhed_2').html(html);
-                    //$('#city').html('<option value="">Select state first</option>');
-                }
-            });
-        }else{
-            $('#enhed_2').html('<option value="">Select an Item</option>');
-            //$('#city').html('<option value="">Select state first</option>');
-        }
+    $('*[id*="btn-"]').click(function(){
+        let variable = this.id;
+        //slice the first 3 character
+        let key = variable.slice(4);
+        //add to function
+        addToCart(key);
+    });
 
 });
-});*/
 
-//Global variables doesn't reset data after each use. Global only resets when you refresh DOM.
-//let layer1Limit = 10;
-//letlayerSelectionCounter[layer_id-1] = 1;
-
-//let layer2Limit = 20;
-//let layerSelectionCounter[layer_id-1] = 11;
-
-
-//used to remove existing product from next selection Try to use it on both layers.
 var selectArray = ["0","0"];
 let layerLimit =[10,20];
 let layerSelectionCounter = [1,11];
@@ -43,24 +24,40 @@ function ChangeLayers() {
         let currentLayer = "1" === getlayerTextByID ? document.getElementById("layer_1").style.display = 'none' : document.getElementById("layer_2").style.display = 'none';
         document.getElementById("layerText").innerHTML = "1" === getlayerTextByID ? "2" : "1";
 
-/*
-        if ($('#layer_1').css('display') === 'block') {
-
-            document.getElementById("layer_2").style.display = 'block';
-            document.getElementById("layer_1").style.display = 'none';
-
-
-        } else {
-
-            document.getElementById("layer_1").style.display = 'block';
-            document.getElementById("layer_2").style.display = 'none';
-
-        }*/
     } catch (e) {
     }
 }
+// Add product to cart via SESSION in a php file
+function addToCart(productID) {
+    try {
+        //Get the input
+        let product = document.getElementById( "product-unit-"+productID);
+        //Get the Value of input
+        let getChosenValueOfProduct = product.value;
+        //
+        if (getChosenValueOfProduct > 0) {
+            $.ajax({
+                type: 'POST',
+                url: 'api/api_eventsforcarts.php',
+                data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
+                success: function (output) {
+                    alert(output);
+                    let btn = document.getElementById('btn-' + productID);
+                    btn.innerHTML = 'Added';
+                    btn.disabled = true;
+                    product.disabled = true;
+                }
+            })
+        } else {
+            alert("You've not chosen an Amount Yet");
+        }
+    } catch (e) {
+    }
+
+}
 
 //Populate Options for Product Enheder/Devices.
+/*
 function ChangeEnhed(id) {
 
     try {
@@ -90,6 +87,7 @@ function ChangeEnhed(id) {
 }
 
 //Add Selection boxes
+
 function AddSelect(layer_id) {
     try {
         let checkIfProductIsSelected = document.getElementById("item_"+layerSelectionCounter[layer_id]);
@@ -142,3 +140,4 @@ function PopulateOptionForProductSelection(layer_ID,item_ID) {
     } catch (e) {
     }
 }
+*/
