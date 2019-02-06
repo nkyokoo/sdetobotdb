@@ -17,26 +17,26 @@ class dropDownlistProducts_Function{
             $result = $mysqli->query($sql);
             echo "<div class='card'>";
             echo "<div class='card-body'>";
-            echo "<h5 class='card-header'>Featured</h5>";
+            echo "<h5 class='card-header'>Featured Products</h5>";
             if ($result->num_rows > 0) {
                 //Default Selection
 
 
                 //Populate Selection box with data from DB
                 while ($row = $result->fetch_assoc()) {
-                  $item = $class->createOptionsForSelection($row['id']);
+                    $item = $class->createOptionsForSelection($row['id']);
 
 
                     echo "<div class='row'> <div class='col'>
                           <div class='card'>
-  <div class='card-body'>
-    <h5 class='card-title'>" .$row['product_name']."</h5>
-    <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$row['movable']."</h6>
-    <p class='card-text'>".$row['description'].".</p>
-                    <select id='".$row['id']."'>".$item."</select><button id='btn".$row['id']."' onclick=addToCart(".$row['id'].")>Add to Cart</button></div>
-  </div>
-</div>
-</div>";
+                          <div class='card-body'>
+                          <h5 class='card-title'>" .$row['product_name']."</h5>
+                          <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$row['movable']."</h6>
+                          <p class='card-text'>".$row['description'].".</p>
+                          <select id='product-unit-".$row['id']."'>".$item."</select><button id='btn-".$row['id']."')>Add to Cart</button></div>
+                          </div>
+                          </div>
+                          </div>";
 
 
                 }

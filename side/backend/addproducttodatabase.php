@@ -17,6 +17,7 @@ class addProductToDatabase{
     // get data from AJAX Call from Addproducts.js
     // Setter, Set data on a Variable
     public function setProduct($id){
+
         $this->product = $id;
     }
     public function setKategori($kategori){

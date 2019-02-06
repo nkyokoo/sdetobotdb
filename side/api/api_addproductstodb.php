@@ -4,6 +4,7 @@ include "../backend/addproducttodatabase.php";
 
 try
 {
+
     $class = new addProductToDatabase();
     $class->setKategori($_POST['kategori']);
     $class->setProduktNavn($_POST['produkt_navn']);

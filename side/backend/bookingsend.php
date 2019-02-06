@@ -1,5 +1,5 @@
 <?php
-//include('session.php');
+include('../includes/session.php');
 include_once "../includes/connect.php";
 class bookingSend{
     //Mangler at sendes til faktura og gennem gå hele processen.
@@ -10,27 +10,30 @@ class bookingSend{
         die();
     }
 
-    public function sendBooking($layer){
+    public function sendBooking(){
 
         try {
             $con = new DBConnection();
             $mysqli = $con->getConnection();
             $allProductsAreAvailable = true;
-            $storeIDsFromUnits = "";
+         //   $storeIDsFromUnits = "";
             $storeIDsFromUnitsQuantity = "";
             $storeIDsFromItems = "";
             // Length is a Upper Limit Counter for Outer Loop. It'll increase
             // Length => Next Product in line to be checked in db along with $i => Current Product
             //Change depend on Layer
-            $length = $layer == 1 ? 2:12;
+            //$length = $layer == 1 ? 2:12;
             //Layer 1 or 2
             //Loop The Selections and send to Database if the Selection has Value
-            for ($i = $layer == 1 ? 1:11; $i < $length; $i++) {
+           // for ($i = $layer == 1 ? 1:11; $i < $length; $i++) {
+            if (isset($_SESSION['cart'])){
+            $cart = $_SESSION['cart'];
+            foreach ($cart as $pid => $quantity){
                 $enhedCounter = 0;
                     //Check if items and its units aren't empty
-                if (!empty($_POST['item_' . $i]) and !empty($_POST['enhed_' . $i])) {
-                    $item = $_POST['item_' . $i];
-                    $unitQuantity = $_POST['enhed_' . $i];
+                if (!empty($pid) and !empty($quantity)) {
+                    $item = $pid;
+                    $unitQuantity = $quantity;
 
                     //Find the connected Units/Enhed to the item ID and correct status(in stock) in the database and
                     $sql = "SELECT product_unit_e.id FROM product_unit_e INNER JOIN school_products ON product_unit_e.products_id = school_products.id WHERE school_products.id = " . $item .
@@ -41,9 +44,9 @@ class bookingSend{
                     if ($result->num_rows >= $unitQuantity) {
 
                         //Increase Upper Limit if there's more Enheder/Units available.
-                        $length += 1;
-                        $storeIDsFromItems .= $item.",";
-                        $storeIDsFromUnitsQuantity .= $unitQuantity.",";
+                       // $length += 1;
+                        $storeIDsFromItems .= (string)$item.",";
+                        $storeIDsFromUnitsQuantity .= (string)$unitQuantity.",";
 
                         /*
                         while ($row = $result->fetch_assoc() AND $enhedCounter < $unitQuantity) {
@@ -61,18 +64,21 @@ class bookingSend{
                 else {break;}
 
             }
+            }
             if ($allProductsAreAvailable){
                // $this->updateStatus($storeIDsFromUnits);
+                //Make a wish list in DB and return ID
                 $wishListID = $this->sendToWishList();
-
+                //Get ID and products,quantity in a form of string array.
                 $this->connectProductsToWishList($storeIDsFromItems,$storeIDsFromUnitsQuantity,$wishListID);
+
+                //This is a test to run the whole Cycle and should not be here.
                 $this->sendToRentalTest($wishListID);
             }
             else{
                 //Products Unavailable Message
-                echo "alert('Some of the Products are Unavailable! Please Reload Site')";
+                echo "Some of the Products are Unavailable!";
             }
-
             $mysqli->close();
         } catch (Exception $e) {
         }
@@ -102,7 +108,7 @@ class bookingSend{
             // As tinyint is a 0 = false, 1 = true integer
             $godkendtFalse = "0";
             //user_id in LIVE Database needs to be taken from SESSION OF USER.
-            $userID = 1;
+            $userID = 2;
             $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (?,?)");
             $stmt->bind_param("si",$godkendtFalse,$userID);
             $stmt->execute();
@@ -132,8 +138,8 @@ class bookingSend{
 
             //Change when Calendar is finished.
             $reservedDate = "2001-11-01"; //Current date
-            $startDate = "2001-11-03"; // When to loan date
-            $endDate = "2001-12-02"; //End Loan date
+            $startDate = "2003-11-03"; // When to loan date
+            $endDate = "2003-12-02"; //End Loan date
             $reminderDate = "2001-12-01"; // 2 days before end date.
             $availability = 1; // 0 = false and 1 = true, availability = if rental list have been loaned out yet.
             $stmt = $mysqli->prepare("INSERT INTO `product_rentals`(`reserved_date`, `start_date`, `end_date`, `reminder_date`, `wish_list_id`,`available`) VALUES (?,?,?,?,?,?)");

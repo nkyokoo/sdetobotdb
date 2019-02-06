@@ -9,7 +9,7 @@ class bookingSelectEnheder{
             $con = new DBConnection();
             $mysqli = $con->getConnection();
           //  $selectedItem = $_POST['item_id'];
-
+            $item = mysqli_real_escape_string($mysqli,$item);
             //Check if the chosen Product is a Product.
                 $string = '';
                 $enhedCounter = 1;
