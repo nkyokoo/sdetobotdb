@@ -7,14 +7,14 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name='description' content='sde udlånsystem til automation og robotteknologi '>
     <meta name='theme-color' content=''#2196F3'>
-    <meta content='' property='og:image' />
+    <meta content=' property='og:image' />
     <meta content='SDE AUTOMATION OG ROBOTTEKNOLOGI' property='og:title' />
     <meta content='sde udlånsystem til automation og robotteknologi' property='og:description' />
     <meta name='revisit-after' content='2 days'>
     <meta name='keywords' content='sde,robot'>
-	
+
 	<title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="assets/css/_stylesheets.css">
     <link rel='icon' type='image/x-icon' href='favicon.ico'>
 </head>
@@ -43,7 +43,7 @@
 	</form>
 
 	<footer class="footer">
-		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p> 
+		<p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p>
 	</footer>
 </body>
 </html>

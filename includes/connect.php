@@ -4,7 +4,7 @@ class DBConnection
     public function getConnection()
     {
         try {
-            $con = new mysqli("localhost", "root", "", "sdebookingsystem", 3306);
+            $con = new mysqli("localhost", "root", "root", "sdebookingsystem", 3306);
             if (mysqli_connect_errno()) {
                 return null;
             } else {
@@ -15,4 +15,3 @@ class DBConnection
         }
     }
 }
-

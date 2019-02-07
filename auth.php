@@ -1,13 +1,11 @@
-<?php 
+<?php
 session_start();
 
-// CONNECT TO DATABASE
-$db = mysqli_connect('localhost', 'root', 'root', 'sdetest');
-
+include "includes/connect.php";
 // variable declaration
 $name = "";
 $email    = "";
-$errors   = array(); 
+$errors   = array();
 //------------------------------------------------------------------------------------//
 // call the register() function if register_btn is clicked
 if (isset($_POST['register_btn'])) {
@@ -27,14 +25,14 @@ function register(){
 	$password_2  =  e($_POST['password_2']);
 
 	// form validation: ensure that the form is correctly filled
-	if (empty($name)) { 
-		array_push($errors, "Navn er påkrævet"); 
+	if (empty($name)) {
+		array_push($errors, "Navn er påkrævet");
 	}
-	if (empty($email)) { 
-		array_push($errors, "Email er påkrævet"); 
+	if (empty($email)) {
+		array_push($errors, "Email er påkrævet");
 	}
-	if (empty($password_1)) { 
-		array_push($errors, "Password er påkrævet"); 
+	if (empty($password_1)) {
+		array_push($errors, "Password er påkrævet");
 	}
 	if ($password_1 != $password_2) {
 		array_push($errors, "passwords matcher ikke hinanden");
@@ -46,13 +44,13 @@ function register(){
 
 		if (isset($_POST['user_group_id'])) {
 			$user_group_id = e($_POST['user_group_id']);
-			$query = "INSERT INTO users (name, email, user_group_id, password) 
+			$query = "INSERT INTO users (name, email, user_group_id, password)
 					  VALUES('$name', '$email', '$user_group_id', '$password')";
 			mysqli_query($db, $query);
 			$_SESSION['success']  = "Ny bruger er oprettet!";
 			header('location: admin/home.php');
 		}else{
-			$query = "INSERT INTO users (name, email, user_group_id, password) 
+			$query = "INSERT INTO users (name, email, user_group_id, password)
 					  VALUES('$name', '$email', '3', '$password')";
 			mysqli_query($db, $query);
 
@@ -61,7 +59,7 @@ function register(){
 
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
 			$_SESSION['success']  = "Du er nu logget ind";
-			header('location: user/index.php');				
+			header('location: user/index.php');
 		}
 	}
 }
@@ -92,7 +90,7 @@ function display_error() {
 			}
 		echo '</div>';
 	}
-}	
+}
 
 function isLoggedIn()
 {
@@ -145,7 +143,7 @@ function login(){
 
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "Du er nu logget ind!";
-				header('location: admin/home.php');		  
+				header('location: admin/home.php');
 			}else{
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "Du er nu logget ind!";
