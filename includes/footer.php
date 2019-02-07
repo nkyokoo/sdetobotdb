@@ -1,6 +1,7 @@
 
 
-<footer class="foot">
+<footer class="footer">
+  <p>Copyright © 2019 <a href="https://www.sde.dk/">Sydansk Erhvervsskole</a></p>
 
 </footer>
 
@@ -11,4 +12,4 @@
 
 
     </body>
-<html>
+</html>
