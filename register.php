@@ -1,23 +1,9 @@
-<?php include('auth.php') ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset='utf-8'>
-    <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='description' content='sde udlånsystem til automation og robotteknologi'>
-    <meta name='theme-color' content='#2196F3'>
-    <meta content='' property='og:image'>
-    <meta content='SDE AUTOMATION OG ROBOTTEKNOLOGI' property='og:title'>
-    <meta content='sde udlånsystem til automation og robotteknologi' property='og:description'>
-    <meta name='revisit-after' content='2 days'>
-    <meta name='keywords' content='sde,robot'>
+<?php
 
-	<title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
+include 'auth.php';
+include 'includes/header.php';
+?>
 
-	<link rel="stylesheet" type="text/css" href="assets/css/_stylesheets.css">
-    <link rel='icon' type='image/x-icon' href='favicon.ico'>
-</head>
 <body>
 
 	<div class="header">
@@ -48,9 +34,6 @@
 			Allerede bruger? <a href="index.php">Login her</a>
 		</p>
 	</form>
-
-	<footer class="footer">
-
-	</footer>
-</body>
-</html>
+<?php
+	include 'includes/footer.php';
+?>
