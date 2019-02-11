@@ -3,7 +3,7 @@
 <?php
  	$sidebarLogin = new sidebarLogin;
 	$LoginUser = $sidebarLogin->LoginForSidebar();
-	if ($LoginUser == '1'){
+	if ($LoginUser = $Rulestagsave == '1'){
 		echo '<link rel="stylesheet" href="../assets/css/sidebar.css">
 			<content class="border-conten">
 				<div class="sidebar">
@@ -15,7 +15,7 @@
 				</div>
 			</content>
 			';
-	}else if ($LoginUser == '2') {
+	}else if ($LoginUser = $Rulestagsave == '2') {
 		echo '<link rel="stylesheet" href="../assets/css/sidebar.css">
 			<content class="border-conten">
 				<div class="sidebar">
@@ -27,7 +27,7 @@
 				</div>
 			</content>
 			';
-	}else if ($LoginUser == '3') {
+	}else if ($LoginUser = $Rulestagsave == '3') {
 		echo '<link rel="stylesheet" href="../assets/css/sidebar.css">
 			<content class="border-conten">
 				<div class="sidebar">

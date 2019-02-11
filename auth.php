@@ -172,7 +172,7 @@ function isAdmin()
 //------------------------------------------------------------------------------------//
 class sidebarLogin {
 	var $Rulestagsave = '0';
-var $rulestag = '0';
+	var $rulestag = '0';
 
 	function LoginForSidebar() {
 		if (isset($_POST['login_btn'])) {
@@ -185,6 +185,7 @@ var $rulestag = '0';
 	}
 		// LOGIN USER
 		function login2(){
+
 			global $db, $name, $errors;
 
 			// grap form values
@@ -213,7 +214,6 @@ var $rulestag = '0';
 					if ($logged_in_user['user_group_id'] == '1') {
 
 						$rulestag = '1';
-
 
 					}else if ($logged_in_user['user_group_id'] == '2'){
 						$rulestag = '2';
