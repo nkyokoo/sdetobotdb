@@ -2,6 +2,10 @@
 session_start();
 
 include "includes/connect.php";
+//call for the class of connect.php and the function getConnection.
+//makein connection to db.
+$DBConnection = new DBConnection;
+$db = $DBConnection->getConnection();
 // variable declaration
 $name = "";
 $email    = "";
@@ -44,14 +48,14 @@ function register(){
 
 		if (isset($_POST['user_group_id'])) {
 			$user_group_id = e($_POST['user_group_id']);
-			$query = "INSERT INTO users (name, email, user_group_id, password)
-					  VALUES('$name', '$email', '$user_group_id', '$password')";
+			$query = "INSERT INTO users (name, email, password, user_group_id)
+					  VALUES('$name', '$email','$password', '$user_group_id')";
 			mysqli_query($db, $query);
 			$_SESSION['success']  = "Ny bruger er oprettet!";
 			header('location: admin/home.php');
 		}else{
-			$query = "INSERT INTO users (name, email, user_group_id, password)
-					  VALUES('$name', '$email', '3', '$password')";
+			$query = "INSERT INTO users (name, email, password, user_group_id)
+					  VALUES('$name', '$email', '$password', '3')";
 			mysqli_query($db, $query);
 
 			// get id of the created user
@@ -166,3 +170,62 @@ function isAdmin()
 	}
 }
 //------------------------------------------------------------------------------------//
+class sidebarLogin {
+	var $Rulestagsave = '0';
+var $rulestag = '0';
+
+	function LoginForSidebar() {
+		if (isset($_POST['login_btn'])) {
+			login2();
+
+			$Rulestagsave = login2();
+			return $Rulestagsave;
+
+		}
+	}
+		// LOGIN USER
+		function login2(){
+			global $db, $name, $errors;
+
+			// grap form values
+			$name = e($_POST['name']);
+			$password = e($_POST['password']);
+
+			// make sure form is filled properly
+			if (empty($name)) {
+				array_push($errors, "Navn er påkrævet");
+			}
+			if (empty($password)) {
+				array_push($errors, "Password er påkrævet");
+			}
+
+			// attempt login if no errors on form
+			if (count($errors) == 0) {
+				$password = md5($password);
+
+				$query = "SELECT * FROM users WHERE name='$name' AND password='$password' LIMIT 1";
+				$results = mysqli_query($db, $query);
+
+				if (mysqli_num_rows($results) == 1) { // user found
+					// check if user is admin or user
+					$logged_in_user = mysqli_fetch_assoc($results);
+
+					if ($logged_in_user['user_group_id'] == '1') {
+
+						$rulestag = '1';
+
+
+					}else if ($logged_in_user['user_group_id'] == '2'){
+						$rulestag = '2';
+
+					}else {
+						$rulestag= '3';
+
+					}
+					return $rulestag;
+				}else {
+					array_push($errors, "Wrong name/password combination");
+				}
+			}
+		}
+	}

@@ -4,6 +4,7 @@
 	$_SESSION['msg'] = "You must log in first";
 	header('location: ../index.php');
 }
+	include '../includes/sidebar.php';
 ?>
 <!DOCTYPE html>
 <html>

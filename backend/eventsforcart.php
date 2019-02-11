@@ -1,6 +1,6 @@
 <?php
-include ('C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\session.php');
-include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+include ('./includes/session.php');
+include_once "./includes/connect.php";
 
 // submit = add to cart
 // remove = remove product
@@ -188,4 +188,3 @@ class Cart{
         $_SESSION["cart"] = $this->products;
     }
 }
-

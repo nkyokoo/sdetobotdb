@@ -20,11 +20,17 @@ nav {
 nav.navside{
     background-color: rgba(0,0,0, 50);
 }
-  
+
 .layer1{
     display: block;
 }
  .layer2{
     display: none;
 
+}
+.headerAdmin {
+  background: #003366;
+}
+button[name=register_btn] {
+  background: #003366;
 }

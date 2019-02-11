@@ -31,9 +31,8 @@ include 'includes/header.php';
 			<button type="submit" class="btn" name="register_btn">Register</button>
 		</div>
 		<p>
-			Allerede bruger? <a href="index.php">Login her</a>
+			Allerede bruger? <a href="login.php">Login her</a>
 		</p>
 	</form>
 <?php
 	include 'includes/footer.php';
-?>

@@ -1,5 +1,8 @@
-<?php 
-include('../auth.php');
+<?php
+include '../auth.php';
+include '../includes/header.php';
+include '../includes/sidebar.php';
+
 
 if (!isAdmin()) {
 	$_SESSION['msg'] = "Du skal være logget ind først, for at se denne side.";
@@ -12,35 +15,9 @@ if (isset($_GET['logout'])) {
 	header("location: ../index.php");
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset='utf-8'>
-    <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='description' content='sde udlånsystem til automation og robotteknologi '>
-    <meta name='theme-color' content=''#2196F3'>
-    <meta content='' property='og:image' />
-    <meta content='SDE AUTOMATION OG ROBOTTEKNOLOGI' property='og:title' />
-    <meta content='sde udlånsystem til automation og robotteknologi' property='og:description' />
-    <meta name='revisit-after' content='2 days'>
-    <meta name='keywords' content='sde,robot'>
-	
-	<title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
-	
-	<link rel="stylesheet" type="text/css" href="../assets/css/_stylesheets.css">
-    <link rel='icon' type='image/x-icon' href='favicon.ico'>
-	<style>
-	.header {
-		background: #003366;
-	}
-	button[name=register_btn] {
-		background: #003366;
-	}
-	</style>
-</head>
-<body>
-	<div class="header">
+
+
+	<div class="headerAdmin">
 		<h2>Admin - Dashboard</h2>
 	</div>
 	<div class="content">
@@ -48,8 +25,8 @@ if (isset($_GET['logout'])) {
 		<?php if (isset($_SESSION['success'])) : ?>
 			<div class="error success" >
 				<h3>
-					<?php 
-						echo $_SESSION['success']; 
+					<?php
+						echo $_SESSION['success'];
 						unset($_SESSION['success']);
 					?>
 				</h3>
@@ -76,5 +53,7 @@ if (isset($_GET['logout'])) {
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
+	<?php
+	include './includes/footer.php';
+	 ?>
