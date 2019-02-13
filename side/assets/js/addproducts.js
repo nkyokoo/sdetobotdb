@@ -4,6 +4,11 @@ $(document).ready(function () {
     window.onbeforeunload = function() {
         return "";
     };
+    $('#button').click(function(){
+            btnAddProductToDB();
+        });
+
+
 });
 //Send AddProducts.php data to php.
 function btnAddProductToDB() {myBlock:{

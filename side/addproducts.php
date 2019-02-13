@@ -2,7 +2,7 @@
 
 
 //include 'includes/connect.php';
-
+session_start();
 include "includes/header.php";
 include "includes/navbar.php";
 include_once "includes/connect.php";
@@ -138,7 +138,7 @@ $mysqli = $con->getConnection();
             </select>
         </div>
         <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input type="button" value="Tilføj"  onclick="btnAddProductToDB()">
+        <input id="button" type="button" value="Tilføj">
     </form>
 </div>
 <?php

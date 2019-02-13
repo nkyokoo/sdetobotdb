@@ -42,7 +42,9 @@ function onChangeQuantity(qts,pid) {
                 type: 'POST',
                 url: 'api/api_eventsforcarts.php',
                 data: {onChangeQuantity: qts, PID: pid},
-                success: function (test) {
+                success: function (output) {
+                    if (output)
+                        alert(output);
                    location.reload();
                 }
             })
@@ -72,7 +74,9 @@ function removeProduct(pid) {
     })
 }
 function clearCart() {
+    //The input from Confirm is saved in a variable.
   $choice = confirm("Do you really want to Clear the Cart ?");
+  //If confirm input variable is true
   if ($choice === true){
     $.ajax({
         type: 'POST',
@@ -99,6 +103,4 @@ function booking() {
                 }
             })
         }
-
-
 }

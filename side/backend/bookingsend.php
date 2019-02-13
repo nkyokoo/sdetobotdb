@@ -1,7 +1,8 @@
 <?php
-include('../includes/session.php');
+session_start();
 include_once "../includes/connect.php";
 class bookingSend{
+
     //Mangler at sendes til faktura og gennem gå hele processen.
     //Redirect to site if needed.
     function redirect($url, $statusCode = 303)

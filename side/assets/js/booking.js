@@ -41,11 +41,15 @@ function addToCart(productID) {
                 url: 'api/api_eventsforcarts.php',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
+                    if (output)
                     alert(output);
-                    let btn = document.getElementById('btn-' + productID);
-                    btn.innerHTML = 'Added';
-                    btn.disabled = true;
-                    product.disabled = true;
+                    else {
+                        let btn = document.getElementById('btn-' + productID);
+                        btn.innerHTML = 'Added';
+                        btn.disabled = true;
+                        product.disabled = true;
+                    }
+
                 }
             })
         } else {
