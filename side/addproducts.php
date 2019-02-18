@@ -31,7 +31,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
+                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
 
@@ -53,7 +53,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['school_name']."</option>";
                     }
-                    echo "<option value='_Virksomhedandet'>Andet</option>";
+                    echo "<option value='_Virksomhedandet'>Tilføj Ny</option>";
 
                 }
                 ?>
@@ -71,7 +71,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['room']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
+                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
                 ?>
@@ -91,7 +91,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
+                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
                 ?>
@@ -108,7 +108,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
+                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
                 ?>
@@ -132,7 +132,7 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['name']."</option>";
                     }
-                    echo "<option value='_Leverandorandet'>Andet</option>";
+                    echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
                 }
                 ?>
             </select>
