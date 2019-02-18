@@ -13,7 +13,7 @@ include 'includes/header.php';
 	</div>
 	<form method="post" action="index.php">
 
-		<?php echo display_error(); ?>
+		<!--<?php// echo display_error(); ?>-->
 
 		<div class="input-group">
 			<label>Navn</label>

@@ -1,6 +1,7 @@
 <?php
 
 include 'auth.php';
+
 include 'includes/header.php';
 ?>
 
