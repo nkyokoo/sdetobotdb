@@ -10,8 +10,8 @@ include 'includes/header.php';
 	<div class="header">
 		<h2>SDE - Register</h2>
 	</div>
-	<form method="post" action="register.php">
-		<?php echo display_error(); ?>
+	<form id="regid" method="post" action="register.php">
+		<?php/* echo display_error();*/ ?>
 		<div class="input-group">
 			<label>Navn</label>
 			<input type="text" name="name" value="<?php echo $name; ?>">
@@ -29,11 +29,17 @@ include 'includes/header.php';
 			<input type="password" name="password_2">
 		</div>
 		<div class="input-group">
-			<button type="submit" class="btn" name="register_btn">Register</button>
+			<!--<button type="submit" class="btn" name="register_btn">Register</button>-->
+			<button id="idbtn" type="button" onclick="load_auth_reg()" class="btn" name="register_btn">Register</button>
+
 		</div>
 		<p>
 			Allerede bruger? <a href="login.php">Login her</a>
 		</p>
 	</form>
 <?php
+	$mysqli_real = new auth2test;
+	$mysqli_real->sqlinjection($val);
+
+	echo $_SESSION['mysqli_real_escape_string'];
 	include 'includes/footer.php';

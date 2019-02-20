@@ -3,29 +3,46 @@ session_start();
 
 include "includes/connect.php";
 //call for the class of connect.php and the function getConnection.
-//makein connection to db.
-/**
- *
- */
+
 $_SESSION['errors'] = array();
 $_SESSION['returntag'] = 0;
+$_SESSION['user_groupe'] = 0;
+// call these variables with the global keyword to make them available in function
+// variable declaration
+
+$class = new auth2test();
+// call the register() function if register_btn is clicked
+if (isset($_POST['register_btn'])) {
+
+  $class->register();
+  }
+  //------------------------------------------------------------------------------------//
+  // log user out if logout button clicked
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: index.php");
+
+  }
+  //------------------------------------------------------------------------------------//
+  // call the login() function if register_btn is clicked
+  if (isset($_POST['login_btn'])) {
+
+    $class->login($_POST["name"],$_POST["password"]);
+  }
+
  class auth2test {
 
-
-   // call these variables with the global keyword to make them available in function
-   // variable declaration
-  /*public $errorss = array();*/
-
   //------------------------------------------------------------------------------------//
-  // call the register() function if register_btn is clicked
-
 
   // REGISTER USER
   function register(){
+    //makein connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
 
-
+    /*$sqlinjection = new auth2test();
+    $sqlinjection->sqlinjection($val);*/
 
   	// receive all input values from the form. Call the sqlinjection() function
       // defined below to escape form values
@@ -76,6 +93,7 @@ $_SESSION['returntag'] = 0;
   //------------------------------------------------------------------------------------//
   // return user array from their id
   function getUserById($id){
+    //makein connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
 
@@ -88,8 +106,7 @@ $_SESSION['returntag'] = 0;
 
   // escape string
   function sqlinjection($val){
-
-  	return mysqli_real_escape_string($db, trim($val));
+    return mysqli_real_escape_string($db, trim($val));
   }
 
   function display_error() {
@@ -114,6 +131,7 @@ $_SESSION['returntag'] = 0;
 
   // LOGIN USER
   function login($name, $password){
+    //makein connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
     $returntag = 0;
@@ -130,30 +148,35 @@ $_SESSION['returntag'] = 0;
     $errors = $_SESSION['errors'];
   	// attempt login if no errors on form
   	if (count($errors) == 0) {
-  		$password = md5($password);
+  		 $password = md5($password);
+      $returntag = 5;
 
   		$query = "SELECT * FROM users WHERE name='$name' AND password='$password' LIMIT 1";
   		$results = mysqli_query($db, $query);
 
+
   		if (mysqli_num_rows($results) == 1) { // user found
   			// check if user is admin or user
-  			$logged_in_user = mysqli_fetch_assoc($results);
+        $logged_in_user = mysqli_fetch_assoc($results);
+        $returntag = 4;
+
   			if ($logged_in_user['user_group_id'] == '1') {
 
             $returntag = 1;
 
-/*  				$_SESSION['user'] = $logged_in_user;
-  				$_SESSION['success']  = "Du er nu logget ind!";*/
-  				/*header('location: admin/home.php');*/
-  			}else if ($logged_in_user['user_group_id'] == '2') {
+
+				 $_SESSION['user'] = $logged_in_user;
+  				 $_SESSION['success']  = "Du er nu logget ind!";
+  				//header('location: admin/home.php');*/
+  			}elseif ($logged_in_user['user_group_id'] == '2'){
 
             $returntag = 2;
 
-/*  				$_SESSION['user'] = $logged_in_user;
-  				$_SESSION['success']  = "Du er nu logget ind!";*/
+ 				 $_SESSION['user'] = $logged_in_user;
+  				$_SESSION['success']  = "Du er nu logget ind!";
 
-
-  			}else if ($logged_in_user['user_group_id'] == '3') {
+                  //for statement $logged_in_user['user_group_id']
+  			}elseif ($logged_in_user['user_group_id'] == '3') {
 
            $returntag = 3;
 
@@ -162,9 +185,9 @@ $_SESSION['returntag'] = 0;
   			array_push($errors, "Wrong name/password combination");
   		}
      $_SESSION['returntag'] = $returntag;
+     $_SESSION['user_groupe'] = $logged_in_user['user_group_id'];
   	}
   }
-
   //------------------------------------------------------------------------------------//
   function isAdmin()
   {
