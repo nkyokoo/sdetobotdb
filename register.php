@@ -14,11 +14,11 @@ include 'includes/header.php';
 		<?php/* echo display_error();*/ ?>
 		<div class="input-group">
 			<label>Navn</label>
-			<input type="text" name="name" value="<?php echo $name; ?>">
+			<input type="text" name="name" value="<?php $name; ?>">
 		</div>
 		<div class="input-group">
 			<label>Email</label>
-			<input type="email" name="email" value="<?php echo $email; ?>">
+			<input type="email" name="email" value="<?php $email; ?>">
 		</div>
 		<div class="input-group">
 			<label>Password</label>
@@ -29,8 +29,8 @@ include 'includes/header.php';
 			<input type="password" name="password_2">
 		</div>
 		<div class="input-group">
-			<!--<button type="submit" class="btn" name="register_btn">Register</button>-->
-			<button id="idbtn" type="button" onclick="load_auth_reg()" class="btn" name="register_btn">Register</button>
+			<button type="submit" class="btn" name="register_btn">Register</button>
+			<!--<button id="idbtn" type="button" onclick="load_auth_reg()" class="btn" name="register_btn">Register</button>-->
 
 		</div>
 		<p>
@@ -38,8 +38,5 @@ include 'includes/header.php';
 		</p>
 	</form>
 <?php
-	$mysqli_real = new auth2test;
-	$mysqli_real->sqlinjection($val);
 
-	echo $_SESSION['mysqli_real_escape_string'];
 	include 'includes/footer.php';
