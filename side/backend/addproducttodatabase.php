@@ -390,7 +390,7 @@ class addProductToDatabase{
             $antal = $this->getAntal();
             //Get the Product ID from the new Product and insert into a new variable.
             // prepare a sql script for inserting X Total of Units/Enheds for the new Product.
-            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 3, ?,?,?,?)");
+            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 1, ?,?,?,?)");
             //Looping sql insert script X times for each Unit/Enhed.
             for ($enhedNumber = 1; $enhedNumber<= $antal; $enhedNumber++) {
                 $convertEnhedNumberToString = "Unit_".(string)$enhedNumber;

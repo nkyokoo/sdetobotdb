@@ -31,9 +31,9 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                     }
-                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
+                echo "<option value='andet'>Tilføj Ny</option>";
 
                 ?>
             </select>
@@ -46,15 +46,13 @@ $mysqli = $con->getConnection();
                 echo "<option value=''>Virksomhed</option>";
 
                 //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
-                $sql = "SELECT id,school_name FROM `product_school_address`  GROUP BY school_name";
+                $sql = "SELECT id,company_name_short FROM `school_address_short`  GROUP BY company_name_short";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['school_name']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['company_name_short']."</option>";
                     }
-                    echo "<option value='_Virksomhedandet'>Tilføj Ny</option>";
-
                 }
                 ?>
             </select>
@@ -71,9 +69,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['room']."</option>";
                     }
-                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
 
@@ -91,9 +90,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
             <select id="thp_id" onchange="addNewInputOfAndet(this.id)" required>
@@ -108,9 +108,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Tilføj Ny</option>";
 
                 }
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
             <select id="flytbar_id"required>
@@ -132,8 +133,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['name']."</option>";
                     }
-                    echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
                 }
+                echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
                 ?>
             </select>
         </div>

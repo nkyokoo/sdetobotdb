@@ -34,7 +34,7 @@ function btnAddProductToDB() {myBlock:{
             //Check if there's a "_andet" chosen
             if (array[i] === "andet" || array[i] === "_Leverandorandet" || array[i] === "_Virksomhedandet") {
                 //check if the value in andet is a int, if it isn't continue
-                if (!parseInt($(arrayName[i]).val())) {
+                if (!parseInt($(arrayName[i]).val()) || i === 0) {
                     //check if the value is this or that
                     if(array[i] === "_Leverandorandet"){
                         //Input with more than one textbox require another way of doing things-
@@ -42,14 +42,6 @@ function btnAddProductToDB() {myBlock:{
                         let container2 = $('#leverandoer_id_andet_adress').val();
                         let container3 = $('#leverandoer_id_andet_phonenr').val();
                         array[i]= container1+","+container2+","+container3;
-                    }
-                    else if (array[i] === "_Virksomhedandet") {
-                       let con1 = $('#virksomhed_id_Virksomhedandet').val();
-                       let con2 = $('#virksomhed_id_andet_short').val();
-                       let con3 = $('#virksomhed_id_andet_city').val();
-                       let con4 = $('#virksomhed_id_andet_post').val();
-                       let con5 = $('#virksomhed_id_andet_address').val();
-                        array[i] = con1 +","+con2+","+con3+","+con4+","+con5;
                     }
                     else {
 
@@ -64,9 +56,8 @@ function btnAddProductToDB() {myBlock:{
 
             }
         }
-
-        if (array[0].length > 0 && array[1].length > 0 && array[2].length > 0 && array[3].length > 0 && array[4].length > 0 && array[5].length > 0 && produkt_navn && antal && flytbar){
-
+        //Check if it has any value
+        if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5].length > 3 && produkt_navn && antal && flytbar){
             $.ajax({
                 type:'post',
                 url:'api/api_addproductstodb.php',
@@ -78,7 +69,27 @@ function btnAddProductToDB() {myBlock:{
                 }
             });
         } else {
-            alert("Something Is Empty Or In The Wrong Format \nPlease Recheck The Fields");
+            let errorArray = array;
+            let errorArrayName =["[Kategori]","[Virksomhed]","[Lokale]","[SVF]","[THP]","[Leverandoer]","[Produkt_navn]","[Antal]","[Flytbar]"];
+            errorArray.push(produkt_navn,antal,flytbar);
+            let errorMessage = "Something is wrong or in the wrong format on the following fields : \n";
+            for (let i = 0; i<errorArray.length; i++){
+
+                if (i === 5){
+                    if (!$('#leverandoer_id_Leverandorandet').val() || !$('#leverandoer_id_andet_adress').val() || !$('#leverandoer_id_andet_phonenr').val()) {
+                        errorMessage += errorArrayName[i]+" ";
+
+                    }
+                }
+                else {
+                    if (!errorArray[i]){
+
+                        errorMessage += errorArrayName[i]+" ";
+
+                    }
+                }
+            }
+            alert(errorMessage);
         }
     } catch (e) {
         alert(e.errorCode);
@@ -105,27 +116,6 @@ function addNewInputOfAndet(CurrentEventId) {
                 $("#" + CurrentEventId + "_Leverandorandet").remove();
                 $("#" + CurrentEventId + "_andet_adress").remove();
                 $("#" + CurrentEventId + "_andet_phonenr").remove();
-
-
-            }
-        }
-        else if (CurrentEventId === "virksomhed_id"){
-            let andetPlaceHolderName = CurrentEventId;
-            andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_Virksomhedandet' placeholder='Ny " + andetPlaceHolderName + "'><input type='text' id='" + CurrentEventId + "_andet_short' placeholder='Virksomhed forkortelse'><input type='text' id='" + CurrentEventId + "_andet_city' placeholder='Bynavn'><input type='text' id='" + CurrentEventId + "_andet_post' placeholder='Ny Post nummer'><input type='text' id='"+ CurrentEventId +"_andet_address' placeholder='Ny addresse'>";
-            let CurrentValue = document.getElementById(CurrentEventId).value;
-            if (CurrentValue === "_Virksomhedandet") {
-                let container = document.getElementById(CurrentEventId);
-                let createdElement = document.createElement('span');
-                createdElement.innerHTML = addHTML;
-                container.insertAdjacentElement("afterend", createdElement);
-            } else {
-                $("#" + CurrentEventId + "_Virksomhedandet").remove();
-                $("#" + CurrentEventId + "_andet_short").remove();
-                $("#" + CurrentEventId + "_andet_city").remove();
-                $("#" + CurrentEventId + "_andet_post").remove();
-                $("#" + CurrentEventId + "_andet_address").remove();
-
 
 
             }
