@@ -77,7 +77,18 @@ if (isset($_POST['register_btn'])) {
   	if ($password_1 != $password_2) {
   		array_push($_SESSION['errors'], "passwords matcher ikke hinanden");
   	}
-
+    // name of this array dictionary.
+    // $errordict = [
+    //   empty($name) => "Navn er påkrævet",
+    //   empty($email) => "Email er påkrævet",
+    //   empty($password_1) => "Password er påkrævet",
+    //   $password_1 != $password_2 => "Passwords matcher ikke hinanden"
+    // ]
+    // foreach($errordict as $error => $message){
+    //   if($error){
+    //     array_push($_SESSION['errors'], $message);
+    //   }
+    // }
   	// register user if there are no errors in the form
   	if (count($_SESSION['errors']) == 0) {
   		$password = md5($password_1);//encrypt the password before saving in the database
