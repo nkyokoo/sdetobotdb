@@ -50,6 +50,8 @@ if (isset($_POST['register_btn'])) {
 
   // REGISTER USER
   function register(){
+    $returntag = 22;
+
     //makein connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
@@ -92,15 +94,38 @@ if (isset($_POST['register_btn'])) {
   					  VALUES('$name', '$email', '$password', '3')";
   			mysqli_query($db, $query);
 
-  			// get id of the created user
-        $logged_in_user_id = mysqli_insert_id($db);
 
-  			$_SESSION['user'] = $logged_in_user_id; // put logged in user in session
-  			$_SESSION['success']  = "Du er nu logget ind";
-  			header('location: index.php');
+
+  			// get id of the created user
+          $logged_in_user = mysqli_insert_id($db);
+
+          // check if id and group_id has matching values.
+          $query = 'SELECT * FROM users WHERE id ='. $logged_in_user .' AND user_group_id = "3"';
+
+          // execute $query.
+          $results = mysqli_query($db, $query);
+          //feth data to array
+          $logged_in_user_val  = mysqli_fetch_assoc($results);
+
+          if ($logged_in_user_val['user_group_id'] == '3') {
+            $returntag = 3;
+            $_SESSION['returntag'] = $returntag; //make the vaiable for $logged_in_user.
+
+              if ($_SESSION['returntag'] == 3) {
+                $_SESSION['success']  = "Du er nu logget ind. og returntag sættes videre ";
+                header('location: index.php');
+
+              }elseif ($_SESSION['returntag'] == 0) {
+                $_SESSION['success']  = "Du er nu logget ind. men returntag sættes ikke videre ";
+                echo 'success'. $_SESSION['success'];
+              }else {
+                $_SESSION['success']  = "Du er ikke logget ind, returntag ikke retuneret.";
+                echo 'success'. $_SESSION['success'];
+              }
   		}
   	}
   }
+}
   //------------------------------------------------------------------------------------//
 
 
@@ -130,7 +155,7 @@ if (isset($_POST['register_btn'])) {
     //makein connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
-    $returntag = 0;
+    $returntag = 8;
     $errors = $_SESSION['errors'];
 
 
@@ -158,6 +183,7 @@ if (isset($_POST['register_btn'])) {
   			if ($logged_in_user['user_group_id'] == '1') {
 
             $returntag = 1;
+            $_SESSION['success']  = "Du er nu logget ind som admin!";
 
 
 				 $_SESSION['user'] = $logged_in_user;
@@ -168,19 +194,20 @@ if (isset($_POST['register_btn'])) {
             $returntag = 2;
 
  				 $_SESSION['user'] = $logged_in_user;
-  				$_SESSION['success']  = "Du er nu logget ind!";
+  				$_SESSION['success']  = "Du er nu logget ind som Superuser!";
 
                   //for statement $logged_in_user['user_group_id']
   			}elseif ($logged_in_user['user_group_id'] == '3') {
 
            $returntag = 3;
+           $_SESSION['success']  = "Du er nu logget ind user!";
 
         }
   		}else {
   			array_push($errors, "Wrong name/password combination");
   		}
      $_SESSION['returntag'] = $returntag;
-     $_SESSION['user_groupe'] = $logged_in_user['user_group_id'];
+     $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
   	}
   }
   //------------------------------------------------------------------------------------//

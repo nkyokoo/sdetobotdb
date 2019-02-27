@@ -31,9 +31,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
-
                 }
+                echo "<option value='andet'>Andet</option>";
 
                 ?>
             </select>
@@ -53,9 +52,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['school_name']."</option>";
                     }
-                    echo "<option value='_Virksomhedandet'>Andet</option>";
-
                 }
+                echo "<option value='_Virksomhedandet'>Andet</option>";
                 ?>
             </select>
 
@@ -71,9 +69,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['room']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
-
                 }
+                echo "<option value='andet'>Andet</option>";
                 ?>
             </select>
 
@@ -91,9 +88,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
-
                 }
+                echo "<option value='andet'>Andet</option>";
                 ?>
             </select>
             <select id="thp_id" onchange="addNewInputOfAndet(this.id)" required>
@@ -108,9 +104,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
-                    echo "<option value='andet'>Andet</option>";
-
                 }
+                echo "<option value='andet'>Andet</option>";
                 ?>
             </select>
             <select id="flytbar_id"required>
@@ -132,8 +127,8 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['name']."</option>";
                     }
-                    echo "<option value='_Leverandorandet'>Andet</option>";
                 }
+                echo "<option value='_Leverandorandet'>Andet</option>";
                 ?>
             </select>
         </div>
@@ -145,4 +140,3 @@ $mysqli = $con->getConnection();
 include "includes/footer.php";
 $mysqli->close();
 ?>
-

@@ -5,6 +5,6 @@
 	include 'info.php';
 	include 'includes/footer.php';
 	echo 'returntag'. $_SESSION['returntag'];
-	echo 'user'. $_SESSION['user_groupe'];
-	
+	echo 'success'. $_SESSION['success'];
+
 ?>
