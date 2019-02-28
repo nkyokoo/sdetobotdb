@@ -5,7 +5,7 @@
  * Date: 30/01/2019
  * Time: 13.03
  */
-include_once "C:/Users/aznzl/Desktop/Github/sdetobotdb/side/backend/eventsforcart.php";
+include_once "../backend/eventsforcart.php";
 try {
     $cart = new Cart();
     //Check which of the three buttons you've clicked on

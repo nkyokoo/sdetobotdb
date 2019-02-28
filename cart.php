@@ -13,7 +13,7 @@ include ("includes/navbar.php");
 
 <?php
 session_start();
-include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+include_once "includes\connect.php";
 $connection = new DBConnection();
 $mysqli = $connection->getConnection();
 echo "<form><div class='card'>";

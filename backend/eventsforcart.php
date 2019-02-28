@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+include_once "../includes/connect.php";
 
 // submit = add to cart
 // remove = remove product

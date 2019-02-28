@@ -1,5 +1,5 @@
 <?php
-require_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+require_once "includes\connect.php";
 require_once "bookingdropdownlist.php";
 class dropDownlistProducts_Function{
 

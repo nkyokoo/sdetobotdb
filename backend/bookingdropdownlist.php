@@ -1,5 +1,5 @@
 <?php
-require_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+require_once "includes\connect.php";
 class bookingSelectEnheder{
 
     //Populate Units/Enhed Selection box For the choosing Product
