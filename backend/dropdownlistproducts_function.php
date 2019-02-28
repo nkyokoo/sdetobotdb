@@ -1,5 +1,5 @@
 <?php
-require_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+require_once "includes\connect.php";
 require_once "bookingdropdownlist.php";
 class dropDownlistProducts_Function{
 
@@ -40,6 +40,9 @@ class dropDownlistProducts_Function{
 
 
                 }
+            }else{
+
+                echo "ERROR 404. No connection to Server. If you have Addblock on try to disable it or Contact Support. Thank you!";
             }
             echo "</div></div>";
 

@@ -1,6 +1,6 @@
 <?php
-include ('./includes/session.php');
-include_once "./includes/connect.php";
+session_start();
+include_once "../includes/connect.php";
 
 // submit = add to cart
 // remove = remove product
@@ -13,7 +13,10 @@ class Cart{
     //$qts = quantity
 
     function add($PID, $qts){
-
+        $con = new DBConnection();
+        $mysql = $con->getConnection();
+        $PID = mysqli_real_escape_string($mysql,$PID);
+        $qts = mysqli_real_escape_string($mysql,$qts);
         try {
             $con = new DBConnection();
             $mysql = $con->getConnection();
@@ -25,7 +28,6 @@ class Cart{
                 $productInCart = false;
                $qts = intval($qts);
                 if ($unitsInStock >= $qts and $unitsInStock > 0 ){
-                echo "units in stock ".$unitsInStock." quantity ".$qts;
                 if (isset($_SESSION["cart"])) {
                     //Get all Products in Cart
                     $productsInCart = $this->showSavedInCart();
@@ -55,7 +57,7 @@ class Cart{
 
                 }
 
-                //if product is new
+                //if product is not in cart / product is new
                 if ($productInCart == false) {
                     //insert product into cart
                     $this->products[$PID] = $qts;
@@ -63,9 +65,10 @@ class Cart{
 
                     //save
                     $this->save();
-                }
+                }else{echo "We don't have enough in stock of chosen product. \r\nPlease Reduce the amount.";}
 
             }
+            $mysql->close();
         } catch (Exception $e) {
         }
 
@@ -93,6 +96,7 @@ class Cart{
                             // Check If the input qts is over Total units in stock
                             if ($qts > $unitsInStock){
                                 //Become the Total units in stock
+                                echo "You've chosen over the maximum amount in stock. \r\nSo we've given the maximum in stock.";
                                 $quantity = $unitsInStock;
                             }else{
                                 //override quantity
@@ -117,6 +121,7 @@ class Cart{
             }
             //save
             $this->save();
+            $mysql->close();
 
         } catch (Exception $e) {
         }
@@ -150,6 +155,8 @@ class Cart{
             }
             //save
             $this->save();
+            $mysql->close();
+
         } catch (Exception $e) {
         }
 
@@ -167,6 +174,8 @@ class Cart{
         //Get Total Unit in Stock
         $unitRecordsOfProduct = $sql->fetch_assoc();
         //Return the Result
+        $mysql->close();
+
         return $unitRecordsOfProduct['COUNT(id)'];
 
     }
@@ -188,3 +197,4 @@ class Cart{
         $_SESSION["cart"] = $this->products;
     }
 }
+

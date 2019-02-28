@@ -2,7 +2,7 @@
 
 
 //include 'includes/connect.php';
-
+session_start();
 include "includes/header.php";
 include "includes/navbar.php";
 include_once "includes/connect.php";
@@ -19,7 +19,7 @@ $mysqli = $con->getConnection();
 <!-- #############################-------- SCRIPT -------############################################ -->
 
 <div>
-    <form>
+    <form action="addproducts.php">
         <div>
             <select id="kategori_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Kategori</option>
@@ -31,8 +31,9 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
                     }
+
                 }
-                echo "<option value='andet'>Andet</option>";
+                echo "<option value='andet'>Tilføj Ny</option>";
 
                 ?>
             </select>
@@ -45,15 +46,14 @@ $mysqli = $con->getConnection();
                 echo "<option value=''>Virksomhed</option>";
 
                 //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
-                $sql = "SELECT id,school_name FROM `product_school_address`  GROUP BY school_name";
+                $sql = "SELECT id,company_name_short FROM `school_address_short`  GROUP BY company_name_short";
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0){
                     while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['school_name']."</option>";
+                        echo "<option value='".$row['id']."'>".$row['company_name_short']."</option>";
                     }
                 }
-                echo "<option value='_Virksomhedandet'>Andet</option>";
                 ?>
             </select>
 
@@ -69,8 +69,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['room']."</option>";
                     }
+
                 }
-                echo "<option value='andet'>Andet</option>";
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
 
@@ -88,8 +90,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
+
                 }
-                echo "<option value='andet'>Andet</option>";
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
             <select id="thp_id" onchange="addNewInputOfAndet(this.id)" required>
@@ -104,8 +108,10 @@ $mysqli = $con->getConnection();
                     while ($row = $result->fetch_assoc()){
                         echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
                     }
+
                 }
-                echo "<option value='andet'>Andet</option>";
+                echo "<option value='andet'>Tilføj Ny</option>";
+
                 ?>
             </select>
             <select id="flytbar_id"required>
@@ -128,15 +134,16 @@ $mysqli = $con->getConnection();
                         echo "<option value='".$row['id']."'>".$row['name']."</option>";
                     }
                 }
-                echo "<option value='_Leverandorandet'>Andet</option>";
+                echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
                 ?>
             </select>
         </div>
         <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input type="button" value="Tilføj"  onclick="btnAddProductToDB()">
+        <input id="button" type="button" value="Tilføj">
     </form>
 </div>
 <?php
 include "includes/footer.php";
 $mysqli->close();
 ?>
+

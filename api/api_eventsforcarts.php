@@ -5,8 +5,6 @@
  * Date: 30/01/2019
  * Time: 13.03
  */
-
- // Hold øje med path from backend = eventsforcart.php
 include_once "../backend/eventsforcart.php";
 try {
     $cart = new Cart();
