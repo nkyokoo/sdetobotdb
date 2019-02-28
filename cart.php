@@ -24,7 +24,7 @@ echo "<h5 class='card-header'>Products In Cart</h5>";
 //  echo "product = ".$key. " quantity = ".$quantity." || ";
 if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
     $incart = $_SESSION["cart"];
-
+$error = false;
 foreach ($incart as $pid => $quantity){
 //Select products to Selection box which you haven't choosing yet
 // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
@@ -49,7 +49,13 @@ foreach ($incart as $pid => $quantity){
 
         }
 
+    }else{
+        $error = true;
     }
+}
+if ($error){
+    echo "ERROR 404. No connection to Server. If you have Addblock on try to disable it or Contact Support. Thank you!";
+
 }
     echo "<button id='button-booking'>Buy EVERYTHING ON THIS LIST</button></div></div> ";
 
