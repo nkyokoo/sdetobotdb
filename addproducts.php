@@ -19,7 +19,7 @@ $mysqli = $con->getConnection();
 <!-- #############################-------- SCRIPT -------############################################ -->
 
 <div>
-    <form>
+    <form action="addproducts.php">
         <div>
             <select id="kategori_id" onchange="addNewInputOfAndet(this.id)" required>
                 <option value="">Kategori</option>

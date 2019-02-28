@@ -57,7 +57,7 @@ function btnAddProductToDB() {myBlock:{
             }
         }
         //Check if it has any value
-        if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5].length > 3 && produkt_navn && antal && flytbar){
+        if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5] && produkt_navn && antal && flytbar){
             $.ajax({
                 type:'post',
                 url:'api/api_addproductstodb.php',
@@ -105,7 +105,7 @@ function addNewInputOfAndet(CurrentEventId) {
             let andetPlaceHolderName = CurrentEventId;
             //slice the last 3 index
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "'><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse'><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr'>";
+            let addHTML = "<input type='text' id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
                 let container = document.getElementById(CurrentEventId);
@@ -123,7 +123,7 @@ function addNewInputOfAndet(CurrentEventId) {
         else {
             let andetPlaceHolderName = CurrentEventId;
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "'>";
+            let addHTML = "<input type='text' id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "andet") {
                 let container = document.getElementById(CurrentEventId);
