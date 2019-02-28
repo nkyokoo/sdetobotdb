@@ -11,7 +11,7 @@ include ("includes/navbar.php");
     <script type="text/javascript" src="assets/js/cart.js"></script>
 
 <?php
-include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\side\includes\connect.php";
+include_once "C:\Users\aznzl\Desktop\Github\sdetobotdb\includes\connect.php";
 session_start();
 $connection = new DBConnection();
 $mysqli = $connection->getConnection();

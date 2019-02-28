@@ -13,20 +13,6 @@ $(document).ready(function() {
 
 });
 
-var selectArray = ["0","0"];
-let layerLimit =[10,20];
-let layerSelectionCounter = [1,11];
-function ChangeLayers() {
-    try { // Switch between layers
-
-        let getlayerTextByID = document.getElementById("layerText").innerHTML;
-        let nextLayer = "1" === getlayerTextByID ? document.getElementById("layer_2").style.display = 'block' : document.getElementById("layer_1").style.display = 'block';
-        let currentLayer = "1" === getlayerTextByID ? document.getElementById("layer_1").style.display = 'none' : document.getElementById("layer_2").style.display = 'none';
-        document.getElementById("layerText").innerHTML = "1" === getlayerTextByID ? "2" : "1";
-
-    } catch (e) {
-    }
-}
 // Add product to cart via SESSION in a php file
 function addToCart(productID) {
     try {
@@ -46,6 +32,7 @@ function addToCart(productID) {
                     btn.innerHTML = 'Added';
                     btn.disabled = true;
                     product.disabled = true;
+                    alert("done!");
                 }
             })
         } else {
@@ -56,6 +43,23 @@ function addToCart(productID) {
 
 }
 
+/*
+var selectArray = ["0","0"];
+let layerLimit =[10,20];
+let layerSelectionCounter = [1,11];
+function ChangeLayers() {
+    try { // Switch between layers
+
+        let getlayerTextByID = document.getElementById("layerText").innerHTML;
+        let nextLayer = "1" === getlayerTextByID ? document.getElementById("layer_2").style.display = 'block' : document.getElementById("layer_1").style.display = 'block';
+        let currentLayer = "1" === getlayerTextByID ? document.getElementById("layer_1").style.display = 'none' : document.getElementById("layer_2").style.display = 'none';
+        document.getElementById("layerText").innerHTML = "1" === getlayerTextByID ? "2" : "1";
+
+    } catch (e) {
+    }
+}
+
+*/
 //Populate Options for Product Enheder/Devices.
 /*
 function ChangeEnhed(id) {

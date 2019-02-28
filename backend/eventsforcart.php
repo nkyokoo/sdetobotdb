@@ -1,6 +1,6 @@
 <?php
-include ('./includes/session.php');
-include_once "./includes/connect.php";
+session_start();
+include "../includes/connect.php";
 
 // submit = add to cart
 // remove = remove product
