@@ -5,7 +5,7 @@ include "includes/connect.php";
 //call for the class of connect.php and the function getConnection.
 
 $_SESSION['errors'] = array();
-$_SESSION['returntag'] = 0;
+
 $_SESSION['user_groupe'] = 0;
 // call these variables with the global keyword to make them available in function
 // variable declaration
@@ -18,10 +18,20 @@ if (isset($_POST['register_btn'])) {
   }
   //------------------------------------------------------------------------------------//
   // log user out if logout button clicked
-  if (isset($_GET['logout'])) {
-    session_destroy();
+  if (isset($_POST['logout_btn'])) {
+
+    $class->PleaseLogOut();
+  /*  if (isset($_SESSION['returntag'])) {
+        $returntag = 0;
+        $_SESSION['returntag'] = $returntag;
+        unset( $_SESSION['returntag']);
+    }
     unset($_SESSION['user']);
-    header("location: index.php");
+
+    $_SESSION['success']  = "Du er nu logget ud. Login igen for at lave handlinger";
+    session_destroy();
+    header("location: index.php");*/
+
 
   }
   //------------------------------------------------------------------------------------//
@@ -34,7 +44,16 @@ if (isset($_POST['register_btn'])) {
  class auth2test {
 
   //------------------------------------------------------------------------------------//
+  function PleaseLogOut() {
 
+
+    unset($_SESSION);
+    session_destroy();
+    session_write_close();
+    header("location: booking.php");
+    die;
+
+  }
   // return user array from their id
   function getUserById($id){
     //makein connection to db.
@@ -121,9 +140,13 @@ if (isset($_POST['register_btn'])) {
           if ($logged_in_user_val['user_group_id'] == '3') {
             $returntag = 3;
             $_SESSION['returntag'] = $returntag; //make the vaiable for $logged_in_user.
+              if(empty($_SESSION['returntag'])) {
+                $returntag = 3;
 
+
+              }
               if ($_SESSION['returntag'] == 3) {
-                $_SESSION['success']  = "Du er nu logget ind. og returntag sættes videre ";
+                $_SESSION['success']  = "Du er nu logget ind. og returntag burde sættes videre ";
                 header('location: index.php');
 
               }elseif ($_SESSION['returntag'] == 0) {
@@ -135,6 +158,7 @@ if (isset($_POST['register_btn'])) {
               }
   		}
   	}
+    $_SESSION['returntag'] = $returntag;
   }
 }
   //------------------------------------------------------------------------------------//
