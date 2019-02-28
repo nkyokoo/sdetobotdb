@@ -11,6 +11,7 @@ $(document).ready(function () {
         //check if mouse is moving
         document.onmousemove = function () {
             idleTimer = 0;
+            //test
             let x = document.getElementById("test");
             x.innerHTML = idleTimer;
         };
@@ -18,6 +19,7 @@ $(document).ready(function () {
         //check if you press any key.
         document.onkeypress = function () {
             idleTimer = 0;
+            //test
             let x = document.getElementById("test");
             x.innerHTML = idleTimer;
         };

@@ -2,14 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e2fdfbd-dc36-4294-b291-c4316d7c6922" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/api/api_dropdownlistproducts_function.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/api_dropdownlistproducts_function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/bookingdropdownlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bookingdropdownlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dropdownlistproducts_function.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dropdownlistproducts_function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/eventsforcart.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/eventsforcart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/booking.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/addproducts.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/api/api_addproductstodb.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/api/api_bookingdropdownlist.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/api/api_bookingsend.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/api/api_dropdownlistproducts_function.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/api/api_eventsforcarts.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/img/header_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/img/profile pic Webside.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/img/robot-meets-man.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/addproducts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/booking.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/bookingtimer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/cart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/idletimer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/javascript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/assets/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/backend/addproducttodatabase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/backend/bookingdropdownlist.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/backend/bookingsend.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/backend/dropdownlistproducts_function.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/backend/eventsforcart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/booking.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/cart.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/connect.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/connectlogin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/footer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/header.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/includes/navbar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/side/template.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,82 +43,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/booking.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/booking.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_dropdownlistproducts_function.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_bookingsend.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_bookingdropdownlist.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_addproductstodb.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/dropdownlistproducts_function.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/connect.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/eventsforcart.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -131,32 +81,6 @@
               <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
               <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sdetobotdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sdetobotdb" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -191,16 +115,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551339611436</updated>
-      <workItem from="1551339612655" duration="2580000" />
+      <workItem from="1551339612655" duration="3039000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2580000" />
+    <option name="totallyTimeSpent" value="3039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-856" width="1216" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -260,13 +183,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/booking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -307,10 +223,20 @@
     <entry file="file://$PROJECT_DIR$/api/api_addproductstodb.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/bookingtimer.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+        <state relative-caret-position="476">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/booking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>

@@ -13,6 +13,7 @@ $(document).ready(function() {
 
 });
 
+
 // Add product to cart via SESSION in a php file
 function addToCart(productID) {
     try {
@@ -27,12 +28,15 @@ function addToCart(productID) {
                 url: 'api/api_eventsforcarts.php',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
+                    if (output)
                     alert(output);
-                    let btn = document.getElementById('btn-' + productID);
-                    btn.innerHTML = 'Added';
-                    btn.disabled = true;
-                    product.disabled = true;
-                    alert("done!");
+                    else {
+                        let btn = document.getElementById('btn-' + productID);
+                        btn.innerHTML = 'Added';
+                        btn.disabled = true;
+                        product.disabled = true;
+                    }
+
                 }
             })
         } else {
@@ -43,23 +47,22 @@ function addToCart(productID) {
 
 }
 
-/*
-var selectArray = ["0","0"];
-let layerLimit =[10,20];
-let layerSelectionCounter = [1,11];
-function ChangeLayers() {
-    try { // Switch between layers
+// var selectArray = ["0","0"];
+// let layerLimit =[10,20];
+// let layerSelectionCounter = [1,11];
+// function ChangeLayers() {
+//     try { // Switch between layers
+//
+//         let getlayerTextByID = document.getElementById("layerText").innerHTML;
+//         let nextLayer = "1" === getlayerTextByID ? document.getElementById("layer_2").style.display = 'block' : document.getElementById("layer_1").style.display = 'block';
+//         let currentLayer = "1" === getlayerTextByID ? document.getElementById("layer_1").style.display = 'none' : document.getElementById("layer_2").style.display = 'none';
+//         document.getElementById("layerText").innerHTML = "1" === getlayerTextByID ? "2" : "1";
+//
+//     } catch (e) {
+//     }
+// }
 
-        let getlayerTextByID = document.getElementById("layerText").innerHTML;
-        let nextLayer = "1" === getlayerTextByID ? document.getElementById("layer_2").style.display = 'block' : document.getElementById("layer_1").style.display = 'block';
-        let currentLayer = "1" === getlayerTextByID ? document.getElementById("layer_1").style.display = 'none' : document.getElementById("layer_2").style.display = 'none';
-        document.getElementById("layerText").innerHTML = "1" === getlayerTextByID ? "2" : "1";
 
-    } catch (e) {
-    }
-}
-
-*/
 //Populate Options for Product Enheder/Devices.
 /*
 function ChangeEnhed(id) {

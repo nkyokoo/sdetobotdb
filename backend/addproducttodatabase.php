@@ -127,7 +127,7 @@ class addProductToDatabase{
             $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
 
-            $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = " . $array[3]." OR location_room.room =".$array[3]);
+            $result = $mysql->query("SELECT id FROM location_room WHERE location_room.id = '" . $array[3]."' OR location_room.room = '".$array[3]."'");
             //Check if Location Exist in Database
             if ($result->num_rows > 0)
             {
@@ -135,7 +135,6 @@ class addProductToDatabase{
                 $container = $row['id'];
                 $this->setLokale($container);
             }
-
             //else Insert a new Location to Database with prepared statement
             else
             {
@@ -304,7 +303,7 @@ class addProductToDatabase{
             $array = $this->arraysAndSecurity();
             //Check if Category Exist in the Database.
 
-            $result = $mysql->query("SELECT id FROM `category` WHERE id = ".$array[0]." OR category_name =".$array[0]);
+            $result = $mysql->query("SELECT id FROM `category` WHERE id = '".$array[0]."' OR category_name ='".$array[0]."'");
             if ($result->num_rows > 0){
                 $row = $result->fetch_assoc();
                 $this->setKategori($row['id']);
@@ -391,7 +390,7 @@ class addProductToDatabase{
             $antal = $this->getAntal();
             //Get the Product ID from the new Product and insert into a new variable.
             // prepare a sql script for inserting X Total of Units/Enheds for the new Product.
-            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 3, ?,?,?,?)");
+            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 1, ?,?,?,?)");
             //Looping sql insert script X times for each Unit/Enhed.
             for ($enhedNumber = 1; $enhedNumber<= $antal; $enhedNumber++) {
                 $convertEnhedNumberToString = "Unit_".(string)$enhedNumber;
