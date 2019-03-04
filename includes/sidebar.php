@@ -1,7 +1,7 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
 
 <?php
-	include './assets/logout.js'
+	include './assets/js/logout.js';
 
 		if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 1){
 		echo '
