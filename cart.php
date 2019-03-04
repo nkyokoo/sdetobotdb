@@ -42,7 +42,8 @@ foreach ($incart as $pid => $quantity){
                   <h5 class='card-title'>" .$row['product_name']."</h5>
                   <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$row['movable']."</h6>
                   <p class='card-text'>".$row['description'].".</p>
-                  <label>Quantity: <input id='product-quantity-".$pid."' type='number' value='".$quantity."' name='product-quantity-".$pid."'></label><button id='button-remove".$pid."'>Remove</button></div>
+                  <label>Quantity: <input id='product-quantity-".$pid."' type='number' value='".$quantity."' name='product-quantity-".$pid."'></label><button id='button-remove".$pid."'>Remove</button>
+                  </div>
                   </div>
                   </div>
                   </div>";

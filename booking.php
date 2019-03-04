@@ -17,10 +17,6 @@ include ("includes/navbar.php");
     <div id="layer_1" class="layer1" style="display: block" >
 
         <div id="select_list_1">
-
-            <?php
-            //include_once "api/api_dropdownlistproducts_function.php";
-            ?>
             <!-- Via Ajax, get products data and send them in between this div. "Booking.js(getProductsFromDB)" -->
         </div>
 
