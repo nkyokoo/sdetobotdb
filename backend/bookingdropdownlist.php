@@ -1,5 +1,5 @@
 <?php
-require_once "includes\connect.php";
+require_once "..\includes\connect.php";
 class bookingSelectEnheder{
 
     //Populate Units/Enhed Selection box For the choosing Product

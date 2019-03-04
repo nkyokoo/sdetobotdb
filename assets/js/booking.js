@@ -1,17 +1,21 @@
 
 //Always running when DOM is ready
 $(document).ready(function() {
-    //Trigger instances if it contain this name.
 
-    $('*[id*="btn-"]').click(function(){
+    //Get products from db and send them to booking.php
+    getProductsFromDB();
+
+    //Trigger instances if it contain this name.
+    //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
+    $("body").on("click", "*[id*='btn-']", function (){
         let variable = this.id;
-        //slice the first 3 character
         let key = variable.slice(4);
-        //add to function
+        // Run Function
         addToCart(key);
-    });
+    })
 
 });
+
 
 
 // Add product to cart via SESSION in a php file
@@ -36,7 +40,6 @@ function addToCart(productID) {
                         btn.disabled = true;
                         product.disabled = true;
                     }
-
                 }
             })
         } else {
@@ -44,8 +47,23 @@ function addToCart(productID) {
         }
     } catch (e) {
     }
-
 }
+function getProductsFromDB() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/api_dropdownlistproducts_function.php',
+        success: function (output) {
+
+            //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
+           let p = document.createElement("div");
+           p.innerHTML = output;
+           let h = document.getElementById("select_list_1");
+           h.appendChild(p);
+        }
+
+    })
+}
+
 
 // var selectArray = ["0","0"];
 // let layerLimit =[10,20];

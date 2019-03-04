@@ -137,6 +137,9 @@ $mysqli = $con->getConnection();
                 echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
                 ?>
             </select>
+            <select>
+                <option>Worker (progress)</option>
+            </select>
         </div>
         <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
         <input id="button" type="button" value="Tilføj">

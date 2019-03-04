@@ -96,7 +96,7 @@ class Cart{
                             // Check If the input qts is over Total units in stock
                             if ($qts > $unitsInStock){
                                 //Become the Total units in stock
-                                echo "You've chosen over the maximum amount in stock. \r\nSo we've given the maximum in stock.";
+                                echo "You've chosen over the maximum amount in stock.";
                                 $quantity = $unitsInStock;
                             }else{
                                 //override quantity
@@ -110,8 +110,6 @@ class Cart{
 
                     }
                 }
-
-
             }
             // else remove the item
             else {

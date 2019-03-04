@@ -97,9 +97,14 @@ function booking() {
                 type:'POST',
                 url:'api/api_bookingsend.php',
                 data:{choice: 0},
-                success:function (output) {
-                    alert(output);
-                    alert("you've succeed");
+                success:function () {
+                    alert("Your wishlist has been made");
+                    $.ajax({
+                        type: 'POST',
+                        url: 'api/api_eventsforcarts.php',
+                        data: {clear: "clear"}
+                    });
+                    location.reload();
                 }
             })
         }
