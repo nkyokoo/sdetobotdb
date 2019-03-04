@@ -1,57 +1,57 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
-
+<script type="text/javascript" src="./assets/js/logout.js" ></script>
 <?php
-	include './assets/js/logout.js';
+
 
 		if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 1){
 		echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-			<form method="post" action="auth.php">
+
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
 						<li><a href="index.php">Hejsa Admin</a></li>
 						<li><a href="">accept user</a></li>
-						<li><a onclick="callPhpFunction()" name="logout_btn" href="#">Log ud</a></li>
+						<li><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
 					</div>
 				</content>
-			</form>
+
 			';
 	}else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 2) {
 		echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-			<form method="post" action="auth.php">
+
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
 						<li><a href="index.php">Hejsa Superuser</a></li>
 						<li><a href="">Control users</a></li>
-						<li><a onclick="callPhpFunction()" name="logout_btn" "href="#">Log ud</a></li>
+						<li><a id="callPhplogout" name="logout_btn" "href="#">Log ud</a></li>
 						</ul>
 					</div>
 				</content>
-			</form>
+
 			';
 	}else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
 		echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-			<form method="post" action="auth.php">
+
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
 						<li><a href="index.php">Hejsa user</a></li>
 						<li><a href="">Book</a></li>
-						<li><a onclick="callPhpFunction()" name="logout_btn" href="#">Log ud</a></li>
+						<li><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
 					</div>
 				</content>
-			</form>
+
 			';
-	}elseif (!isset($_SESSION['return']) AND empty($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
+	}else if(isset($_SESSION['returntag']) AND empty($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
 		echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-			<form>
+
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
@@ -62,12 +62,12 @@
 						</ul>
 					</div>
 				</content>
-			</form>
+
 			';
 	}else {
 		echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-			<form>
+
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
@@ -78,7 +78,7 @@
 						</ul>
 					</div>
 				</content>
-			</form>
+
 			';
 	}
 

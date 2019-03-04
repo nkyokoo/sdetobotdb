@@ -10,50 +10,12 @@ $_SESSION['user_groupe'] = 0;
 // call these variables with the global keyword to make them available in function
 // variable declaration
 
-$class = new auth2test();
-// call the register() function if register_btn is clicked
-if (isset($_POST['register_btn'])) {
 
-  $class->register();
-  }
-  //------------------------------------------------------------------------------------//
-  // log user out if logout button clicked
-  if (isset($_POST['logout_btn'])) {
-
-    $class->PleaseLogOut();
-  /*  if (isset($_SESSION['returntag'])) {
-        $returntag = 0;
-        $_SESSION['returntag'] = $returntag;
-        unset( $_SESSION['returntag']);
-    }
-    unset($_SESSION['user']);
-
-    $_SESSION['success']  = "Du er nu logget ud. Login igen for at lave handlinger";
-    session_destroy();
-    header("location: index.php");*/
-
-
-  }
-  //------------------------------------------------------------------------------------//
-  // call the login() function if register_btn is clicked
-  if (isset($_POST['login_btn'])) {
-
-    $class->login($_POST["name"],$_POST["password"]);
-  }
 
  class auth2test {
 
   //------------------------------------------------------------------------------------//
-  function PleaseLogOut() {
 
-
-    unset($_SESSION);
-    session_destroy();
-    session_write_close();
-    header("location: booking.php");
-    die;
-
-  }
   // return user array from their id
   function getUserById($id){
     //makein connection to db.
