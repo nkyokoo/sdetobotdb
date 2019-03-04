@@ -5,8 +5,8 @@ $(document).ready(function () {
         return "";
     };
     $('#button').click(function(){
-            btnAddProductToDB();
-        });
+        btnAddProductToDB();
+    });
 
 
 });

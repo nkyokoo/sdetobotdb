@@ -30,7 +30,7 @@ class bookingSend{
             if (isset($_SESSION['cart'])){
             $cart = $_SESSION['cart'];
             foreach ($cart as $pid => $quantity){
-                $enhedCounter = 0;
+               // $enhedCounter = 0;
                     //Check if items and its units aren't empty
                 if (!empty($pid) and !empty($quantity)) {
                     $item = $pid;
