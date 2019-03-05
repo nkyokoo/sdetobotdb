@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e2fdfbd-dc36-4294-b291-c4316d7c6922" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addproducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/addproducts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/addproducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/addproducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/addproducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/addproducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,15 +50,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/booking.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/bookingtimer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -73,11 +63,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/addproducts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="238">
+              <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -100,7 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/includes/header.php" />
         <option value="$PROJECT_DIR$/api/api_eventsforcarts.php" />
         <option value="$PROJECT_DIR$/backend/bookingsend.php" />
         <option value="$PROJECT_DIR$/assets/js/cart.js" />
@@ -113,6 +111,7 @@
         <option value="$PROJECT_DIR$/cart.php" />
         <option value="$PROJECT_DIR$/addproducts.php" />
         <option value="$PROJECT_DIR$/assets/js/addproducts.js" />
+        <option value="$PROJECT_DIR$/includes/header.php" />
         <option value="$PROJECT_DIR$/admin/addproducts.php" />
       </list>
     </option>
@@ -184,6 +183,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aznzl\Desktop\Github\sdetobotdb\admin" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -210,12 +214,12 @@
       <workItem from="1551425064984" duration="6332000" />
       <workItem from="1551684294381" duration="7003000" />
       <workItem from="1551699058051" duration="3480000" />
-      <workItem from="1551770510309" duration="4639000" />
+      <workItem from="1551770510309" duration="5172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32440000" />
+    <option name="totallyTimeSpent" value="32973000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -228,6 +232,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-856" width="1216" height="1896" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23875433" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -322,13 +327,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="56" lean-forward="true" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -438,8 +436,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/addproducts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>

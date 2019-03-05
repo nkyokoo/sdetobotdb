@@ -3,9 +3,9 @@
 
 //include 'includes/connect.php';
 session_start();
-include "includes/header.php";
-include "includes/navbar.php";
-include_once "includes/connect.php";
+include "../includes/header.php";
+include "../includes/navbar.php";
+include_once "../includes/connect.php";
 $con = new DBConnection();
 $mysqli = $con->getConnection();
 
@@ -142,11 +142,11 @@ $mysqli = $con->getConnection();
             </select>
         </div>
         <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input id="button" type="button" value="Tilføj">
+        <input id="button" type="submit" value="Tilføj">
     </form>
 </div>
 <?php
-include "includes/footer.php";
+include "../includes/footer.php";
 $mysqli->close();
 ?>
 
