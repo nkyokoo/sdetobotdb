@@ -8,6 +8,8 @@
 
 include ("includes/header.php");
 include ("includes/navbar.php");
+include 'includes/sidebar.php';
+
 ?>
     <script type="text/javascript" src="assets/js/cart.js"></script>
 
