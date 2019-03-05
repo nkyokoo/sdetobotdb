@@ -69,10 +69,11 @@ function btnAddProductToDB() {myBlock:{
                 }
             });
         } else {
+            //Check for errors and display them
             let errorArray = array;
             let errorArrayName =["[Kategori]","[Virksomhed]","[Lokale]","[SVF]","[THP]","[Leverandoer]","[Produkt_navn]","[Antal]","[Flytbar]"];
             errorArray.push(produkt_navn,antal,flytbar);
-            let errorMessage = "Something is wrong or in the wrong format on the following fields : \n";
+            let errorMessage = "Something is missing or in the wrong format on the following fields : \n";
             for (let i = 0; i<errorArray.length; i++){
 
                 if (i === 5){
