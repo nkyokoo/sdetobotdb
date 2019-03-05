@@ -1,9 +1,12 @@
 $(document).ready(function () {
     //When you leave site, return a Confirmation message
     //The message is decided by Browser by Default can be changed.
+    /*
     window.onbeforeunload = function() {
         return "";
     };
+    */
+
     $('#button').click(function(){
         btnAddProductToDB();
     });

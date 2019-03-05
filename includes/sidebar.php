@@ -10,7 +10,7 @@
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
-						<li><a href="index.php">Hejsa Admin</a></li>
+						<li><a href="../index.php">Hejsa Admin</a></li>
 						<li><a href="">accept user</a></li>
 						<li><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
@@ -25,7 +25,7 @@
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
-						<li><a href="index.php">Hejsa Superuser</a></li>
+						<li><a href="../index.php">Hejsa Superuser</a></li>
 						<li><a href="">Control users</a></li>
 						<li><a id="callPhplogout" name="logout_btn" "href="#">Log ud</a></li>
 						</ul>
@@ -40,7 +40,7 @@
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
-						<li><a href="index.php">Hejsa user</a></li>
+						<li><a href="../index.php">Hejsa user</a></li>
 						<li><a href="">Book</a></li>
 						<li><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
@@ -55,7 +55,7 @@
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
-						<li><a href="index.php">Home</a></li>
+						<li><a href="../index.php">Home</a></li>
 						<li><a href="">Contact11111</a></li>
 						<li><a href="./login.php">Log på</a></li>
 						<li><a href="./register.php">Register</a></li>
@@ -71,7 +71,7 @@
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul>
-						<li><a href="index.php">Home</a></li>
+						<li><a href="../index.php">Home</a></li>
 						<li><a href="">Contact11111</a></li>
 						<li><a href="./login.php">Log på</a></li>
 						<li><a href="./register.php">Register</a></li>
