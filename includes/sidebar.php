@@ -57,8 +57,8 @@
 					<ul>
 						<li><a href="../index.php">Home</a></li>
 						<li><a href="">Contact11111</a></li>
-						<li><a href="./login.php">Log på</a></li>
-						<li><a href="./register.php">Register</a></li>
+						<li><a href="../login.php">Log på</a></li>
+						<li><a href="../register.php">Register</a></li>
 						</ul>
 					</div>
 				</content>
@@ -73,8 +73,8 @@
 					<ul>
 						<li><a href="../index.php">Home</a></li>
 						<li><a href="">Contact11111</a></li>
-						<li><a href="./login.php">Log på</a></li>
-						<li><a href="./register.php">Register</a></li>
+						<li><a href="../login.php">Log på</a></li>
+						<li><a href="../register.php">Register</a></li>
 						</ul>
 					</div>
 				</content>
