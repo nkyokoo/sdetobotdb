@@ -2,9 +2,9 @@
 <script type="text/javascript" src="./assets/js/logout.js" ></script>
 <?php
 
-
-		if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 1){
-		echo '
+//Admin
+if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 1){
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -18,8 +18,12 @@
 				</content>
 
 			';
-	}else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 2) {
-		echo '
+
+}
+//Superuser
+else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 2) {
+
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -33,8 +37,11 @@
 				</content>
 
 			';
-	}else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
-		echo '
+
+}
+//User
+else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -48,8 +55,11 @@
 				</content>
 
 			';
-	}else if(isset($_SESSION['returntag']) AND empty($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
-		echo '
+}
+//User
+
+else if(isset($_SESSION['returntag']) AND empty($_SESSION['returntag']) AND $_SESSION['returntag'] == 3) {
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -64,8 +74,10 @@
 				</content>
 
 			';
-	}else {
-		echo '
+}
+//No login
+else {
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -80,7 +92,7 @@
 				</content>
 
 			';
-	}
+}
 
 
 ?>

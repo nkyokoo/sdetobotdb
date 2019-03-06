@@ -1,7 +1,8 @@
 <?php
 
 /*
- *  //This has to be applied to all admin pages.
+ * This has to be applied to all admin pages.
+ *
  * Brug $_SESSION['returntag'] for at tjekke med så du ikke skal lave en ny session variable, da du bruger session
  * returntag som gruppe id, ligesom i sidebar.php
  *
