@@ -32,6 +32,7 @@ else if (isset($_SESSION['returntag']) AND $_SESSION['returntag'] == 2) {
 						<li><a href="../index.php">Hejsa Superuser</a></li>
 						<li><a href="">Control users</a></li>
 						<li><a id="callPhplogout" name="logout_btn" "href="#">Log ud</a></li>
+						<li><a href="../admin/addproducts.php">Add product</a></li>
 						</ul>
 					</div>
 				</content>
