@@ -1,5 +1,5 @@
 <?php
-include 'auth.php';
+include './api/fileroute.php';
 include 'includes/header.php';
 
 ?>

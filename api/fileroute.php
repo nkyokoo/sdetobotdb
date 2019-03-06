@@ -1,9 +1,9 @@
 <?php
 //var_dump($_POST);
 
-$register  = $_POST['register_btn'] ?? false;
+$register  = isset($_POST['register_btn']) ? true : false;
 $logind  = isset($_POST['login_btn']) ? true : false;
-$logout = $_POST['logout'] ?? false;
+$logout = isset($_POST['logout']) ? true : false;
 
 if( $register or $logind ){
   include './auth.php';

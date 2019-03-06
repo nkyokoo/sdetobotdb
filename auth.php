@@ -91,20 +91,23 @@ $_SESSION['user_groupe'] = 0;
   			// get id of the created user
           $logged_in_user = mysqli_insert_id($db);
 
+
           // check if id and group_id has matching values.
           $query = 'SELECT * FROM users WHERE id ='. $logged_in_user .' AND user_group_id = "3"';
 
           // execute $query.
           $results = mysqli_query($db, $query);
+
           //feth data to array
           $logged_in_user_val  = mysqli_fetch_assoc($results);
+      /*    echo "tjekker om der er værdi i results som er konvertet til string til navn logged_in_user_val skal kigge efter http://php.net/manual/en/mysqli-result.fetch-array.php";
+          die;*/
 
           if ($logged_in_user_val['user_group_id'] == '3') {
             $returntag = 3;
             $_SESSION['returntag'] = $returntag; //make the vaiable for $logged_in_user.
               if(empty($_SESSION['returntag'])) {
                 $returntag = 3;
-
 
               }
               if ($_SESSION['returntag'] == 3) {
