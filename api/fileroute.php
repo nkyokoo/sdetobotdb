@@ -7,8 +7,8 @@ $logout = isset($_POST['logout']) ? true : false;
 
 if( $register or $logind ){
   include './auth.php';
-  $name = $_POST['name'];
-  $password = $_POST['password'];
+  $name = isset($_POST['name']);
+  $password = isset($_POST['password']);
   // call the register() function if register_btn is clicked
   $class = new auth2test();
   if($register){
