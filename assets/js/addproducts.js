@@ -1,12 +1,15 @@
 $(document).ready(function () {
     //When you leave site, return a Confirmation message
     //The message is decided by Browser by Default can be changed.
-    /*
+    //if the product name is valued and you want to reload, send "do you really wish to reload and miss current data"
     window.onbeforeunload = function() {
-        return "";
-    };
-    */
+        if ($('#produkt_id').val()){
+            return "";
 
+        }
+    };
+
+// if the button with this id is clicked on
     $('#button').click(function(){
         btnAddProductToDB();
     });
@@ -63,11 +66,12 @@ function btnAddProductToDB() {myBlock:{
         if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5] && produkt_navn && antal && flytbar){
             $.ajax({
                 type:'post',
-                url:'api/api_addproductstodb.php',
+                url:'../api/api_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
                 success:function (data) {
                     // alert("You've succeed in creating a new product!");
                     alert("Your Request Has Been Sent To The System");
+                    $('#produkt_id').val("");
                     location.reload();
                 }
             });
