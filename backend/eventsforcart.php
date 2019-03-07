@@ -26,42 +26,42 @@ class Cart{
                 $unitsInStock = $this->productUnitsInStock($PID);
 
                 $productInCart = false;
-               $qts = intval($qts);
+                $qts = intval($qts);
                 if ($unitsInStock >= $qts and $unitsInStock > 0 ){
-                if (isset($_SESSION["cart"])) {
-                    //Get all Products in Cart
-                    $productsInCart = $this->showSavedInCart();
-                    //Get Total number of Untis in stock for specific Item
+                    if (isset($_SESSION["cart"])) {
+                        //Get all Products in Cart
+                        $productsInCart = $this->showSavedInCart();
+                        //Get Total number of Untis in stock for specific Item
 
-                    // Associative array
-                    foreach ($productsInCart as $productID => $quantity) {
-                        // Found the right product in cart
-                        if ($PID == $productID) {
-                            //Check if the Total input is more than Total units in stuck
-                            if (($qts + $quantity) > $unitsInStock){
-                                //Override quantity to Total units in stock.
-                                $quantity = (int)$unitsInStock;
-                            }
-                            else{
-                                //increase the quantity
-                                $quantity = (int)$qts + $quantity;
-                            }
+                        // Associative array
+                        foreach ($productsInCart as $productID => $quantity) {
+                            // Found the right product in cart
+                            if ($PID == $productID) {
+                                //Check if the Total input is more than Total units in stuck
+                                if (($qts + $quantity) > $unitsInStock){
+                                    //Override quantity to Total units in stock.
+                                    $quantity = (int)$unitsInStock;
+                                }
+                                else{
+                                    //increase the quantity
+                                    $quantity = (int)$qts + $quantity;
+                                }
 
-                            //this product is in cart
-                            $productInCart = true;
+                                //this product is in cart
+                                $productInCart = true;
+                            }
+                            //override old quantity
+                            $this->products[$productID] = $quantity;
+
                         }
-                        //override old quantity
-                        $this->products[$productID] = $quantity;
 
                     }
 
-                }
-
-                //if product is not in cart / product is new
-                if ($productInCart == false) {
-                    //insert product into cart
-                    $this->products[$PID] = $qts;
-                }
+                    //if product is not in cart / product is new
+                    if ($productInCart == false) {
+                        //insert product into cart
+                        $this->products[$PID] = $qts;
+                    }
 
                     //save
                     $this->save();

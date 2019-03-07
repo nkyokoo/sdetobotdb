@@ -28,8 +28,8 @@ function btnAddProductToDB() {myBlock:{
         let svf = $(svf_id).val();
         let thp = $(thp_id).val();
         let antal = $(antal_id).val();
-       let description = $(description_id).val();
-       let flytbar = $(flytbar_id).val();
+        let description = $(description_id).val();
+        let flytbar = $(flytbar_id).val();
         let leverandoer = $(leverandoer_id).val();
         //get the values of all Selection boxes into an array
         let array = [kategori,virksomhed,lokale,svf,thp,leverandoer];
