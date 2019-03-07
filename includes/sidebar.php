@@ -1,5 +1,5 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
-<script type="text/javascript" src="./assets/js/logout.js" ></script>
+<script type="text/javascript" src="../assets/js/logout.js" ></script>
 <?php
 
 
@@ -54,8 +54,15 @@
 				</content>
 
 			';
+<<<<<<< HEAD
 	}else {
 		echo '
+=======
+}
+//No login
+else {
+    echo '
+>>>>>>> e6b5e49edaa573117ce7c722079e1cf465ae73d2
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">

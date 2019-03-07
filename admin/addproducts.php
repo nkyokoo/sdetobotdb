@@ -5,7 +5,7 @@
 session_start();
 include "../includes/header.php";
 include "../includes/navbar.php";
-include '../includes/sidebar.php';
+//include '../includes/sidebar.php';
 
 include_once "../includes/connect.php";
 $con = new DBConnection();

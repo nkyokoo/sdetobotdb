@@ -8,9 +8,9 @@ try {
         $class->sendBooking();
     }
 
-/*    if (!empty($_POST['item_11']))
-        $class->sendBooking(2);
-*/
+    /*    if (!empty($_POST['item_11']))
+            $class->sendBooking(2);
+    */
 } catch (Exception $e) {
     die("Error: ".$e->getMessage());
 }

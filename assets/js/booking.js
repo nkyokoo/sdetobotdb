@@ -33,7 +33,7 @@ function addToCart(productID) {
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
                     if (output)
-                    alert(output);
+                        alert(output);
                     else {
                         let btn = document.getElementById('btn-' + productID);
                         btn.innerHTML = 'Added';
@@ -55,10 +55,10 @@ function getProductsFromDB() {
         success: function (output) {
 
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
-           let p = document.createElement("div");
-           p.innerHTML = output;
-           let h = document.getElementById("select_list_1");
-           h.appendChild(p);
+            let p = document.createElement("div");
+            p.innerHTML = output;
+            let h = document.getElementById("select_list_1");
+            h.appendChild(p);
         }
 
     })
