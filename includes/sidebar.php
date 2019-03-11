@@ -2,9 +2,9 @@
 <script type="text/javascript" src="../assets/js/logout.js" ></script>
 <?php
 
-
-		if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 1){
-		echo '
+//Admin
+if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 1){
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -22,8 +22,10 @@
 				</content>
 
 			';
-	}else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 2) {
-		echo '
+}
+//Superuser
+else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 2) {
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -31,15 +33,17 @@
 					<ul>
 						<li><a href="../index.php">Hejsa Superuser</a></li>
 						<li><a href="">Control users</a></li>
-						<li><a id="callPhplogout" name="logout_btn" "href="#">Log ud</a></li>
+						<li><a id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
 						<li><a href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
 						</ul>
 					</div>
 				</content>
 
 			';
-	}else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 3) {
-		echo '
+}
+//User
+else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 3) {
+    echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -54,15 +58,13 @@
 				</content>
 
 			';
-<<<<<<< HEAD
-	}else {
-		echo '
-=======
+
 }
+
 //No login
 else {
     echo '
->>>>>>> e6b5e49edaa573117ce7c722079e1cf465ae73d2
+
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -78,7 +80,7 @@ else {
 				</content>
 
 			';
-	}
+}
 
 
 ?>

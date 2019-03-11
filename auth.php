@@ -77,13 +77,13 @@ $_SESSION['user_groupe'] = 0;
   		if (isset($_POST['user_group_id'])) {
   			$user_group_id = $db->real_escape_string($_POST['user_group_id']);
   			$query = "INSERT INTO users (name, email, password, user_group_id)
-  					  VALUES('$name', '$email','$password', '$user_group_id')";
+  					  VALUES('".$name."', '".$email."','".$password."', '".$user_group_id."')";
   			$db->query($query);
   			$_SESSION['success']  = "Ny bruger er oprettet!";
   			header('location: admin/home.php');
   		}else{
   			$query = "INSERT INTO users (name, email, password, user_group_id)
-  					  VALUES('$name', '$email', '$password', '3')";
+  					  VALUES('".$name."', '".$email."', '".$password."', '3')";
   			$db->query($query);
 
 
@@ -154,11 +154,11 @@ $_SESSION['user_groupe'] = 0;
 
   // LOGIN USER
   function login($name, $password){
-    //makein connection to db.
+    //Connection to db.
     $DBConnections = new DBConnection();
     $db = $DBConnections->getConnection();
 
-    $errors = $_SESSION['errors'];
+  //  $errors = $_SESSION['errors'];
 
 
   	// make sure form is filled properly
@@ -169,11 +169,11 @@ $_SESSION['user_groupe'] = 0;
   		array_push($_SESSION['errors'], "Password er påkrævet");
   	}
   	// attempt login if no errors on form
-  	if (count($errors = $_SESSION['errors']) == 0) {
+  	if (count($_SESSION['errors']) == 0) {
   		 $password = md5($password);
 
 
-  		$query = "SELECT * FROM users WHERE name='$name' AND password='$password' LIMIT 1";
+  		$query = "SELECT * FROM users WHERE name='".$name."' AND password='".$password."' LIMIT 1";
   		$results = mysqli_query($db, $query);
 
 
@@ -209,11 +209,11 @@ $_SESSION['user_groupe'] = 0;
 
 
         }
-  		}else {
+            $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
+        }else {
   			array_push($errors, "Wrong name/password combination");
   		}
 
-     $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
   	}
   }
   //------------------------------------------------------------------------------------//

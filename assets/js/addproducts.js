@@ -59,7 +59,6 @@ function btnAddProductToDB() {myBlock:{
                     alert("You Cannot type numbers in : "+ arrayName[i]);
                     break myBlock;
                 }
-
             }
         }
         //Check if it has any value

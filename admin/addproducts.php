@@ -2,7 +2,8 @@
 
 
 //include 'includes/connect.php';
-session_start();
+
+include "adminprotection.php";
 include "../includes/header.php";
 include "../includes/navbar.php";
 //include '../includes/sidebar.php';
