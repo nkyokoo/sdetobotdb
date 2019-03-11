@@ -6,7 +6,7 @@ include "includes/connect.php";
 
 $_SESSION['errors'] = array();
 
-$_SESSION['user_groupe'] = 0;
+$_SESSION['user_group_id'] = 0;
 // call these variables with the global keyword to make them available in function
 // variable declaration
 
@@ -107,21 +107,21 @@ $_SESSION['user_groupe'] = 0;
           if ($logged_in_user_val['user_group_id'] == '3') {
 
              //make the vaiable for $logged_in_user.
-              if(empty($_SESSION['user_groupe_id'])) {
-                $_SESSION['user_groupe_id'] = $logged_in_user_val['user_group_id'];
+              if(empty($_SESSION['user_group_id'])) {
+                $_SESSION['user_group_id'] = $logged_in_user_val['user_group_id'];
 
               }
-              if ($_SESSION['user_groupe_id'] == 3) {
-                $_SESSION['success']  = "Du er nu logget ind. og user_groupe_id burde sættes videre ";
-                $_SESSION['user_groupe_id'] = $logged_in_user_val['user_group_id'];
-                echo "Værdi på user_group_id   " . $_SESSION['user_groupe_id'];
+              if ($_SESSION['user_group_id'] == 3) {
+                $_SESSION['success']  = "Du er nu logget ind. og user_group_id burde sættes videre ";
+                $_SESSION['user_group_id'] = $logged_in_user_val['user_group_id'];
+                echo "Værdi på user_group_id   " . $_SESSION['user_group_id'];
                 header('location: index.php');
 
-              }elseif ($_SESSION['user_groupe_id'] == 0) {
-                $_SESSION['success']  = "Du er nu logget ind. men user_groupe_id sættes ikke videre ";
+              }elseif ($_SESSION['user_group_id'] == 0) {
+                $_SESSION['success']  = "Du er nu logget ind. men user_group_id sættes ikke videre ";
                 echo 'success'. $_SESSION['success'];
               }else {
-                $_SESSION['success']  = "Du er ikke logget ind, user_groupe_id ikke retuneret.";
+                $_SESSION['success']  = "Du er ikke logget ind, user_group_id ikke retuneret.";
                 echo 'success'. $_SESSION['success'];
               }
   		}
@@ -184,7 +184,7 @@ $_SESSION['user_groupe'] = 0;
 
   			if ($logged_in_user['user_group_id'] == '1') {
 
-          $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
+          $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
 
             $_SESSION['success']  = "Du er nu logget ind som admin!";
 
@@ -194,7 +194,7 @@ $_SESSION['user_groupe'] = 0;
   				//header('location: admin/home.php');*/
   			}elseif ($logged_in_user['user_group_id'] == '2'){
 
-          $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
+          $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
 
 
  				 $_SESSION['user'] = $logged_in_user;
@@ -205,11 +205,11 @@ $_SESSION['user_groupe'] = 0;
 
            ;
            $_SESSION['success']  = "Du er nu logget ind user!";
-           $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
+           $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
 
 
         }
-            $_SESSION['user_groupe_id'] = $logged_in_user['user_group_id'];
+            $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
         }else {
   			array_push($errors, "Wrong name/password combination");
   		}

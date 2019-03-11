@@ -4,11 +4,10 @@
 //include 'includes/connect.php';
 
 include "adminprotection.php";
+include_once "../includes/connect.php";
 include "../includes/header.php";
 include "../includes/navbar.php";
-//include '../includes/sidebar.php';
-
-include_once "../includes/connect.php";
+include '../includes/sidebar.php';
 $con = new DBConnection();
 $mysqli = $con->getConnection();
 

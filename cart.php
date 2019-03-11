@@ -6,8 +6,8 @@
  * Time: 09.03
  */
 
-include ("includes/header.php");
-include ("includes/navbar.php");
+include "includes/header.php";
+include "includes/navbar.php";
 include 'includes/sidebar.php';
 
 ?>
