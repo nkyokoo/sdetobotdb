@@ -14,7 +14,8 @@ include 'includes/sidebar.php';
 <script type="text/javascript" src="assets/js/booking.js"></script>
 <script type="text/javascript" src="assets/js/bookingtimer.js"></script>
 
-<div><p>Timer</p> <p id="test">0</p></div>
+<!-- Tags to test if Timer works -->
+<!-- <div><p>Timer</p> <p id="test">0</p></div> -->
 
 <div id="layer_1" class="layer1" style="display: block" >
 

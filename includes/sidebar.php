@@ -3,7 +3,7 @@
 <?php
 
 //Admin
-if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 1){
+if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 1){
     echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
@@ -24,7 +24,7 @@ if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 1){
 			';
 }
 //Superuser
-else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 2) {
+else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 2) {
     echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
@@ -42,7 +42,7 @@ else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 2
 			';
 }
 //User
-else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 3) {
+else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 3) {
     echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
@@ -50,7 +50,7 @@ else if (isset($_SESSION['user_groupe_id']) AND $_SESSION['user_groupe_id'] == 3
 					<div class="sidebar">
 					<ul>
 						<li><a href="../index.php">Hejsa user</a></li>
-						<li><a href="">Ønskelist "booking.php"</a></li>
+						<li><a href="Home">Ønskelist "booking.php"</a></li>
 						<li><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						<li><a href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
 						</ul>

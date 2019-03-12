@@ -1529,204 +1529,210 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="356" parent="256" name="email">
+    <column id="356" parent="256" name="name">
       <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="357" parent="256" name="email">
+      <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="256" name="password">
-      <Position>3</Position>
+    <column id="358" parent="256" name="password">
+      <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="256" name="user_group_id">
-      <Position>4</Position>
+    <column id="359" parent="256" name="user_group_id">
+      <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="359" parent="256" name="user_group_id">
+    <index id="360" parent="256" name="user_group_id">
       <ColNames>user_group_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="360" parent="256" name="PRIMARY">
+    <key id="361" parent="256" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="361" parent="256" name="users_ibfk_1">
+    <foreign-key id="362" parent="256" name="users_ibfk_1">
       <ColNames>user_group_id</ColNames>
       <RefSchemaName>sdebookingsystem</RefSchemaName>
       <RefTableName>user_group</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="362" parent="257" name="id">
+    <column id="363" parent="257" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="257" name="godkendt">
+    <column id="364" parent="257" name="godkendt">
       <Position>2</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="257" name="user_id">
+    <column id="365" parent="257" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="365" parent="257" name="user_id">
+    <index id="366" parent="257" name="user_id">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="366" parent="257" name="PRIMARY">
+    <key id="367" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="367" parent="257" name="wish_list_ibfk_1">
+    <foreign-key id="368" parent="257" name="wish_list_ibfk_1">
       <ColNames>user_id</ColNames>
       <RefSchemaName>sdebookingsystem</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="368" parent="258" name="id">
+    <column id="369" parent="258" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="258" name="firstname">
+    <column id="370" parent="258" name="firstname">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="258" name="lastname">
+    <column id="371" parent="258" name="lastname">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="258" name="phone_number">
+    <column id="372" parent="258" name="phone_number">
       <Position>4</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="258" name="supplier_company_id">
+    <column id="373" parent="258" name="supplier_company_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="258" name="email">
+    <column id="374" parent="258" name="email">
       <Position>6</Position>
       <DataType>varchar(45)|0s</DataType>
       <DefaultExpression>&apos;Ingen Email&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="374" parent="258" name="supplier_company_id">
+    <index id="375" parent="258" name="supplier_company_id">
       <ColNames>supplier_company_id</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="375" parent="258" name="worker_info_ibfk_1">
+    <foreign-key id="376" parent="258" name="worker_info_ibfk_1">
       <ColNames>supplier_company_id</ColNames>
       <RefSchemaName>sdebookingsystem</RefSchemaName>
       <RefTableName>supplier_company</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="376" parent="259" name="orderID">
+    <column id="377" parent="259" name="orderID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="377" parent="259" name="userID">
+    <column id="378" parent="259" name="userID">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="378" parent="259" name="email">
+    <column id="379" parent="259" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="379" parent="259" name="product_name">
+    <column id="380" parent="259" name="product_name">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="380" parent="259" name="unitID">
+    <column id="381" parent="259" name="unitID">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="381" parent="259" name="start_date">
+    <column id="382" parent="259" name="start_date">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="382" parent="259" name="end_date">
+    <column id="383" parent="259" name="end_date">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="383" parent="259" name="available">
+    <column id="384" parent="259" name="available">
       <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="384" parent="259" name="location">
+    <column id="385" parent="259" name="location">
       <Position>9</Position>
       <DataType>varchar(159)|0s</DataType>
     </column>
-    <column id="385" parent="260" name="orderID">
+    <column id="386" parent="260" name="orderID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="386" parent="260" name="userID">
+    <column id="387" parent="260" name="userID">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="387" parent="260" name="email">
+    <column id="388" parent="260" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="388" parent="260" name="product_name">
+    <column id="389" parent="260" name="product_name">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="389" parent="260" name="unitID">
+    <column id="390" parent="260" name="unitID">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="260" name="start_date">
+    <column id="391" parent="260" name="start_date">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="391" parent="260" name="end_date">
+    <column id="392" parent="260" name="end_date">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="392" parent="260" name="available">
+    <column id="393" parent="260" name="available">
       <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="393" parent="260" name="location">
+    <column id="394" parent="260" name="location">
       <Position>9</Position>
       <DataType>varchar(159)|0s</DataType>
     </column>
