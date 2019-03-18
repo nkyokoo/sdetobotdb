@@ -21,6 +21,7 @@ class AcceptRequestFromDB
                     //Fetch all the associated data
             while ($row = $result->fetch_assoc())
             {
+                //Upper body of the Elements ** Element = Html & Attributes
                 echo
                     "
                     <div class='row'> 
@@ -53,7 +54,7 @@ class AcceptRequestFromDB
                             $group = "Failed to get data from user group";
                             break;
                     }
-
+                    //Element Content
                     echo
                         "                    
                         <h5 class='card-title'>Username: " . $row2['name'] . "</h5>
@@ -73,15 +74,18 @@ class AcceptRequestFromDB
                     if ($result4->num_rows == 1)
                     {
                         $row4 = $result4->fetch_assoc();
+                        //Element content
                         echo "<p><b>Product:</b> ".$row4['product_name']."<b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Quantity:</b> ".$row3['quantity']."</p>
                           ";
 
                     }
                 }
-
+                //Lower body of the Elements
                 echo
                     "
-                    <button id='btn-" . $row['id'] . "')>Accept Request</button>
+                    <button id='btn-accept-" . $row['id'] . "')>Accept </button>
+                    <button id='btn-deny-" . $row['id'] . "')>Deny </button>
+
                     </div>
                     </div>
                     </div>

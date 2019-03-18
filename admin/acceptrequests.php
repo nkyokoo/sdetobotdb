@@ -15,3 +15,6 @@ include '../includes/sidebar.php';
     </div>
     </div>
 </content>
+<?php
+include "../includes/footer.php";
+?>
