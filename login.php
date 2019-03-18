@@ -1,4 +1,5 @@
 <?php
+//session_start();
 include './api/fileroute.php';
 include 'includes/header.php';
 
@@ -11,9 +12,9 @@ include 'includes/header.php';
 	<div class="header">
 		<h2>SDE - Login</h2>
 	</div>
-	<form method="post" action="index.php">
+	<form method="post" action="login.php">
+      <?php if ($logind) $class->display_error();?>
 
-		<!--<?php// echo display_error(); ?>-->
 
 		<div class="input-group">
 			<label>Navn</label>
@@ -33,5 +34,5 @@ include 'includes/header.php';
 </content>
 
 <?php
-  include 'includes/footer.php'
+  include 'includes/footer.php';
  ?>

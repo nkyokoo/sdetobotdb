@@ -13,15 +13,12 @@ session_start();
  * if user has admin access
  *      do nothing and let nature take its course-
  */
-// if usergroup is not set yet go back to index
-echo $_SESSION['user_group_id'];
 
+// if usergroup is not set yet go back to index
 if (!isset($_SESSION['user_group_id'])){
-    //header('location: ../index.php');
-    echo "helælo";
+    header('location: ../index.php');
 }
 // if usergroup isn't right go back to index
 if ($_SESSION['user_group_id'] != 1){
-    echo "neyy";
-    //header('location: ../index.php');
+    header('location: ../index.php');
 }

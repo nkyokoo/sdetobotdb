@@ -181,32 +181,29 @@ class auth2test {
 
                 if ($logged_in_user['user_group_id'] == '1') {
 
-                    $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
-
-                    $_SESSION['success']  = "Du er nu logget ind som admin!";
-
-
                     $_SESSION['user'] = $logged_in_user;
-                    $_SESSION['success']  = "Du er nu logget ind!";
+                    $_SESSION['success']  = "Du er nu logget ind som admin!";
+                  //  $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
                     //header('location: admin/home.php');*/
-                }elseif ($logged_in_user['user_group_id'] == '2'){
-
-                    $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
-
+                }
+                else if ($logged_in_user['user_group_id'] == '2'){
 
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success']  = "Du er nu logget ind som Superuser!";
+                   // $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
 
                     //for statement $logged_in_user['user_group_id']
-                }elseif ($logged_in_user['user_group_id'] == '3') {
+                }
+                else if ($logged_in_user['user_group_id'] == '3') {
 
-                    ;
+                    $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success']  = "Du er nu logget ind user!";
-                    $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
+                  //  $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
 
 
                 }
                 $_SESSION['user_group_id'] = $logged_in_user['user_group_id'];
+                header('location: ../index.php');
 
             }
             else {

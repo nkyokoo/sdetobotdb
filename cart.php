@@ -5,17 +5,16 @@
  * Date: 31/01/2019
  * Time: 09.03
  */
-
 include "includes/header.php";
 include "includes/navbar.php";
 include 'includes/sidebar.php';
+include_once "includes\connect.php";
 
 ?>
     <script type="text/javascript" src="assets/js/cart.js"></script>
 
 <?php
-session_start();
-include_once "includes\connect.php";
+
 $connection = new DBConnection();
 $mysqli = $connection->getConnection();
 echo "<form><div class='card'>";

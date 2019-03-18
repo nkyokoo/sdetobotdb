@@ -1,10 +1,16 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
 <script type="text/javascript" src="../assets/js/logout.js" ></script>
 <?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 //Admin
-if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 1){
-    echo '
+if (isset($_SESSION['user_group_id'])){
+
+    if ($_SESSION['user_group_id'] == 1){
+        echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -22,10 +28,10 @@ if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 1){
 				</content>
 
 			';
-}
+    }
 //Superuser
-else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 2) {
-    echo '
+    else if ($_SESSION['user_group_id'] == 2) {
+        echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -40,10 +46,10 @@ else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 2) 
 				</content>
 
 			';
-}
+    }
 //User
-else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 3) {
-    echo '
+    else if ($_SESSION['user_group_id'] == 3) {
+        echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
 				<content class="border-conten">
@@ -59,8 +65,9 @@ else if (isset($_SESSION['user_group_id']) AND $_SESSION['user_group_id'] == 3) 
 
 			';
 
-}
+    }
 
+}
 //No login
 else {
     echo '
@@ -82,15 +89,4 @@ else {
 			';
 }
 
-
 ?>
-<!-- <link rel="stylesheet" href="../assets/css/sidebar.css">
-	<content class="border-conten">
-		<div class="sidebar">
-		<ul>
-			<li><a href="index.php">Home</a></li>
-			<li><a href="">Contact</a></li>
-			<li><a href="./login.php">Log på</a></li>
-			</ul>
-		</div>
-	</content> -->

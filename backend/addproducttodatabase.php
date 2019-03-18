@@ -23,6 +23,7 @@ class addProductToDatabase{
     public function setKategori($kategori){
         $this->kategori = $kategori;
     }
+
     public function setProduktNavn($produktNavn){
         $this->produktNavn = $produktNavn;
     }

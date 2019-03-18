@@ -60,7 +60,10 @@ class bookingSend{
                             // ########################################################
 
                         }
-                        else{$allProductsAreAvailable = false;}
+                        else
+                        {
+                            $allProductsAreAvailable = false;
+                        }
                     }
                     else {break;}
 
@@ -107,11 +110,10 @@ class bookingSend{
         $mysqli = $con->getConnection();
 
         // As tinyint is a 0 = false, 1 = true integer
-        $godkendtFalse = "0";
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = 2;
-        $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (?,?)");
-        $stmt->bind_param("si",$godkendtFalse,$userID);
+        $userID = $_SESSION['user']['id'];
+        $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (0,?)");
+        $stmt->bind_param("i",$userID);
         $stmt->execute();
         $idFromWishList = $stmt->insert_id;
         $mysqli->close();
@@ -142,9 +144,8 @@ class bookingSend{
         $startDate = "2003-11-03"; // When to loan date
         $endDate = "2003-12-02"; //End Loan date
         $reminderDate = "2001-12-01"; // 2 days before end date.
-        $availability = 1; // 0 = false and 1 = true, availability = if rental list have been loaned out yet.
-        $stmt = $mysqli->prepare("INSERT INTO `product_rentals`(`reserved_date`, `start_date`, `end_date`, `reminder_date`, `wish_list_id`,`available`) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("ssssii",$reservedDate,$startDate,$endDate,$reminderDate,$wishListID,$availability);
+        $stmt = $mysqli->prepare("INSERT INTO `product_rentals`(`reserved_date`, `start_date`, `end_date`, `reminder_date`, `wish_list_id`,`available`) VALUES (?,?,?,?,?,1)");
+        $stmt->bind_param("ssssi",$reservedDate,$startDate,$endDate,$reminderDate,$wishListID);
         $stmt->execute();
         $rentalID = $stmt->insert_id;
         $mysqli->close();
