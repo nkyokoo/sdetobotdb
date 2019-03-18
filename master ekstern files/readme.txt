@@ -1,6 +1,6 @@
-Hej. Dette er et booking system. Der vil være documenteret papirer med db og dato. samt en fil i kan impotere. Ved navn NewDB. 
+Hej. Dette er et booking system. Der vil være documenteret papirer med db og dato. samt en fil i kan impotere. Ved navn sdebookingsystem. 
 
-UD fra mappen master ekstern files. Er alle filerne der er blevet brugt til forberedelse af projektet. Der vil NewDB også være. 
+UD fra mappen master ekstern files. Er alle filerne der er blevet brugt til forberedelse af projektet. Der vil sdebookingsystem også være. 
 
 Derfra kan i se idéen omkring start af project. Andre kommentar vil være i selve koden og derved kan i studere filstruktur. 
 

@@ -9,7 +9,7 @@ $(document).ready(function() {
             success: function(output) {
                 alert(output);
                 if (output == 'done') {
-                    window.location = './index.php';
+                    window.location = '../index.php';
                 }
             }
         })
