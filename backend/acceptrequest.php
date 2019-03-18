@@ -13,10 +13,12 @@ class AcceptRequestFromDB
         // Get Wish list Data
         $query = "Select * from wish_list where godkendt = 0";
         $result = $mysql->query($query);
+
+        //If there's data to get
         if ($result->num_rows > 0)
         {
 
-
+                    //Fetch all the associated data
             while ($row = $result->fetch_assoc())
             {
                 echo
