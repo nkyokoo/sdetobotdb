@@ -3,7 +3,7 @@
 include './api/fileroute.php';
 include 'includes/header.php';
 ?>
-
+<!--this formular  is used for registration. post the informarion tp auth.php-->
 <body>
 
 	<div class="header">

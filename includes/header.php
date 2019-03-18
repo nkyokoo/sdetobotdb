@@ -1,5 +1,5 @@
-<?php
-echo"
+<!--we have split the header and footer up. meta in the header. and start on body -->
+
 <html lang='da' dir='ltr'>
   <head>
 
@@ -28,7 +28,3 @@ echo"
 
   </head>
 <body>
-
-";
-
-?>

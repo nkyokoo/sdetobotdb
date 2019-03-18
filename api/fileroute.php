@@ -4,6 +4,7 @@
 $register  = isset($_POST['register_btn']) ? true : false;
 $logind  = isset($_POST['login_btn']) ? true : false;
 $logout = isset($_POST['logout']) ? true : false;
+//check if the vaiable get any post.
 
 if( $register or $logind ){
   include './auth.php';
@@ -13,6 +14,7 @@ if( $register or $logind ){
   $class = new auth2test();
   if($register){
     $class->register();
+    //call the function form auth.php
   }
   if($logind){
     $class->login($name,$password);
@@ -26,4 +28,5 @@ if($logout){
     session_write_close();
     echo "done";
     exit();
+    //close and kill sessions. 
 }

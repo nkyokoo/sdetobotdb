@@ -1,4 +1,5 @@
 <?php
+/*we use this file for connection to db. we want the code in object oriented*/
 class DBConnection
 {
     public function getConnection()
