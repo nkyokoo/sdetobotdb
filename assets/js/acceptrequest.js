@@ -1,6 +1,26 @@
 
 $(document).ready(function () {
     displayRequests();
+
+    $("body").on("click","*[id*='btn-']",  function (){
+        let variable = this.id;
+        alert(variable);
+        if (variable.includes("accept")){
+            let id = variable.slice(11);
+            alert(id);
+
+//            acceptRequest(id);
+        }
+        else if (variable.includes("deny")){
+            let id = variable.slice(9);
+            alert(id);
+            //denyRequest(id);
+        }
+
+    })
+
+
+
 });
 
 function displayRequests() {
@@ -13,5 +33,13 @@ function displayRequests() {
           document.getElementById("requests-body").appendChild(p);
         }
     })
+}
+
+function acceptRequest(wishlistID) {
 
 }
+
+function denyRequest(wishistID) {
+
+}
+
