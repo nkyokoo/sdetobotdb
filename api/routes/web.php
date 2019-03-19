@@ -25,4 +25,9 @@ $router->get('/', function () use ($router) {
     echo "SDE BOOKING API";
 
 });
+$router->get('/api/booking/cart', function () use ($router) {
+
+   include "../functions/api_displaycart.php";
+
+});
 
