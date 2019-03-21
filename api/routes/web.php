@@ -25,9 +25,3 @@ $router->get('/', function () use ($router) {
 
 });
 
-$router->get('api/admin/generateToken', function () use ($router) {
-
-    $token = bin2hex(random_bytes(64));
-    echo $token;
-
-});
