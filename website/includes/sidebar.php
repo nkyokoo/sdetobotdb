@@ -21,7 +21,7 @@ if (isset($_SESSION['user_group_id'])){
 						<li class="nav-item"><a href="">accepter ønskeliste booking</a></li>
 						<li class="nav-item"><a href="">accept book</a></li>
 						<li class="nav-item"><a href="">book</a></li>
-						<li class="nav-item"><a href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
+						<li class="nav-item"><a href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						<li class="nav-item"><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
 					</div>
@@ -59,7 +59,7 @@ if (isset($_SESSION['user_group_id'])){
 						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
 						<li class="nav-item"> <a class="nav-link" href="Home">Ønskelist "booking.php"</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
-						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
+						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>
 					</div>
 				</content>
@@ -79,10 +79,10 @@ else {
 					<div class="sidebar">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="">Contact11111</a></li>
+						<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
 						<li class="nav-item"><a class="nav-link" href="../login.php">Log på</a></li>
 						<li class="nav-item"><a class="nav-link" href="../register.php">Register</a></li>
-						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>
 					</div>
 				</content>
