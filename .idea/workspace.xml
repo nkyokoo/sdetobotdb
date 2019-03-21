@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e2fdfbd-dc36-4294-b291-c4316d7c6922" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/website/backend_instance/api_bookingsend.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/backend_web/bookingsend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sdetobotdb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sdetobotdb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/backend/bookingsend.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/backend/bookingsend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/backend/displaycart.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/backend/eventsforcart.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/backend/eventsforcart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/functions/api_acceptrequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/functions/api_acceptrequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/functions/api_bookingsend.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/functions/api_displaycart.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/functions/api_dropdownlistproducts_function.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/js/addproducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/js/addproducts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/js/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/js/booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/backend/eventforcarts.php" beforeDir="false" afterPath="$PROJECT_DIR$/website/backend_web/eventforcarts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/backend_instance/api_eventsforcarts.php" beforeDir="false" afterPath="$PROJECT_DIR$/website/backend_instance/api_eventsforcarts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/website/cart.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,20 +38,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="459">
+              <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/website/backend_web/eventforcarts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3978">
-              <caret line="234" selection-start-line="230" selection-end-line="234" />
+            <state relative-caret-position="800">
+              <caret line="231" column="43" selection-start-line="231" selection-start-column="43" selection-end-line="231" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -86,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/backend_web/bookingsend.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2057">
-              <caret line="121" column="26" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
+            <state relative-caret-position="1216">
+              <caret line="121" column="26" lean-forward="true" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -95,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/backend/connect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -446,12 +428,12 @@
       <workItem from="1552983373017" duration="17051000" />
       <workItem from="1553079812105" duration="5257000" />
       <workItem from="1553153314766" duration="13535000" />
-      <workItem from="1553170371206" duration="518000" />
+      <workItem from="1553170371206" duration="3651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139363000" />
+    <option name="totallyTimeSpent" value="142496000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,9 +446,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-856" width="1216" height="1896" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30449826" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30449826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -479,7 +460,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32988507" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.1908046" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1908046" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32988507" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -762,31 +743,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/backend_web/eventforcarts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="234" selection-start-line="230" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/backend/eventsforcart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/backend_web/bookingsend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2057">
-          <caret line="121" column="26" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/backend/connect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -797,17 +757,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/backend_instance/api_eventsforcarts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/contactform.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="36" column="3" selection-start-line="36" selection-start-column="3" selection-end-line="36" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/backend/connect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -818,10 +785,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/website/backend_instance/api_eventsforcarts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/backend_web/bookingsend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1216">
+          <caret line="121" column="26" lean-forward="true" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/backend_web/eventforcarts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="231" column="43" selection-start-line="231" selection-start-column="43" selection-end-line="231" selection-end-column="43" />
         </state>
       </provider>
     </entry>

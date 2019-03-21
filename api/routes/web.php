@@ -36,12 +36,6 @@ $router->get('/', function () use ($router) {
 
 });
 
-$router->post('/api/booking/cart', function () use ($router) {
-
-    include "../functions/api_displaycart.php";
-
-});
-
 $router->post('/api/booking/eventsforcart/productunitsinstock', function (Illuminate\Http\Request $request) use ($router) {
 
     include_once "../backend/eventsforcart.php";
