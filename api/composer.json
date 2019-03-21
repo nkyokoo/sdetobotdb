@@ -1,6 +1,6 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
+    "name": "sde booking",
+    "description": "a booking system for the robottechnitian education department.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
@@ -13,7 +13,9 @@
     "require-dev": {
         "fzaninotto/faker": "^1.4",
         "phpunit/phpunit": "^7.0",
-        "mockery/mockery": "^1.0"
+        "mockery/mockery": "^1.0",
+        "lucadegasperi/oauth2-server-laravel": "^5.2"
+
     },
     "autoload": {
         "classmap": [
