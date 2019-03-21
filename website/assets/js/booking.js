@@ -4,7 +4,6 @@ $(document).ready(function() {
 
     //Get products from db and send them to booking.php
     getProductsFromDB();
-
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
     $("body").on("click", "*[id*='btn-']", function (){
@@ -22,6 +21,7 @@ $(document).ready(function() {
 function addToCart(productID) {
     try {
         //Get the input
+
         let product = document.getElementById( "product-unit-"+productID);
         //Get the Value of input
         let getChosenValueOfProduct = product.value;
@@ -29,7 +29,7 @@ function addToCart(productID) {
         if (getChosenValueOfProduct > 0) {
             $.ajax({
                 type: 'POST',
-                url: 'functions/api_eventsforcarts.php',
+                url: 'http://localhost:8000/api/booking/eventsforcarts',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
                     if (output)
@@ -51,14 +51,13 @@ function addToCart(productID) {
 function getProductsFromDB() {
     $.ajax({
         type: 'POST',
-        url: 'functions/api_dropdownlistproducts_function.php',
+        url: 'http://localhost:8000/api/booking/bookinglist',
         success: function (output) {
-
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
             let p = document.createElement("div");
             p.innerHTML = output;
-            let h = document.getElementById("select_list_1");
-            h.appendChild(p);
+            document.getElementById("select_list_1").appendChild(p);
+
         }
 
     })

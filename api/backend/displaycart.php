@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once "connect.php";
 
 class DisplayCart
@@ -52,6 +52,9 @@ class DisplayCart
             }
             echo "<button id='button-booking'>Buy EVERYTHING ON THIS LIST</button></div></div> ";
 
+        }
+        else{
+            echo "IM SO DEAAAAAAAAAAAAAAAAD";
         }
         echo "</div></div></form>";
         $mysqli->close();

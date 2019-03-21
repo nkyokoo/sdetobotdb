@@ -1,13 +1,14 @@
 <?php
-require_once "../includes/connect.php";
-require_once "bookingdropdownlist.php";
-class dropDownlistProducts_Function{
 
+
+
+require_once "connect.php";
+class DropDownlistProducts_Function{
 
     function addProductsForSelection(){
 
-        try {
-            $class = new  bookingSelectEnheder();
+
+
             $connection = new DBConnection();
             $mysqli = $connection->getConnection();
 
@@ -24,7 +25,7 @@ class dropDownlistProducts_Function{
 
                 //Populate Selection box with data from DB
                 while ($row = $result->fetch_assoc()) {
-                    $item = $class->createOptionsForSelection($row['id']);
+                    $item = $this->createOptionsForSelection($row['id']);
 
 
                     echo "<div class='row'> <div class='col'>
@@ -47,9 +48,53 @@ class dropDownlistProducts_Function{
             echo "</div></div>";
 
             $mysqli->close();
-        } catch (Exception $e) {
         }
+
+    //Populate Units/Enhed Selection box For the choosing Product
+    function createOptionsForSelection($item)
+    {
+
+
+        $con = new DBConnection();
+        $mysqli = $con->getConnection();
+        //  $selectedItem = $_POST['item_id'];
+        $item = $mysqli->real_escape_string($item);
+        //Check if the chosen Product is a Product.
+        $string = '';
+        $enhedCounter = 1;
+        //Select all Units of specific Product where Status is 1 => Available
+        $sql = "SELECT id FROM product_unit_e where products_id = " . $item . " AND current_status_id = 1";
+        $result = $mysqli->query($sql);
+
+        //Check if there's any Units/Enhed available
+        if ($result->num_rows > 0)
+        {
+            // echo '<option value="">Select Enheder</option>';
+            //Fetch Units/Enhed Data from the Database.
+            while ($row = $result->fetch_assoc())
+            {
+
+                $string .= '<option value="' . $enhedCounter . '">' . $enhedCounter . '</option>';
+                $enhedCounter += 1;
+                // }
+
+            }
+            $mysqli->close();
+
+
+        } // if none Units/Enhed available
+        else
+            {
+            $mysqli->close();
+            $string = '<option value="">Ingen Enheder Ledige</option>';
+
+        }
+
+        return $string;
+
     }
+
+
 }
 
 

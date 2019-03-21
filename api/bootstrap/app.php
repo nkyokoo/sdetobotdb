@@ -25,6 +25,11 @@ $app = new Laravel\Lumen\Application(
 
 // $app->withEloquent();
 
+//Enable Cors Middlerware And Access-Control-Allow-Origin = true
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings

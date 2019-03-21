@@ -1,33 +1,42 @@
 //Always running when DOM is ready
 $(document).ready(function() {
+    displaycart();
+    $("body").on("click", "*[id*='button-']", function () {
+        alert("Trigggering");
+        let btn = this.id;
+        //Trigger instances if it contain this name.
+        if (btn.includes("button-remove")){
+            alert("1");
+            let variable = this.id;
+            let key = variable.slice(13);
+            // Run Function
+            removeProduct(key);
+        }
 
-    //Trigger instances if it contain this name.
+        //Trigger clearbutton if it's clicked on
+        if (btn.includes("button-clear")){
 
-    $('*[id*="button-remove"]').click(function(){
-        let variable = this.id;
-        let key = variable.slice(13);
-        // Run Function
-        removeProduct(key);
+            //Run function
+            clearCart();
+        }
+        //trigger onChange attribute on <input> tag
+
+        if (btn.includes("button-booking")){
+            booking();
+        }
     });
-
-    //Trigger clearbutton if it's clicked on
-    $('#button-clear').click(function () {
-        //Run function
-        clearCart();
-    });
-    //trigger onChange attribute on <input> tag
-    $('*[id*="product-quantity-"]').change(function(){
+    $('*[id*="product-quantity-"]').change(function () {
         //get id of clicked button
+        alert("wtf why am I working?")
+    });
+    $("body").on("change", "*[id*='product-quantity-']",function () {
         let variable = this.id;
         let key = variable.slice(17);
         //get quantity of <input> tag
         let quantity = document.getElementById(variable);
         quantity = quantity.value;
         //Run Function
-        onChangeQuantity(quantity,key);
-    });
-    $('#button-booking').click(function () {
-        booking();
+        onChangeQuantity(quantity, key);
     })
 });
 
@@ -40,7 +49,7 @@ function onChangeQuantity(qts,pid) {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'functions/api_eventsforcarts.php',
+                    url: 'http://localhost:8000/api/booking/eventsforcarts',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
                         if (output)
@@ -65,7 +74,7 @@ function onChangeQuantity(qts,pid) {
 function removeProduct(pid) {
     $.ajax({
         type: 'POST',
-        url: 'functions/api_eventsforcarts.php',
+        url: 'http://localhost:8000/api/booking/eventsforcarts',
         data: {remove: "remove", PID: pid},
         success: function () {
             //reload page if successful
@@ -80,7 +89,7 @@ function clearCart() {
     if ($choice === true){
         $.ajax({
             type: 'POST',
-            url: 'functions/api_eventsforcarts.php',
+            url: 'http://localhost:8000/api/booking/eventsforcarts',
             data: {clear: "clear"},
             success: function () {
                 location.reload();
@@ -95,17 +104,30 @@ function booking() {
     if ($choice === true){
         $.ajax({
             type:'POST',
-            url:'functions/api_bookingsend.php',
+            url:'http://localhost:8000/api/booking/bookingsend',
             data:{choice: 0},
             success:function () {
                 alert("Your wishlist has been made");
                 $.ajax({
                     type: 'POST',
-                    url: 'functions/api_eventsforcarts.php',
+                    url: 'http://localhost:8000/api/booking/eventsforcarts',
                     data: {clear: "clear"}
                 });
                 location.reload();
             }
         })
     }
+}
+function displaycart() {
+
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8000/api/booking/cart',
+        success: function (output) {
+            let e = document.createElement("div");
+            e.innerHTML = output;
+            document.getElementById("display").appendChild(e);
+        }
+    })
+
 }

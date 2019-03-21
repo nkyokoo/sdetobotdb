@@ -23,7 +23,8 @@
       <link rel='stylesheet' href='../assets/css/login.css' type='text/css'>
       <link rel='stylesheet' type='text/css' href='../assets/css/_stylesheets.css'>
       <link rel='stylesheet' type='text/css' href='../assets/css/info.css'>
-
+      <script src="../assets/js/jquery.min.js"></script>
+        <link rel="cors" href="https://cors-anywhere.herokuapp.com/">
 
 
   </head>

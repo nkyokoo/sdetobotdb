@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../includes/connect.php";
+include_once "connect.php";
 class bookingSend{
 
     //Mangler at sendes til faktura og gennem gå hele processen.

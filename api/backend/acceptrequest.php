@@ -1,6 +1,7 @@
 <?php
 
-include_once "../includes/connect.php";
+
+include_once "connect.php";
 
 class AcceptRequestFromDB
 {

@@ -10,9 +10,8 @@ include "includes/navbar.php";
 include 'includes/sidebar.php';
 
 ?>
-    <script type="text/javascript" src="assets/js/cart.js"></script>
-
+    <div id="display"></div>
 <?php
-
-
+echo "<script type=\"text/javascript\" src=\"assets/js/cart.js\"></script>";
 include "includes/footer.php";
+?>

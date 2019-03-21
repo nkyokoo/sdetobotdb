@@ -1,6 +1,8 @@
 <?php
 
-include "../backend/displaycart.php";
-
-$class = new DisplayCart();
-$class->cartItems();
+try {
+    include "../backend/displaycart.php";
+    $class = new DisplayCart();
+    $class->cartItems();
+} catch (Exception $e) {
+}

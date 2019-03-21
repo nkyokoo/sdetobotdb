@@ -5,8 +5,8 @@
  * Date: 30/01/2019
  * Time: 13.03
  */
-include_once "../backend/eventsforcart.php";
 try {
+
     $cart = new Cart();
     //Check which of the three buttons you've clicked on
 
@@ -19,7 +19,7 @@ try {
         $cart->remove($_POST['PID']);
     }
     // Clear Cart
-    if (isset($_POST['clear'])){
+    if (isset($_['clear'])){
         $cart->clear();
     }
     //Change quantity value
