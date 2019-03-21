@@ -27,5 +27,37 @@ class API_Cart{
 
     }
 
+    function display($pid, $quantity){
+        $con = new DBConnection();
+        $mysql = $con->getConnection();
+        $sql = "SELECT id,product_name,description,movable FROM school_products WHERE id =".$pid;
+        $result = $mysql->query($sql);
+
+        if ($result->num_rows > 0) {
+            //Default Selection
+
+            //Populate Selection box with data from DB
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='row'> <div class='col'>
+                  <div class='card'>
+                  <div class='card-body'>
+                  <h5 class='card-title'>" .$row['product_name']."</h5>
+                  <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$row['movable']."</h6>
+                  <p class='card-text'>".$row['description'].".</p>
+                  <label>Quantity: <input id='product-quantity-".$pid."' type='number' value='".$quantity."' name='product-quantity-".$pid."'></label><button id='button-remove".$pid."'>Remove</button>
+                  </div>
+                  </div>
+                  </div>
+                  </div>";
+
+            }
+
+        }else{
+            echo "ERROR 404. No connection to Server. If you have Addblock on try to disable it or Contact Support. Thank you!";
+
+        }
+        $mysql->close();
+    }
+
 }
 

@@ -1,5 +1,4 @@
 <?php
-include_once "../backend/messagecategory.php";
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +21,7 @@ include_once "../backend/messagecategory.php";
 
 
 $router->get('api/mail/category/get', function () use ($router) {
+    include_once "../backend/messagecategory.php";
 
     $category = new MessageCategory();
     $data = $category->__getMessageCategory();
@@ -29,44 +29,55 @@ $router->get('api/mail/category/get', function () use ($router) {
     echo $data;
 
 });
+
 $router->get('/', function () use ($router) {
 
     echo "SDE BOOKING API";
 
 });
+
 $router->post('/api/booking/cart', function () use ($router) {
 
     include "../functions/api_displaycart.php";
 
-
-
-
 });
-$router->post('/api/booking/eventsforcarts', function () use ($router) {
+
+$router->post('/api/booking/eventsforcart/productunitsinstock', function (Illuminate\Http\Request $request) use ($router) {
+
     include_once "../backend/eventsforcart.php";
-
-
-
-});
-$router->post('/api/booking/bookingsend', function () use ($router) {
-    include "../functions/api_bookingsend.php";
-
+    $class = new API_Cart();
+    return $class->productUnitsInStock($request->input('pid'));
 
 });
+
+$router->post('/api/booking/eventsforcart/display', function (Illuminate\Http\Request $request) use ($router) {
+
+    include_once "../backend/eventsforcart.php";
+    $class = new API_Cart();
+    $class->display($request->input('pid'),$request->input('quantity'));
+
+});
+
+$router->post('/api/booking/bookingsend', function (Illuminate\Http\Request $request) use ($router) {
+    include "../backend/bookingsend.php";
+
+    $class = new BookingSendRequest();
+    return $class->sendBooking($request->input('item'),$request->input('unitQuantity'));
+
+});
+
 $router->post('/api/booking/bookinglist', function () use ($router) {
-    include "../functions/api_dropdownlistproducts_function.php";
+
+    include "../backend/dropdownlistproducts_function.php";
+    $class = new DropDownlistProducts_Function();
+    $class->addProductsForSelection();
 
 });
+
 $router->post('/api/booking/acceptrequest', function () use ($router) {
 
-    try {
         include "../backend/acceptrequest.php";
-
         $class = new AcceptRequestFromDB();
         $class->getRequestsFromDB();
-
-    }
-    catch (Exception $e) {
-    }
 
 });

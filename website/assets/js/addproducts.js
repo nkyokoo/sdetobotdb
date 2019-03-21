@@ -20,7 +20,7 @@ $(document).ready(function () {
 function btnAddProductToDB() {myBlock:{
     try {
 
-        //get the values inserted from addproducts.php and send it to backend
+        //get the values inserted from addproducts.php and send it to backend_web
         let kategori = $(kategori_id).val();
         let produkt_navn = $(produkt_id).val();
         let virksomhed = $(virksomhed_id).val();

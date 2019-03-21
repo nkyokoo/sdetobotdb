@@ -9,6 +9,9 @@ include "includes/header.php";
 include "includes/navbar.php";
 include 'includes/sidebar.php';
 
+
+//Connect to API with $_POST['pid'] as data.
+
 ?>
     <div id="display"></div>
 <?php

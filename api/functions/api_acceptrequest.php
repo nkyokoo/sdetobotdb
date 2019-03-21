@@ -7,5 +7,5 @@ try {
     $class->getRequestsFromDB();
 
 }
-    catch (Exception $e) {
+catch (Exception $e) {
 }

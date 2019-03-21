@@ -3,7 +3,24 @@ session_start();
 // submit = add to cart
 // remove = remove product
 // clear = clear cart
-
+class DBConnection
+{
+    public function getConnection()
+    {
+        try {
+            $con = new mysqli("localhost", "root", "", "sdebookingsystem");
+            if (mysqli_connect_errno()) {
+                printf("Connect failed: %s\n", mysqli_connect_error());
+                exit();
+                return null;
+            } else {
+                $con->set_charset("utf8");
+                return $con;
+            }
+        } catch (Exception $e) {
+        }
+    }
+}
 class Cart{
     //Declare global products variable
     var $products = array();
@@ -160,19 +177,28 @@ class Cart{
     }
     //Get Total Units in stock and return it
     function productUnitsInStock($pid){
-        $con = new DBConnection();
-        $mysql = $con->getConnection();
-        $pid = $mysql->real_escape_string($pid);
-        $sql = "SELECT COUNT(id) FROM `product_unit_e` WHERE products_id = ".$pid ." AND current_status_id = 1";
 
-        $sql = $mysql->query($sql);
+        //Request to API
+        $url = 'http://localhost:8000/api/booking/eventsforcart/productunitsinstock';
+        $data = array('pid' => $pid);
 
-        //Get Total Unit in Stock
-        $unitRecordsOfProduct = $sql->fetch_assoc();
-        //Return the Result
-        $mysql->close();
+// use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+//send request to api and get result
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        if ($result === FALSE) { /* Handle error */
 
-        return $unitRecordsOfProduct['COUNT(id)'];
+            var_dump($result);
+        }
+        return $result;
+
 
     }
     //Clear Cart
@@ -191,6 +217,47 @@ class Cart{
     function save(){
         //override the global variable $products to $_SESSION['cart']
         $_SESSION["cart"] = $this->products;
+    }
+    function displayCart()
+    {
+
+        echo "<form><div class='card'>";
+        echo "<div class='card-body'>";
+        echo "<button id='button-clear'>Clear Cart</button>";
+        echo "<h5 class='card-header'>Products In Cart</h5>";
+
+//  echo "product = ".$key. " quantity = ".$quantity." || ";
+        if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
+            $incart = $_SESSION["cart"];
+            foreach ($incart as $pid => $quantity){
+
+                //Request to API
+
+                $url = 'http://localhost:8000/api/booking/eventsforcart/display';
+                $data = array('pid' => $pid,'quantity' => $quantity);
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'POST',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                echo $result;
+                if ($result === FALSE) { /* Handle error */
+
+                    var_dump($result);
+                }
+            }
+
+            echo "<button id='button-booking'>Buy EVERYTHING ON THIS LIST</button></div></div> ";
+
+        }
+        echo "</div></div></form>";
     }
 }
 

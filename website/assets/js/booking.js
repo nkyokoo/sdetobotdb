@@ -29,7 +29,7 @@ function addToCart(productID) {
         if (getChosenValueOfProduct > 0) {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8000/api/booking/eventsforcarts',
+                url: '../backend_instance/api_eventsforcarts.php',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
                     if (output)

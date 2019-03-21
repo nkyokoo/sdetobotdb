@@ -2,7 +2,6 @@
 $(document).ready(function() {
     displaycart();
     $("body").on("click", "*[id*='button-']", function () {
-        alert("Trigggering");
         let btn = this.id;
         //Trigger instances if it contain this name.
         if (btn.includes("button-remove")){
@@ -49,7 +48,7 @@ function onChangeQuantity(qts,pid) {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:8000/api/booking/eventsforcarts',
+                    url: '../backend_instance/api_eventsforcarts.php',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
                         if (output)
@@ -74,7 +73,7 @@ function onChangeQuantity(qts,pid) {
 function removeProduct(pid) {
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8000/api/booking/eventsforcarts',
+        url: '../backend_instance/api_eventsforcarts.php',
         data: {remove: "remove", PID: pid},
         success: function () {
             //reload page if successful
@@ -89,7 +88,7 @@ function clearCart() {
     if ($choice === true){
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8000/api/booking/eventsforcarts',
+            url: '../backend_instance/api_eventsforcarts.php',
             data: {clear: "clear"},
             success: function () {
                 location.reload();
@@ -104,16 +103,21 @@ function booking() {
     if ($choice === true){
         $.ajax({
             type:'POST',
-            url:'http://localhost:8000/api/booking/bookingsend',
-            data:{choice: 0},
-            success:function () {
-                alert("Your wishlist has been made");
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:8000/api/booking/eventsforcarts',
-                    data: {clear: "clear"}
-                });
+            url:'../backend_instance/api_bookingsend.php',
+            success:function (output) {
+
+                //Clear cart after sending to wishlist
+                if (!output){
+                    alert("Your wishlist has been made");
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../backend_instance/api_eventsforcarts.php',
+                        data: {clear: "clear"}
+                    });
+                }
                 location.reload();
+
             }
         })
     }
@@ -122,7 +126,8 @@ function displaycart() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8000/api/booking/cart',
+        url: '../backend_instance/api_eventsforcarts.php',
+        data:{display: "true"},
         success: function (output) {
             let e = document.createElement("div");
             e.innerHTML = output;
