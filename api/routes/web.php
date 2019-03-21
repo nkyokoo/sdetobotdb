@@ -1,5 +1,4 @@
 <?php
-include_once "../backend/messagecategory.php";
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +12,11 @@ include_once "../backend/messagecategory.php";
 */
 
 $router->get('api/mail/category/get', function () use ($router) {
-
+    include_once "../backend/messagecategory.php";
     $category = new MessageCategory();
     $data = $category->__getMessageCategory();
 
-    echo $data;
+    return $data;
 
 });
 $router->get('/', function () use ($router) {
@@ -26,3 +25,9 @@ $router->get('/', function () use ($router) {
 
 });
 
+$router->get('api/admin/generateToken', function () use ($router) {
+
+    $token = bin2hex(random_bytes(64));
+    echo $token;
+
+});
