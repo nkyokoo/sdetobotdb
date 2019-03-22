@@ -18,22 +18,22 @@ echo "
     <div class='row'>
         <div class='col'></div>
         <div class='col'></div>
-          <div class=\"card\" style=\"width: 18rem;\">
+  <div class=\"card\" style=\"width: 18rem;\">
     <div class=\"card-header\">
         Contact form
     </div>
     <div class=\"card-body\">
         <form>
-            <div class='form-group'>
-                <label for='categoryList'>Message Category </label>
-                <select class='form-control' id='categoryList'>
+           <div class=\"form-group\">
+            <label for=\"exampleSelect1\" class=\"bmd-label-floating\">Example select</label>
+            <select class=\"form-control\" id=\"exampleSelect1\">
                     ";
                     foreach($json as $i){
                     echo "<option value='".$i['id']."'>".$i['name']."</option> ";
                     }
                     echo "
                 </select>
-            </div>
+           </div>
             <div class='form-group'>
                 <label class='bmd-label-floating' for='messageTitle'>Title</label>
                 <input type='text' class='form-control' id='messageTitle' placeholder=''>
@@ -48,8 +48,8 @@ echo "
                     </button>
                 </div>
             </div>
+            </form>
     </div>
-
 </div>
     <div class='col'></div>
     <div class='col'></div>
@@ -65,6 +65,7 @@ echo "
 </div>
 </div>
 ";
-include "includes/footer.php";
+
 echo "<script src='assets/js/contactform.js'></script>";
+include "includes/footer.php";
 ?>

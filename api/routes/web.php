@@ -22,11 +22,10 @@
 
 $router->get('api/mail/category/get', function () use ($router) {
     include_once "../backend/messagecategory.php";
-
     $category = new MessageCategory();
     $data = $category->__getMessageCategory();
 
-    echo $data;
+    return $data;
 
 });
 
