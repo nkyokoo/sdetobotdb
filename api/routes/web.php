@@ -35,7 +35,7 @@ $router->get('/', function () use ($router) {
     echo "SDE BOOKING API";
 
 });
-
+//Check if there's enough quantity of specific item
 $router->post('/api/booking/eventsforcart/productunitsinstock', function (Illuminate\Http\Request $request) use ($router) {
 
     include_once "../backend/eventsforcart.php";
@@ -44,6 +44,7 @@ $router->post('/api/booking/eventsforcart/productunitsinstock', function (Illumi
 
 });
 
+//Display cart items
 $router->post('/api/booking/eventsforcart/display', function (Illuminate\Http\Request $request) use ($router) {
 
     include_once "../backend/eventsforcart.php";
@@ -52,6 +53,7 @@ $router->post('/api/booking/eventsforcart/display', function (Illuminate\Http\Re
 
 });
 
+//Send booking request to acceptrequest.php
 $router->post('/api/booking/bookingsend', function (Illuminate\Http\Request $request) use ($router) {
     include "../backend/bookingsend.php";
 
@@ -60,6 +62,7 @@ $router->post('/api/booking/bookingsend', function (Illuminate\Http\Request $req
 
 });
 
+//Display List of item you can book
 $router->post('/api/booking/bookinglist', function () use ($router) {
 
     include "../backend/dropdownlistproducts_function.php";
@@ -68,10 +71,26 @@ $router->post('/api/booking/bookinglist', function () use ($router) {
 
 });
 
-$router->post('/api/booking/acceptrequest', function () use ($router) {
+//Display acceptrequest.php Wishlist
+$router->post('/api/admin/displayrequest', function () use ($router) {
 
         include "../backend/acceptrequest.php";
-        $class = new AcceptRequestFromDB();
+        $class = new WishListRequests();
         $class->getRequestsFromDB();
+
+});
+
+$router->post('/api/admin/acceptrequest', function (Illuminate\Http\Request $request) use ($router) {
+
+    include "../backend/acceptrequest.php";
+    $class = new WishListRequests();
+    $class->acceptRequest($request->input('wishlistID'));
+
+});
+$router->post('/api/admin/denyrequest', function (Illuminate\Http\Request $request) use ($router) {
+
+    include "../backend/acceptrequest.php";
+    $class = new WishListRequests();
+    $class->denyRequest($request->input('wishlistID'));
 
 });

@@ -3,24 +3,7 @@ session_start();
 // submit = add to cart
 // remove = remove product
 // clear = clear cart
-class DBConnection
-{
-    public function getConnection()
-    {
-        try {
-            $con = new mysqli("localhost", "root", "", "sdebookingsystem");
-            if (mysqli_connect_errno()) {
-                printf("Connect failed: %s\n", mysqli_connect_error());
-                exit();
-                return null;
-            } else {
-                $con->set_charset("utf8");
-                return $con;
-            }
-        } catch (Exception $e) {
-        }
-    }
-}
+
 class Cart{
     //Declare global products variable
     var $products = array();
@@ -28,16 +11,12 @@ class Cart{
     //$qts = quantity
 
     function add($PID, $qts){
-        $con = new DBConnection();
-        $mysql = $con->getConnection();
-        $PID = $mysql->real_escape_string($PID);
-        $qts = $mysql->real_escape_string($qts);
+
+
         try {
-            $con = new DBConnection();
-            $mysql = $con->getConnection();
+
             if ($qts > 0) {
-                $PID = $mysql->real_escape_string($PID);
-                $qts = $mysql->real_escape_string($qts);
+
                 $unitsInStock = $this->productUnitsInStock($PID);
 
                 $productInCart = false;
@@ -83,7 +62,6 @@ class Cart{
                 }else{echo "We don't have enough in stock of chosen product. \r\nPlease Reduce the amount.";}
 
             }
-            $mysql->close();
         } catch (Exception $e) {
         }
 
@@ -91,10 +69,7 @@ class Cart{
     }
 
     function onChangeQuantityInput($qts,$pid){
-        $con = new DBConnection();
-        $mysql = $con->getConnection();
-        $pid = $mysql->real_escape_string($pid);
-        $qts = $mysql->real_escape_string($qts);
+
         try {
             //if the quantity is over 0
             if ($qts > 0) {
@@ -134,7 +109,6 @@ class Cart{
             }
             //save
             $this->save();
-            $mysql->close();
 
         } catch (Exception $e) {
         }
@@ -142,9 +116,7 @@ class Cart{
     }
 
     function remove($PID){
-        $con = new DBConnection();
-        $mysql = $con->getConnection();
-        $PID = $mysql->real_escape_string($PID);
+
         try {
             //check if cart exist
             if (isset($_SESSION["cart"])) {
@@ -168,7 +140,6 @@ class Cart{
             }
             //save
             $this->save();
-            $mysql->close();
 
         } catch (Exception $e) {
         }
@@ -230,7 +201,6 @@ class Cart{
         if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
             $incart = $_SESSION["cart"];
             foreach ($incart as $pid => $quantity){
-
                 //Request to API
 
                 $url = 'http://localhost:8000/api/booking/eventsforcart/display';

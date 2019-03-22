@@ -1,11 +1,13 @@
 //Always running when DOM is ready
+
 $(document).ready(function() {
     displaycart();
+
     $("body").on("click", "*[id*='button-']", function () {
+        event.preventDefault();
         let btn = this.id;
         //Trigger instances if it contain this name.
         if (btn.includes("button-remove")){
-            alert("1");
             let variable = this.id;
             let key = variable.slice(13);
             // Run Function
@@ -24,10 +26,7 @@ $(document).ready(function() {
             booking();
         }
     });
-    $('*[id*="product-quantity-"]').change(function () {
-        //get id of clicked button
-        alert("wtf why am I working?")
-    });
+
     $("body").on("change", "*[id*='product-quantity-']",function () {
         let variable = this.id;
         let key = variable.slice(17);
@@ -48,12 +47,15 @@ function onChangeQuantity(qts,pid) {
 
                 $.ajax({
                     type: 'POST',
-                    url: '../backend_instance/api_eventsforcarts.php',
+                    url: '../backend_instantiate/int_eventsforcarts.php',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
-                        if (output)
+                        if (output){
                             alert(output);
-                        location.reload();
+                            location.reload();
+
+                        }
+
                     }
                 })
             }else {
@@ -73,11 +75,19 @@ function onChangeQuantity(qts,pid) {
 function removeProduct(pid) {
     $.ajax({
         type: 'POST',
-        url: '../backend_instance/api_eventsforcarts.php',
+        url: '../backend_instantiate/int_eventsforcarts.php',
         data: {remove: "remove", PID: pid},
         success: function () {
             //reload page if successful
-            location.reload();
+           //
+
+                    $('#row-'+pid).html('');
+                    /*
+                    let e = document.createElement("div");
+                    e.innerHTML = output;
+                    document.getElementById("display").appendChild(e);*/
+
+
         }
     })
 }
@@ -88,7 +98,7 @@ function clearCart() {
     if ($choice === true){
         $.ajax({
             type: 'POST',
-            url: '../backend_instance/api_eventsforcarts.php',
+            url: '../backend_instantiate/int_eventsforcarts.php',
             data: {clear: "clear"},
             success: function () {
                 location.reload();
@@ -103,7 +113,7 @@ function booking() {
     if ($choice === true){
         $.ajax({
             type:'POST',
-            url:'../backend_instance/api_bookingsend.php',
+            url:'../backend_instantiate/int_bookingsend.php',
             success:function (output) {
 
                 //Clear cart after sending to wishlist
@@ -112,7 +122,7 @@ function booking() {
 
                     $.ajax({
                         type: 'POST',
-                        url: '../backend_instance/api_eventsforcarts.php',
+                        url: '../backend_instantiate/int_eventsforcarts.php',
                         data: {clear: "clear"}
                     });
                 }
@@ -126,7 +136,7 @@ function displaycart() {
 
     $.ajax({
         type: 'POST',
-        url: '../backend_instance/api_eventsforcarts.php',
+        url: '../backend_instantiate/int_eventsforcarts.php',
         data:{display: "true"},
         success: function (output) {
             let e = document.createElement("div");

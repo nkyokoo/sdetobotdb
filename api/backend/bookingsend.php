@@ -7,6 +7,7 @@ class BookingSendRequest{
     function sendBooking($item,$unitQuantity){
         $con = new  DBConnection();
         $mysqli = $con->getConnection();
+        $allProductsAreAvailable = true;
         $json = array();
         //Find the connected Units/Enhed to the item ID and correct status(in stock) in the database and
         $sql = "SELECT product_unit_e.id FROM product_unit_e INNER JOIN school_products ON product_unit_e.products_id = school_products.id WHERE school_products.id = " . $item .
@@ -23,12 +24,18 @@ class BookingSendRequest{
             $storeIDsFromItems .= (string)$item.",";
             $storeIDsFromUnitsQuantity .= (string)$unitQuantity.",";
 
-            $json[] = array(
-                'storeIDsFromUnitsQuantity' => $storeIDsFromUnitsQuantity,
-                'storeIDsFromItems' =>$storeIDsFromItems
 
-            );
         }
+        else{
+            $allProductsAreAvailable = false;
+
+        }
+        $json[] = array(
+            'storeIDsFromUnitsQuantity' => $storeIDsFromUnitsQuantity,
+            'storeIDsFromItems' =>$storeIDsFromItems,
+            'allProductsAreAvailable' => $allProductsAreAvailable
+
+        );
         // Send Data back as Json format
         $jsonstring = json_encode($json);
         return $jsonstring;

@@ -29,11 +29,11 @@ function addToCart(productID) {
         if (getChosenValueOfProduct > 0) {
             $.ajax({
                 type: 'POST',
-                url: '../backend_instance/api_eventsforcarts.php',
+                url: '../backend_instantiate/int_eventsforcarts.php',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
                     if (output)
-                        alert(output);
+                        alert("ERROR");
                     else {
                         let btn = document.getElementById('btn-' + productID);
                         btn.innerHTML = 'Added';

@@ -35,10 +35,10 @@ class API_Cart{
 
         if ($result->num_rows > 0) {
             //Default Selection
-
             //Populate Selection box with data from DB
             while ($row = $result->fetch_assoc()) {
-                echo "<div class='row'> <div class='col'>
+
+                echo "<div id='row-".$row['id']."' class='row'> <div class='col'>
                   <div class='card'>
                   <div class='card-body'>
                   <h5 class='card-title'>" .$row['product_name']."</h5>
@@ -49,7 +49,6 @@ class API_Cart{
                   </div>
                   </div>
                   </div>";
-
             }
 
         }else{

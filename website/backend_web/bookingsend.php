@@ -61,15 +61,15 @@ class BookingSend
                         $result = file_get_contents($url, false, $context);
 
                         if ($result === FALSE) { /* Handle error */
-                            $allProductsAreAvailable = false;
 
                             var_dump($result);
                         }
+                        // use the output data
                         $jsondata = json_decode($result,true);
                         foreach ($jsondata as $data){
                                 $storeIDsFromItems .= $data['storeIDsFromItems'];
                                 $storeIDsFromUnitsQuantity .= $data['storeIDsFromUnitsQuantity'];
-
+                                $allProductsAreAvailable = $data['allProductsAreAvailable'];
                         }
                     }
                     else {echo "ERROR 22";break;}

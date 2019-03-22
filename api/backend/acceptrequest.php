@@ -3,7 +3,7 @@
 
 include_once "connect.php";
 
-class AcceptRequestFromDB
+class WishListRequests
 {
 
     function getRequestsFromDB()
@@ -99,4 +99,23 @@ class AcceptRequestFromDB
            echo "<b>There are no appending requests</b>";
         }
     }
+    function acceptRequest($wislistID){
+        $db = new DBConnection();
+        $mysql = $db->getConnection();
+        $wislistID = $mysql->real_escape_string($wislistID);
+        $sql = "UPDATE `wish_list` SET `godkendt`= 1 WHERE id =".$wislistID;
+        $stmt = $mysql->prepare('UPDATE `wish_list` SET `godkendt`= 1 WHERE id = ?');
+        $stmt->bind_param('i',$wislistID);
+        $stmt->execute();
+    }
+    function denyRequest($wislistID){
+        $db = new DBConnection();
+        $mysql = $db->getConnection();
+        $wislistID = $mysql->real_escape_string($wislistID);
+        $sql = "UPDATE `wish_list` SET `godkendt`= -1 WHERE id =".$wislistID;
+        $stmt = $mysql->prepare('UPDATE `wish_list` SET `godkendt`= 1 WHERE id = ?');
+        $stmt->bind_param('i',$wislistID);
+        $stmt->execute();
+    }
+
 }
