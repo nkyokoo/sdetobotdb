@@ -1,10 +1,11 @@
 <?php
-include "../backend/acceptrequest.php";
 
 try {
+    include "../backend/acceptrequest.php";
+
     $class = new AcceptRequestFromDB();
     $class->getRequestsFromDB();
 
 }
-    catch (Exception $e) {
+catch (Exception $e) {
 }

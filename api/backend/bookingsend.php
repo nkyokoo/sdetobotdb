@@ -1,140 +1,50 @@
 <?php
 session_start();
-include_once "../includes/connect.php";
-class bookingSend{
+include_once "connect.php";
+class BookingSendRequest{
 
     //Mangler at sendes til faktura og gennem gå hele processen.
-    //Redirect to site if needed.
-    function redirect($url, $statusCode = 303)
-    {
-        header('Location: ' . $url, true, $statusCode);
-        die();
-    }
+    function sendBooking($item,$unitQuantity){
+        $con = new  DBConnection();
+        $mysqli = $con->getConnection();
+        $json = array();
+        //Find the connected Units/Enhed to the item ID and correct status(in stock) in the database and
+        $sql = "SELECT product_unit_e.id FROM product_unit_e INNER JOIN school_products ON product_unit_e.products_id = school_products.id WHERE school_products.id = " . $item .
+            " AND product_unit_e.current_status_id = 1";
 
-    public function sendBooking(){
+        $result = $mysqli->query($sql);
 
-        try {
-            $con = new DBConnection();
-            $mysqli = $con->getConnection();
-            $allProductsAreAvailable = true;
-            //   $storeIDsFromUnits = "";
-            $storeIDsFromUnitsQuantity = "";
-            $storeIDsFromItems = "";
-            // Length is a Upper Limit Counter for Outer Loop. It'll increase
-            // Length => Next Product in line to be checked in db along with $i => Current Product
-            //Change depend on Layer
-            //$length = $layer == 1 ? 2:12;
-            //Layer 1 or 2
-            //Loop The Selections and send to Database if the Selection has Value
-            // for ($i = $layer == 1 ? 1:11; $i < $length; $i++) {
-            if (isset($_SESSION['cart'])){
-                $cart = $_SESSION['cart'];
-                foreach ($cart as $pid => $quantity){
-                    // $enhedCounter = 0;
-                    //Check if items and its units aren't empty
-                    if (!empty($pid) and !empty($quantity)) {
-                        $item = $pid;
-                        $unitQuantity = $quantity;
+        if ($result->num_rows >= $unitQuantity) {
 
-                        //Find the connected Units/Enhed to the item ID and correct status(in stock) in the database and
-                        $sql = "SELECT product_unit_e.id FROM product_unit_e INNER JOIN school_products ON product_unit_e.products_id = school_products.id WHERE school_products.id = " . $item .
-                            " AND product_unit_e.current_status_id = 1";
+            //Increase Upper Limit if there's more Enheder/Units available.
+            // $length += 1;
+            $storeIDsFromItems ="";
+            $storeIDsFromUnitsQuantity ="";
+            $storeIDsFromItems .= (string)$item.",";
+            $storeIDsFromUnitsQuantity .= (string)$unitQuantity.",";
 
-                        $result = $mysqli->query($sql);
+            $json[] = array(
+                'storeIDsFromUnitsQuantity' => $storeIDsFromUnitsQuantity,
+                'storeIDsFromItems' =>$storeIDsFromItems
 
-                        if ($result->num_rows >= $unitQuantity) {
-
-                            //Increase Upper Limit if there's more Enheder/Units available.
-                            // $length += 1;
-                            $storeIDsFromItems .= (string)$item.",";
-                            $storeIDsFromUnitsQuantity .= (string)$unitQuantity.",";
-
-                            /*
-                            while ($row = $result->fetch_assoc() AND $enhedCounter < $unitQuantity) {
-                                //insert rows into a string instead of array
-                               $storeIDsFromUnits .= $row['id'].",";
-                                $enhedCounter += 1;
-                            }*/
-                            // ########################################################
-                            // ############ Change this Location To Match Real Path ###
-                            // ########################################################
-
-                        }
-                        else
-                        {
-                            $allProductsAreAvailable = false;
-                        }
-                    }
-                    else {break;}
-
-                }
-            }
-            if ($allProductsAreAvailable){
-                // $this->updateStatus($storeIDsFromUnits);
-                //Make a wish list in DB and return ID
-                $wishListID = $this->sendToWishList();
-                //Get ID and products,quantity in a form of string array.
-                $this->connectProductsToWishList($storeIDsFromItems,$storeIDsFromUnitsQuantity,$wishListID);
-
-                //This is a test to run the whole Cycle and should not be here.
-                $this->sendToRentalTest($wishListID);
-            }
-            else{
-                //Products Unavailable Message
-                echo "Some of the Products are Unavailable!";
-            }
-            $mysqli->close();
-        } catch (Exception $e) {
+            );
         }
-    }
+        // Send Data back as Json format
+        $jsonstring = json_encode($json);
+        return $jsonstring;
+        }
+
+
+
+
+    //ADMIN PAGE
     /*
-    private function updateStatus($storedIDS){
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
-
-            $storedIDS = explode(",",$storedIDS);
-            for ($i = 0; $i < count($storedIDS); $i++){
-                //Making sure the variable is int
-              $storedIDSToInt = (int)$storedIDS[$i];
-                //Update the status of the reserved units/enhed from (1 = Available) to (2 = Reserved) and $row['id'] = unit ID for product.
-                $newSql = "UPDATE product_unit_e SET product_unit_e.current_status_id = 2 WHERE product_unit_e.id = ?";
-               $stmt = $mysqli->prepare($newSql);
-               $stmt->bind_param("i",$storedIDSToInt);
-               $stmt->execute();
-            }
-
-        }
-    */
-    private function sendToWishList(){
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
-
-        // As tinyint is a 0 = false, 1 = true integer
-        //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = $_SESSION['user']['id'];
-        $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (0,?)");
-        $stmt->bind_param("i",$userID);
-        $stmt->execute();
-        $idFromWishList = $stmt->insert_id;
-        $mysqli->close();
-        return $idFromWishList;
-    }
-    private function connectProductsToWishList($productID,$unitQuantity,$wishListID){
-        $productID = explode(",",$productID);
-        $unitQuantity = explode(",",$unitQuantity);
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
-
-        for ($i = 0; $i < count($productID); $i++){
-
-            $stmt = $mysqli->prepare("INSERT INTO `connection_product_wishlist`(`wish_list_id`, `school_products_id`, `quantity`) VALUES (?,?,?)");
-            $stmt->bind_param("iii",$wishListID,$productID[$i],$unitQuantity[$i]);
-            $stmt->execute();
-        }
-
-        $mysqli->close();
-        //$this->sendToRentalTest($wishListID);
-    }
+     *
+     *
+     * These will be used soon
+     *
+     *
+     */
     private function sendToRentalTest($wishListID){
         $con = new  DBConnection();
         $mysqli = $con->getConnection();
@@ -200,5 +110,6 @@ class bookingSend{
          */
 
     }
-}
 
+
+}

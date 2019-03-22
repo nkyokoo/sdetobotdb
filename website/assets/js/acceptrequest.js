@@ -26,7 +26,7 @@ $(document).ready(function () {
 function displayRequests() {
     $.ajax({
         type: "POST",
-        url: "/functions/api_acceptrequest.php",
+        url: "http://localhost:8000/api/booking/acceptrequest",
         success: function (output) {
           let p = document.createElement('div');
           p.innerHTML = output;

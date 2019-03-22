@@ -20,8 +20,9 @@
       <link rel='icon' type='image/x-icon' href='../assets/img/favicon.ico'>
       <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
       <link rel='stylesheet' type='text/css' href='../assets/css/_stylesheets.css'>
+      <link rel='stylesheet' type='text/css' href='../assets/css/info.css'>
       <script src="../assets/js/jquery.min.js"></script>
-
+        <link rel="cors" href="https://cors-anywhere.herokuapp.com/">
 
 
   </head>

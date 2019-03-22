@@ -5,11 +5,15 @@
  * Date: 30/01/2019
  * Time: 13.03
  */
-include_once "../backend/eventsforcart.php";
 try {
+include_once "../backend_web/eventforcarts.php";
     $cart = new Cart();
     //Check which of the three buttons you've clicked on
 
+    //display content
+    if (isset($_POST['display'])){
+        $cart->displayCart();
+    }
     // Add product to cart
     if (isset($_POST['submit'])){
         $cart->add($_POST['PID'],$_POST['quantity']);
@@ -20,7 +24,9 @@ try {
     }
     // Clear Cart
     if (isset($_POST['clear'])){
+
         $cart->clear();
+
     }
     //Change quantity value
     if (isset($_POST['onChangeQuantity']) and isset($_POST['PID'])){

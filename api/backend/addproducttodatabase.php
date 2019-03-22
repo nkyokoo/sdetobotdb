@@ -1,7 +1,9 @@
 
 <?php
 //echo "INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL, '".$_POST['produkt_navn'] ."', '".$_POST['']."', '".$_POST['flytbar']."', '".$_POST['kategori']."', '".$_POST['leverandoer']."', '".$_POST['description']."');";
-include_once "../includes/connect.php";
+session_start();
+
+include_once "connect.php";
 class addProductToDatabase{
     private $kategori;
     private $produktNavn ;

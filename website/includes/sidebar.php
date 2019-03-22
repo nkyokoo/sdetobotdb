@@ -1,5 +1,4 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
-<script type="text/javascript" src="../assets/js/logout.js" ></script>
 <?php
 if(!isset($_SESSION))
 {
