@@ -8,7 +8,7 @@ module.exports = {
         const pool = request.mysql.pool
 
         try {
-            const [rows, fields] = await pool.query('select * from wish_list')
+            const [rows, fields] = await pool.query('select * from wish_list where godkendt = 0')
             return rows
         } catch (e) {
             console.log(e)
