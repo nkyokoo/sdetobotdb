@@ -150,7 +150,7 @@ class Cart{
     function productUnitsInStock($pid){
 
         //Request to API
-        $url = 'http://localhost:8000/api/booking/eventsforcart/productunitsinstock';
+        $url = 'http://localhost:8000/api/booking/eventsforcart/productinstock/get';
         $data = array('pid' => $pid);
 
 // use key 'http' even if you send the request to https://...
@@ -168,7 +168,13 @@ class Cart{
 
             var_dump($result);
         }
-        return $result;
+        $items = "";
+        $json = json_decode($result,true);
+        foreach ($json as $value){
+            $items = $value['quantity'];
+        }
+
+        return $items;
 
 
     }
@@ -202,26 +208,41 @@ class Cart{
             $incart = $_SESSION["cart"];
             foreach ($incart as $pid => $quantity){
                 //Request to API
-
-                $url = 'http://localhost:8000/api/booking/eventsforcart/display';
                 $data = array('pid' => $pid,'quantity' => $quantity);
 
-// use key 'http' even if you send the request to https://...
-                $options = array(
-                    'http' => array(
-                        'header'  => "Content-type: application/json",
-                        'method'  => 'POST',
-                        'content' => json_encode($data)
-                    )
-                );
-//send request to api and get result
-                $context  = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                echo $result;
-                if ($result === FALSE) { /* Handle error */
+            }
+            $url = 'http://localhost:8000/api/booking/eventsforcart/display/post';
 
-                    var_dump($result);
-                }
+// use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/json",
+                    'method'  => 'POST',
+                    'content' => json_encode($data)
+                )
+            );
+//send request to api and get result
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            if ($result === FALSE) { /* Handle error */
+
+                var_dump($result);
+            }
+            // id,product_name,description,movable
+            $json = json_decode($result,true);
+            foreach ($json as $value ){
+
+            echo "<div id='row-".$value['id']."' class='row'> <div class='col'>
+                  <div class='card'>
+                  <div class='card-body'>
+                  <h5 class='card-title'>" .$value['product_name']."</h5>
+                  <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$value['movable']."</h6>
+                  <p class='card-text'>".$value['description'].".</p>
+                  <label>Quantity: <input id='product-quantity-".$value['id']."' type='number' value='".$value['quantity']."' name='product-quantity-".$value['id']."'></label><button id='button-remove".$value['id']."'>Remove</button>
+                  </div>
+                  </div>
+                  </div>
+                  </div>";
             }
 
             echo "<button id='button-booking'>Buy EVERYTHING ON THIS LIST</button></div></div> ";

@@ -33,7 +33,7 @@ function addToCart(productID) {
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
                     if (output)
-                        alert("ERROR");
+                        alert(output);
                     else {
                         let btn = document.getElementById('btn-' + productID);
                         btn.innerHTML = 'Added';
@@ -50,8 +50,8 @@ function addToCart(productID) {
 }
 function getProductsFromDB() {
     $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8000/api/booking/bookinglist',
+        type: 'GET',
+        url: '../backend_instantiate/int_dropdownlist.php',
         success: function (output) {
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
             let p = document.createElement("div");
