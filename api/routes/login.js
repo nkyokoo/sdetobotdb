@@ -10,24 +10,42 @@ const Joi = require("joi");
         config: { auth: false },
         handler: async (request, h) => {
             const pool = request.mysql.pool
-            let payload = request.payload;
-            const [rows, fields] = await pool.query('select * from users WHERE email = \'' + payload.email + '\'');
 
-            let decrypted;
 
-            try {
-                decrypted = cryptoFuncs.decrypt(rows[0].password)
-            } catch (e) {
-                console.log(e)
-            }
+            if (request.payload) {
+                let payload = request.payload;
+          await pool.query('select * from users WHERE email = \'' + payload.email + '\'', function (err, rows) {
+                        if (rows.length !== 0) {
+                            let decrypted;
+                            console.log(rows)
+                            try {
+                                decrypted = cryptoFuncs.decrypt(rows[0].password)
+                            } catch (e) {
+                                console.log(e)
+                            }
 
-            if (decrypted === payload.password) {
-              let sendingUser = rows[0];
-              delete sendingUser.password
-                return sendingUser
-
-            } else {
-                return { code: 401, error: "password incorrect" }
+                            if (decrypted === payload.password) {
+                                let successful = {
+                                    code: 200,
+                                    message: "succesful"
+                                }
+                                let user = rows[0];
+                                delete user.password
+                                successful.user = user
+                                console.log(successful)
+                                return successful
+                            } else {
+                                return {code: 401, error: "password incorrect"}
+                            }
+                        } else {
+                            return {
+                                code: 200,
+                                error: "email doesn't exist"
+                            }
+                        }
+                });
+            }else{
+                return {code:400, error: "fill something in"}
             }
         }
     }

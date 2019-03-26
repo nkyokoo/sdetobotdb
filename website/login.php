@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])){
-    header('Location: ../index.php');
+
 }
 include 'includes/header.php';
 include 'includes/sidebar.php';
@@ -72,6 +72,5 @@ include 'includes/navbar.php';
         </div>
 </content>
 <?php
-echo "<script src='assets/js/register.js'></script>";
 include 'includes/footer.php';
 ?>

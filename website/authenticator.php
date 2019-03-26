@@ -1,5 +1,6 @@
 <?php
 session_start();
+$logout = isset($_POST['logout']) ? true : false;
 
 if (isset($_POST['login_btn'])) {
     $url = 'http://localhost:8000/api/users/login';
@@ -18,9 +19,9 @@ if (isset($_POST['login_btn'])) {
     $context  = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
     $jsondata = json_decode($result,true);
-    if (sizeof($jsondata) != 0) {
+    if ($jsondata['code'] == 200 ) {
 
-        $_SESSION['user'] = $jsondata;
+       // $_SESSION['user'] = $jsondata[0];
         header('Location: ../index.php');
 
 
@@ -62,4 +63,13 @@ if (isset($_POST['register_btn'])) {
     }else{
 
     }
+}
+
+if($logout){
+    unset($_SESSION);
+    session_destroy();
+    session_write_close();
+    echo "done";
+    exit();
+    //close and kill sessions.
 }
