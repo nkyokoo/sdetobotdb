@@ -1,12 +1,12 @@
 const Hapi        = require('hapi');
 const hapiAuthJWT = require('hapi-auth-jwt2');
 const JWT         = require('jsonwebtoken');
-const Boom = require('boom')
+const Boom = require('boom');
 const port        = process.env.PORT || 8000;
-const routes = require("./routemanager")
-const users = require("./apiusers/apiusercreation")
+const routes = require("./routemanager");
+const users = require("./apiusers/apiusercreation");
 
-users.createToken()
+users.createToken();
 
 const validate = async function (decoded, request, h) {
 
@@ -33,16 +33,16 @@ const init = async() => {
     const clientOpts = {
         settings: 'mysql://root@localhost/sdebookingsystem',
         decorate: true
-    }
+    };
 
     await server.register({
         plugin: require('hapi-mysql2'),
         options: clientOpts
-    })
+    });
 
     server.auth.default('jwt');
 
-    server.route(routes)
+    server.route(routes);
 
     await server.start();
     return server;

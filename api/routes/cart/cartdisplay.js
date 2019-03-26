@@ -18,7 +18,7 @@ module.exports = {
                 object.quantity = i.quantity;
             json.push(object);
             }
-            console.log(request.payload);
+
 
             return json;
         } catch (e) {
