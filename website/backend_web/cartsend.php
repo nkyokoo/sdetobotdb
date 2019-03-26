@@ -106,7 +106,7 @@ class BookingSend
 
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = 9;//$_SESSION['user']['id'];
+        $userID = $_SESSION['user']['id'];
         $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (0,?)");
         $stmt->bind_param("i",$userID);
         $stmt->execute();

@@ -14,10 +14,10 @@ session_start();
  *      do nothing and let nature take its course-
  */
 // if usergroup is not set yet go back to index
-if (!isset($_SESSION['user_group_id'])){
+if (!isset($_SESSION['user']['user_group_id'])){
     header('location: ../index.php');
 }
 // if usergroup isn't right go back to index
-if ($_SESSION['user_group_id'] != 1){
+if ($_SESSION['user']['user_group_id'] != 1){
     header('location: ../index.php');
 }
