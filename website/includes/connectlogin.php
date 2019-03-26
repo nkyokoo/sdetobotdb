@@ -32,7 +32,7 @@ function redirect($url, $statusCode = 303)
 
        redirect("./frontinclude/welcome.php",200);
     } else {
-        redirect("login.php",200);
+        redirect("api_register.php",200);
       $error = "Dit brugernavn eller adgangskode er forkert";
     }
 

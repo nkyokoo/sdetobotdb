@@ -6,9 +6,9 @@ if(!isset($_SESSION))
 }
 //we call the session start and the we use $_SESSION['user_group_id' for making sure of the user-group-id have any post. Then we use this vaiable to mannage the sidebar. 
 //Admin
-if (isset($_SESSION['user_group_id'])){
+if (isset($_SESSION['user']['user_group_id'])){
 
-    if ($_SESSION['user_group_id'] == 1){
+    if ($_SESSION['user']['user_group_id'] == 1){
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
@@ -29,7 +29,7 @@ if (isset($_SESSION['user_group_id'])){
 			';
     }
 //Superuser
-    else if ($_SESSION['user_group_id'] == 2) {
+    else if ($_SESSION['user']['user_group_id'] == 2) {
 
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_group_id'])){
 			';
     }
 //User
-    else if ($_SESSION['user_group_id'] == 3) {
+    else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
 
@@ -56,7 +56,7 @@ if (isset($_SESSION['user_group_id'])){
 					<div class="sidebar">
 					<ul class="nav flex-column">
 						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
-						<li class="nav-item"> <a class="nav-link" href="Home">Ønskelist "booking.php"</a></li>
+						<li class="nav-item"> <a class="nav-link" href="Home">Ønskeliste</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>
