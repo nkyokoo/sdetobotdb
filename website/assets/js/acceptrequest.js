@@ -2,7 +2,7 @@
 $(document).ready(function () {
     displayRequests();
 
-    $("body").on("click","*[id*='btn-']",  function (){
+    $("body").on("click","*[id='btn-']",  function (){
         let variable = this.id;
         alert(variable);
         if (variable.includes("accept")){
