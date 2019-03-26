@@ -10,7 +10,7 @@ include "../admin/adminprotection.php";
 class WishListRequest{
 
     function acceptRequest($wishlistID){
-        $url = 'http://localhost:8000/api/admin/acceptrequest';
+        $url = 'http://localhost:8000/api/request/get';
         $data = array('wishlistID' => $wishlistID);
 
 // use key 'http' even if you send the request to https://...
