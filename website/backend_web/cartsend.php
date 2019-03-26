@@ -37,6 +37,7 @@ class BookingSend
             // for ($i = $layer == 1 ? 1:11; $i < $length; $i++) {
             if (isset($_SESSION['cart'])){
                 $cart = $_SESSION['cart'];
+                $data = array();
                 foreach ($cart as $pid => $quantity){
                     // $enhedCounter = 0;
                     //Check if items and its units aren't empty
@@ -45,38 +46,43 @@ class BookingSend
                         $unitQuantity = $quantity;
 
                         //Request to API
-                        $url = 'http://localhost:8000/api/booking/bookingsend';
-                        $data = array('item' => $item,'unitQuantity' => $unitQuantity);
+                        $data[] = array('item' => $item,'quantity' => $unitQuantity);
 
-// use key 'http' even if you send the request to https://...
-                        $options = array(
-                                'http' => array(
-                                'header'  => "Content-type: application/json",
-                                'method'  => 'POST',
-                                'content' => json_encode($data)
-                            )
-                        );
-//send request to api and get result
-                        $context  = stream_context_create($options);
-                        $result = file_get_contents($url, false, $context);
 
-                        if ($result === FALSE) { /* Handle error */
-
-                            var_dump($result);
-                        }
-                        // use the output data
-                        $jsondata = json_decode($result,true);
-                        foreach ($jsondata as $data){
-                                $storeIDsFromItems .= $data['storeIDsFromItems'];
-                                $storeIDsFromUnitsQuantity .= $data['storeIDsFromUnitsQuantity'];
-                                $allProductsAreAvailable = $data['allProductsAreAvailable'];
-                        }
                     }
                     else {echo "ERROR 22";break;}
 
                 }
+                $url = 'http://localhost:8000/api/booking/bookingsend/create';
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'POST',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+
+                if ($result === FALSE) { /* Handle error */
+
+                    var_dump($result);
+                }
+                // use the output data
+                $jsondata = json_decode($result,true);
+               // var_dump($jsondata);
+                foreach ($jsondata as $data){
+                    $storeIDsFromItems .= ",".$data['item'];
+                    $storeIDsFromUnitsQuantity .= ",".$data['quantity'];
+                    if ($data['available'] == false){
+                        $allProductsAreAvailable = $data['available'];
+                    }
+                }
 
             }else{echo "ERROR 21";}
+
             if ($allProductsAreAvailable){
                 // $this->updateStatus($storeIDsFromUnits);
                 //Make a wish list in DB and return ID
@@ -93,31 +99,14 @@ class BookingSend
         } catch (Exception $e) {
         }
     }
-    /*
-    private function updateStatus($storedIDS){
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
 
-            $storedIDS = explode(",",$storedIDS);
-            for ($i = 0; $i < count($storedIDS); $i++){
-                //Making sure the variable is int
-              $storedIDSToInt = (int)$storedIDS[$i];
-                //Update the status of the reserved units/enhed from (1 = Available) to (2 = Reserved) and $row['id'] = unit ID for product.
-                $newSql = "UPDATE product_unit_e SET product_unit_e.current_status_id = 2 WHERE product_unit_e.id = ?";
-               $stmt = $mysqli->prepare($newSql);
-               $stmt->bind_param("i",$storedIDSToInt);
-               $stmt->execute();
-            }
-
-        }
-    */
     private function sendToWishList(){
         $con = new DBConnection();
         $mysqli = $con->getConnection();
 
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = $_SESSION['user']['id'];
+        $userID = 9;//$_SESSION['user']['id'];
         $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (0,?)");
         $stmt->bind_param("i",$userID);
         $stmt->execute();
@@ -130,6 +119,8 @@ class BookingSend
         $unitQuantity = explode(",",$unitQuantity);
         $con = new DBConnection();
         $mysqli = $con->getConnection();
+
+
 
         for ($i = 0; $i < count($productID); $i++){
 

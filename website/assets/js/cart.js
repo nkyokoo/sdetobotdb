@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
     });
 
-    $("body").on("change", "*[id*='product-quantity-']",function () {
+    $("body").on("click", "*[id*='product-quantity-']",function () {
         let variable = this.id;
         let key = variable.slice(17);
         //get quantity of <input> tag
@@ -35,8 +35,10 @@ $(document).ready(function() {
         quantity = quantity.value;
         //Run Function
         onChangeQuantity(quantity, key);
-    })
+    });
+
 });
+
 
 function onChangeQuantity(qts,pid) {
     //$qts = quantity || $pid = product id
@@ -50,10 +52,17 @@ function onChangeQuantity(qts,pid) {
                     url: '../backend_instantiate/int_eventsforcarts.php',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
-                        if (output){
-                            alert(output);
-                            location.reload();
+                        if (output === "total0"){
+                            $('#row-'+pid).html('');
 
+                        }
+                        else {
+
+                            if (output){
+                                alert(output);
+                                location.reload();
+
+                            }
                         }
 
                     }
@@ -113,9 +122,8 @@ function booking() {
     if ($choice === true){
         $.ajax({
             type:'POST',
-            url:'../backend_instantiate/int_bookingsend.php',
+            url:'../backend_instantiate/int_cartsend.php',
             success:function (output) {
-
                 //Clear cart after sending to wishlist
                 if (!output){
                     alert("Your wishlist has been made");
@@ -129,6 +137,8 @@ function booking() {
                 location.reload();
 
             }
+
+
         })
     }
 }

@@ -18,8 +18,9 @@ class DropDownlistProducts_Function{
         echo "<div class='card-body'>";
         echo "<h5 class='card-header'>Featured Products</h5>";
 
-        $url = 'http://localhost:8000/api/booking/bookinglist/get';
 
+        //Connect to API
+        $url = 'http://localhost:8000/api/booking/bookinglist/get';
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
@@ -65,8 +66,6 @@ class DropDownlistProducts_Function{
     function createOptionsForSelection($quantity)
     {
 
-
-
         //Check if the chosen Product is a Product.
         $string = '';
         $enhedCounter = 1;
@@ -75,15 +74,13 @@ class DropDownlistProducts_Function{
         //Check if there's any Units/Enhed available
         if ($quantity > 0){
 
-            // echo '<option value="">Select Enheder</option>';
             //Fetch Units/Enhed Data from the Database.
                 for ($i = 1; $i <= $quantity;$i++)
                 {
 
-
                 $string .= '<option value="' . $i . '">' . $i. '</option>';
                 $enhedCounter += 1;
-                // }
+
                 }
 
         }else{

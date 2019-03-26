@@ -11,11 +11,11 @@ module.exports = {
         try {
             let json = [];
 
-            for(let i of request.payload )
+            for(let i of request.payload)
             {
             const [rows, fields] = await pool.query('SELECT id,product_name,description,movable FROM school_products WHERE id = '+i.pid);
-             let object  = rows[0]
-                object.quantity = i.quantity
+             let object  = rows[0];
+                object.quantity = i.quantity;
             json.push(object);
             }
             console.log(request.payload);

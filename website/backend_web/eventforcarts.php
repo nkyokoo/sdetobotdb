@@ -105,7 +105,7 @@ class Cart{
             else {
                 //Remove Product
                 $this->remove($pid);
-
+                echo "total0";
             }
             //save
             $this->save();
@@ -206,19 +206,20 @@ class Cart{
 //  echo "product = ".$key. " quantity = ".$quantity." || ";
         if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
             $incart = $_SESSION["cart"];
+            $data = array();
             foreach ($incart as $pid => $quantity){
                 //Request to API
-                $data = array('pid' => $pid,'quantity' => $quantity);
-
+                $data[] = array('pid' => $pid,'quantity' => $quantity);
             }
-            $url = 'http://localhost:8000/api/booking/eventsforcart/display/post';
+            $format = json_encode($data);
+            $url = 'http://localhost:8000/api/booking/eventsforcart/display/create';
 
 // use key 'http' even if you send the request to https://...
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
                     'method'  => 'POST',
-                    'content' => json_encode($data)
+                    'content' => $format
                 )
             );
 //send request to api and get result
