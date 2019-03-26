@@ -13,5 +13,4 @@ function readDirR(dir) {
 const routePaths = readDirR(Path.join(__dirname, '/routes/'))
 
 routePaths.forEach(files => (routes = routes.concat(require(files))))
-console.log(routes)
 module.exports = routes
