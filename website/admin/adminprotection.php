@@ -13,7 +13,6 @@ session_start();
  * if user has admin access
  *      do nothing and let nature take its course-
  */
-
 // if usergroup is not set yet go back to index
 if (!isset($_SESSION['user_group_id'])){
     header('location: ../index.php');
