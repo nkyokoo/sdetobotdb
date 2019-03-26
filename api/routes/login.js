@@ -13,7 +13,6 @@ const Joi = require("joi");
             let payload = request.payload;
             const [rows, fields] = await pool.query('select * from users WHERE email = \'' + payload.email + '\'');
 
-
             let decrypted;
 
             try {
