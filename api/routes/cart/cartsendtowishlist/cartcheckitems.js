@@ -3,7 +3,10 @@
 module.exports = {
     method: 'POST',
     path: '/api/booking/bookingsend/create',
-    config: { auth: false },
+    config: {
+        auth: false,
+    },
+
     handler: async (request, h) => {
         const pool = request.mysql.pool;
 
