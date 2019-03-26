@@ -74,8 +74,8 @@ class BookingSend
                 $jsondata = json_decode($result,true);
                // var_dump($jsondata);
                 foreach ($jsondata as $data){
-                    $storeIDsFromItems .= ",".$data['item'];
-                    $storeIDsFromUnitsQuantity .= ",".$data['quantity'];
+                    $storeIDsFromItems .= $data['item'].",";
+                    $storeIDsFromUnitsQuantity .= $data['quantity'].",";
                     if ($data['available'] == false){
                         $allProductsAreAvailable = $data['available'];
                     }
@@ -101,35 +101,65 @@ class BookingSend
     }
 
     private function sendToWishList(){
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
+
 
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = $_SESSION['user']['id'];
-        $stmt = $mysqli->prepare("INSERT INTO wish_list(`godkendt`, `user_id`) VALUES (0,?)");
-        $stmt->bind_param("i",$userID);
-        $stmt->execute();
-        $idFromWishList = $stmt->insert_id;
-        $mysqli->close();
+        $userID = 4;//$_SESSION['user']['id'];
+
+        //Connect to API
+        $data = $userID;
+        $url = 'http://localhost:8000/api/booking/bookingsend/wishlist/create';
+// use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+//send request to api and get result
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+
+        if ($result === FALSE) { /* Handle error */
+
+            var_dump($result);
+        }
+        // use the output data and decode from json format
+        $idFromWishList = json_decode($result,true);
+
         return $idFromWishList;
+
+
     }
     private function connectProductsToWishList($productID,$unitQuantity,$wishListID){
         $productID = explode(",",$productID);
         $unitQuantity = explode(",",$unitQuantity);
-        $con = new DBConnection();
-        $mysqli = $con->getConnection();
+        $data = array();
+        for ($i = 0; $i < count($productID) - 1; $i++){
 
+            $data[] = array('productid' => $productID[$i], 'quantity' => $unitQuantity[$i], 'wishlistid' => $wishListID);
+        }
+        $url = 'http://localhost:8000/api/booking/bookingsend/connection/create';
+// use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/json",
+                'method'  => 'POST',
+                'content' => json_encode($data)
+            )
+        );
+//send request to api and get result
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
 
+        if ($result === FALSE) { /* Handle error */
 
-        for ($i = 0; $i < count($productID); $i++){
-
-            $stmt = $mysqli->prepare("INSERT INTO `connection_product_wishlist`(`wish_list_id`, `school_products_id`, `quantity`) VALUES (?,?,?)");
-            $stmt->bind_param("iii",$wishListID,$productID[$i],$unitQuantity[$i]);
-            $stmt->execute();
+            var_dump($result);
         }
 
-        $mysqli->close();
+
         //$this->sendToRentalTest($wishListID);
     }
 }

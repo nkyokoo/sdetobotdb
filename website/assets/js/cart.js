@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 });
 
-
+ //JS Functions
 function onChangeQuantity(qts,pid) {
     //$qts = quantity || $pid = product id
     try {
@@ -133,7 +133,7 @@ function booking() {
                         url: '../backend_instantiate/int_eventsforcarts.php',
                         data: {clear: "clear"}
                     });
-                }
+                }else {alert(output);}
                 location.reload();
 
             }
