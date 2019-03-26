@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "dependencies": {
     "hapi": "^18.1.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "boom": "latest",
+    "joi": "latest"
   },
   "devDependencies": {
     "hapi-auth-jwt2": "^8.3.0",
