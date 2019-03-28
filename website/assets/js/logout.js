@@ -5,7 +5,7 @@ $(document).ready(function() {
             data: {
                 logout: '1',
             },
-            url: "../functions/fileroute.php",
+            url: "../authenticator.php",
             success: function(output) {
                 alert(output);
                 if (output == 'done') {

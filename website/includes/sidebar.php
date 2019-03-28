@@ -1,11 +1,13 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
 <?php
+echo "<script src=../assets/js/logout.js> </script>";
 if(!isset($_SESSION))
 {
     session_start();
 }
 //we call the session start and the we use $_SESSION['user_group_id' for making sure of the user-group-id have any post. Then we use this vaiable to mannage the sidebar. 
 //Admin
+
 if (isset($_SESSION['user']['user_group_id'])){
 
     if ($_SESSION['user']['user_group_id'] == 1){
