@@ -21,16 +21,14 @@ if (isset($_POST['login_btn'])) {
     $jsondata = json_decode($result,true);
     if ($jsondata['code'] == 200 ) {
 
-       // $_SESSION['user'] = $jsondata[0];
+        $_SESSION['user'] = $jsondata['user'][0];
         header('Location: ../index.php');
 
 
 
     }else{
 
-        echo"<div class=\"alert alert-primary\" id='alert' style='color: #000;' role=\"alert\">
-                                          {$jsondata['error']}
-             </div> ";
+        header('Location: ../login.php');
 
     }
 
@@ -61,6 +59,8 @@ if (isset($_POST['register_btn'])) {
         header('Location: /login.php');
 
     }else{
+
+        header('Location: /register.php');
 
     }
 }

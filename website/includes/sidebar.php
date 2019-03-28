@@ -7,7 +7,6 @@ if(!isset($_SESSION))
 }
 //we call the session start and the we use $_SESSION['user_group_id' for making sure of the user-group-id have any post. Then we use this vaiable to mannage the sidebar. 
 //Admin
-echo $_SESSION['user']['user_group_id'];
 
 if (isset($_SESSION['user']['user_group_id'])){
 

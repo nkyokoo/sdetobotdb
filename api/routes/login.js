@@ -14,7 +14,7 @@ const Joi = require("joi");
 
             if (request.payload) {
                 let payload = request.payload;
-          await pool.query('select * from users WHERE email = \'' + payload.email + '\'', function (err, rows) {
+         const [rows, fields] = await pool.query('select * from users WHERE email = \'' + payload.email + '\'');
                         if (rows.length !== 0) {
                             let decrypted;
                             console.log(rows)
@@ -31,19 +31,18 @@ const Joi = require("joi");
                                 }
                                 let user = rows[0];
                                 delete user.password
-                                successful.user = user
-                                console.log(successful)
+                                successful.user = [user]
                                 return successful
                             } else {
                                 return {code: 401, error: "password incorrect"}
                             }
                         } else {
                             return {
-                                code: 200,
+                                code: 400,
                                 error: "email doesn't exist"
                             }
                         }
-                });
+
             }else{
                 return {code:400, error: "fill something in"}
             }
