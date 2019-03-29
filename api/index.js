@@ -1,3 +1,4 @@
+
 const Hapi        = require('hapi');
 const hapiAuthJWT = require('hapi-auth-jwt2');
 const JWT         = require('jsonwebtoken');
@@ -39,7 +40,9 @@ const init = async() => {
         plugin: require('hapi-mysql2'),
         options: clientOpts
     });
-
+    server.events.on('response', function (request) {
+        console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode);
+    });
     server.auth.default('jwt');
 
     server.route(routes);
@@ -49,6 +52,7 @@ const init = async() => {
 
 
 };
+
 
 init().then(server => {
     console.log('Server running at:', server.info.uri);

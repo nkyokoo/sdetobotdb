@@ -13,20 +13,21 @@ if (isset($_SESSION['user']['user_group_id'])){
     if ($_SESSION['user']['user_group_id'] == 1){
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-
+            <div id="sideBar">
 				<content class="border-content">
 					<div class="sidebar">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a href="../index.php">Hejsa Admin</a></li>
-						<li class="nav-item"><a href="">opret user</a></li>
-						<li class="nav-item"><a href="">accepter ønskeliste booking</a></li>
-						<li class="nav-item"><a href="">accept book</a></li>
-						<li class="nav-item"><a href="">book</a></li>
-						<li class="nav-item"><a href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
-						<li class="nav-item"><a id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
+						<li class="nav-item"><a class="nav-link" href="../index.php">Hejsa Admin</a></li>
+						<li class="nav-item"><a class="nav-link" href="">opret user</a></li>
+						<li class="nav-item"><a class="nav-link" href="">accepter ønskeliste booking</a></li>
+						<li class="nav-item"><a class="nav-link" href="">accept book</a></li>
+						<li class="nav-item"><a class="nav-link" href="">book</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
+						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
 					</div>
 				</content>
+				</div>
 
 			';
     }
@@ -35,7 +36,7 @@ if (isset($_SESSION['user']['user_group_id'])){
 
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-
+            <div id="sideBar">
 				<content class="border-content">
 					<div class="sidebar">
 					<ul class="nav flex-column">
@@ -46,14 +47,14 @@ if (isset($_SESSION['user']['user_group_id'])){
 						</ul>
 					</div>
 				</content>
-
+            </div>
 			';
     }
 //User
     else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-
+           <div id="sideBar">
 				<content class="border-conten">
 					<div class="sidebar">
 					<ul class="nav flex-column">
@@ -64,6 +65,7 @@ if (isset($_SESSION['user']['user_group_id'])){
 						</ul>
 					</div>
 				</content>
+            </div>
 
 			';
 
@@ -75,7 +77,7 @@ else {
     echo '
 
 		<link rel="stylesheet" href="../assets/css/sidebar.css">
-
+           <div id="sideBar">
 				<content class="border-content">
 					<div class="sidebar">
 					<ul class="nav flex-column">
@@ -87,6 +89,7 @@ else {
 						</ul>
 					</div>
 				</content>
+            </div>
 
 			';
 }
