@@ -1,25 +1,21 @@
 package dk.sde.sdebooking.network
 
-import android.app.Activity
-import android.content.Context
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.util.Log
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import org.json.JSONException
 import org.json.JSONObject
-import android.widget.Toast
 
 
-
-
-
+var responsejson : JSONObject = JSONObject()
 
 class authenticator {
     @RequiresApi(Build.VERSION_CODES.N)
-    fun login(email: String, password: String, applicationContext: Context){
+    fun login(email: String, password: String) {
         val credentials = JSONObject()
         try {
             credentials.put("email", email)
@@ -41,7 +37,7 @@ class authenticator {
         val postData: ByteArray = credentials.toString().toByteArray(StandardCharsets.UTF_8)
 
         connection.setRequestProperty("charset", "utf-8")
-        connection.setRequestProperty("Content-lenght", postData.size.toString())
+        connection.setRequestProperty("Content-length", postData.size.toString())
         connection.setRequestProperty("Content-Type", "application/json")
 
         try {
@@ -52,30 +48,16 @@ class authenticator {
 
         }
 
-        if (connection.responseCode != HttpURLConnection.HTTP_OK && connection.responseCode != HttpURLConnection.HTTP_CREATED) {
-            try {
-
-
-                val reader: BufferedReader = BufferedReader(InputStreamReader(connection.inputStream))
-                val output: String = reader.readLine()
-
-            } catch (exception: Exception) {
-                throw Exception("Exception while push the notification  $exception.message")
-            }
-        }else{
             val reader: BufferedReader = BufferedReader(InputStreamReader(connection.inputStream))
             val output: String = reader.readLine()
-            val response = JSONObject(output)
-            val text = response.getString("error")
-            val duration = Toast.LENGTH_SHORT
+            Log.d("InputStream", output)
+            responsejson = JSONObject(output)
 
-                val toast = Toast.makeText(applicationContext, text, duration)
+    }
 
-
-        }
-
-
-
+    fun getResponseData() : JSONObject{
+        val returningData = responsejson;
+        return returningData
 
     }
 }
