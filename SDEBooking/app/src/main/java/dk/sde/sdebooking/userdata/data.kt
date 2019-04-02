@@ -32,5 +32,8 @@ class data {
 
         return json
     }
+    fun deleteData(){
+
+    }
 
 }

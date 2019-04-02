@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -32,12 +33,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        val username = findViewById<TextView>(R.id.user_nav_title)
-        val email = findViewById<TextView>(R.id.user_email_title)
+        val parentView = nav_view.getHeaderView(0)
+
+        val username = parentView.findViewById<TextView>(R.id.user_nav_title)
+        val email =  parentView.findViewById<TextView>(R.id.user_email_title)
 
         val data = data()
        val userdata = data.getData(this@HomeActivity)
-
+        Log.d("user",userdata.getString("name"))
         username.text = userdata.getString("name")
         email.text = userdata.getString("email")
 
