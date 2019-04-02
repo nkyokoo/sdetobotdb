@@ -32,8 +32,10 @@ class data {
 
         return json
     }
-    fun deleteData(){
+    fun deleteData(context: Context){
 
+        val file = context.getFileStreamPath("userdata")
+        file.delete()
     }
 
 }
