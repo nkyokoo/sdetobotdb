@@ -36,10 +36,12 @@ const init = async() => {
         decorate: true
     };
 
-    await server.register({
-        plugin: require('hapi-mysql2'),
-        options: clientOpts
-    });
+    await server.register([
+        {
+            plugin: require('hapi-mysql2'),
+            options: clientOpts
+        }
+    ]);
     server.events.on('response', function (request) {
         console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode);
     });

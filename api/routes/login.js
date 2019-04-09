@@ -15,7 +15,6 @@ const Joi = require("joi");
             if (request.payload) {
                 let payload = request.payload;
          const [rows, fields] = await pool.query('select * from users WHERE email = \'' + payload.email + '\'');
-                   console.log(payload)
                         if (rows.length !== 0) {
                             let decrypted;
                             try {

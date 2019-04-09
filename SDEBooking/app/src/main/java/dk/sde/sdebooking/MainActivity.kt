@@ -50,8 +50,12 @@ class MainActivity : AppCompatActivity() {
         val auth = authenticator()
         val thread = object : Thread() {
             override fun run() {
-                  auth.login(emailInput.text.toString(),passwordInput.text.toString())
-                Handler(Looper.getMainLooper()).post {  responseActions(auth.getResponseData(),v.context) }
+                try {
+                    auth.login(emailInput.text.toString(),passwordInput.text.toString())
+                    Handler(Looper.getMainLooper()).post {  responseActions(auth.getResponseData(),v.context) }
+                } catch (e: Exception) {
+                    Handler(Looper.getMainLooper()).post {  }
+                }
 
             }
         }
