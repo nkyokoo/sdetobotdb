@@ -1,10 +1,4 @@
-<link rel="stylesheet" href="../assets/css/loading.css">
 
-<div class="loadingscreen" id="loading">
-    <div class="loadingbar">
-        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-</div>
 <?php
 
 
@@ -15,6 +9,13 @@ include "../includes/header.php";
 include "../includes/navbar.php";
 include '../includes/sidebar.php';
 
+echo "
+<link rel=\"stylesheet\" href=\"../assets/css/loading.css\">
+<div class=\"loadingscreen\" id=\"loading\">
+    <div class=\"loadingbar\">
+        <div class=\"lds-roller\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>";
 
 ?>
 
@@ -176,11 +177,13 @@ include '../includes/sidebar.php';
         </div>
     </div>
 </div>
+
+<?php
+
+echo "
 <script>
         $('#loading').remove();
-
-</script>
-<?php
+</script>";
 include "../includes/footer.php";
 
 ?>

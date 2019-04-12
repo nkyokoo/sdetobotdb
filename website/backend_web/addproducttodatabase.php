@@ -128,13 +128,18 @@ class addProductToDatabase{
 
             $array = $this->arraysAndSecurity();
 
-            $url = 'http://localhost:8000/api/booking/products/get?type=lokale';
+            $url = 'http://localhost:8000/api/booking/products/lokale/get';
+
+            $data = array(
+                'location' => $array[3]
+            );
 
 // use key 'http' even if you send the request to https://...
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'get'
+                    'method'  => 'post',
+                    'content' => json_encode($data)
                 )
             );
 //send request to api and get result
@@ -142,14 +147,191 @@ class addProductToDatabase{
             $result = file_get_contents($url, false, $context);
             $jsonData = json_decode($result,true);
 
-            if (sizeof($jsonData) >= 0) {            //Check if Location Exist in Database
+
+            if (sizeof($jsonData) > 0) {            //Check if Location Exist in Database
 
                 $container = $jsonData['id'];
                 $this->setLokale($container);
             }else{            //else Insert a new Location to Database with prepared statement
 
 
-                $url = 'http://localhost:8000/api/booking/products/create?type=lokale';
+                $url = 'http://localhost:8000/api/booking/products/lokale/create';
+                $data = array(
+                    'location' => $array[3]
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
+                //Get the ID from new Location and set setLocation variable with the new data
+                $this->setLokale($jsonData['id']);
+
+            }
+
+
+
+
+        } catch (Exception $e) {
+            die("Error " . $e->getMessage());
+        }
+    }
+// Check if SVF Exist
+    private function checkIfSVFExist()
+    {
+        try {
+            //$mysql = new mysqli('localhost', 'root', 'root', 'booking', 3307);
+            $array = $this->arraysAndSecurity();
+            //Substring
+            //if the value is P8 then it takes first index => P
+            if (!is_numeric($array[4])) {
+
+                $firstletter = substr($array[4], 0, 1);
+                //Substring
+                //if the value is P8 then it start at index 1 and end when string ends.
+                $number = substr($array[4], 1);
+            } else {
+
+                $firstletter = "False";
+                $number = -1;
+            }
+
+            $url = 'http://localhost:8000/api/booking/products/svf/get';
+
+
+            $data = array(
+                'id' => $array[4],
+                'type' => $firstletter,
+                'nr' => $number
+            );
+
+// use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/json",
+                    'method'  => 'post',
+                    'content' => json_encode($data)
+                )
+            );
+//send request to api and get result
+                $result = file_get_contents($url, false);
+                $jsonData = json_decode($result, true);
+
+                //Check if svf Exist in Database
+                if (sizeof($jsonData) > 0) {
+                    $container = $jsonData['id'];
+                    $this->setSVF($container);
+                } else {            //else Insert a new Location to Database with prepared statement
+
+                    //Get the ID from new Location and set setLocation variable with the new data
+                    $substring = $array[4];
+                    //get string from index 0 to 1 char length.
+                    $substring1 = substr($substring, 0, 1);
+                    //get string from index 1 till end.
+                    $substring2 = substr($substring, 1);
+                    //Convert string to int
+                    $substring2 = (int)$substring2;
+                    //Convert string to Upper case.
+                    $substring1 = strtoupper($substring1);
+
+                    $url = 'http://localhost:8000/api/booking/products/create?type=lokale';
+                    $data = array(
+                        'location' => $array[3]
+                    );
+
+// use key 'http' even if you send the request to https://...
+                    $options = array(
+                        'http' => array(
+                            'header' => "Content-type: application/json",
+                            'method' => 'post',
+                            'content' => json_encode($data)
+                        )
+                    );
+//send request to api and get result
+                    $context = stream_context_create($options);
+                    $result = file_get_contents($url, false, $context);
+                    $jsonData = json_decode($result, true);
+                    //Get the ID from new Location and set setLocation variable with the new data
+                    $this->setSVF($jsonData['id']);
+                }
+            }
+        catch
+            (Exception $e) {
+                die("Error " . $e->getMessage());
+            }
+        }
+
+// Check if THP Exist
+    private function checkIfTHPExist(){
+        try {
+            $array = $this->arraysAndSecurity();
+            //Substring
+            //if the value is P8 then it takes first index => P
+            if (!is_numeric($array[5])){
+
+                $firstletter = substr($array[5],0,1);
+                //Substring
+                //if the value is P8 then it start at index 1 and end when string ends.
+                $number = substr($array[5],1);
+            }
+            else{
+
+                $firstletter = "False";
+                $number = -1;
+            }
+            //Check in database if what you've input is in the database.
+            //Check if thp exist Exist in Database
+
+            $url = 'http://localhost:8000/api/booking/products/thp/get';
+
+            $data = array(
+                'id' =>  $array[5],
+                'type' => $firstletter,
+                'nr' => $number
+            );
+
+// use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/json",
+                    'method'  => 'post',
+                    'content' => json_encode($data)
+                )
+            );
+//send request to api and get result
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            $jsonData = json_decode($result,true);
+
+
+            if (sizeof($jsonData) > 0) {
+                $container = $jsonData['id'];
+                $this->setTHP($container);
+
+            //else Insert a new SVF row to Database with prepared statement
+
+            }else{
+
+
+              $substring = $array[5];
+                // Substring because the value(S2) needs to be split into type and number (Type = S, Number = 2)
+                //get string from index 0 to 1 char length.
+                $substring1 = substr($substring,0,1);
+                //get string from index 1 till end.
+                $substring2 = substr($substring,1);
+                //Convert string to int
+                $substring2 = (int)$substring2;
+                //Convert string to Upper case.
+                $substring1 = strtoupper($substring1);
+                $url = 'http://localhost:8000/api/booking/products/lokale/create';
                 $data = array(
                     'location' => $array[3]
                 );
@@ -167,117 +349,6 @@ class addProductToDatabase{
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
-                $location = $mysql->prepare('INSERT INTO `location_room` (`room`) VALUES (?)');
-                $location->bind_param("s", $array[3]);
-                $location->execute();
-                //Get the ID from new Location and set setLocation variable with the new data
-                $this->setLokale($location->insert_id);
-
-            }
-
-
-
-
-        } catch (Exception $e) {
-            die("Error " . $e->getMessage());
-        }
-    }
-// Check if SVF Exist
-    private function checkIfSVFExist(){
-        try {
-            //$mysql = new mysqli('localhost', 'root', 'root', 'booking', 3307);
-            $connection = new DBConnection();
-            $mysql = $connection->getConnection();
-            $array = $this->arraysAndSecurity();
-            //Substring
-            //if the value is P8 then it takes first index => P
-            if (!is_numeric($array[4])){
-
-                $firstletter = substr($array[4],0,1);
-                //Substring
-                //if the value is P8 then it start at index 1 and end when string ends.
-                $number = substr($array[4],1);
-            }
-            else{
-
-                $firstletter = "False";
-                $number = -1;
-            }
-
-
-            $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[4]."' or type = '".$firstletter."' and nr =".$number);
-            //Check if svf Exist in Database
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $container = $row['id'];
-                $this->setSVF($container);
-            }
-            //else Insert a new svf row to Database with prepared statement
-            else
-            {
-                $substring = $array[4];
-                //get string from index 0 to 1 char length.
-                $substring1 = substr($substring,0,1);
-                //get string from index 1 till end.
-                $substring2 = substr($substring,1);
-                //Convert string to int
-                $substring2 = (int)$substring2;
-                //Convert string to Upper case.
-                $substring1 = strtoupper($substring1);
-                $location = $mysql->prepare('INSERT INTO `product_location_type_svf` (`type`,nr) VALUES (?,?)');
-                $location->bind_param("si",$substring1 ,$substring2);
-                $location->execute();
-                //Get the ID from new Location and set setLocation variable with the new data
-                $this->setSVF($location->insert_id);
-            }
-            $mysql->close();
-        } catch (Exception $e) {
-            die("Error " . $e->getMessage());
-        }
-    }
-// Check if THP Exist
-    private function checkIfTHPExist(){
-        try {
-            //$mysql = new mysqli('localhost', 'root', 'root', 'booking', 3307);
-            $connection = new DBConnection();
-            $mysql = $connection->getConnection();
-            $array = $this->arraysAndSecurity();
-            //Substring
-            //if the value is P8 then it takes first index => P
-            if (!is_numeric($array[5])){
-
-                $firstletter = substr($array[5],0,1);
-                //Substring
-                //if the value is P8 then it start at index 1 and end when string ends.
-                $number = substr($array[5],1);
-            }
-            else{
-
-                $firstletter = "False";
-                $number = -1;
-            }
-            //Check in database if what you've input is in the database.
-            $result = $mysql->query("SELECT id FROM product_location_type_svf WHERE id = '" . $array[5]."' or type ='".$firstletter."' and nr = ".$number);
-            //Check if thp exist Exist in Database
-            if ($result->num_rows > 0)
-            {
-                $row = $result->fetch_assoc();
-                $container = $row['id'];
-                $this->setTHP($container);
-            }
-            //else Insert a new SVF row to Database with prepared statement
-            else
-            {
-                $substring = $array[5];
-                // Substring because the value(S2) needs to be split into type and number (Type = S, Number = 2)
-                //get string from index 0 to 1 char length.
-                $substring1 = substr($substring,0,1);
-                //get string from index 1 till end.
-                $substring2 = substr($substring,1);
-                //Convert string to int
-                $substring2 = (int)$substring2;
-                //Convert string to Upper case.
-                $substring1 = strtoupper($substring1);
                 $location = $mysql->prepare('INSERT INTO `product_location_type_thp` (`type`,nr) VALUES (?,?)');
                 $location->bind_param("si",$substring1 ,$substring2);
                 $location->execute();

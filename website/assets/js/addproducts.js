@@ -16,6 +16,8 @@ $(document).ready(function () {
 
 
 
+
+
 });
 //Send AddProducts.php data to php.
 function btnAddProductToDB() {myBlock:{
