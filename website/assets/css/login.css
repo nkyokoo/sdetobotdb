@@ -1,4 +1,13 @@
 
+:root {
+    --light-bg-color: rgba(242, 250, 255, 1);
+    --light-txt-color: rgb(6, 6, 6);
+    --dark-bg-color: rgb(6, 6, 6);
+    --dark-txt-color:  rgba(242, 250, 255, 1) ;
+
+}
+
+
 
 .container{
   margin-top: 5rem;
@@ -11,17 +20,17 @@
     width: 10rem;
     z-index: 1;
     float: left;
-    -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
+    --webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
 }
-#login-button {
-    -webkit-transition: width 2s; /* Safari */
-    -webkit-transition-timing-function: linear; /* Safari */
-    transition: width 2s;
-    transition-timing-function: linear;
+#login-button{
+    -webkit-animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both paused infinite;
 }
 #login-button:hover {
-    width: 80px;
+    animation-play-state: running;
+
+
 }
 .Login-Form{
   min-width: 40vw;
@@ -48,8 +57,79 @@
   -webkit-text-stroke-color: black;
 }
 body {
-  color: #ffffff;
-  background: #04cba8 url("../img/robot-meets-man.png") no-repeat center;
+  color: var(--light-txt-color);
+  background: var(--light-bg-color);
     height: 90vh;
 
+}
+
+.copyrightLoginSite {
+    position: absolute;
+     top: 80vh;
+}
+.copyrightLoginSiteText{
+    text-align: center;
+
+}
+
+/**
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+@-webkit-keyframes shake-horizontal {
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px);
+    }
+    80% {
+        -webkit-transform: translateX(8px);
+        transform: translateX(8px);
+    }
+    90% {
+        -webkit-transform: translateX(-8px);
+        transform: translateX(-8px);
+    }
+}
+@keyframes shake-horizontal {
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px);
+    }
+    80% {
+        -webkit-transform: translateX(8px);
+        transform: translateX(8px);
+    }
+    90% {
+        -webkit-transform: translateX(-8px);
+        transform: translateX(-8px);
+    }
 }
