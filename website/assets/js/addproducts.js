@@ -115,7 +115,7 @@ function addNewInputOfAndet(CurrentEventId) {
             let andetPlaceHolderName = CurrentEventId;
             //slice the last 3 index
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
+            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
                 let container = document.getElementById(CurrentEventId);
@@ -133,7 +133,7 @@ function addNewInputOfAndet(CurrentEventId) {
         else {
             let andetPlaceHolderName = CurrentEventId;
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
+            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "andet") {
                 let container = document.getElementById(CurrentEventId);

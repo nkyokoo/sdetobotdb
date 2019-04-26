@@ -71,5 +71,5 @@ include 'includes/navbar.php';
         </div>
 </content>
 <?php
-include 'includes/footer.php';
+//include 'includes/footer.php';
 ?>

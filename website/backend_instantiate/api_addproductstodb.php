@@ -1,6 +1,6 @@
 <?php
 
-include "../backend/addproducttodatabase.php";
+include "../backend_web/addproducttodatabase.php";
 
 try
 {

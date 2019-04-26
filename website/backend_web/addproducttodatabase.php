@@ -106,8 +106,6 @@ class addProductToDatabase{
     private function arraysAndSecurity()
     {
         //                              ar[0]            ar[1]               ar[2]             ar[3]           ar[4]         ar[5]         ar[6]               ar[7]
-        $connection = new DBConnection();
-        $mysql = $connection->getConnection();
         $array = array($this->getKategori(), $this->getProduktNavn(), $this->getVirksomhed(), $this->getLokale(), $this->getSVF(), $this->getTHP(), $this->getLeverandoer(), $this->getDescription());
 //Check for html special char and string from input to prevent weak sql injection
         $count = count($array);
@@ -118,7 +116,7 @@ class addProductToDatabase{
             $container = mysqli_real_escape_string($mysql, $container);
             $array[$i] = $container;
         }
-        $mysql->close();
+
         return $array;
     }
     private function checkIfLocationExist()
@@ -148,7 +146,7 @@ class addProductToDatabase{
             $jsonData = json_decode($result,true);
 
 
-            if (sizeof($jsonData) > 0) {            //Check if Location Exist in Database
+            if (count($jsonData) > 0) {            //Check if Location Exist in Database
 
                 $container = $jsonData['id'];
                 $this->setLokale($container);
@@ -226,7 +224,7 @@ class addProductToDatabase{
                 $jsonData = json_decode($result, true);
 
                 //Check if svf Exist in Database
-                if (sizeof($jsonData) > 0) {
+                if (count($jsonData) > 0) {
                     $container = $jsonData['id'];
                     $this->setSVF($container);
                 } else {            //else Insert a new Location to Database with prepared statement
@@ -312,11 +310,10 @@ class addProductToDatabase{
             $jsonData = json_decode($result,true);
 
 
-            if (sizeof($jsonData) > 0) {
+            if (count($jsonData) > 0) {
                 $container = $jsonData['id'];
                 $this->setTHP($container);
 
-            //else Insert a new SVF row to Database with prepared statement
 
             }else{
 
@@ -331,9 +328,45 @@ class addProductToDatabase{
                 $substring2 = (int)$substring2;
                 //Convert string to Upper case.
                 $substring1 = strtoupper($substring1);
-                $url = 'http://localhost:8000/api/booking/products/lokale/create';
+//send request to api and get result
+                $url = 'http://localhost:8000/api/booking/products/thp/create';
                 $data = array(
-                    'location' => $array[3]
+                    'type' => $substring1,
+                    'nr' => $substring2,
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+                //Get the ID from new Location and set setLocation variable with the new data
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
+                $this->setTHP($jsonData['id']);
+            }
+
+        } catch (Exception $e) {
+            die("Error " . $e->getMessage());
+        }
+    }
+// Check if Product_school_Address Exist and insert into school_name_short
+// Address/Virksomhed
+    private function checkIfAddressExist(){
+        try{
+            $array = $this->arraysAndSecurity();
+            //Check if Address Exist in the Database.
+            //If array doesn't contain ','
+            if (strpos($array[2],',') == false){
+                $url = 'http://localhost:8000/api/booking/products/thp/get';
+
+                $data = array(
+                    'id' =>  $array[2],
+
                 );
 
 // use key 'http' even if you send the request to https://...
@@ -349,36 +382,16 @@ class addProductToDatabase{
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
-                $location = $mysql->prepare('INSERT INTO `product_location_type_thp` (`type`,nr) VALUES (?,?)');
-                $location->bind_param("si",$substring1 ,$substring2);
-                $location->execute();
-                //Get the ID from new Location and set setLocation variable with the new data
-                $this->setTHP($location->insert_id);
-            }
-            $mysql->close();
-        } catch (Exception $e) {
-            die("Error " . $e->getMessage());
-        }
-    }
-// Check if Product_school_Address Exist and insert into school_name_short
-// Address/Virksomhed
-    private function checkIfAddressExist(){
-        try{
-            $connection = new DBConnection();
-            $mysql = $connection->getConnection();
-            $array = $this->arraysAndSecurity();
-            //Check if Address Exist in the Database.
-            //If array doesn't contain ','
-            if (strpos($array[2],',') == false){
-                $result = $mysql->query("SELECT school_address_short.id FROM school_address_short INNER JOIN product_school_address ON school_address_short.product_school_address_id = ".$array[2]);
-                if ($result->num_rows > 0){
-                    $row = $result->fetch_assoc();
-                    $this->setVirksomhed($row['id']);
+
+                if (count($jsonData) > 0) {
+                    $container = $jsonData['id'];
+                    $this->setVirksomhed($container['id']);
                 }
             }
             // Else Insert a new Address to the Database with Prepared statement
             else
             {
+                az
                 $explodedarray = explode(',',$array[2]);
                 $stmt = $mysql->prepare('INSERT INTO `product_school_address` (school_name,city,zip_code,address) VALUES (?,?,?,?)');
                 $stmt->bind_param("ssis" ,$explodedarray[0],$explodedarray[2],$explodedarray[3],$explodedarray[4]);
@@ -389,10 +402,10 @@ class addProductToDatabase{
                 $newSql->bind_param("si",$explodedarray[1],$idContainer);
                 $newSql->execute();
                 $idContainer = $newSql->insert_id;
-                //Set setkategori variable with the new data.
+                //Set kategori variable with the new data.
                 $this->setVirksomhed($idContainer);
             }
-            $mysql->close();
+
         }catch (Exception $exception){
             die("Error ". $exception->getMessage()) ;
         }
@@ -402,8 +415,6 @@ class addProductToDatabase{
     private function checkIfCategoryExist()
     {
         try{
-            $connection = new DBConnection();
-            $mysql = $connection->getConnection();
             $array = $this->arraysAndSecurity();
             //Check if Category Exist in the Database.
 
@@ -424,7 +435,7 @@ class addProductToDatabase{
                 //Set setkategori variable with the new data.
                 $this->setKategori($idContainer);
             }
-            $mysql->close();
+
         }catch (Exception $exception){
             die("Error ". $exception->getMessage()) ;
         }
@@ -454,7 +465,7 @@ class addProductToDatabase{
                 //Set setLeverandoer variable with the ID from new Leverandoer/Supplier
                 $this->setLeverandoer($stmt->insert_id);
             }
-            $mysql->close();
+
         }catch (Exception $exception){
             die("Error: ". $exception);
         }
@@ -477,7 +488,7 @@ class addProductToDatabase{
             $stmt->execute();
             //Set setProduct with ID from the new Product we've added.
             $this->setProduct($stmt->insert_id);
-            $mysql->close();
+
         } catch (Exception $e) {
             die("Error: ".$e);
         }
@@ -501,7 +512,7 @@ class addProductToDatabase{
                 $stmt->bind_param("siiii", $convertEnhedNumberToString, $product_id,$lokale,$svf,$thp);
                 $stmt->execute();
             }
-            $mysql->close();
+
         } catch (Exception $e) {
             die("Error: ".$e);
         }
