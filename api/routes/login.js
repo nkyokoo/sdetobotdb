@@ -31,15 +31,13 @@ const Joi = require("joi");
                                 let user = rows[0];
                                 delete user.password
                                 successful.user = [user]
-                                return successful
+                                return h.response(successful).code(200)
                             } else {
-                                return {code: 401, error: "password incorrect"}
+                                return h.response({code: 401, error: "password incorrect"}).code(401)
                             }
                         } else {
-                            return {
-                                code: 400,
-                                error: "email doesn't exist"
-                            }
+                            return h.response({code: 401, error: "email doesn't exist"}).code(401)
+
                         }
 
             }else{

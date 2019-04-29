@@ -1,5 +1,14 @@
 
 @charset "utf-8";
+@media only screen and (max-width: 600px) {
+    #sideBarToggle{
+      display: block;
+    }
+}
+
+#sideBarToggle{
+    display: block;
+}
 
 body {
     color: white;

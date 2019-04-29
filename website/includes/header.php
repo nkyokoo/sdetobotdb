@@ -17,11 +17,13 @@
       <title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
 
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-      <link rel='icon' type='image/x-icon' href='../assets/img/favicon.ico'>
+      <link rel='icon' type='image/x-icon' href='../favicon.ico'>
       <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
       <link rel='stylesheet' type='text/css' href='../assets/css/_stylesheets.css'>
       <link rel='stylesheet' type='text/css' href='../assets/css/info.css'>
+      <link rel="stylesheet" href="../assets/css/sidebar.css">
       <script src="../assets/js/jquery.min.js"></script>
+
         <link rel="cors" href="https://cors-anywhere.herokuapp.com/">
 
 
