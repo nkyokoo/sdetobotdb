@@ -1,17 +1,17 @@
 <?php
 
 
-if (isset($_SESSION['user']['user_group_id'])) {
+if (isset($_SESSION['user'])) {
     echo "
 
       <nav class='navbar navbar-expand-lg navbar-light bg-light' onclick='' style='background: rgba(227,234,239,1)  !important;'>
-       <button class=\"btn btn-primary\" id='sideBarToggle' onclick='sideBarShow()' type=\"button\">
-            <i class=\"material-icons\">menu</i>
-           </button>
           <a class='navbar-brand' style='' href='/'><img src='../assets/images/logo.svg' style='color: white; margin: 0 !important; padding: 0!important; width: 8rem; height: auto'class='images' alt='logo'></a>
-          <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-              <ul class='navbar-nav'>
-						
+             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                 <span class=\"navbar-toggler-icon\"></span>
+            </button>
+        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+         <ul class=\"navbar-nav mr-auto\">
+				<li class=\"nav-item\"><a class=\"nav-link\"  style='position: relative; float: right' href=\"../index.php\">"; echo $_SESSION['user']['name'] ; echo "</a></li>
               </ul>
           </div>
       </nav>";
@@ -20,8 +20,11 @@ if (isset($_SESSION['user']['user_group_id'])) {
 
       <nav class='navbar navbar-expand-lg navbar-light bg-light' style='background: rgba(227,234,239,1)  !important;'>
           <a class='navbar-brand' style='' href='/'><img src='../assets/images/logo.svg' style='color: white; margin: 0 !important; padding: 0!important; width: 8rem; height: auto'class='images' alt='logo'></a>
-          <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-              <ul class='navbar-nav'>
+          <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+             <span class=\"navbar-toggler-icon\"></span>
+          </button>
+          <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+            <ul class=\"navbar-nav mr-auto\">
               	<li class=\"nav-item\"><a class=\"nav-link\" href=\"../index.php\">Home</a></li>
 						<li class=\"nav-item\"><a class=\"nav-link\" href=\"\">Contact</a></li>
 						<li class=\"nav-item\"><a class=\"nav-link\" href=\"../login.php\">Log på</a></li>

@@ -14,7 +14,7 @@
 	include 'info.php';
 	?>
 </div>
-<?
+<?php
 include 'includes/footer.php';
 
 

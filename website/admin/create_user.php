@@ -1,31 +1,9 @@
-<?php include('../auth.php') ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset='utf-8'>
-    <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta name='description' content='sde udlånsystem til automation og robotteknologi '>
-    <meta name='theme-color' content=''#2196F3'>
-    <meta content='' property='og:image' />
-    <meta content='SDE AUTOMATION OG ROBOTTEKNOLOGI' property='og:title' />
-    <meta content='sde udlånsystem til automation og robotteknologi' property='og:description' />
-    <meta name='revisit-after' content='2 days'>
-    <meta name='keywords' content='sde,robot'>
-	
-	<title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
-	
-	<link rel="stylesheet" type="text/css" href="../assets/css/_stylesheets.css">
-    <link rel='icon' type='image/x-icon' href='favicon.ico'>
-	<style>
-		.header {
-			background: #003366;
-		}
-		button[name=register_btn] {
-			background: #003366;
-		}
-	</style>
-</head>
+<?php
+    session_start();
+    include ('../includes/header.php');
+    include('../includes/navbar.php');
+    include ('admin_includes/admin_sidebar.php')
+?>
 <body>
 	<div class="header">
 		<h2>Admin - Opret bruger</h2>
@@ -33,7 +11,6 @@
 	
 	<form method="post" action="create_user.php">
 
-		<?php echo display_error(); ?>
 
 		<div class="input-group">
 			<label>Navn</label>

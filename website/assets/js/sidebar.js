@@ -1,16 +1,14 @@
-let active = false;
+$(function(){
+    $('#sideBar').hover(function(){
+        $(this).animate({width:'10rem'},100, function () {
+            $("#sidebarcontent").css({'display':'block'})
 
-let sideBarShow = () => {
-let sidebar = $('#sideBar')
-    if (!active) {
-        sidebar.addClass('is-shown');
-        sidebar.removeClass('is-hidden');
-        active = true;
-    } else {
-        sidebar.addClass('is-hidden')
-        sidebar.removeClass('is-shown');
+        });
+    },function(){
+        $(this).animate({width:'1rem'},100, function () {
+            $("#sidebarcontent").css({'display':'none'})
 
-        active = false;
+        });
 
-    }
-}
+    }).trigger('mouseleave');
+});
