@@ -15,26 +15,23 @@ include 'admin_includes/admin_sidebar.php';
 
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">produkt navn</th>
-                <th scope="col">kategori</th>
-                <th scope="col">flyttebar</th>
-                <th scope="col">levandør</th>
-                <th scope="col">skole navn</th>
-                <th scope="col">beskrivelse</th>
+                <th scope="col">Navn</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rank</th>
             </tr>
             </thead>
             <tbody>
             <?php
 
-            $url = 'http://localhost:8000/api/booking/products/get';
+            $url = 'http://localhost:8000/api/users/get';
             $result = file_get_contents($url, false);
             $jsonData = json_decode($result, true);
 
 
             if (sizeof($jsonData) > 0) {
                 foreach ($jsonData as $i) {
-                    echo '<tr><th scope="row">'.$i['id'].'</th><td>'.$i['product_name'].'</td> 
-                    <td>'.$i['category_name'].'</td><td>'.$i['movable'].'</td><td>'.$i['name'].'</td><td>'.$i['school_name'].'</td><td>'.$i['description'].'</td></tr>';
+                    echo '<tr><th scope="row">'.$i['id'].'</th><td>'.$i['name'].'</td> 
+                    <td>'.$i['email'].'</td><td>'.$i['user_rank'].'</td></tr>';
                 }
 
             }
@@ -44,7 +41,7 @@ include 'admin_includes/admin_sidebar.php';
             </tbody>
         </table>
         <div class="card-footer">
-            <a href="addproducts.php" class="btn btn-raised btn-primary"> Tilføj ny produkt</a>
+            <a href="create_user.php" class="btn btn-raised btn-primary"> Tilføj bruger</a>
         </div>
     </div>
 </div>

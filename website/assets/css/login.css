@@ -1,19 +1,17 @@
 
-:root {
-    --light-bg-color: rgba(242, 250, 255, 1);
-    --light-txt-color: rgb(6, 6, 6);
-    --dark-bg-color: rgb(6, 6, 6);
-    --dark-txt-color:  rgba(242, 250, 255, 1) ;
+
+body{
+    background-image:url('../images/bg.png');
+    background-color:#204B52;
+    height: 90vh;
 
 }
-
-
 
 .container{
   margin-top: 5rem;
 }
 
-
+c
 .bar-login{
     background-color: #002e2d;
     height: 100%;
@@ -55,12 +53,6 @@
   font-size: 4rem;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
-}
-body {
-  color: var(--light-txt-color);
-  background: var(--light-bg-color);
-    height: 90vh;
-
 }
 
 .copyrightLoginSite {

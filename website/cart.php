@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: aznzl
@@ -15,6 +16,6 @@ include 'includes/sidebar.php';
 ?>
     <div id="display"></div>
 <?php
-echo "<script type=\"text/javascript\" src=\"../assets/js/cart.js\"></script>";
+echo "<script type=\"text/javascript\" src=\"./assets/js/cart.js\"></script>";
 include "includes/footer.php";
 ?>

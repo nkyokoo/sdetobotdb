@@ -7,7 +7,6 @@ include 'includes/header.php';
 
 ?>
 <link rel="stylesheet" href="assets/css/login.css">
-<script src="assets/js/login-site.js"></script>
 
 <content>
     <div class='container'>
@@ -35,7 +34,6 @@ include 'includes/header.php';
                                 <input type="password" class="form-control" id="passwordInput" name="password" required>
                             </div>
                             <button type="sumbit" id="login-button" style="display: inline; "class="btn btn-primary btn-raised" name="login_btn">Login<i class="material-icons"></i></button>
-                            <button type="button" id="dayNightSwitcher" onclick="themeSwitcher()" style="display: inline;" class="btn btn-secondary" ><i id="dayNightSwitcherIcon" class="material-icons">brightness_3</i></button>
 
                             <p style="color: black !important;">
                                 Ingen bruger? opret en <a href="register.php">her</a>

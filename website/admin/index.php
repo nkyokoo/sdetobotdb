@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'admin_includes/adminprotection.php';
 include '../includes/header.php';
 echo '<link rel="stylesheet" href="../assets/css/administration.css"">';
 echo '<script src="../assets/js/administration.js"> </script>';
@@ -48,11 +48,11 @@ if (isset($_GET['logout'])) {
                         <a class="list-group-item">
                             Antal registerede produkter
                             <?php
-                            $url = 'http://localhost:8000/api/booking/category/get?type=category';
+                            $url = 'http://localhost:8000/api/booking/products/get';
                             $result = file_get_contents($url, false);
                             $jsonData = json_decode($result, true);
 
-                                echo "<span  id=\"total-product-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
+                            echo "<span  id=\"total-product-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
 
 
                             ?>
@@ -63,16 +63,23 @@ if (isset($_GET['logout'])) {
             </div>
             <div class="col-sm">
                 <div class="card">
-                    <h5 class="card-header"></h5>
-                    <div class="card-body">
-                        <a class="list-group-item">
+                        <h5 class="card-header">Låne anmodninger</h5>
+                        <div class="card-body">
+                            <a class="list-group-item">
+                                Antal låne anmodninger
+                                <?php
+                                $url = 'http://localhost:8000/api/request/get';
+                                $result = file_get_contents($url, false);
+                                $jsonData = json_decode($result, true);
+
+                                echo "<span  id=\"total-request-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
 
 
-                        </a>
-                        <a href="" class="btn btn-primary"></a>
+                                ?>
+                            </a>
+                            <a href="acceptrequests.php" class="btn btn-primary">Accepter anmodninger</a>
+                        </div>
                     </div>
-                </div>
-
             </div>
         </div>
             <div class="row">
@@ -82,21 +89,30 @@ if (isset($_GET['logout'])) {
                             <h5 class="card-title">	<img id="profile-image" height="50" width="50" src="../assets/images/admin.png"><strong><?php echo $_SESSION['user']['name']; ?></strong></br></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><i><?php echo $_SESSION['user']['email']; ?></i></h6>
                             <a class="btn btn-raised btn-danger" href="index.php?logout='1'" > Log ud</a>
-                            <a class="btn btn-raised btn-primary" href="create_user.php"> <i class="material-icons" style="">person_add</i> <p style="display: inline"> Tilføj bruger</p></a>
+                            <a class="btn btn-raised btn-primary" href="create_user.php"> <i class="material-icons" style="display:  vertical-align: bottom; font-size: 18px !important;">person_add</i> Tilføj bruger</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm">
                     <div class="card">
-                        <h5 class="card-header"></h5>
+                        <h5 class="card-header"> Brugere </h5>
                         <div class="card-body">
                             <a class="list-group-item">
+                                Antal registerede brugere
+                                <?php
+                                $url = 'http://localhost:8000/api/users/get';
+                                $result = file_get_contents($url, false);
+                                $jsonData = json_decode($result, true);
+
+                                echo "<span  id=\"total-request-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
 
 
+                                ?>
                             </a>
-                            <a href="" class="btn btn-primary"></a>
+                            <a href="users.php" class="btn btn-primary">Se alle brugere</a>
                         </div>
-                    </div>                </div>
+                    </div>
+                </div>
                 <div class="col-sm">
                     <div class="card">
                         <h5 class="card-header"></h5>
@@ -189,11 +205,6 @@ if (isset($_GET['logout'])) {
             </div>
            </div>
         </div>
-
-
-
-
-
 
 	<?php
 	include '../includes/footer.php';

@@ -1,13 +1,13 @@
 body {
 	font-size: 120%;
-	background-image:url('../images/bg.png');
+	/*background-image:url('../images/bg.png');*/
 	background-size:100%;
 	background-repeat:no-repeat;
 	background-color:#204B52;
 }
 
 * { 
-	margin: 0px; 
+	margin: 0px;
 	padding: 0px; 
 }
 

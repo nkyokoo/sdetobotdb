@@ -73,7 +73,6 @@ if (isset($_SESSION['user']['user_group_id'])){
     }
 
 }
-//No login
 
 
 

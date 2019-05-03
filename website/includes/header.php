@@ -1,5 +1,5 @@
 <!--we have split the header and footer up. meta in the header. and start on body -->
-
+<!DOCTYPE>
 <html lang='da' dir='ltr'>
   <head>
 
