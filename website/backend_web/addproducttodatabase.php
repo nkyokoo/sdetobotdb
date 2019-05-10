@@ -3,7 +3,6 @@
 //echo "INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL, '".$_POST['produkt_navn'] ."', '".$_POST['']."', '".$_POST['flytbar']."', '".$_POST['kategori']."', '".$_POST['leverandoer']."', '".$_POST['description']."');";
 session_start();
 
-include_once "connect.php";
 class addProductToDatabase{
     private $kategori;
     private $produktNavn ;
@@ -92,6 +91,7 @@ class addProductToDatabase{
     {
         try {
             $this->checkIfLocationExist();
+            echo "hello";
             $this->checkIfCategoryExist();
             $this->checkifSupplierExist();
             $this->checkIfSVFExist();
@@ -113,7 +113,6 @@ class addProductToDatabase{
         {
             $container = $array[$i];
             $container = htmlspecialchars($container);
-            $container = mysqli_real_escape_string($mysql, $container);
             $array[$i] = $container;
         }
 
@@ -126,7 +125,7 @@ class addProductToDatabase{
 
             $array = $this->arraysAndSecurity();
 
-            $url = 'http://localhost:8000/api/booking/products/lokale/get';
+            $url = 'http://localhost:8000/api/booking/products/location/get';
 
             $data = array(
                 'location' => $array[3]
@@ -144,16 +143,17 @@ class addProductToDatabase{
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             $jsonData = json_decode($result,true);
+            echo $jsonData;
 
 
             if (count($jsonData) > 0) {            //Check if Location Exist in Database
 
                 $container = $jsonData['id'];
                 $this->setLokale($container);
-            }else{            //else Insert a new Location to Database with prepared statement
+            }else{            //else Insert a new Location to Database
 
 
-                $url = 'http://localhost:8000/api/booking/products/lokale/create';
+                $url = 'http://localhost:8000/api/booking/products/location/create';
                 $data = array(
                     'location' => $array[3]
                 );
@@ -220,7 +220,8 @@ class addProductToDatabase{
                 )
             );
 //send request to api and get result
-                $result = file_get_contents($url, false);
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result, true);
 
                 //Check if svf Exist in Database
@@ -240,7 +241,7 @@ class addProductToDatabase{
                     //Convert string to Upper case.
                     $substring1 = strtoupper($substring1);
 
-                    $url = 'http://localhost:8000/api/booking/products/create?type=lokale';
+                    $url = 'http://localhost:8000/api/booking/products/svf/create';
                     $data = array(
                         'location' => $array[3]
                     );
@@ -362,7 +363,7 @@ class addProductToDatabase{
             //Check if Address Exist in the Database.
             //If array doesn't contain ','
             if (strpos($array[2],',') == false){
-                $url = 'http://localhost:8000/api/booking/products/thp/get';
+                $url = 'http://localhost:8000/api/booking/products/address/get';
 
                 $data = array(
                     'id' =>  $array[2],
@@ -391,18 +392,33 @@ class addProductToDatabase{
             // Else Insert a new Address to the Database with Prepared statement
             else
             {
-                az
                 $explodedarray = explode(',',$array[2]);
-                $stmt = $mysql->prepare('INSERT INTO `product_school_address` (school_name,city,zip_code,address) VALUES (?,?,?,?)');
-                $stmt->bind_param("ssis" ,$explodedarray[0],$explodedarray[2],$explodedarray[3],$explodedarray[4]);
-                $stmt->execute();
-                //get the ID from the new Category
-                $idContainer = $stmt->insert_id;
-                $newSql = $mysql->prepare('INSERT INTO `school_address_short` (company_name_short,product_school_address_id) VALUES (?,?)');
-                $newSql->bind_param("si",$explodedarray[1],$idContainer);
-                $newSql->execute();
-                $idContainer = $newSql->insert_id;
-                //Set kategori variable with the new data.
+                $url = 'http://localhost:8000/api/booking/products/address/create';
+
+                $data = array(
+                    'schoolname' =>  $explodedarray[0],
+                    'city' =>  $explodedarray[2],
+                    'zipcode' =>  $explodedarray[3],
+                    'address' =>  $explodedarray[4],
+                    'short' => $explodedarray[1],
+
+
+
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
+                $idContainer = $jsonData[1]['product_school_address_id'];
                 $this->setVirksomhed($idContainer);
             }
 
@@ -418,8 +434,27 @@ class addProductToDatabase{
             $array = $this->arraysAndSecurity();
             //Check if Category Exist in the Database.
 
-            $result = $mysql->query("SELECT id FROM `category` WHERE id = '".$array[0]."' OR category_name ='".$array[0]."'");
-            if ($result->num_rows > 0){
+            $url = 'http://localhost:8000/api/booking/products/category/get';
+
+            $data = array(
+                'id' => $array[0]
+            );
+
+// use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/json",
+                    'method'  => 'post',
+                    'content' => json_encode($data)
+                )
+            );
+//send request to api and get result
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            $jsonData = json_decode($result,true);
+
+
+            if (count($jsonData) > 0) {
                 $row = $result->fetch_assoc();
                 $this->setKategori($row['id']);
             }
@@ -427,11 +462,26 @@ class addProductToDatabase{
             // Else Insert a new Category to the Database with Prepared statement
             else
             {
-                $stmt = $mysql->prepare('INSERT INTO `category` (`category_name`) VALUES (?)');
-                $stmt->bind_param("s" ,$array[0]);
-                $stmt->execute();
+                $url = 'http://localhost:8000/api/booking/products/category/create';
+
+                $data = array(
+                    'category_name' => $array[0]
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
                 //get the ID from the new Category
-                $idContainer = $stmt->insert_id;
+                $idContainer = $jsonData['id'];
                 //Set setkategori variable with the new data.
                 $this->setKategori($idContainer);
             }
@@ -443,15 +493,29 @@ class addProductToDatabase{
 //Check for Leverandoer if exist
     private function checkifSupplierExist(){
         try{
-            $con = new DBConnection();
-            $mysql = $con->getConnection();
             $array = $this->arraysAndSecurity();
             //Check if Leverandoer/Supplier exist in the Database
             if (is_numeric($array[6])) {
-                $result = $mysql->query("SELECT id FROM `supplier_company` WHERE id = " . $array[6]);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $this->setLeverandoer($row['id']);
+                $url = 'http://localhost:8000/api/booking/products/suppliers/get';
+
+                $data = array(
+                    'id' => $array[6]
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
+                if (count($jsonData) > 0) {
+                    $this->setLeverandoer($jsonData['id']);
                 }
             }
             // Insert a new Leverandoer/Supplier to the Database with prepared statement
@@ -459,11 +523,31 @@ class addProductToDatabase{
             {
                 $valueToSplitContainer = $array[6];
                 $splittedValueArray = explode(',', $valueToSplitContainer);
-                $stmt = $mysql->prepare("INSERT INTO supplier_company (name,address,call_number) values (?,?,?)");
-                $stmt->bind_param("ssi",$splittedValueArray[0],$splittedValueArray[1],$splittedValueArray[2]);
-                $stmt->execute();
+                $url = 'http://localhost:8000/api/booking/products/suppliers/get';
+
+                $data = array(
+                    'name' => $splittedValueArray[0],
+                    'address' => $splittedValueArray[1],
+                    'call_number' => $splittedValueArray[2],
+
+
+
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
                 //Set setLeverandoer variable with the ID from new Leverandoer/Supplier
-                $this->setLeverandoer($stmt->insert_id);
+                $this->setLeverandoer($jsonData['id']);
             }
 
         }catch (Exception $exception){
@@ -480,14 +564,33 @@ class addProductToDatabase{
             $category = $this->getKategori();
             $leverandoer = $this->getLeverandoer();
             $virksomhed = $this->getVirksomhed();
-            $con = new DBConnection();
-            $mysql = $con->getConnection();
             // Adding the Information we've gathered and Create a Product which is inserted into the Dataabase.
-            $stmt = $mysql->prepare('INSERT INTO `school_products` (product_name,  movable , description,`school_name_short_id`, `category_id`, `supplier_company_id`) VALUES (?,?,?,?,?,?)');
-            $stmt->bind_param("sssiii", $product, $flytbar, $description, $virksomhed, $category, $leverandoer);
-            $stmt->execute();
+            $url = 'http://localhost:8000/api/booking/products/create';
+
+            $data = array(
+                'product_name' => $product,
+                'movable' => $flytbar,
+                'description' => $description,
+                'school_name_short_id' => $virksomhed,
+                'category_id' => $category,
+                'supplier_company_id' => $leverandoer,
+
+            );
+
+// use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/json",
+                    'method'  => 'post',
+                    'content' => json_encode($data)
+                )
+            );
+//send request to api and get result
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            $jsonData = json_decode($result,true);
             //Set setProduct with ID from the new Product we've added.
-            $this->setProduct($stmt->insert_id);
+            $this->setProduct($jsonData['id']);
 
         } catch (Exception $e) {
             die("Error: ".$e);
@@ -496,8 +599,6 @@ class addProductToDatabase{
     //Add units/enheds to Database
     private function addEnhedtoDB(){
         try {
-            $con = new DBConnection();
-            $mysql = $con->getConnection();
             $product_id = (int)$this->getProduct();
             $lokale = (int)$this->getLokale();
             $svf = (int)$this->getSVF();
@@ -505,12 +606,32 @@ class addProductToDatabase{
             $antal = $this->getAntal();
             //Get the Product ID from the new Product and insert into a new variable.
             // prepare a sql script for inserting X Total of Units/Enheds for the new Product.
-            $stmt = $mysql->prepare("INSERT INTO product_unit_e (unit_number, current_status_id, products_id,location_room_id,product_location_type_svf_id,product_location_type_thp_id) VALUES (?, 1, ?,?,?,?)");
             //Looping sql insert script X times for each Unit/Enhed.
             for ($enhedNumber = 1; $enhedNumber<= $antal; $enhedNumber++) {
                 $convertEnhedNumberToString = "Unit_".(string)$enhedNumber;
-                $stmt->bind_param("siiii", $convertEnhedNumberToString, $product_id,$lokale,$svf,$thp);
-                $stmt->execute();
+                $url = 'http://localhost:8000/api/booking/products/units/create';
+
+                $data = array(
+                    'unit_number' => $convertEnhedNumberToString,
+                    'products_id' => $product_id,
+                    'location_room_id' => $lokale,
+                    'product_location_type_svf_id' => $svf,
+                    'product_location_type_thp_id' => $thp,
+                );
+
+// use key 'http' even if you send the request to https://...
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/json",
+                        'method'  => 'post',
+                        'content' => json_encode($data)
+                    )
+                );
+//send request to api and get result
+                $context  = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
+                $jsonData = json_decode($result,true);
+
             }
 
         } catch (Exception $e) {

@@ -11,7 +11,7 @@ if (isset($_SESSION['user'])) {
             </button>
         <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
          <ul class=\"navbar-nav mr-auto\">
-				<li class=\"nav-item\"><a class=\"nav-link\"  style='position: relative; float: right' href=\"../index.php\">"; echo $_SESSION['user']['name'] ; echo "</a></li>
+				<li class=\"nav-item\"><a class=\"nav-link\"  style='position: relative; float: right' href=\"../user/\">"; echo $_SESSION['user']['name'] ; echo "</a></li>
               </ul>
           </div>
       </nav>";

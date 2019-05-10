@@ -20,7 +20,7 @@ class DropDownlistProducts_Function{
 
 
         //Connect to API
-        $url = 'http://localhost:8000/api/booking/bookinglist/get';
+        $url = 'http://localhost:8000/api/booking/products/catalog/get';
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(

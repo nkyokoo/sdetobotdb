@@ -24,6 +24,8 @@
       <link rel="stylesheet" href="../assets/css/sidebar.css">
       <script src="../assets/js/jquery.min.js"></script>
       <script src="../assets/js/vue.js"> </script>
+      <script src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+
       <link rel="cors" href="https://cors-anywhere.herokuapp.com/">
 
 

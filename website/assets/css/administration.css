@@ -2,3 +2,11 @@
     margin-bottom: .5rem;
     margin-top: .5rem;
 }
+
+#text {
+    display: none;
+    margin: 0;
+}
+#button{
+    margin: 1rem;
+}

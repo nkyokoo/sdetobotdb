@@ -6,6 +6,7 @@
 
 include "admin_includes/adminprotection.php";
 include "../includes/header.php";
+echo "<link rel=\"stylesheet\" href=\"../assets/css/administration.css\">";
 include "../includes/navbar.php";
 include '../includes/sidebar.php';
 
@@ -18,8 +19,8 @@ echo "
 </div>";
 
 ?>
-
 <script src="../assets/js/addproducts.js">
+
 </script>
 
 <!-- #############################-------- SCRIPT -------############################################ -->
@@ -171,8 +172,12 @@ echo "
                 <option>Worker (progress)</option>
             </select>
         </div>
-        <textarea id="description_id" class="form-control" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input id="button" type="submit"  class="btn btn-primary btn-raised" value="Tilføj">
+            <label for="description_id" class="bmd-label-floating">Produkt beskrivelse</label>
+        <textarea id="description_id" class="form-control" rows="6" cols="30" required></textarea>
+            <button id="button" type="button"  class="btn btn-primary btn-raised" style="display: flex">
+                        <i class="material-icons" style="display: flex; ">add_box</i>
+                        <p id="text">tilføj</p>
+            </button>
     </form>
         </div>
     </div>

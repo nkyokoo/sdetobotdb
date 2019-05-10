@@ -5,6 +5,8 @@
     height: 100%;
     width: 1rem;
     float: left;
+    position: absolute;
+    z-index: 999;
     --webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
 }

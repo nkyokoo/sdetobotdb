@@ -19,6 +19,20 @@ $(document).ready(function () {
 
 
 });
+$(function(){
+    $('#button').hover(function(){
+        $(this).animate({width:'6rem'},500, function () {
+            $("#text").css({'display':'block'})
+
+        });
+    },function(){
+        $(this).animate({width:'2.8rem'},500, function () {
+            $("#text").css({'display':'none'})
+
+        });
+
+    }).trigger('mouseleave');
+});
 //Send AddProducts.php data to php.
 function btnAddProductToDB() {myBlock:{
     try {
@@ -68,14 +82,27 @@ function btnAddProductToDB() {myBlock:{
         if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5] && produkt_navn && antal && flytbar){
             $.ajax({
                 type:'post',
-                url:'../functions/api_addproductstodb.php',
+                url:'../backend_instantiate/api_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
                 success:function (data) {
                     // alert("You've succeed in creating a new product!");
-                    alert("Your Request Has Been Sent To The System");
+                    let options =  {
+                        content: "Product added, sending you to product database list", // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 2000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function(){
+
+
+                        } // callback called when the snackbar gets closed.
+                    }
+                    alert(data)
+                    $.snackbar(options);
                     $('#produkt_id').val("");
-                    location.reload();
-                }
+                   /// window.location.replace("./products.php");
+
+                },
+
             });
         } else {
             //Check for errors and display them
