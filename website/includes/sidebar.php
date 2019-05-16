@@ -54,12 +54,12 @@ if (isset($_SESSION['user']['user_group_id'])){
     else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
            <div >
-				<content class="border-conten" id="sideBar">
-					<div class="sidebar">
+				<content class="border-content">
+					<div class="sidebar"  id="sideBar">
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
 						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
-						<li class="nav-item"> <a class="nav-link" href="Home">Ønskeliste</a></li>
+						<li class="nav-item"> <a class="nav-link" href="">Ønskeliste</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>

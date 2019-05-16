@@ -87,19 +87,20 @@ function btnAddProductToDB() {myBlock:{
                 success:function (data) {
                     // alert("You've succeed in creating a new product!");
                     let options =  {
-                        content: "Product added, sending you to product database list", // text of the snackbar
+                        content: "Produkt tilføjet, sender dig til produkt liste", // text of the snackbar
                         style: "toast", // add a custom class to your snackbar
-                        timeout: 2000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function(){
 
+                            $('#product_registration_form')[0].reset();
 
+                            window.location.replace("products.php")
                         } // callback called when the snackbar gets closed.
                     }
-                    alert(data)
                     $.snackbar(options);
-                    $('#produkt_id').val("");
-                   /// window.location.replace("./products.php");
+
+
 
                 },
 
@@ -126,7 +127,17 @@ function btnAddProductToDB() {myBlock:{
                     }
                 }
             }
-            alert(errorMessage);
+            let options =  {
+                content: errorMessage, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function(){
+
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
         }
     } catch (e) {
         alert(e.errorCode);

@@ -8,8 +8,6 @@ try
 
         if ($_SESSION['user']['user_group_id'] == 1)
         {
-            echo "hello";
-
             $class = new addProductToDatabase();
             //get POST data from addproducts.php
             $kategori =$_POST['kategori'];

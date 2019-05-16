@@ -18,7 +18,7 @@ module.exports = {
       hPayload.password = hashed_password;
 
       try {
-       await pool.query('INSERT INTO users(id,name, email, password, user_group_id) VALUES ' + '(\'\',\'' + hPayload.name.trim().escape() + '\',\'' + hPayload.email.trim().escape()+ '\',\'' + hPayload.password.trim() + '\',\'3\')')
+       await pool.query('INSERT INTO users(id,name, email, password, user_group_id) VALUES ' + '(\'\',\'' + hPayload.name + '\',\'' + hPayload.email+ '\',\'' + hPayload.password+ '\',\'3\')')
         return { code: 200, message: " registered user " };
 
       } catch (e) {

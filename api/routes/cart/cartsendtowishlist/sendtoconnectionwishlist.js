@@ -11,11 +11,11 @@ module.exports = {
       //      console.log(payload);
             for (let i of payload){
               //  console.log(i.wishlistid+','+i.productid+','+i.quantity);
-                const [rows, fields] = await pool.query('INSERT INTO `connection_product_wishlist`(`wish_list_id`, `school_products_id`, `quantity`) VALUES ('+i.wishlistid+','+i.productid+','+i.quantity+')')
+                const [rows, fields] = await pool.query("INSERT INTO `connection_product_wishlist`(`wish_list_id`, `school_products_id`, `quantity`) VALUES ('"+i.wishlistid+"','"+i.productid+"','"+i.quantity+"')")
             }
             return "succes";
         } catch (e) {
-            console.log(e)
+            return "err"
         }
 
 

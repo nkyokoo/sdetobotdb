@@ -91,7 +91,6 @@ class addProductToDatabase{
     {
         try {
             $this->checkIfLocationExist();
-            echo "hello";
             $this->checkIfCategoryExist();
             $this->checkifSupplierExist();
             $this->checkIfSVFExist();
@@ -99,6 +98,7 @@ class addProductToDatabase{
             $this->checkIfAddressExist();
             $this->addProductToDB();
             $this->addEnhedtoDB();
+
         } catch (Exception $e) {
         }
     }
@@ -128,14 +128,14 @@ class addProductToDatabase{
             $url = 'http://localhost:8000/api/booking/products/location/get';
 
             $data = array(
-                'location' => $array[3]
+                'lokale' => $array[3]
             );
 
 // use key 'http' even if you send the request to https://...
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'post',
+                    'method'  => 'POST',
                     'content' => json_encode($data)
                 )
             );
@@ -143,12 +143,10 @@ class addProductToDatabase{
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             $jsonData = json_decode($result,true);
-            echo $jsonData;
-
+          var_dump($jsonData);
 
             if (count($jsonData) > 0) {            //Check if Location Exist in Database
-
-                $container = $jsonData['id'];
+                $container = $jsonData[0]['id'];
                 $this->setLokale($container);
             }else{            //else Insert a new Location to Database
 
@@ -162,16 +160,16 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
 //send request to api and get result
                 $context  = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
+               $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
                 //Get the ID from new Location and set setLocation variable with the new data
-                $this->setLokale($jsonData['id']);
+                $this->setLokale($jsonData["insertId"]);
 
             }
 
@@ -215,18 +213,18 @@ class addProductToDatabase{
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'post',
+                    'method'  => 'POST',
                     'content' => json_encode($data)
                 )
             );
 //send request to api and get result
             $context = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result, true);
-
+            $jsonData = json_decode($result, true);
+            var_dump($jsonData);
                 //Check if svf Exist in Database
                 if (count($jsonData) > 0) {
-                    $container = $jsonData['id'];
+                    $container = $jsonData[0]['id'];
                     $this->setSVF($container);
                 } else {            //else Insert a new Location to Database with prepared statement
 
@@ -243,14 +241,15 @@ class addProductToDatabase{
 
                     $url = 'http://localhost:8000/api/booking/products/svf/create';
                     $data = array(
-                        'location' => $array[3]
+                        'type' => $substring1,
+                        'nr' => $substring2,
                     );
 
 // use key 'http' even if you send the request to https://...
                     $options = array(
                         'http' => array(
                             'header' => "Content-type: application/json",
-                            'method' => 'post',
+                            'method' => 'POST',
                             'content' => json_encode($data)
                         )
                     );
@@ -259,7 +258,7 @@ class addProductToDatabase{
                     $result = file_get_contents($url, false, $context);
                     $jsonData = json_decode($result, true);
                     //Get the ID from new Location and set setLocation variable with the new data
-                    $this->setSVF($jsonData['id']);
+                    $this->setSVF($jsonData["insertId"]);
                 }
             }
         catch
@@ -301,7 +300,7 @@ class addProductToDatabase{
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'post',
+                    'method'  => 'POST',
                     'content' => json_encode($data)
                 )
             );
@@ -312,7 +311,7 @@ class addProductToDatabase{
 
 
             if (count($jsonData) > 0) {
-                $container = $jsonData['id'];
+                $container = $jsonData[0]['id'];
                 $this->setTHP($container);
 
 
@@ -340,7 +339,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -348,7 +347,7 @@ class addProductToDatabase{
                 $context  = stream_context_create($options);
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
-                $this->setTHP($jsonData['id']);
+                $this->setTHP($jsonData["insertId"]);
             }
 
         } catch (Exception $e) {
@@ -374,7 +373,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -385,10 +384,10 @@ class addProductToDatabase{
 
 
                 if (count($jsonData) > 0) {
-                    $container = $jsonData['id'];
-                    $this->setVirksomhed($container['id']);
+                    $container = $jsonData[0]['id'];
+                    $this->setVirksomhed($container);
                 }
-            }
+
             // Else Insert a new Address to the Database with Prepared statement
             else
             {
@@ -410,7 +409,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -418,8 +417,9 @@ class addProductToDatabase{
                 $context  = stream_context_create($options);
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
-                $idContainer = $jsonData[1]['product_school_address_id'];
+                $idContainer = $jsonData["insertId"];
                 $this->setVirksomhed($idContainer);
+              }
             }
 
         }catch (Exception $exception){
@@ -444,7 +444,7 @@ class addProductToDatabase{
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'post',
+                    'method'  => 'POST',
                     'content' => json_encode($data)
                 )
             );
@@ -455,15 +455,12 @@ class addProductToDatabase{
 
 
             if (count($jsonData) > 0) {
-                $row = $result->fetch_assoc();
-                $this->setKategori($row['id']);
+                $this->setKategori($jsonData[0]['id']);
             }
-
-            // Else Insert a new Category to the Database with Prepared statement
+            // Else Insert a new Category to the Database
             else
             {
                 $url = 'http://localhost:8000/api/booking/products/category/create';
-
                 $data = array(
                     'category_name' => $array[0]
                 );
@@ -472,7 +469,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -481,7 +478,8 @@ class addProductToDatabase{
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
                 //get the ID from the new Category
-                $idContainer = $jsonData['id'];
+                var_dump($jsonData);
+                $idContainer = $jsonData["insertId"];
                 //Set setkategori variable with the new data.
                 $this->setKategori($idContainer);
             }
@@ -506,7 +504,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -515,9 +513,8 @@ class addProductToDatabase{
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
                 if (count($jsonData) > 0) {
-                    $this->setLeverandoer($jsonData['id']);
+                    $this->setLeverandoer($jsonData[0]['id']);
                 }
-            }
             // Insert a new Leverandoer/Supplier to the Database with prepared statement
             else
             {
@@ -538,7 +535,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );
@@ -547,7 +544,8 @@ class addProductToDatabase{
                 $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
                 //Set setLeverandoer variable with the ID from new Leverandoer/Supplier
-                $this->setLeverandoer($jsonData['id']);
+                $this->setLeverandoer($jsonData["insertId"]);
+            }
             }
 
         }catch (Exception $exception){
@@ -581,7 +579,7 @@ class addProductToDatabase{
             $options = array(
                 'http' => array(
                     'header'  => "Content-type: application/json",
-                    'method'  => 'post',
+                    'method'  => 'POST',
                     'content' => json_encode($data)
                 )
             );
@@ -589,8 +587,9 @@ class addProductToDatabase{
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             $jsonData = json_decode($result,true);
+            var_dump($jsonData);
             //Set setProduct with ID from the new Product we've added.
-            $this->setProduct($jsonData['id']);
+            $this->setProduct($jsonData["insertId"]);
 
         } catch (Exception $e) {
             die("Error: ".$e);
@@ -610,7 +609,6 @@ class addProductToDatabase{
             for ($enhedNumber = 1; $enhedNumber<= $antal; $enhedNumber++) {
                 $convertEnhedNumberToString = "Unit_".(string)$enhedNumber;
                 $url = 'http://localhost:8000/api/booking/products/units/create';
-
                 $data = array(
                     'unit_number' => $convertEnhedNumberToString,
                     'products_id' => $product_id,
@@ -623,7 +621,7 @@ class addProductToDatabase{
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/json",
-                        'method'  => 'post',
+                        'method'  => 'POST',
                         'content' => json_encode($data)
                     )
                 );

@@ -520,7 +520,7 @@ ALTER TABLE `school_products`
 -- Tilføj AUTO_INCREMENT i tabel `status_report`
 --
 ALTER TABLE `status_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL;
 
 --
 -- Tilføj AUTO_INCREMENT i tabel `supplier_company`
