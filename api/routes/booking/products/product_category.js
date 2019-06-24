@@ -13,33 +13,34 @@ module.exports = {
 
                 case 'category':
                     $sql ='select * from category'
-                    const [category] = await pool.query($sql)
-                    return category
+                    break;
                 case'company':
                     $sql = 'SELECT id,company_name_short FROM `school_address_short`  GROUP BY company_name_short'
-                    const [company_short] = await pool.query($sql)
-                    return company_short
+                    break;
+
                 case 'room':
                     $sql = "SELECT id,room FROM `location_room` group by room";
-                    const[room] = await pool.query($sql)
-                  return room
+
+                    break;
 
                 case 'svf':
                     $sql = "SELECT id,type,nr FROM product_location_type_svf GROUP BY type,nr";
-                    const [svf] = await pool.query($sql)
-                    return svf
+                    break;
+
                 case 'thp':
                     $sql = "SELECT id,type,nr FROM product_location_type_thp GROUP BY type,nr";
-                    const [thp] = await pool.query($sql)
-                    return thp
+                    break;
+
                 case 'company2':
                     $sql = "SELECT id,name FROM supplier_company";
-                   const [rows] = await pool.query($sql)
-                    return rows
+
+                    break;
 
 
             }
 
+            const [rows] = await pool.query($sql);
+            return rows
         } catch (e) {
             console.log(e)
         }

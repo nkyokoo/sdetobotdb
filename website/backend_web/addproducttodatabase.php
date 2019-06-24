@@ -491,7 +491,7 @@ class addProductToDatabase
             $jsonData = json_decode($result, true);
 
 
-            if (count($jsonData) > 0) {
+            if (count($jsonData[0]['id']) > 0) {
                 $this->setKategori($jsonData[0]['id']);
             } // Else Insert a new Category to the Database
             else {
