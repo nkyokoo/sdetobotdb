@@ -28,7 +28,7 @@ echo "
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Produkt registreringsform</h5>
+            <h5 class="card-title">Produkt registrerings form</h5>
         </div>
         <div class="card-body">
         <form id="product_registration_form" method="post" action="addproducts.php">
@@ -37,7 +37,14 @@ echo "
                 <select id="kategori_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
                     <?php
                     $url = 'http://localhost:8000/api/booking/category/get?type=category';
-                    $result = file_get_contents($url, false);
+                    $options = array(
+                        'http' => array(
+                            'method' => 'GET',
+                            'header' => 'Authorization: '.$_SESSION['user']['token'],
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $result = file_get_contents($url, false, $context);
                     $jsonData = json_decode($result, true);
 
                     if (sizeof($jsonData) > 0) {
@@ -62,7 +69,14 @@ echo "
                 <?php
                 //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
                 $url = 'http://localhost:8000/api/booking/category/get?type=company';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -81,7 +95,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=room';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -102,7 +123,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=svf';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -121,8 +149,15 @@ echo "
                 <select id="thp_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
                 <?php
 
-                $url = 'http://localhost:8000/api/booking/category/get?type=svf';
-                $result = file_get_contents($url, false);
+                $url = 'http://localhost:8000/api/booking/category/get?type=thp';
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -155,7 +190,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=company2';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){

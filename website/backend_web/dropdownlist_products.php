@@ -5,7 +5,7 @@
  * Date: 25/03/2019
  * Time: 11.14
  */
-
+session_start();
 
 class DropDownlistProducts_Function{
 
@@ -24,7 +24,7 @@ class DropDownlistProducts_Function{
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
+                'header' => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
                 'method'  => 'GET',
             )
         );
@@ -49,7 +49,8 @@ class DropDownlistProducts_Function{
                           <h5 class='card-title'>" .$item['product_name']."</h5>
                           <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$item['movable']."</h6>
                           <p class='card-text'>".$item['description'].".</p>
-                          <select id='product-unit-".$item['id']."'>".$quantity."</select><button id='btn-".$item['id']."')>Add to Cart</button></div>
+                          <label for=\"'product-unit-".$item['id']."'\" class=\"bmd-label-floating\">Vælg antal enheder</label>
+                          <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select><button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button></div>
                           </div>
                           </div>
                           </div>";

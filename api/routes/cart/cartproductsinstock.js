@@ -3,7 +3,7 @@
 module.exports = {
     method: 'POST',
     path: '/api/booking/eventsforcart/productinstock/get',
-    config: { auth: false },
+    config: { auth: 'jwt' },
     handler: async (request, h) => {
         const pool = request.mysql.pool;
 

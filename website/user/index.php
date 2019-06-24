@@ -32,21 +32,11 @@ if (isset($_GET['logout'])) {
 			</div>
 		<?php endif ?>
 		<!-- logged in user information -->
-		<div class="profile_info">
-			<img src="../assets/images/user.png"  >
-
-			<div>
-				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['name']; ?></strong>
-
-					<small>
-						<i  style="color: #888;"><?php echo ucfirst($_SESSION['user']); ?></i>
-						<br>
-						<a href="index.php?logout='1'" style="color: red;">logout</a>
-					</small>
-
-				<?php endif ?>
-			</div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">	<img id="profile-image" height="50" width="50" src="../assets/images/admin.png"><strong><?php echo $_SESSION['user']['name']; ?></strong></br></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><i><?php echo $_SESSION['user']['email']; ?></i></h6>
+            </div>
 		</div>
 	</div>
 

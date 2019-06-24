@@ -1,4 +1,9 @@
 {
+  "host": "localhost",
+  "port": 8000,
+  "DBhost":"localhost",
+  "DBuser": "root",
+  "DB": "sdebookingsystem",
   "secret": "longergay"
 
 

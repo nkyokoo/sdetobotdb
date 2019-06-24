@@ -24,7 +24,14 @@ include 'admin_includes/admin_sidebar.php';
             <?php
 
             $url = 'http://localhost:8000/api/users/get';
-            $result = file_get_contents($url, false);
+            $options = array(
+                'http' => array(
+                    'method' => 'GET',
+                    'header' => 'Authorization: '.$_SESSION['user']['token'],
+                )
+            );
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
             $jsonData = json_decode($result, true);
 
 
@@ -34,6 +41,8 @@ include 'admin_includes/admin_sidebar.php';
                     <td>'.$i['email'].'</td><td>'.$i['user_rank'].'</td></tr>';
                 }
 
+            }else{
+                echo "well.. this is weird, no users got returned. How are you even logged in?";
             }
 
             ?>

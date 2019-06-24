@@ -59,7 +59,8 @@ class Cart{
 
                     //save
                     $this->save();
-                }else{echo "We don't have enough in stock of chosen product. \r\nPlease Reduce the amount.";}
+                }else{
+                    echo "We don't have enough in stock of chosen product. \r\nPlease Reduce the amount.";}
 
             }
         } catch (Exception $e) {
@@ -156,7 +157,7 @@ class Cart{
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
+                'header'  => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
                 'method'  => 'POST',
                 'content' => json_encode($data)
             )
@@ -197,19 +198,21 @@ class Cart{
     }
     function displayCart()
     {
-
-        echo "<form><div class='card'>";
-        echo "<div class='card-body'>";
-        echo "<button id='button-clear'>Clear Cart</button>";
-        echo "<h5 class='card-header'>Products In Cart</h5>";
-
+        echo "<div class='container'>";
+        echo "<div class='cart-container'>";
+        echo "<h1 class='title'>Produkter i kurven</h1>";
+        echo "<div class='scrollbar-cart'> ";
 //  echo "product = ".$key. " quantity = ".$quantity." || ";
         if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
             $incart = $_SESSION["cart"];
             $data = array();
             foreach ($incart as $pid => $quantity){
                 //Request to API
-                $data[] = array('pid' => $pid,'quantity' => $quantity);
+                $data[] = array(
+                    'pid' => $pid,
+                     'user' => $_SESSION['user']['id'],
+                    'quantity' => $quantity
+                );
             }
             $format = json_encode($data);
             $url = 'http://localhost:8000/api/booking/eventsforcart/display/create';
@@ -217,7 +220,7 @@ class Cart{
 // use key 'http' even if you send the request to https://...
             $options = array(
                 'http' => array(
-                    'header'  => "Content-type: application/json",
+                    'header'  => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
                     'method'  => 'POST',
                     'content' => $format
                 )
@@ -234,22 +237,23 @@ class Cart{
             foreach ($json as $value ){
 
             echo "<div id='row-".$value['id']."' class='row'> <div class='col'>
-                  <div class='card'>
+                  <div class='card' style=' margin-left: 1rem; width: 25rem'>
                   <div class='card-body'>
                   <h5 class='card-title'>" .$value['product_name']."</h5>
-                  <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$value['movable']."</h6>
+                  <h6 class='card-subtitle mb-2 text-muted'>Flytbar: ".$value['movable']."</h6>
                   <p class='card-text'>".$value['description'].".</p>
-                  <label>Quantity: <input id='product-quantity-".$value['id']."' type='number' value='".$value['quantity']."' name='product-quantity-".$value['id']."'></label><button id='button-remove".$value['id']."'>Remove</button>
+                  <form>
+                  <label class=\"bmd-label-floating\" for='product-quantity-".$value['id']."'>Antal </label> <input class='form-control' style='display: inline; width: 10rem' id='product-quantity-".$value['id']."' type='number' value='".$value['quantity']."' name='product-quantity-".$value['id']."'><button style='display: inline; margin-left: 1rem' class='btn btn-raised btn-danger' id='button-remove".$value['id']."'>Fjern</button>
                   </div>
                   </div>
                   </div>
                   </div>";
             }
-
-            echo "<button id='button-booking'>Buy EVERYTHING ON THIS LIST</button></div></div> ";
+            echo "</div><button class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='tøm kurv'  style='display: inline' id='button-clear'><i class='material-icons' style=''>remove_shopping_cart</i></button>";
+            echo "<button class='btn btn-raised btn-primary' style='display: inline' id='button-booking'>Reservér nu</button></div></div> ";
 
         }
-        echo "</div></div></form>";
+        echo "</form></div>";
     }
 }
 

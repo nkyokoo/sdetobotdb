@@ -3,7 +3,7 @@
 module.exports = {
     method: 'GET',
     path: '/api/booking/category/get',
-    config: { auth: false },
+    config: { auth: 'jwt' },
     handler: async (request, h) => {
         const pool = request.mysql.pool
 
@@ -34,7 +34,7 @@ module.exports = {
                     return thp
                 case 'company2':
                     $sql = "SELECT id,name FROM supplier_company";
-                    [rows] = await pool.query($sql)
+                   const [rows] = await pool.query($sql)
                     return rows
 
 

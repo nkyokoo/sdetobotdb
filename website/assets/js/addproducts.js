@@ -73,7 +73,16 @@ function btnAddProductToDB() {myBlock:{
 
                 }
                 else {
-                    alert("You Cannot type numbers in : "+ arrayName[i]);
+                    let options =  {
+                        content: "You Cannot type numbers in : "+ arrayName[i], // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function(){
+
+
+                        } // callback called when the snackbar gets closed.
+                    }
                     break myBlock;
                 }
             }
@@ -85,6 +94,7 @@ function btnAddProductToDB() {myBlock:{
                 url:'../backend_instantiate/api_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
                 success:function (data) {
+                    $('#button').attr("disabled", true);
                     // alert("You've succeed in creating a new product!");
                     let options =  {
                         content: "Produkt tilføjet, sender dig til produkt liste", // text of the snackbar
@@ -93,8 +103,8 @@ function btnAddProductToDB() {myBlock:{
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function(){
 
-                            $('#product_registration_form')[0].reset();
 
+                            $('#product_registration_form')[0].reset();
                             window.location.replace("products.php")
                         } // callback called when the snackbar gets closed.
                     }

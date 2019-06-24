@@ -2,7 +2,7 @@
 
 include 'includes/header.php';
 ?>
-    <!--this formular  is used for registration. post the informarion tp auth.php-->
+    <!--this formular  is used for registration. post the information tp auth.php-->
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="assets/js/login-site.js"></script>
 

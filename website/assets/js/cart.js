@@ -100,7 +100,9 @@ function removeProduct(pid) {
         }
     })
 }
+
 function clearCart() {
+    var d = new Date();
     //The input from Confirm is saved in a variable.
     $choice = confirm("Do you really want to Clear the Cart ?");
     //If confirm input variable is true

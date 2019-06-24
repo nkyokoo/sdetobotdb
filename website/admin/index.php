@@ -49,10 +49,17 @@ if (isset($_GET['logout'])) {
                             Antal registerede produkter
                             <?php
                             $url = 'http://localhost:8000/api/booking/products/get';
-                            $result = file_get_contents($url, false);
+                            $options = array(
+                                'http' => array(
+                                    'method' => 'GET',
+                                    'header' => 'Authorization: '.$_SESSION['user']['token'],
+                                )
+                            );
+                            $context = stream_context_create($options);
+                            $result = file_get_contents($url, false, $context);
                             $jsonData = json_decode($result, true);
 
-                            echo "<span  id=\"total-product-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
+                            echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'>".count($jsonData)."</span>";
 
 
                             ?>
@@ -69,10 +76,17 @@ if (isset($_GET['logout'])) {
                                 Antal låne anmodninger
                                 <?php
                                 $url = 'http://localhost:8000/api/request/get';
-                                $result = file_get_contents($url, false);
+                                $options = array(
+                                    'http' => array(
+                                        'method' => 'GET',
+                                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                                    )
+                                );
+                                $context = stream_context_create($options);
+                                $result = file_get_contents($url, false, $context);
                                 $jsonData = json_decode($result, true);
 
-                                echo "<span  id=\"total-request-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
+                                echo "<span  id='total-request-number' class='label label-default label-pill pull-xs-right'>".count($jsonData)."</span>";
 
 
                                 ?>
@@ -100,11 +114,17 @@ if (isset($_GET['logout'])) {
                             <a class="list-group-item">
                                 Antal registerede brugere
                                 <?php
-                                $url = 'http://localhost:8000/api/users/get';
-                                $result = file_get_contents($url, false);
+                                $url = 'http://localhost:8000/api/users/count/get';
+                                $options = array(
+                                    'http' => array(
+                                        'method' => 'GET',
+                                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                                    )
+                                );
+                                $context = stream_context_create($options);
+                                $result = file_get_contents($url, false, $context);
                                 $jsonData = json_decode($result, true);
-
-                                echo "<span  id=\"total-request-number\" class=\"label label-default label-pill pull-xs-right\">".count($jsonData)."</span>";
+                                echo "<span id='total-request-number' class='label label-default label-pill pull-xs-right'>{$jsonData[0]['count']}</span>";
 
 
                                 ?>

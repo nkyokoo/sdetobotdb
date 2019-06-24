@@ -1,7 +1,7 @@
 module.exports = {
     method: 'POST',
     path: '/api/booking/eventsforcart/display/create',
-    config: {auth: false},
+    config: {auth: 'jwt'},
     handler: async (request, h) => {
         const pool = request.mysql.pool;
 
