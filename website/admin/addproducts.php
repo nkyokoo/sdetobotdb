@@ -4,8 +4,9 @@
 
 //include 'includes/connect.php';
 
-include "adminprotection.php";
+include "admin_includes/adminprotection.php";
 include "../includes/header.php";
+echo "<link rel=\"stylesheet\" href=\"../assets/css/administration.css\">";
 include "../includes/navbar.php";
 include '../includes/sidebar.php';
 
@@ -18,8 +19,8 @@ echo "
 </div>";
 
 ?>
-
 <script src="../assets/js/addproducts.js">
+
 </script>
 
 <!-- #############################-------- SCRIPT -------############################################ -->
@@ -27,16 +28,23 @@ echo "
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Produkt registreringsform</h5>
+            <h5 class="card-title">Produkt registrerings form</h5>
         </div>
         <div class="card-body">
-        <form method="post" action="addproducts.php">
+        <form id="product_registration_form" method="post" action="addproducts.php">
             <div class="form-group">
                 <label for="kategori_id" class="bmd-label-floating">kategori</label>
                 <select id="kategori_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
                     <?php
                     $url = 'http://localhost:8000/api/booking/category/get?type=category';
-                    $result = file_get_contents($url, false);
+                    $options = array(
+                        'http' => array(
+                            'method' => 'GET',
+                            'header' => 'Authorization: '.$_SESSION['user']['token'],
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $result = file_get_contents($url, false, $context);
                     $jsonData = json_decode($result, true);
 
                     if (sizeof($jsonData) > 0) {
@@ -61,7 +69,14 @@ echo "
                 <?php
                 //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
                 $url = 'http://localhost:8000/api/booking/category/get?type=company';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -80,7 +95,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=room';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -101,7 +123,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=svf';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -120,8 +149,15 @@ echo "
                 <select id="thp_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
                 <?php
 
-                $url = 'http://localhost:8000/api/booking/category/get?type=svf';
-                $result = file_get_contents($url, false);
+                $url = 'http://localhost:8000/api/booking/category/get?type=thp';
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -154,7 +190,14 @@ echo "
 
 
                 $url = 'http://localhost:8000/api/booking/category/get?type=company2';
-                $result = file_get_contents($url, false);
+                $options = array(
+                    'http' => array(
+                        'method' => 'GET',
+                        'header' => 'Authorization: '.$_SESSION['user']['token'],
+                    )
+                );
+                $context = stream_context_create($options);
+                $result = file_get_contents($url, false, $context);
                 $jsonData = json_decode($result,true);
 
                 if (sizeof($jsonData) > 0){
@@ -171,8 +214,12 @@ echo "
                 <option>Worker (progress)</option>
             </select>
         </div>
-        <textarea id="description_id" class="form-control" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input id="button" type="submit"  class="btn btn-primary btn-raised" value="Tilføj">
+            <label for="description_id" class="bmd-label-floating">Produkt beskrivelse</label>
+        <textarea id="description_id" class="form-control" rows="6" cols="30" required></textarea>
+            <button id="button" type="button"  class="btn btn-primary btn-raised" style="display: flex">
+                        <i class="material-icons" style="display: flex; ">add_box</i>
+                        <p id="text">tilføj</p>
+            </button>
     </form>
         </div>
     </div>

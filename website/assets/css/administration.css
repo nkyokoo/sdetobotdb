@@ -1,0 +1,47 @@
+.card{
+    margin: .5rem;
+}
+#text {
+    display: none;
+    margin: 0;
+}
+#button{
+    margin: 1rem;
+}
+
+
+
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    background: #060606;
+    color: #dfdfdf;
+    list-style: none;
+}
+ul.tabs li{
+    background: none;
+    color: #dfdfdf;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+ul.tabs li.current{
+    background: #1a1a1a;
+    color: #dfdfdf;
+}
+
+.tab-content{
+    display: none;
+    background: #ededed;
+    padding: 15px;
+}
+
+.tab-content.current{
+    display: inherit;
+}
+.scrollbar {
+    overflow-x: auto;
+    height: 80vh;
+
+}

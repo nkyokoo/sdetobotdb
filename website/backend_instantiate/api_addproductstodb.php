@@ -1,13 +1,12 @@
 <?php
-
 include "../backend_web/addproducttodatabase.php";
 
 try
 {
-    if (isset($_SESSION['user_group_id']))
+    if (isset($_SESSION['user']['user_group_id']))
     {
 
-        if ($_SESSION['user_group_id'] == 3)
+        if ($_SESSION['user']['user_group_id'] == 1)
         {
             $class = new addProductToDatabase();
             //get POST data from addproducts.php

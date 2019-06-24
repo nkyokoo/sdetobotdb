@@ -1,12 +1,12 @@
-Hej. Dette er et booking system. Der vil være documenteret papirer med db og dato. samt en fil i kan impotere. Ved navn sdebookingsystem. 
+Hej. Dette er et booking system. Der vil vï¿½re documenteret papirer med db og dato. samt en fil i kan impotere. Ved navn sdebookingsystem. 
 
-UD fra mappen master ekstern files. Er alle filerne der er blevet brugt til forberedelse af projektet. Der vil sdebookingsystem også være. 
+UD fra mappen master ekstern files. Er alle filerne der er blevet brugt til forberedelse af projektet. Der vil sdebookingsystem ogsï¿½ vï¿½re. 
 
-Derfra kan i se idéen omkring start af project. Andre kommentar vil være i selve koden og derved kan i studere filstruktur. 
+Derfra kan i se idï¿½en omkring start af project. Andre kommentar vil vï¿½re i selve koden og derved kan i studere filstruktur. 
 
-Og vil forsat håbe at vi forbliver i den. 
+Og vil forsat hï¿½be at vi forbliver i den. 
 
 I bliver informeret om github da alle vores filer bliver gemt. Den sidste updateret branch er developerment. 
 
-Og jeg vil personligt gerne præsentere måden jeg ønsker at have tingende impoteret på og hvordan vi håndtere github. Da vi skal tale samme sprog. 
+Og jeg vil personligt gerne prï¿½sentere mï¿½den jeg ï¿½nsker at have tingende impoteret pï¿½ og hvordan vi hï¿½ndtere github. Da vi skal tale samme sprog. 
 

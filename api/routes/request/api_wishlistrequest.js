@@ -3,7 +3,7 @@
 module.exports = {
     method:'GET',
     path:'/api/request/get',
-    config: {auth: false},
+    config: {auth: 'jwt'},
     handler: async (request, h) => {
         const pool = request.mysql.pool
 

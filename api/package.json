@@ -5,7 +5,8 @@
     "boom": "latest",
     "hapi": "^18.1.0",
     "joi": "latest",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "hapi-auth-jwt2": "^8.3.0",

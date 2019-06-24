@@ -17,7 +17,7 @@ class WishListRequest{
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json",
-                'method'  => 'POST',
+                'method'  => 'PATCH',
                 'content' => json_encode($data)
             )
         );
@@ -40,7 +40,7 @@ class WishListRequest{
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json",
-                'method'  => 'POST',
+                'method'  => 'PATCH',
                 'content' => json_encode($data)
             )
         );

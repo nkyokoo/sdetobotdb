@@ -4,33 +4,20 @@ if (isset($_SESSION['user'])){
 
 }
 include 'includes/header.php';
-include 'includes/navbar.php';
 
 ?>
 <link rel="stylesheet" href="assets/css/login.css">
 
-
-
-<!DOCTYPE html>
-
 <content>
     <div class='container'>
         <div class='row'>
-            <div class='col col-sm-4'>
-            </div>
-            <div class='col col-sm-4'>
-            </div>
-            <div class='col col-sm-4'>
-            </div>
-        </div>
-        <div class='row'>
+            <div class='col'></div>
             <div class='col'></div>
             <div class='col'>
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; margin-top: 1.5rem">
                     <div class="card-header">
-                        <div class="header">
-                            <h2>SDE - Login</h2>
-                        </div>
+                        <img src="assets/images/logo.svg" alt="">
+
                     </div>
                     <div class="card-body">
                         <form method="post" action="authenticator.php">
@@ -46,17 +33,20 @@ include 'includes/navbar.php';
                                 <label for="passwordInput" class="bmd-label-floating">Adgangskode</label>
                                 <input type="password" class="form-control" id="passwordInput" name="password" required>
                             </div>
-                            <button type="sumbit" class="btn btn-primary btn-raised" name="login_btn">Login</button>
+                            <button type="sumbit" id="login-button" style="display: inline; "class="btn btn-primary btn-raised" name="login_btn">Login<i class="material-icons"></i></button>
 
                             <p style="color: black !important;">
                                 Ingen bruger? opret en <a href="register.php">her</a>
                             </p>
                         </form>
                     </div>
-
+                </div>
+                <div class="copyrightLoginSite">
+                    <p class="copyrightLoginSiteText">
+                        Copyright © SDE IT OG DATA
+                    </p>
+                </div>
             </div>
-
-            <div class='col'></div>
             <div class='col'></div>
             <div class='col'></div>
           </div>
@@ -64,12 +54,14 @@ include 'includes/navbar.php';
                 <div class='col col-sm-4'>
                 </div>
                 <div class='col ol-sm-4'>
+
                 </div>
                 <div class='col col-sm-4'>
                 </div>
             </div>
         </div>
 </content>
+
 <?php
-//include 'includes/footer.php';
-?>
+include "includes/footer.php";
+

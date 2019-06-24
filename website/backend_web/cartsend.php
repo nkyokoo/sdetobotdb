@@ -1,23 +1,6 @@
 <?php
 session_start();
-class DBConnection
-{
-    public function getConnection()
-    {
-        try {
-            $con = new mysqli("localhost", "root", "", "sdebookingsystem");
-            if (mysqli_connect_errno()) {
-                printf("Connect failed: %s\n", mysqli_connect_error());
-                exit();
-                return null;
-            } else {
-                $con->set_charset("utf8");
-                return $con;
-            }
-        } catch (Exception $e) {
-        }
-    }
-}
+
 class BookingSend
 {
     public function sendBooking(){
@@ -57,7 +40,7 @@ class BookingSend
 // use key 'http' even if you send the request to https://...
                 $options = array(
                     'http' => array(
-                        'header'  => "Content-type: application/json",
+                        'header'  => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
                         'method'  => 'POST',
                         'content' => json_encode($data)
                     )
@@ -101,19 +84,21 @@ class BookingSend
     }
 
     private function sendToWishList(){
-
-
+        $date = date('d-m-y');
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-        $userID = 4;//$_SESSION['user']['id'];
 
         //Connect to API
-        $data = $userID;
+        $data  = array(
+            'startdate' => $date,
+            'userid' => $_SESSION['user']['id']
+
+        );
         $url = 'http://localhost:8000/api/booking/bookingsend/wishlist/create';
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
+                'header'  => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
                 'method'  => 'POST',
                 'content' => json_encode($data)
             )
@@ -145,7 +130,7 @@ class BookingSend
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
+                'header'  => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
                 'method'  => 'POST',
                 'content' => json_encode($data)
             )

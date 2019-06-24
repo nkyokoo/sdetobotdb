@@ -256,7 +256,7 @@ INSERT INTO `supplier_company` (`id`, `name`, `address`, `call_number`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` varchar(255) NOT NULL,
   `name` varchar(30) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -267,16 +267,6 @@ CREATE TABLE `users` (
 -- Data dump for tabellen `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_group_id`) VALUES
-(2, 'Barbara', 'babs719e@edu.sde.dk', '81dc9bdb52d04dc20036dbd8313ed055', 3),
-(19, 'abc', 'abc@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 2),
-(23, 'ad', 'ad@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 3),
-(33, 'hej', 'hej@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(153, 'bg', '1234@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 3),
-(154, 'sdgsd', '1234@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 3),
-(155, 'gsddg', '1234@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 3),
-(156, 'gsddg', '1234@gmail.com', '202cb962ac59075b964b07152d234b70', 3),
-(157, 'tyjtyj', '1234@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 3);
 
 -- --------------------------------------------------------
 
@@ -285,7 +275,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_group_id`) VALUES
 --
 
 CREATE TABLE `user_group` (
-  `id` int(11) NOT NULL,
+  `id` varchar(255) NOT NULL,
   `user_rank` varchar(15) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -311,7 +301,7 @@ CREATE TABLE `wish_list` (
   `end_date` date NOT NULL,
   `reminder_date` date NOT NULL,
   `godkendt` tinyint(4) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `project_products_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -520,7 +510,7 @@ ALTER TABLE `school_products`
 -- Tilføj AUTO_INCREMENT i tabel `status_report`
 --
 ALTER TABLE `status_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL;
 
 --
 -- Tilføj AUTO_INCREMENT i tabel `supplier_company`
@@ -531,8 +521,6 @@ ALTER TABLE `supplier_company`
 --
 -- Tilføj AUTO_INCREMENT i tabel `users`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- Tilføj AUTO_INCREMENT i tabel `user_group`

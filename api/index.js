@@ -3,36 +3,38 @@ const Hapi        = require('hapi');
 const hapiAuthJWT = require('hapi-auth-jwt2');
 const JWT         = require('jsonwebtoken');
 const Boom = require('boom');
-const port        = process.env.PORT || 8000;
 const routes = require("./routemanager");
-const users = require("./apiusers/apiusercreation");
+const config = require("./util/config");
 
-users.createToken();
+
+
 
 const validate = async function (decoded, request, h) {
-
-
-
+    const pool = request.mysql.pool;
+    const [rows,fields] = await pool.query('SELECT * FROM users WHERE id = ?', [decoded.id],
+        function(err, results) {
+            console.log(results);
+        }
+    );
     // do your checks to see if the person is valid
-    if (!people[decoded.id]) {
+    if (rows.length === 0) {
         return { isValid: false };
     }
     else {
         return { isValid : true };
     }
 };
-
 const init = async() => {
 
-    const server = new Hapi.Server({ port: port });
+    const server = new Hapi.Server({ host: config.getHost(),port: config.getPort() });
     await server.register(hapiAuthJWT);
     server.auth.strategy('jwt', 'jwt',
-        { key: users.getsecret(),
+        {   key: config.getSecret(),
             validate,
-            verifyOptions: { ignoreExpiration: true }
+            verifyOptions: { algorithms: [ 'HS256' ] }
         });
     const clientOpts = {
-        settings: 'mysql://root@localhost/sdebookingsystem',
+        settings: `mysql://${config.getDBuser()}@${config.getDBHost()}/${config.getDB()}`,
         decorate: true
     };
 
@@ -42,6 +44,7 @@ const init = async() => {
             options: clientOpts
         }
     ]);
+
     server.events.on('response', function (request) {
         console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.path + ' --> ' + request.response.statusCode);
     });

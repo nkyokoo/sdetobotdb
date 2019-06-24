@@ -1,6 +1,7 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
 <?php
 echo "<script src=../assets/js/logout.js> </script>";
+echo "<script src=\"../assets/js/sidebar.js\"></script>";
 if(!isset($_SESSION))
 {
     session_start();
@@ -9,22 +10,20 @@ if(!isset($_SESSION))
 //Admin
 
 if (isset($_SESSION['user']['user_group_id'])){
-
     if ($_SESSION['user']['user_group_id'] == 1){
         echo '
-		<link rel="stylesheet" href="../assets/css/sidebar.css">
-            <div id="sideBar">
+
+            <div>
 				<content class="border-content">
-					<div class="sidebar">
+					<div class="sidebar" id="sideBar">
+					<div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../index.php">Hejsa Admin</a></li>
-						<li class="nav-item"><a class="nav-link" href="">opret user</a></li>
-						<li class="nav-item"><a class="nav-link" href="">accepter ønskeliste booking</a></li>
-						<li class="nav-item"><a class="nav-link" href="">accept book</a></li>
-						<li class="nav-item"><a class="nav-link" href="">book</a></li>
+				    	<li class="nav-item"><a class="nav-link" href="../admin">Admin Dashboard</a></li>
+						<li class="nav-item"><a class="nav-link" href="booking.php">book</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
+					</div>
 					</div>
 				</content>
 				</div>
@@ -35,16 +34,17 @@ if (isset($_SESSION['user']['user_group_id'])){
     else if ($_SESSION['user']['user_group_id'] == 2) {
 
         echo '
-		<link rel="stylesheet" href="../assets/css/sidebar.css">
-            <div id="sideBar">
+            <div >
 				<content class="border-content">
-					<div class="sidebar">
+					<div class="sidebar" id="sideBar">
+				    <div id="sidebarcontent">
 					<ul class="nav flex-column">
 						<li class="nav-item"><a class="nav-link" href="../index.php">Hejsa Superuser</a></button></li>
 						<li class="nav-item"><a class="nav-link" href="">Control users</a></li>
 						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
 						</ul>
+					</div>
 					</div>
 				</content>
             </div>
@@ -53,16 +53,17 @@ if (isset($_SESSION['user']['user_group_id'])){
 //User
     else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
-		<link rel="stylesheet" href="../assets/css/sidebar.css">
-           <div id="sideBar">
-				<content class="border-conten">
-					<div class="sidebar">
+           <div >
+				<content class="border-content">
+					<div class="sidebar"  id="sideBar">
+					<div id="sidebarcontent">
 					<ul class="nav flex-column">
 						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
-						<li class="nav-item"> <a class="nav-link" href="Home">Ønskeliste</a></li>
+						<li class="nav-item"> <a class="nav-link" href="">Ønskeliste</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>
+					</div>
 					</div>
 				</content>
             </div>
@@ -72,26 +73,7 @@ if (isset($_SESSION['user']['user_group_id'])){
     }
 
 }
-//No login
-else {
-    echo '
 
-		<link rel="stylesheet" href="../assets/css/sidebar.css">
-           <div id="sideBar">
-				<content class="border-content">
-					<div class="sidebar">
-					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="../login.php">Log på</a></li>
-						<li class="nav-item"><a class="nav-link" href="../register.php">Register</a></li>
-						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
-						</ul>
-					</div>
-				</content>
-            </div>
 
-			';
-}
 
 ?>

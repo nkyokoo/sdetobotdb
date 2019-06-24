@@ -1,15 +1,18 @@
-@media only screen and (max-width: 600px) {
-    .sidebar{
-        display: none;
-    }
-}
+
 
 .sidebar{
     background-color: #002e2d;
     height: 100%;
-    width: 10rem;
+    width: 1rem;
     float: left;
-    -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
+    position: absolute;
+    z-index: 999;
+    --webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
     clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
 }
+#sidebarcontent{
+    display: none;
+}
+
+
 
