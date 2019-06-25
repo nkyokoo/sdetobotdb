@@ -1,7 +1,13 @@
 
 <?php
 
-
+echo "
+<link rel=\"stylesheet\" href=\"../assets/css/loading.css\">
+<div class=\"loadingscreen\" id=\"loading\">
+    <div class=\"loadingbar\">
+        <div class=\"lds-roller\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>";
 //include 'includes/connect.php';
 
 include "admin_includes/adminprotection.php";
@@ -10,13 +16,7 @@ echo "<link rel=\"stylesheet\" href=\"../assets/css/administration.css\">";
 include "../includes/navbar.php";
 include '../includes/sidebar.php';
 
-echo "
-<link rel=\"stylesheet\" href=\"../assets/css/loading.css\">
-<div class=\"loadingscreen\" id=\"loading\">
-    <div class=\"loadingbar\">
-        <div class=\"lds-roller\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-</div>";
+
 
 ?>
 <script src="../assets/js/addproducts.js">
