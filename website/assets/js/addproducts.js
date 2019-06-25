@@ -13,127 +13,157 @@ $(document).ready(function () {
     $('#button').click(function(){
         btnAddProductToDB();
     });
-(function ()
-{
-    /*
-    *
-    *             sqlArr[0] ="SELECT id,type,nr FROM product_location_type_svf ";
-            sqlArr[1] = "SELECT id,type,nr FROM product_location_type_thp";
-            sqlArr[2] = "select * from category";
-            sqlArr[3] = "SELECT id,room FROM `location_room`";
-            sqlArr[4] = "SELECT id,name FROM supplier_company";
-            sqlArr[5] = "SELECT id,company_name_short FROM school_address_short";
-    * */
-    $.ajax({
-        type:'get',
-        url:'../backend_instantiate/int_productinfo.php',
-        success:function (data) {
-            let data2 = JSON.parse(data);
 
-            //SVF
+    (function ()
+    {
+        /*
+        *
+        *             sqlArr[0] ="SELECT id,type,nr FROM product_location_type_svf ";
+                sqlArr[1] = "SELECT id,type,nr FROM product_location_type_thp";
+                sqlArr[2] = "select * from category";
+                sqlArr[3] = "SELECT id,room FROM `location_room`";
+                sqlArr[4] = "SELECT id,name FROM supplier_company";
+                sqlArr[5] = "SELECT id,company_name_short FROM school_address_short";
+        * */
+        $.ajax({
+            type:'get',
+            url:'../backend_instantiate/int_productinfo.php',
+            success:function (data) {
+                let data2 = JSON.parse(data);
+
+                //SVF
                 if (data2.d0.length > 0) {
                     for (i of data2.d0) {
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         let html = document.createElement("option");
+
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         html.value = i.id;
                         html.text = (i.type + i.nr);
                         $('#svf_id').append(html);
                     }
+                    $('#svf_id').append("<option value='andet'>Tilføj Ny</option>");
+
                 }
                 else{
-                let html = document.createElement("option");
-                html.text = "ERROR Couldn't receive data";
-                $('#svf_id').append(html);
-            }
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#svf_id').append(html);
+                }
 
                 //THP
-            if (data2.d1.length > 0){
-                for (i of data2.d1){
-                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                if (data2.d1.length > 0){
+                    for (i of data2.d1){
+                        let html = document.createElement("option");
+
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        html.value = i.id;
+                        html.text = (i.type + i.nr);
+                        $('#thp_id').append(html);
+                    }
+                    $('#thp_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
                     let html = document.createElement("option");
-                    html.value = i.id;
-                    html.innerHTML = (i.type + i.nr);
+
+                    html.text = "ERROR Couldn't receive data";
                     $('#thp_id').append(html);
                 }
-            }
-            else {
-                let html = document.createElement("option");
-                html.innerHTML = "ERROR Couldn't receive data";
-                $('#thp_id').append(html);
-            }
 
-            //Category
-            if (data2.d2.length > 0){
-                for (i of data2.d2){
-                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                //Category
+                if (data2.d2.length > 0){
+                    for (i of data2.d2){
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.category_name;
+                        $('#kategori_id').append(html);
+                    }
+                    $('#kategori_id').append("<option value='andet'>Tilføj Ny</option>");
+                }
+                else {
                     let html = document.createElement("option");
-                    html.value = i.id;
-                    html.innerHTML = i.category_name;
+
+                    html.text = "ERROR Couldn't receive data";
                     $('#kategori_id').append(html);
                 }
-            }
-            else {
-                let html = document.createElement("option");
-                html.innerHTML = "ERROR Couldn't receive data";
-                $('#kategori_id').append(html);
-            }
 
-            //Location
-            if (data2.d3.length > 0){
-                for (i of data2.d3){
-                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                //Location
+                if (data2.d3.length > 0){
+                    for (i of data2.d3){
+                        let html = document.createElement("option");
+
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        html.value = i.id;
+                        html.text = i.room;
+                        $('#lokale_id').append(html);
+                    }
+                    $('#lokale_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
                     let html = document.createElement("option");
-                    html.value = i.id;
-                    html.innerHTML = i.room;
+
+                    html.text = "ERROR Couldn't receive data";
                     $('#lokale_id').append(html);
                 }
-            }
-            else {
-                let html = document.createElement("option");
-                html.innerHTML = "ERROR Couldn't receive data";
-                $('#lokale_id').append(html);
-            }
 
-            //Supplier
-            if (data2.d4.length > 0){
-                for (i of data2.d4){
-                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                //Supplier
+                if (data2.d4.length > 0){
+                    for (i of data2.d4){
+                        let html = document.createElement("option");
+
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        html.value = i.id;
+                        html.text = i.name;
+                        $('#leverandoer_id').append(html);
+                    }
+                    $('#leverandoer_id').append("<option value='_Leverandorandet'>Tilføj Ny</option>");
+
+                }
+                else {
                     let html = document.createElement("option");
-                    html.value = i.id;
-                    html.innerHTML = i.name;
+
+                    html.text = "ERROR Couldn't receive data";
                     $('#leverandoer_id').append(html);
                 }
-            }
-            else {
-                let html = document.createElement("option");
-                html.innerHTML = "ERROR Couldn't receive data";
-                $('#leverandoer_id').append(html);
-            }
 
-            //SCHOOL_SHORT_ADDRESS
-            if (data2.d5.length > 0){
-                for (i of data2.d5){
-                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                //SCHOOL_SHORT_ADDRESS
+                if (data2.d5.length > 0){
+                    let lastChild = document.getElementById("nyVirksomhed");
+                    let selectParent = document.getElementById("virksomhed_id");
+                    for (i of data2.d5){
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.company_name_short;
+                        selectParent.insertBefore(html,lastChild);
+                        $('#virksomhed_id').append(html);
+
+                    }
+                    $('#virksomhed_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
                     let html = document.createElement("option");
-                    html.value = i.id;
-                    html.innerHTML = i.company_name_short;
+
+                    html.text = "ERROR Couldn't receive data";
                     $('#virksomhed_id').append(html);
                 }
+
+                $('#loading').remove();
+
+            },
+            error:function (error) {
+
             }
-            else {
-                let html = document.createElement("option");
-                html.innerHTML = "ERROR Couldn't receive data";
-                $('#virksomhed_id').append(html);
-            }
-        },
-        error:function (error) {
 
-        }
+        });
 
-    });
-
-})();
-
+    })();
 
 
 
@@ -279,10 +309,8 @@ function addNewInputOfAndet(CurrentEventId) {
 
     try {
         if (CurrentEventId === "leverandoer_id") {
-            let andetPlaceHolderName = CurrentEventId;
-            //slice the last 3 index
-            andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
+            
+            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny leverandoer navn' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
                 let container = document.getElementById(CurrentEventId);

@@ -17,6 +17,7 @@ if (isset($_GET['logout'])) {
 	unset($_SESSION['user']);
 	header("location: ../index.php");
 }
+
 ?>
 
 
@@ -48,6 +49,7 @@ if (isset($_GET['logout'])) {
                         <a class="list-group-item">
                             Antal registerede produkter
                             <?php
+
                             $url = 'http://localhost:8000/api/booking/products/get';
                             $options = array(
                                 'http' => array(
@@ -60,7 +62,6 @@ if (isset($_GET['logout'])) {
                             $jsonData = json_decode($result, true);
 
                             echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'>".count($jsonData)."</span>";
-
 
                             ?>
                         </a>
@@ -227,5 +228,6 @@ if (isset($_GET['logout'])) {
         </div>
 
 	<?php
+
 	include '../includes/footer.php';
 	 ?>
