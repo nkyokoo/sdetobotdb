@@ -36,7 +36,6 @@ $(document).ready(function () {
                     for (i of data2.d0) {
                         let html = document.createElement("option");
 
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         html.value = i.id;
                         html.text = (i.type + i.nr);
                         $('#svf_id').append(html);
@@ -56,7 +55,6 @@ $(document).ready(function () {
                     for (i of data2.d1){
                         let html = document.createElement("option");
 
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         html.value = i.id;
                         html.text = (i.type + i.nr);
                         $('#thp_id').append(html);
@@ -74,7 +72,6 @@ $(document).ready(function () {
                 //Category
                 if (data2.d2.length > 0){
                     for (i of data2.d2){
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         let html = document.createElement("option");
 
                         html.value = i.id;
@@ -95,7 +92,6 @@ $(document).ready(function () {
                     for (i of data2.d3){
                         let html = document.createElement("option");
 
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         html.value = i.id;
                         html.text = i.room;
                         $('#lokale_id').append(html);
@@ -115,7 +111,6 @@ $(document).ready(function () {
                     for (i of data2.d4){
                         let html = document.createElement("option");
 
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         html.value = i.id;
                         html.text = i.name;
                         $('#leverandoer_id').append(html);
@@ -135,7 +130,6 @@ $(document).ready(function () {
                     let lastChild = document.getElementById("nyVirksomhed");
                     let selectParent = document.getElementById("virksomhed_id");
                     for (i of data2.d5){
-                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
                         let html = document.createElement("option");
 
                         html.value = i.id;
@@ -309,7 +303,7 @@ function addNewInputOfAndet(CurrentEventId) {
 
     try {
         if (CurrentEventId === "leverandoer_id") {
-            
+
             let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny leverandoer navn' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
