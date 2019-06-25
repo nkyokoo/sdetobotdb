@@ -3,7 +3,9 @@
 include 'includes/header.php';
 ?>
     <!--this formular  is used for registration. post the information tp auth.php-->
+
     <link rel="stylesheet" href="assets/css/login.css">
+
     <link rel="stylesheet" href="assets/css/register.css">
 
     <content>
