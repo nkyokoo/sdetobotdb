@@ -13,7 +13,126 @@ $(document).ready(function () {
     $('#button').click(function(){
         btnAddProductToDB();
     });
+(function ()
+{
+    /*
+    *
+    *             sqlArr[0] ="SELECT id,type,nr FROM product_location_type_svf ";
+            sqlArr[1] = "SELECT id,type,nr FROM product_location_type_thp";
+            sqlArr[2] = "select * from category";
+            sqlArr[3] = "SELECT id,room FROM `location_room`";
+            sqlArr[4] = "SELECT id,name FROM supplier_company";
+            sqlArr[5] = "SELECT id,company_name_short FROM school_address_short";
+    * */
+    $.ajax({
+        type:'get',
+        url:'../backend_instantiate/int_productinfo.php',
+        success:function (data) {
+            let data2 = JSON.parse(data);
 
+            //SVF
+                if (data2.d0.length > 0) {
+                    for (i of data2.d0) {
+                        //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                        let html = document.createElement("option");
+                        html.value = i.id;
+                        html.text = (i.type + i.nr);
+                        $('#svf_id').append(html);
+                    }
+                }
+                else{
+                let html = document.createElement("option");
+                html.text = "ERROR Couldn't receive data";
+                $('#svf_id').append(html);
+            }
+
+                //THP
+            if (data2.d1.length > 0){
+                for (i of data2.d1){
+                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                    let html = document.createElement("option");
+                    html.value = i.id;
+                    html.innerHTML = (i.type + i.nr);
+                    $('#thp_id').append(html);
+                }
+            }
+            else {
+                let html = document.createElement("option");
+                html.innerHTML = "ERROR Couldn't receive data";
+                $('#thp_id').append(html);
+            }
+
+            //Category
+            if (data2.d2.length > 0){
+                for (i of data2.d2){
+                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                    let html = document.createElement("option");
+                    html.value = i.id;
+                    html.innerHTML = i.category_name;
+                    $('#kategori_id').append(html);
+                }
+            }
+            else {
+                let html = document.createElement("option");
+                html.innerHTML = "ERROR Couldn't receive data";
+                $('#kategori_id').append(html);
+            }
+
+            //Location
+            if (data2.d3.length > 0){
+                for (i of data2.d3){
+                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                    let html = document.createElement("option");
+                    html.value = i.id;
+                    html.innerHTML = i.room;
+                    $('#lokale_id').append(html);
+                }
+            }
+            else {
+                let html = document.createElement("option");
+                html.innerHTML = "ERROR Couldn't receive data";
+                $('#lokale_id').append(html);
+            }
+
+            //Supplier
+            if (data2.d4.length > 0){
+                for (i of data2.d4){
+                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                    let html = document.createElement("option");
+                    html.value = i.id;
+                    html.innerHTML = i.name;
+                    $('#leverandoer_id').append(html);
+                }
+            }
+            else {
+                let html = document.createElement("option");
+                html.innerHTML = "ERROR Couldn't receive data";
+                $('#leverandoer_id').append(html);
+            }
+
+            //SCHOOL_SHORT_ADDRESS
+            if (data2.d5.length > 0){
+                for (i of data2.d5){
+                    //"<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>"
+                    let html = document.createElement("option");
+                    html.value = i.id;
+                    html.innerHTML = i.company_name_short;
+                    $('#virksomhed_id').append(html);
+                }
+            }
+            else {
+                let html = document.createElement("option");
+                html.innerHTML = "ERROR Couldn't receive data";
+                $('#virksomhed_id').append(html);
+            }
+        },
+        error:function (error) {
+
+        }
+
+    });
+
+})();
 
 
 

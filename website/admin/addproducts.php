@@ -35,27 +35,7 @@ echo "
             <div class="form-group">
                 <label for="kategori_id" class="bmd-label-floating">kategori</label>
                 <select id="kategori_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
-                    <?php
-                    $url = 'http://localhost:8000/api/booking/category/get?type=category';
-                    $options = array(
-                        'http' => array(
-                            'method' => 'GET',
-                            'header' => 'Authorization: '.$_SESSION['user']['token'],
-                        )
-                    );
-                    $context = stream_context_create($options);
-                    $result = file_get_contents($url, false, $context);
-                    $jsonData = json_decode($result, true);
 
-                    if (sizeof($jsonData) > 0) {
-                        foreach ($jsonData as $i) {
-                            echo "<option value='" . $i['id'] . "'>" . $i['category_name'] . "</option>";
-                        }
-
-                    }
-                    echo "<option value='andet'>Tilføj Ny</option>";
-
-                    ?>
                 </select>
             </div>
             <div class="form-group">
@@ -66,109 +46,25 @@ echo "
                 <label for="virksomhed_id" class="bmd-label-floating">virksomhed</label>
                 <select id="virksomhed_id" class="form-control"  onchange="addNewInputOfAndet(this.id)" required>
 
-                <?php
-                //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
-                $url = 'http://localhost:8000/api/booking/category/get?type=company';
-                $options = array(
-                    'http' => array(
-                        'method' => 'GET',
-                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                    )
-                );
-                $context = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result,true);
 
-                if (sizeof($jsonData) > 0){
-                foreach ($jsonData as $i){
-                        echo "<option value='".$i['id']."'>".$i['company_name_short']."</option>";
-                    }
-                }
-                
-                ?>
             </select>
             </div>
             <div class="form-group">
                 <label for="lokale_id" class="bmd-label-floating">lokale</label>
                 <select id="lokale_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
-                <?php
 
-
-                $url = 'http://localhost:8000/api/booking/category/get?type=room';
-                $options = array(
-                    'http' => array(
-                        'method' => 'GET',
-                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                    )
-                );
-                $context = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result,true);
-
-                if (sizeof($jsonData) > 0){
-                    foreach ($jsonData as $i){
-                        echo "<option value='".$i['id']."'>".$i['room']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
             </div>
             <div class="form-group">
                 <label for="svf_id" class="bmd-label-floating">Skab/Væg/Floor</label>
                 <select id="svf_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
-                <?php
 
-
-                $url = 'http://localhost:8000/api/booking/category/get?type=svf';
-                $options = array(
-                    'http' => array(
-                        'method' => 'GET',
-                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                    )
-                );
-                $context = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result,true);
-
-                if (sizeof($jsonData) > 0){
-                    foreach ($jsonData as $i){
-                        echo "<option value='".$i['id']."'>".$i['type'].$i['nr']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
             </div>
             <div class="form-group">
                 <label for="thp_id" class="bmd-label-floating">Hylde/Tavle/Plads</label>
                 <select id="thp_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
-                <?php
 
-                $url = 'http://localhost:8000/api/booking/category/get?type=thp';
-                $options = array(
-                    'http' => array(
-                        'method' => 'GET',
-                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                    )
-                );
-                $context = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result,true);
-
-                if (sizeof($jsonData) > 0){
-                    foreach ($jsonData as $i){
-                        echo "<option value='".$i['id']."'>".$i['type'].$i['nr']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
             </div>
             <div class="form-group">
@@ -186,27 +82,7 @@ echo "
             <div class="form-group">
                 <label for="leverandoer_id" class="bmd-label-floating">Leverandør</label>
                 <select id="leverandoer_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
-                <?php
 
-
-                $url = 'http://localhost:8000/api/booking/category/get?type=company2';
-                $options = array(
-                    'http' => array(
-                        'method' => 'GET',
-                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                    )
-                );
-                $context = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                $jsonData = json_decode($result,true);
-
-                if (sizeof($jsonData) > 0){
-                    foreach ($jsonData as $i){
-                        echo "<option value='".$i['id']."'>".$i['name']."</option>";
-                    }
-                }
-                echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
-                ?>
             </select>
             </div>
             <div class="form-group">

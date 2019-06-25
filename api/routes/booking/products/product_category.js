@@ -8,39 +8,25 @@ module.exports = {
         const pool = request.mysql.pool
 
         try {
-            let $sql = ''
-            switch (request.query.type) {
-
-                case 'category':
-                    $sql ='select * from category'
-                    break;
-                case'company':
-                    $sql = 'SELECT id,company_name_short FROM `school_address_short`  GROUP BY company_name_short'
-                    break;
-
-                case 'room':
-                    $sql = "SELECT id,room FROM `location_room` group by room";
-
-                    break;
-
-                case 'svf':
-                    $sql = "SELECT id,type,nr FROM product_location_type_svf GROUP BY type,nr";
-                    break;
-
-                case 'thp':
-                    $sql = "SELECT id,type,nr FROM product_location_type_thp GROUP BY type,nr";
-                    break;
-
-                case 'company2':
-                    $sql = "SELECT id,name FROM supplier_company";
-
-                    break;
+            let samletData = {};
+            let obj = {};
+            let sqlArr = [];
+            sqlArr[0] ="SELECT id,type,nr FROM product_location_type_svf ";
+            sqlArr[1] = "SELECT id,type,nr FROM product_location_type_thp";
+            sqlArr[2] = "select * from category";
+            sqlArr[3] = "SELECT id,room FROM `location_room`";
+            sqlArr[4] = "SELECT id,name FROM supplier_company";
+            sqlArr[5] = "SELECT id,company_name_short FROM school_address_short";
+            for(let i = 0; i<sqlArr.length; i++) {
+                console.log(i);
+                const [rows] = await pool.query(sqlArr[i]);
+                samletData["d"+i] = rows;
+            };
 
 
-            }
+            console.log(obj);
 
-            const [rows] = await pool.query($sql);
-            return rows
+            return samletData;
         } catch (e) {
             console.log(e)
         }

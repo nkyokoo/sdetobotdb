@@ -4,11 +4,7 @@ include 'includes/header.php';
 ?>
     <!--this formular  is used for registration. post the information tp auth.php-->
     <link rel="stylesheet" href="assets/css/login.css">
-    <script src="assets/js/login-site.js"></script>
-
-
     <link rel="stylesheet" href="assets/css/register.css">
-    <script src="assets/js/login-site.js"></script>
 
     <content>
         <div class='container'>
