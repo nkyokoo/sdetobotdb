@@ -13,10 +13,12 @@ $(function() {
     $('#createUser_btn').click(function(){
         btnCreateUser();
     });
-
-
-
+    showCount()
 });
+
+function showCount(){
+
+}
 function btnCreateUser() {
     let rank = document.getElementById('user_type')
 
