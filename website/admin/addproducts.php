@@ -19,9 +19,7 @@ include '../includes/sidebar.php';
 
 
 ?>
-<script src="../assets/js/addproducts.js">
-
-</script>
+<script src="../assets/js/addproducts.js"></script>
 
 <!-- #############################-------- SCRIPT -------############################################ -->
 
@@ -45,7 +43,6 @@ include '../includes/sidebar.php';
             <div class="form-group">
                 <label for="virksomhed_id" class="bmd-label-floating">virksomhed</label>
                 <select id="virksomhed_id" class="form-control"  onchange="addNewInputOfAndet(this.id)" required>
-
 
             </select>
             </div>
@@ -105,7 +102,6 @@ include '../includes/sidebar.php';
 
 echo "
 <script>
-        $('#loading').remove();
 </script>";
 include "../includes/footer.php";
 

@@ -17,6 +17,7 @@ if (isset($_GET['logout'])) {
 	unset($_SESSION['user']);
 	header("location: ../index.php");
 }
+
 ?>
 
 
@@ -49,7 +50,6 @@ if (isset($_GET['logout'])) {
                             Antal registerede produkter
                             <?php
                             echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'></span>";
-
 
                             ?>
                         </a>
@@ -138,5 +138,6 @@ if (isset($_GET['logout'])) {
         </div>
 
 	<?php
+
 	include '../includes/footer.php';
 	 ?>
