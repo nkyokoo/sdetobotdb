@@ -13,9 +13,9 @@ module.exports = {
               //  console.log(i.wishlistid+','+i.productid+','+i.quantity);
                 const [rows, fields] = await pool.query("INSERT INTO `connection_product_wishlist`(`wish_list_id`, `school_products_id`, `quantity`) VALUES (?,?,?)",[i.wishlistid,i.productid,i.quantity])
             }
-            return "succes";
+            return "success";
         } catch (e) {
-            return "err"
+            return h.response({}).code(500);
         }
 
 

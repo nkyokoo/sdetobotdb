@@ -29,7 +29,7 @@
 		 <div class="form-group">
 			<label for="user_type" class="bmd-label-floating">Bruger Gruppe</label>
 			<select class="form-control" name="user_type" id="user_type" >
-                <option value=""></option>
+                <option value="">Vælg rettighed</option>
                 <?php
                 $url = 'http://localhost:8000/api/users/group/get';
                 $options = array(

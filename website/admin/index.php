@@ -17,6 +17,7 @@ if (isset($_GET['logout'])) {
 	unset($_SESSION['user']);
 	header("location: ../index.php");
 }
+
 ?>
 
 
@@ -48,19 +49,7 @@ if (isset($_GET['logout'])) {
                         <a class="list-group-item">
                             Antal registerede produkter
                             <?php
-                            $url = 'http://localhost:8000/api/booking/products/get';
-                            $options = array(
-                                'http' => array(
-                                    'method' => 'GET',
-                                    'header' => 'Authorization: '.$_SESSION['user']['token'],
-                                )
-                            );
-                            $context = stream_context_create($options);
-                            $result = file_get_contents($url, false, $context);
-                            $jsonData = json_decode($result, true);
-
-                            echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'>".count($jsonData)."</span>";
-
+                            echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'></span>";
 
                             ?>
                         </a>
@@ -75,18 +64,9 @@ if (isset($_GET['logout'])) {
                             <a class="list-group-item">
                                 Antal låne anmodninger
                                 <?php
-                                $url = 'http://localhost:8000/api/request/get';
-                                $options = array(
-                                    'http' => array(
-                                        'method' => 'GET',
-                                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                                    )
-                                );
-                                $context = stream_context_create($options);
-                                $result = file_get_contents($url, false, $context);
-                                $jsonData = json_decode($result, true);
 
-                                echo "<span  id='total-request-number' class='label label-default label-pill pull-xs-right'>".count($jsonData)."</span>";
+
+                                echo "<span  id='total-request-number' class='label label-default label-pill pull-xs-right'></span>";
 
 
                                 ?>
@@ -114,17 +94,8 @@ if (isset($_GET['logout'])) {
                             <a class="list-group-item">
                                 Antal registerede brugere
                                 <?php
-                                $url = 'http://localhost:8000/api/users/count/get';
-                                $options = array(
-                                    'http' => array(
-                                        'method' => 'GET',
-                                        'header' => 'Authorization: '.$_SESSION['user']['token'],
-                                    )
-                                );
-                                $context = stream_context_create($options);
-                                $result = file_get_contents($url, false, $context);
-                                $jsonData = json_decode($result, true);
-                                echo "<span id='total-request-number' class='label label-default label-pill pull-xs-right'>{$jsonData[0]['count']}</span>";
+
+                                echo "<span id='total-request-number' class='label label-default label-pill pull-xs-right'></span>";
 
 
                                 ?>
@@ -149,83 +120,24 @@ if (isset($_GET['logout'])) {
 
             <div class="row">
                 <div class="col-sm">
-                    <div class="card">
-                        <h5 class="card-header"></h5>
-                        <div class="card-body">
-                            <a class="list-group-item">
-
-
-                            </a>
-                            <a href="" class="btn btn-primary"></a>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-sm">
-                    <div class="card">
-                        <h5 class="card-header"></h5>
-                        <div class="card-body">
-                            <a class="list-group-item">
-
-
-                            </a>
-                            <a href="" class="btn btn-primary"></a>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-sm">
-                    <div class="card">
-                        <h5 class="card-header"></h5>
-                        <div class="card-body">
-                            <a class="list-group-item">
-
-
-                            </a>
-                            <a href="" class="btn btn-primary"></a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
            <div class="row">
                <div class="col-sm">
-                   <div class="card">
-                       <h5 class="card-header"></h5>
-                       <div class="card-body">
-                           <a class="list-group-item">
-
-
-                           </a>
-                           <a href="" class="btn btn-primary"></a>
-                       </div>
-                   </div>
                </div>
              <div class="col-sm">
-                 <div class="card">
-                     <h5 class="card-header"></h5>
-                     <div class="card-body">
-                         <a class="list-group-item">
-
-
-                         </a>
-                         <a href="" class="btn btn-primary"></a>
-                     </div>
-                 </div>
              </div>
             <div class="col-sm">
-                <div class="card">
-                    <h5 class="card-header"></h5>
-                    <div class="card-body">
-                        <a class="list-group-item">
-
-
-                        </a>
-                        <a href="" class="btn btn-primary"></a>
-                    </div>
-                </div>
             </div>
            </div>
         </div>
 
 	<?php
+
 	include '../includes/footer.php';
 	 ?>
