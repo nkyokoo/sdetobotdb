@@ -23,7 +23,7 @@ module.exports = {
 
             return samletData;
         } catch (e) {
-            console.log(e)
+            return h.response({}).code(500);
         }
 
 

@@ -59,7 +59,8 @@ if (isset($_SESSION['user']['user_group_id'])){
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
 						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
-						<li class="nav-item"> <a class="nav-link" href="">Ønskeliste</a></li>
+						<li class="nav-item"><a class="nav-link" href="booking.php">book</a></li>
+						<li class="nav-item"> <a class="nav-link" href="">Historik</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>

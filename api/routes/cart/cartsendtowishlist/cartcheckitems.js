@@ -38,7 +38,7 @@ module.exports = {
 
             return json;
         } catch (e) {
-            console.log(e)
+            return h.response({}).code(500);
         }
 
 

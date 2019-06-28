@@ -9,8 +9,8 @@ module.exports = {
         try {
                 let i = request.payload;
                 console.log(i);
-                const [rows, fields] = await pool.query(`INSERT INTO wish_list(godkendt, user_id) VALUES (0,'${i.user}')`);
 
+                const [rows,fields] = await pool.query("INSERT INTO `wish_list`(`id`, `rerserved_date`, `start_date`, `end_date`, `reminder_date`, `godkendt`, `user_id`) VALUES (?,?,?,?,?,?,?)",[0,i.user]);
            // console.log(rows.insertId);
             return rows.insertId;
         } catch (e) {

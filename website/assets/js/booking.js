@@ -9,6 +9,7 @@ $(document).ready(function() {
     $("body").on("click", "*[id*='btn-']", function (){
         let variable = this.id;
         let key = variable.slice(4);
+        alert("adding to cart");
         // Run Function
         addToCart(key);
     })
