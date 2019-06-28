@@ -26,7 +26,7 @@ include '../includes/sidebar.php';
 <!-- #############################-------- SCRIPT -------############################################ -->
 
 <div class="container">
-    <div class="card">
+    <div id="product_registration_form"  style="display: none;" class="card">
         <div class="card-header">
             <h5 class="card-title">Produkt registrerings form</h5>
         </div>

@@ -15,8 +15,49 @@ $(function() {
     });
 
 
-
+    getInfo()
 });
+function getInfo(){
+    $.ajax({
+        type:'post',
+        url:'../backend_instantiate/int_dashboard.php',
+        data: {name: array[0],email: array[1],user_type: array[2],password1: array[3],password2: array[4]},
+        success:function (data) {
+            $('#createUser_btn').attr("disabled", true);
+            let options =  {
+                content: data, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function(){
+                    //$('#product_registration_form')[0].reset();
+                    //window.location.replace("users.php")
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
+
+
+
+        },
+        error: function (request, status, error) {
+            let options =  {
+                content: request, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function(){
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
+
+
+
+        },
+
+    });
+
+}
 function btnCreateUser() {
     let rank = document.getElementById('user_type')
 
