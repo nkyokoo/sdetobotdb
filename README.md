@@ -6,7 +6,7 @@ The website itself will be on http://udstyr.sde.dk/ and api on http://udstyr.sde
 The android application for android will be in the repository, it can be compiled to apk inside intellij
 
 if you have an experience with android development or eventually ios development, nodejs, and php, then it should be easy.
- <br> if you don't then you shouldn't probably rewrite the project.
+ <br> 
 
 
 ### Webside
@@ -14,7 +14,7 @@ if you have an experience with android development or eventually ios development
  The admin dashboard lies in `/admin`, it can only be accessed by an admin user with rank `1`.<br>
  The user page lies in `/user` and is composed based on the current logged in user.
  
- The website will NOT work without the api running. A php webpage is not a secure way of handling requests from an mobile application! 
+ The website will NOT work without the api running.
  
  
  ### Api
