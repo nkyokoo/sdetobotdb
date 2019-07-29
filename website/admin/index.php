@@ -45,14 +45,10 @@ if (isset($_GET['logout'])) {
             <div class="col-sm">
                 <div class="card">
                     <h5 class="card-header">Produkter</h5>
-                    <div class="card-body">
-                        <a class="list-group-item">
-                            Antal registerede produkter
-                            <?php
-                            echo "<span  id='total-product-number' class='label label-default label-pill pull-xs-right'></span>";
+                    <div  class="card-body">
+                       <div id="productinfo">
 
-                            ?>
-                        </a>
+                       </div>
                         <a href="products.php" class="btn btn-primary">Se fulde produkt database</a>
                     </div>
                 </div>
@@ -61,16 +57,9 @@ if (isset($_GET['logout'])) {
                 <div class="card">
                         <h5 class="card-header">Låne anmodninger</h5>
                         <div class="card-body">
-                            <a class="list-group-item">
-                                Antal låne anmodninger
-                                <?php
+                            <div id="product_requests">
 
-
-                                echo "<span  id='total-request-number' class='label label-default label-pill pull-xs-right'></span>";
-
-
-                                ?>
-                            </a>
+                            </div>
                             <a href="acceptrequests.php" class="btn btn-primary">Accepter anmodninger</a>
                         </div>
                     </div>
@@ -90,16 +79,8 @@ if (isset($_GET['logout'])) {
                 <div class="col-sm">
                     <div class="card">
                         <h5 class="card-header"> Brugere </h5>
-                        <div class="card-body">
-                            <a class="list-group-item">
-                                Antal registerede brugere
-                                <?php
-
-                                echo "<span id='total-request-number' class='label label-default label-pill pull-xs-right'></span>";
-
-
-                                ?>
-                            </a>
+                        <div  class="card-body">
+                        <div id="userinfo"></div>
                             <a href="users.php" class="btn btn-primary">Se alle brugere</a>
                         </div>
                     </div>
@@ -109,7 +90,6 @@ if (isset($_GET['logout'])) {
                         <h5 class="card-header"></h5>
                         <div class="card-body">
                             <a class="list-group-item">
-
 
                             </a>
                             <a href="" class="btn btn-primary"></a>

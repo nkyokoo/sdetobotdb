@@ -1,29 +1,12 @@
 
-:root {
-    --light-bg-color: rgba(242, 250, 255, 1);
-    --light-txt-color: rgb(6, 6, 6);
-    --dark-bg-color: rgb(6, 6, 6);
-    --dark-txt-color:  rgba(242, 250, 255, 1) ;
+body{
+    background-color:#204B52;
+    height: 90vh;
 
 }
 
 
 
-.container{
-    margin-top: 5rem;
-}
-
-
-
-#login-button {
-    -webkit-transition: width 2s; /* Safari */
-    -webkit-transition-timing-function: linear; /* Safari */
-    transition: width 2s;
-    transition-timing-function: linear;
-}
-#login-button:hover {
-    width: 80px;
-}
 .Login-Form{
     min-width: 40vw;
     max-width: 60vw;
@@ -48,12 +31,7 @@
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
-body {
-    color: var(--light-txt-color);
-    background: var(--light-bg-color);
-    height: 90vh;
 
-}
 
 .copyrightLoginSite {
     position: absolute;
@@ -61,5 +39,6 @@ body {
 }
 .copyrightLoginSiteText{
     text-align: center;
+    color: #dfdfdf;
 
 }

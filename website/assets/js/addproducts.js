@@ -141,6 +141,7 @@ $(document).ready(function () {
                 }
 
                 $('#loading').remove();
+                $('#product_registration_form').show();
 
             },
             error:function (error) {

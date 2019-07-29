@@ -6,20 +6,7 @@ body{
 
 }
 
-.container{
-  margin-top: 5rem;
-}
 
-
-.bar-login{
-    background-color: #002e2d;
-    height: 100%;
-    width: 10rem;
-    z-index: 1;
-    float: left;
-    --webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
-    clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
-}
 
 .Login-Form{
   min-width: 40vw;
@@ -52,6 +39,7 @@ body{
 }
 .copyrightLoginSiteText{
     text-align: center;
+    color: #dfdfdf;
 
 }
 

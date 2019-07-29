@@ -22,7 +22,6 @@
       <link rel='stylesheet' type='text/css' href='../assets/css/_stylesheets.css'>
       <link rel='stylesheet' type='text/css' href='../assets/css/info.css'>
       <link rel="stylesheet" href="../assets/css/sidebar.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="../assets/js/jquery.min.js"></script>
       <script src="../assets/js/vue.js"> </script>
       <script src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
