@@ -39,10 +39,21 @@ if you have an experience with android development or eventually ios development
  }
  ```
 
-
+  Check if wishlist accrue between 2 dates.
+    SELECT * FROM `wish_list` WHERE (`start_date` <= '2019-06-30') and (`end_date` >= '2019-06-27') AND godkendt = 0
     
-    
 
+check for between 2 dates the product not available :
 
+SELECT school_products_id,SUM(quantity) as total_quantity FROM connection_product_wishlist as cw
+INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
+WHERE (`start_date` <= '2019-06-30') and (`end_date` >= '2019-06-27') AND godkendt = 0
+GROUP BY school_products_id
  
 
+Check available product quantities from between 2 dates.
+
+SELECT school_products_id,(SELECT COUNT(pe.products_id) from product_unit_e as pe WHERE pe.products_id = cw.school_products_id and pe.current_status_id = 1) - SUM(cw.quantity) as total_quantity FROM connection_product_wishlist as cw
+INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
+WHERE (wl.start_date <= '2019-06-30') and (wl.end_date >= '2019-06-27') AND godkendt = 0
+GROUP BY school_products_id
