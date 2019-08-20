@@ -3,7 +3,7 @@ include 'admin_includes/adminprotection.php';
 
 include '../includes/header.php';
 include '../includes/navbar.php';
-include 'admin_includes/admin_sidebar.php';
+include '../includes/sidebar.php';
 
 
 ?>

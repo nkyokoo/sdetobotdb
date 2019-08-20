@@ -73,8 +73,8 @@ function btnCreateUser() {
                         timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function () {
-                            //$('#product_registration_form')[0].reset();
-                            //window.location.replace("users.php")
+                           // $('#product_registration_form')[0].reset();
+                            window.location.replace("users.php")
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);

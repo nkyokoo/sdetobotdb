@@ -2,7 +2,7 @@
     session_start();
     include ('../includes/header.php');
     include('../includes/navbar.php');
-    include ('admin_includes/admin_sidebar.php')
+include '../includes/sidebar.php';
 ?>
 <body>
 <script src="../assets/js/administration.js">
