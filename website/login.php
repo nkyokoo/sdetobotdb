@@ -4,11 +4,12 @@ if (isset($_SESSION['user'])){
 
 }
 include 'includes/header.php';
+include 'includes/navbar.php'
 
 ?>
 <link rel="stylesheet" href="assets/css/login.css">
 
-<content>
+
     <div class='container'>
         <div class='row'>
             <div class='col'></div>
@@ -38,14 +39,15 @@ include 'includes/header.php';
                             <p style="color: black !important;">
                                 Ingen bruger? opret en <a href="register.php">her</a>
                             </p>
+                            <div class="copyrightLoginSite">
+                                <p class="copyrightLoginSiteText">
+                                    Copyright © SDE IT OG DATA
+                                </p>
+                            </div>
                         </form>
                     </div>
                 </div>
-                <div class="copyrightLoginSite">
-                    <p class="copyrightLoginSiteText">
-                        Copyright © SDE IT OG DATA
-                    </p>
-                </div>
+
             </div>
             <div class='col'></div>
             <div class='col'></div>
@@ -60,7 +62,7 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-</content>
+
 
 <?php
 include "includes/footer.php";
