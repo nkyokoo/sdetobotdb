@@ -7,14 +7,13 @@
             data: { getItem: 'dashboard' },
             success: function (data) {
                 let jsondata  = JSON.parse(data)
-                console.log(data);
                let productinfo = $('#productinfo')
                 productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkter: ${jsondata.total_products.product_count}</span></a>`)
                 productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkt enheder: ${jsondata.total_product_units.unit_count}</span></a>`)
                 let product_requests = $('#product_requests')
                 product_requests.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal anmodninger: ${jsondata.total_requests.request_count}</span></a>`)
                 let total_users = $('#userinfo')
-                total_users.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal anmodninger: ${jsondata.total_users.user_count}</span></a>`)
+                total_users.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal brugere: ${jsondata.total_users.user_count}</span></a>`)
             },
             error: function (request, status, error) {
 

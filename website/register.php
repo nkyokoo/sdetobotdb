@@ -1,6 +1,8 @@
 <?php
 
 include 'includes/header.php';
+include 'includes/navbar.php'
+
 ?>
     <!--this formular  is used for registration. post the information tp auth.php-->
 
@@ -52,11 +54,6 @@ include 'includes/header.php';
                                 </p>
                             </form>
                         </div>
-                    </div>
-                    <div class="copyrightLoginSite">
-                        <p class="copyrightLoginSiteText">
-                            Copyright © SDE IT OG DATA
-                        </p>
                     </div>
                 </div>
                 <div class='col'></div>

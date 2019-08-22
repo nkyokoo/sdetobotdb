@@ -249,8 +249,9 @@ class Cart{
                   </div>
                   </div>";
             }
-            echo "</div><button class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='tøm kurv'  style='display: inline' id='button-clear'><i class='material-icons' style=''>remove_shopping_cart</i></button>";
-            echo "<button class='btn btn-raised btn-primary' style='display: inline' id='button-booking'>Reservér nu</button></div></div> ";
+            echo "</div><button class='btn btn-raised btn-primary' style='display: inline' id='button-booking'>Reservér nu</button> ";
+            echo "<button class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='tøm kurv'  style='display: inline' id='button-clear'><i class='material-icons' style=''>remove_shopping_cart</i></button></div></div>";
+
 
         }
         echo "</form></div>";

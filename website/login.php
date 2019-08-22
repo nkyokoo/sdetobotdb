@@ -39,11 +39,6 @@ include 'includes/navbar.php'
                             <p style="color: black !important;">
                                 Ingen bruger? opret en <a href="register.php">her</a>
                             </p>
-                            <div class="copyrightLoginSite">
-                                <p class="copyrightLoginSiteText">
-                                    Copyright © SDE IT OG DATA
-                                </p>
-                            </div>
                         </form>
                     </div>
                 </div>

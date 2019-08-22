@@ -47,7 +47,7 @@ class DropDownlistProducts_Function{
                           <div class='card'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
-                          <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$item['movable']."</h6>
+                          <h6 class='card-subtitle mb-2 text-muted' style='color: #b7b7b7'>Moveable: ".$item['movable']."</h6>
                           <p class='card-text'>".$item['description'].".</p>
                           <label for=\"'product-unit-".$item['id']."'\" class=\"bmd-label-floating\">Vælg antal enheder</label>
                           <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select><button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button></div>

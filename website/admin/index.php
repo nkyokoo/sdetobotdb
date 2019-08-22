@@ -71,8 +71,6 @@ if (isset($_GET['logout'])) {
                         <div class="card-body">
                             <h5 class="card-title">	<img id="profile-image" height="50" width="50" src="../assets/images/admin.png"><strong><?php echo $_SESSION['user']['name']; ?></strong></br></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><i><?php echo $_SESSION['user']['email']; ?></i></h6>
-                            <a class="btn btn-raised btn-danger" href="index.php?logout='1'" > Log ud</a>
-                            <a class="btn btn-raised btn-primary" href="create_user.php"> <i class="material-icons" style="display:  vertical-align: bottom; font-size: 18px !important;">person_add</i> Tilføj bruger</a>
                         </div>
                     </div>
                 </div>
