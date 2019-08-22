@@ -6,7 +6,7 @@ The website itself will be on http://udstyr.sde.dk/ and api on http://udstyr.sde
 The android application for android will be in the repository, it can be compiled to apk inside intellij
 
 if you have an experience with android development or eventually ios development, nodejs, and php, then it should be easy.
- <br> if you don't then you shouldn't probably rewrite the project.
+ <br> 
 
 
 ### Webside
@@ -14,7 +14,7 @@ if you have an experience with android development or eventually ios development
  The admin dashboard lies in `/admin`, it can only be accessed by an admin user with rank `1`.<br>
  The user page lies in `/user` and is composed based on the current logged in user.
  
- The website will NOT work without the api running. A php webpage is not a secure way of handling requests from an mobile application! 
+ The website will NOT work without the api running.
  
  
  ### Api
@@ -39,10 +39,21 @@ if you have an experience with android development or eventually ios development
  }
  ```
 
-
+  Check if wishlist accrue between 2 dates.
+    SELECT * FROM `wish_list` WHERE (`start_date` <= '2019-06-30') and (`end_date` >= '2019-06-27') AND godkendt = 0
     
-    
 
+check for between 2 dates the product not available :
 
+SELECT school_products_id,SUM(quantity) as total_quantity FROM connection_product_wishlist as cw
+INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
+WHERE (`start_date` <= '2019-06-30') and (`end_date` >= '2019-06-27') AND godkendt = 0
+GROUP BY school_products_id
  
 
+Check available product quantities from between 2 dates.
+
+SELECT school_products_id,(SELECT COUNT(pe.products_id) from product_unit_e as pe WHERE pe.products_id = cw.school_products_id and pe.current_status_id = 1) - SUM(cw.quantity) as total_quantity FROM connection_product_wishlist as cw
+INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
+WHERE (wl.start_date <= '2019-06-30') and (wl.end_date >= '2019-06-27') AND godkendt = 0
+GROUP BY school_products_id

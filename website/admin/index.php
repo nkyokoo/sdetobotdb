@@ -4,7 +4,7 @@ include '../includes/header.php';
 echo '<link rel="stylesheet" href="../assets/css/administration.css"">';
 echo '<script src="../assets/js/administration.js"> </script>';
 include '../includes/navbar.php';
-include 'admin_includes/admin_sidebar.php';
+include '../includes/sidebar.php';
 
 
 if (!$_SESSION['user']['user_group_id']) {
