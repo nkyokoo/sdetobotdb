@@ -66,6 +66,5 @@ echo "
 </div>
 ";
 
-echo "<script src='assets/js/contactform.js'></script>";
 include "includes/footer.php";
 ?>

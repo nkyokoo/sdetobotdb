@@ -237,7 +237,7 @@ class Cart{
             foreach ($json as $value ){
 
             echo "<div id='row-".$value['id']."' class='row'> <div class='col'>
-                  <div class='card' style=' margin-left: 1rem; width: 25rem'>
+                  <div class='card text-white bg-dark mb-3' style=' margin-left: 1rem; width: 25rem'>
                   <div class='card-body'>
                   <h5 class='card-title'>" .$value['product_name']."</h5>
                   <h6 class='card-subtitle mb-2 text-muted'>Flytbar: ".$value['movable']."</h6>

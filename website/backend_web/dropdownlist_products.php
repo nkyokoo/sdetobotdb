@@ -14,9 +14,8 @@ class DropDownlistProducts_Function{
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
-        echo "<div class='card'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-header'>Featured Products</h5>";
+        echo "<div class='Item-list'>";
+        echo "<h5>Featured Products</h5>";
 
 
         //Connect to API
@@ -44,7 +43,7 @@ class DropDownlistProducts_Function{
 
 
                 echo "<div class='row'> <div class='col'>
-                          <div class='card'>
+                          <div class='card text-white bg-dark mb-3' style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
                           <h6 class='card-subtitle mb-2 text-muted' style='color: #b7b7b7'>Moveable: ".$item['movable']."</h6>
@@ -58,7 +57,7 @@ class DropDownlistProducts_Function{
 
             }
 
-        echo "</div></div>";
+        echo "</div>";
 
 
     }

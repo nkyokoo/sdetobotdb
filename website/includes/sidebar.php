@@ -1,7 +1,5 @@
 <!-- Skal ændre content efter man er logget ind. Navbar skal ændres med session.  -->
 <?php
-echo "<script src=../assets/js/logout.js> </script>";
-echo "<script src=\"../assets/js/sidebar.js\"></script>";
 if(!isset($_SESSION))
 {
     session_start();
