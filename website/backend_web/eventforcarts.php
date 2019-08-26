@@ -237,7 +237,7 @@ class Cart{
             foreach ($json as $value ){
 
             echo "<div id='row-".$value['id']."' class='row'> <div class='col'>
-                  <div class='card' style=' margin-left: 1rem; width: 25rem'>
+                  <div class='card text-white bg-dark mb-3' style=' margin-left: 1rem; width: 25rem'>
                   <div class='card-body'>
                   <h5 class='card-title'>" .$value['product_name']."</h5>
                   <h6 class='card-subtitle mb-2 text-muted'>Flytbar: ".$value['movable']."</h6>
@@ -249,8 +249,9 @@ class Cart{
                   </div>
                   </div>";
             }
-            echo "</div><button class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='tøm kurv'  style='display: inline' id='button-clear'><i class='material-icons' style=''>remove_shopping_cart</i></button>";
-            echo "<button class='btn btn-raised btn-primary' style='display: inline' id='button-booking'>Reservér nu</button></div></div> ";
+            echo "</div><button class='btn btn-raised btn-primary' style='display: inline' id='button-booking'>Reservér nu</button> ";
+            echo "<button class='btn btn-danger' data-toggle='tooltip' data-placement='top' title='tøm kurv'  style='display: inline' id='button-clear'><i class='material-icons' style=''>remove_shopping_cart</i></button></div></div>";
+
 
         }
         echo "</form></div>";

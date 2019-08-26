@@ -1,20 +1,20 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])){
-
+   header("Location: ./");
 }
 include 'includes/header.php';
+include 'includes/navbar.php'
 
 ?>
-<link rel="stylesheet" href="assets/css/login.css">
 
-<content>
+
     <div class='container'>
         <div class='row'>
             <div class='col'></div>
             <div class='col'></div>
             <div class='col'>
-                <div class="card" style="width: 18rem; margin-top: 1.5rem">
+                <div class="card text-white bg-dark mb-3"  style="width: 18rem; margin-top: 1.5rem">
                     <div class="card-header">
                         <img src="assets/images/logo.svg" alt="">
 
@@ -35,17 +35,13 @@ include 'includes/header.php';
                             </div>
                             <button type="sumbit" id="login-button" style="display: inline; "class="btn btn-primary btn-raised" name="login_btn">Login<i class="material-icons"></i></button>
 
-                            <p style="color: black !important;">
+                            <p style="color: #e5e5e5 !important;">
                                 Ingen bruger? opret en <a href="register.php">her</a>
                             </p>
                         </form>
                     </div>
                 </div>
-                <div class="copyrightLoginSite">
-                    <p class="copyrightLoginSiteText">
-                        Copyright © SDE IT OG DATA
-                    </p>
-                </div>
+
             </div>
             <div class='col'></div>
             <div class='col'></div>
@@ -60,7 +56,7 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-</content>
+
 
 <?php
 include "includes/footer.php";

@@ -1,11 +1,5 @@
 
 
-body{
-    background-color:#204B52;
-    height: 90vh;
-
-}
-
 
 
 .Login-Form{
@@ -34,12 +28,11 @@ body{
 }
 
 .copyrightLoginSite {
-    position: absolute;
-     top: 80vh;
+
 }
 .copyrightLoginSiteText{
     text-align: center;
-    color: #dfdfdf;
+    color: #000000;
 
 }
 

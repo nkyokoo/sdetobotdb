@@ -155,20 +155,6 @@ $(document).ready(function () {
 
 
 });
-$(function(){
-    $('#button').hover(function(){
-        $(this).animate({width:'6rem'},500, function () {
-            $("#text").css({'display':'block'})
-
-        });
-    },function(){
-        $(this).animate({width:'2.8rem'},500, function () {
-            $("#text").css({'display':'none'})
-
-        });
-
-    }).trigger('mouseleave');
-});
 //Send AddProducts.php data to php.
 function btnAddProductToDB() {myBlock:{
     try {
