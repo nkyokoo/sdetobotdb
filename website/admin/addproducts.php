@@ -83,7 +83,7 @@ include '../includes/sidebar.php';
             </select>
             </div>
             <div class="form-group">
-            <select class="form-control"  o required>
+            <select class="form-control"   required>
                 <option>Worker (progress)</option>
             </select>
         </div>
@@ -100,9 +100,6 @@ include '../includes/sidebar.php';
 
 <?php
 
-echo "
-<script>
-</script>";
 include "../includes/footer.php";
 
 ?>

@@ -14,7 +14,6 @@ include '../includes/sidebar.php';
             <thead class="thead-dark">
 
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Navn</th>
                 <th scope="col">Email</th>
                 <th scope="col">Rank</th>
@@ -37,7 +36,7 @@ include '../includes/sidebar.php';
 
             if (sizeof($jsonData) > 0) {
                 foreach ($jsonData as $i) {
-                    echo '<tr><th scope="row">'.$i['id'].'</th><td>'.$i['name'].'</td> 
+                    echo '<tr><td>'.$i['name'].'</td> 
                     <td>'.$i['email'].'</td><td>'.$i['user_rank'].'</td></tr>';
                 }
 
