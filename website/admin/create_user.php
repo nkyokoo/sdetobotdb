@@ -12,7 +12,7 @@ include '../includes/sidebar.php';
     <div class='col'></div>
     <div class='col'></div>
     <div class='col'>
-    <div class="card" style="width: 40rem; margin-top: 1.5rem">
+    <div class="card text-white bg-dark mb-3" style="width: 40rem; margin-top: 1.5rem">
     <div class="card-header">
         <h1>Admin - Opret bruger</h1>
     </div>
