@@ -5,7 +5,7 @@
  * Date: 25/03/2019
  * Time: 11.14
  */
-
+session_start();
 
 class DropDownlistProducts_Function{
 
@@ -14,17 +14,17 @@ class DropDownlistProducts_Function{
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
-        echo "<div class='card'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-header'>Featured Products</h5>";
+        echo "<div class='catalog-container'>";
+        echo "<h5 style='color: #d0d0d0'>Featured Products</h5>";
+        echo "<div class='Item-list'>";
 
 
         //Connect to API
-        $url = 'http://localhost:8000/api/booking/bookinglist/get';
+        $url = 'http://localhost:8000/api/booking/products/catalog/get';
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
+                'header' => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
                 'method'  => 'GET',
             )
         );
@@ -43,13 +43,14 @@ class DropDownlistProducts_Function{
                 $quantity = $this->createOptionsForSelection($item['quantity']);
 
 
-                echo "<div class='row'> <div class='col'>
-                          <div class='card'>
+                echo "<div class='row'> <div class='col col-sm-4'>
+                          <div class='card text-white bg-dark mb-3' style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
-                          <h6 class='card-subtitle mb-2 text-muted'>Moveable: ".$item['movable']."</h6>
+                          <h6 class='card-subtitle mb-2 text-muted' style='color: #b7b7b7'>Moveable: ".$item['movable']."</h6>
                           <p class='card-text'>".$item['description'].".</p>
-                          <select id='product-unit-".$item['id']."'>".$quantity."</select><button id='btn-".$item['id']."')>Add to Cart</button></div>
+                          <label for=\"'product-unit-".$item['id']."'\" class=\"bmd-label-floating\">Vælg antal enheder</label>
+                          <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select><button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button></div>
                           </div>
                           </div>
                           </div>";

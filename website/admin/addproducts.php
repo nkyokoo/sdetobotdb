@@ -1,154 +1,106 @@
+
 <?php
 
-
+echo "
+<link rel=\"stylesheet\" href=\"../assets/css/loading.css\">
+<div class=\"loadingscreen\" id=\"loading\">
+    <div class=\"loadingbar\">
+        <div class=\"lds-roller\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>";
 //include 'includes/connect.php';
 
-include "adminprotection.php";
-include_once "../includes/connect.php";
+include "admin_includes/adminprotection.php";
 include "../includes/header.php";
+echo "<link rel=\"stylesheet\" href=\"../assets/css/administration.css\">";
 include "../includes/navbar.php";
 include '../includes/sidebar.php';
-$con = new DBConnection();
-$mysqli = $con->getConnection();
 
 
 
 ?>
-<script src="../assets/js/addproducts.js">
-
-</script>
+<script src="../assets/js/addproducts.js"></script>
 
 <!-- #############################-------- SCRIPT -------############################################ -->
 
-<div>
-    <form method="post" action="addproducts.php">
-        <div>
-            <select id="kategori_id" onchange="addNewInputOfAndet(this.id)" required>
-                <option value="">Kategori</option>
-                <?php
-                $sql = "SELECT id,category_name FROM category";
-                $result = $mysqli->query($sql);
+<div class="container">
+    <div id="product_registration_form"  style="display: none;" class="card text-white bg-dark mb-3">
+        <div class="card-header">
+            <h5 class="card-title">Produkt registrerings form</h5>
+        </div>
+        <div class="card-body">
+        <form id="product_registration_form" method="post" action="addproducts.php">
+            <div class="form-group">
+                <label for="kategori_id" class="bmd-label-floating">kategori</label>
+                <select id="kategori_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
 
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
-                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="produkt_id" class="bmd-label-floating">produkt navn</label>
+                <input id="produkt_id"  class="form-control" type="text"  required>
+            </div>
+            <div class="form-group">
+                <label for="virksomhed_id" class="bmd-label-floating">virksomhed</label>
+                <select id="virksomhed_id" class="form-control"  onchange="addNewInputOfAndet(this.id)" required>
 
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
+            </div>
+            <div class="form-group">
+                <label for="lokale_id" class="bmd-label-floating">lokale</label>
+                <select id="lokale_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
 
-            <input id="produkt_id" type="text"  placeholder="Produkt navn" required>
-
-            <select id="virksomhed_id" onchange="addNewInputOfAndet(this.id)" required>
-
-                <?php
-                echo "<option value=''>Virksomhed</option>";
-
-                //WHERE id IN (SELECT MIN(id) FROM product_location GROUP BY adress
-                $sql = "SELECT id,company_name_short FROM `school_address_short`  GROUP BY company_name_short";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['company_name_short']."</option>";
-                    }
-                }
-                ?>
             </select>
+            </div>
+            <div class="form-group">
+                <label for="svf_id" class="bmd-label-floating">Skab/Væg/Floor</label>
+                <select id="svf_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
 
-            <select id="lokale_id" onchange="addNewInputOfAndet(this.id)" required>
-                <option value="">Lokale</option>
-                <?php
-
-
-                $sql = "SELECT id,room FROM `location_room` group by room";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['room']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
+            </div>
+            <div class="form-group">
+                <label for="thp_id" class="bmd-label-floating">Hylde/Tavle/Plads</label>
+                <select id="thp_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
 
-
-
-            <select id="svf_id" onchange="addNewInputOfAndet(this.id)" required>
-                <option value="">Skab/Væg/Floor</option>
-                <?php
-
-
-                $sql = "SELECT id,type,nr FROM product_location_type_svf GROUP BY type,nr";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
             </select>
-            <select id="thp_id" onchange="addNewInputOfAndet(this.id)" required>
-                <option value="">Hylde/Tavle/Plads</option>
-                <?php
-
-
-                $sql = "SELECT id,type,nr FROM product_location_type_thp GROUP BY type,nr";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['type'].$row['nr']."</option>";
-                    }
-
-                }
-                echo "<option value='andet'>Tilføj Ny</option>";
-
-                ?>
-            </select>
-            <select id="flytbar_id" required>
-                <option value="">Flytbar</option>
+            </div>
+            <div class="form-group">
+                <label for="flytbar_id" class="bmd-label-floating">Flytbar</label>
+                <select class="form-control" id="flytbar_id" required>
                 <option value="ja">ja</option>
                 <option value="nej">nej</option>
 
             </select>
-            <input id="antal_id" type="number" placeholder="Antal" min="0" max="999" required>
-            <select id="leverandoer_id" onchange="addNewInputOfAndet(this.id)" required>
-                <option value="">Leverandør</option>
-                <?php
+            </div>
+            <div class="form-group">
+                <label for="antal_id" class="bmd-label-floating">antal</label>
+            <input id="antal_id" class="form-control"  type="number" min="0" max="999" required>
+            </div>
+            <div class="form-group">
+                <label for="leverandoer_id" class="bmd-label-floating">Leverandør</label>
+                <select id="leverandoer_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>
 
-
-                $sql = "SELECT id,name FROM supplier_company";
-                $result = $mysqli->query($sql);
-
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['name']."</option>";
-                    }
-                }
-                echo "<option value='_Leverandorandet'>Tilføj Ny</option>";
-                ?>
             </select>
-            <select required>
+            </div>
+            <div class="form-group">
+            <select class="form-control"   required>
                 <option>Worker (progress)</option>
             </select>
         </div>
-        <textarea id="description_id" placeholder="Produkt beskrivelse" rows="6" cols="30" required></textarea>
-        <input id="button" type="submit" value="Tilføj">
+            <label for="description_id" class="bmd-label-floating">Produkt beskrivelse</label>
+        <textarea id="description_id" class="form-control" rows="6" cols="30" required></textarea>
+            <button id="button" type="button"  class="btn btn-primary btn-raised" style="display: flex">
+                        <i class="material-icons" style="display: flex; ">add_box</i>
+                        <p id="text">tilføj</p>
+            </button>
     </form>
+        </div>
+    </div>
 </div>
+
 <?php
+
 include "../includes/footer.php";
-$mysqli->close();
+
 ?>
 

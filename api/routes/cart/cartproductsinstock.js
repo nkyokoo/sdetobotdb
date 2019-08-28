@@ -3,7 +3,7 @@
 module.exports = {
     method: 'POST',
     path: '/api/booking/eventsforcart/productinstock/get',
-    config: { auth: false },
+    config: { auth: 'jwt' },
     handler: async (request, h) => {
         const pool = request.mysql.pool;
 
@@ -17,7 +17,7 @@ module.exports = {
             return rows;
 
         } catch (e) {
-            console.log(e)
+            return h.response({}).code(500);
         }
 
 

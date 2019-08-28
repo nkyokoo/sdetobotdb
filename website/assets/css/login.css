@@ -1,28 +1,7 @@
 
 
-.container{
-  margin-top: 5rem;
-}
 
 
-.bar-login{
-    background-color: #002e2d;
-    height: 100%;
-    width: 10rem;
-    z-index: 1;
-    float: left;
-    -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
-    clip-path: polygon(50% 0%, 100% 0, 100% 32%, 100% 55%, 100% 88%, 0 100%, 0 100%, 0 59%, 0 0, 8% 0);
-}
-#login-button {
-    -webkit-transition: width 2s; /* Safari */
-    -webkit-transition-timing-function: linear; /* Safari */
-    transition: width 2s;
-    transition-timing-function: linear;
-}
-#login-button:hover {
-    width: 80px;
-}
 .Login-Form{
   min-width: 40vw;
   max-width: 60vw;
@@ -47,9 +26,13 @@
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
 }
-body {
-  color: #ffffff;
-  background: #04cba8 url("../img/robot-meets-man.png") no-repeat center;
-    height: 90vh;
+
+.copyrightLoginSite {
 
 }
+.copyrightLoginSiteText{
+    text-align: center;
+    color: #000000;
+
+}
+

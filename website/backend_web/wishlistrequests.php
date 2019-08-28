@@ -5,19 +5,18 @@
  * Date: 22/03/2019
  * Time: 08.36
  */
-include "../admin/adminprotection.php";
-
+include_once '../admin/admin_includes/adminprotection.php';
 class WishListRequest{
 
     function acceptRequest($wishlistID){
-        $url = 'http://localhost:8000/api/request/get';
+        $url = 'http://localhost:8000/api/request/accept';
         $data = array('wishlistID' => $wishlistID);
 
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
-                'method'  => 'POST',
+                'header'  => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
+                'method'  => 'PUT',
                 'content' => json_encode($data)
             )
         );
@@ -33,14 +32,14 @@ class WishListRequest{
     }
 
     function denyRequest($wishlistID){
-        $url = 'http://localhost:8000/api/admin/denyrequest';
+        $url = 'http://localhost:8000/api/request/deny';
         $data = array('wishlistID' => $wishlistID);
 
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/json",
-                'method'  => 'POST',
+                'header'  => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
+                'method'  => 'PUT',
                 'content' => json_encode($data)
             )
         );

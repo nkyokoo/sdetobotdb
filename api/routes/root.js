@@ -1,7 +1,7 @@
 module.exports = {
     method: 'GET',
-    path: '/',
-
+    path: '/api',
+    config: { auth: 'jwt'},
     handler: async (request, h) => {
 
         return {'message': "hello"}

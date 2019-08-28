@@ -1,0 +1,30 @@
+
+
+
+.Login-Form{
+    min-width: 40vw;
+    max-width: 60vw;
+    color: white !important;
+    padding: 20px;
+    margin: auto;
+}
+.login-shadow{
+    background: rgba(26,26,26,0.5);
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+.lead{
+    color: #f0e9f8;
+}
+#title2{
+    text-align: center;
+    font-size: 4rem;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+
+

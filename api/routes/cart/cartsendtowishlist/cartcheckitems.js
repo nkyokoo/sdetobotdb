@@ -4,7 +4,7 @@ module.exports = {
     method: 'POST',
     path: '/api/booking/bookingsend/create',
     config: {
-        auth: false,
+        auth: 'jwt',
     },
 
     handler: async (request, h) => {
@@ -38,7 +38,7 @@ module.exports = {
 
             return json;
         } catch (e) {
-            console.log(e)
+            return h.response({}).code(500);
         }
 
 

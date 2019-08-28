@@ -14,6 +14,145 @@ $(document).ready(function () {
         btnAddProductToDB();
     });
 
+    (function ()
+    {
+        //Populate all selectboxes with data from database
+        $.ajax({
+            type:'get',
+            url:'../backend_instantiate/int_productinfo.php',
+            success:function (data) {
+                let data2 = JSON.parse(data);
+
+                //SVF
+                if (data2.d0.length > 0) {
+                    for (i of data2.d0) {
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = (i.type + i.nr);
+                        $('#svf_id').append(html);
+                    }
+                    $('#svf_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else{
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#svf_id').append(html);
+                }
+
+                //THP
+                if (data2.d1.length > 0){
+                    for (i of data2.d1){
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = (i.type + i.nr);
+                        $('#thp_id').append(html);
+                    }
+                    $('#thp_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#thp_id').append(html);
+                }
+
+                //Category
+                if (data2.d2.length > 0){
+                    for (i of data2.d2){
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.category_name;
+                        $('#kategori_id').append(html);
+                    }
+                    $('#kategori_id').append("<option value='andet'>Tilføj Ny</option>");
+                }
+                else {
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#kategori_id').append(html);
+                }
+
+                //Location
+                if (data2.d3.length > 0){
+                    for (i of data2.d3){
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.room;
+                        $('#lokale_id').append(html);
+                    }
+                    $('#lokale_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#lokale_id').append(html);
+                }
+
+                //Supplier
+                if (data2.d4.length > 0){
+                    for (i of data2.d4){
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.name;
+                        $('#leverandoer_id').append(html);
+                    }
+                    $('#leverandoer_id').append("<option value='_Leverandorandet'>Tilføj Ny</option>");
+
+                }
+                else {
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#leverandoer_id').append(html);
+                }
+
+                //SCHOOL_SHORT_ADDRESS
+                if (data2.d5.length > 0){
+                    let lastChild = document.getElementById("nyVirksomhed");
+                    let selectParent = document.getElementById("virksomhed_id");
+                    for (i of data2.d5){
+                        let html = document.createElement("option");
+
+                        html.value = i.id;
+                        html.text = i.company_name_short;
+                        selectParent.insertBefore(html,lastChild);
+                        $('#virksomhed_id').append(html);
+
+                    }
+                    $('#virksomhed_id').append("<option value='andet'>Tilføj Ny</option>");
+
+                }
+                else {
+                    let html = document.createElement("option");
+
+                    html.text = "ERROR Couldn't receive data";
+                    $('#virksomhed_id').append(html);
+                }
+
+                $('#loading').remove();
+                $('#product_registration_form').show();
+
+            },
+            error:function (error) {
+
+            }
+
+        });
+
+    })();
+
+
 
 });
 //Send AddProducts.php data to php.
@@ -56,7 +195,16 @@ function btnAddProductToDB() {myBlock:{
 
                 }
                 else {
-                    alert("You Cannot type numbers in : "+ arrayName[i]);
+                    let options =  {
+                        content: "You Cannot type numbers in : "+ arrayName[i], // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function(){
+
+
+                        } // callback called when the snackbar gets closed.
+                    }
                     break myBlock;
                 }
             }
@@ -65,14 +213,29 @@ function btnAddProductToDB() {myBlock:{
         if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5] && produkt_navn && antal && flytbar){
             $.ajax({
                 type:'post',
-                url:'../functions/api_addproductstodb.php',
+                url:'../backend_instantiate/api_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
                 success:function (data) {
+                    $('#button').attr("disabled", true);
                     // alert("You've succeed in creating a new product!");
-                    alert("Your Request Has Been Sent To The System");
-                    $('#produkt_id').val("");
-                    location.reload();
-                }
+                    let options =  {
+                        content: "Produkt tilføjet, sender dig til produkt liste", // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function(){
+
+
+                            $('#product_registration_form')[0].reset();
+                            window.location.replace("products.php")
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
+
+
+
+                },
+
             });
         } else {
             //Check for errors and display them
@@ -96,7 +259,17 @@ function btnAddProductToDB() {myBlock:{
                     }
                 }
             }
-            alert(errorMessage);
+            let options =  {
+                content: errorMessage, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function(){
+
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
         }
     } catch (e) {
         alert(e.errorCode);
@@ -109,10 +282,8 @@ function addNewInputOfAndet(CurrentEventId) {
 
     try {
         if (CurrentEventId === "leverandoer_id") {
-            let andetPlaceHolderName = CurrentEventId;
-            //slice the last 3 index
-            andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
+
+            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny leverandoer navn' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
                 let container = document.getElementById(CurrentEventId);
@@ -130,7 +301,7 @@ function addNewInputOfAndet(CurrentEventId) {
         else {
             let andetPlaceHolderName = CurrentEventId;
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
+            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "andet") {
                 let container = document.getElementById(CurrentEventId);

@@ -54,7 +54,7 @@ if (isset($_POST['register_btn'])) {
     $result = file_get_contents($url, false, $context);
     $jsondata = json_decode($result,true);
 
-    if ($jsondata["message"] == 200) {
+    if ($jsondata["code"] == 200) {
 
         header('Location: /login.php');
 
