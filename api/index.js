@@ -42,6 +42,8 @@ const init = async() => {
         {
             plugin: require('hapi-mysql2'),
             options: clientOpts
+        },{
+            plugin:require('susie'),
         }
     ]);
 

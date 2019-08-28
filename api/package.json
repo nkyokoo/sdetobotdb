@@ -6,6 +6,7 @@
     "hapi": "^18.1.0",
     "joi": "latest",
     "jsonwebtoken": "^8.5.1",
+    "susie": "^3.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
