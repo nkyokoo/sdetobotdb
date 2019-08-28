@@ -12,12 +12,36 @@ $(document).ready(function() {
         alert("adding to cart");
         // Run Function
         addToCart(key);
-    })
+    });
+    $('#display').delegate('#dateButton','click',function () {
+        updateProductView($('#sdate').val(),$('#edate').val());
+    });
 
 });
 
+function updateProductView(sdate,edate) {
+   let sdateFormat = formatAndCheckDate(sdate);
+   let edateFormat = formatAndCheckDate(edate);
+    if (edateFormat && sdateFormat){
 
+    }
+    else {
+        alert("pls enter a valid date");
+    }
+}
 
+function formatAndCheckDate(date) {
+   // yyyy/mm/dd database date format
+    let date1 = new  Date();
+    // Replace all occur and matches
+    let newDate = date.replace(new RegExp("-","g"),"/");
+    let datearr = newDate.split('/');
+    //check if dd/mm/yy is right
+    if ((parseInt(datearr[0]) >= date1.getFullYear()) && (parseInt(datearr[1]) > 0 && parseInt(datearr[1]) <= 12) && (parseInt(datearr[2]) > 0 &&parseInt(datearr[2]) <= 31)){
+        return newDate;
+    }
+    return false;
+}
 // Add product to cart via SESSION in a php file
 function addToCart(productID) {
     try {

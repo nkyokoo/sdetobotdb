@@ -57,3 +57,25 @@ SELECT school_products_id,(SELECT COUNT(pe.products_id) from product_unit_e as p
 INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
 WHERE (wl.start_date <= '2019-06-30') and (wl.end_date >= '2019-06-27') AND godkendt = 0
 GROUP BY school_products_id
+
+SELECT school_products_id,sp.product_name,sp.description,sp.movable,(SELECT COUNT(pe.products_id) from product_unit_e as pe WHERE pe.products_id = cw.school_products_id and pe.current_status_id = 1) - SUM(cw.quantity) as quantity_left FROM connection_product_wishlist as cw
+         INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
+         INNER JOIN school_products as sp ON cw.school_products_id = sp.id
+         WHERE (wl.start_date <= '2019-06-30') and (wl.end_date >= '2019-06-27') AND godkendt = 0
+         GROUP BY school_products_id
+
+
+
+SELECT sp.id,sp.product_name,sp.description,sp.movable, COUNT(pe.products_id) -
+(
+SELECT IFNULL((SELECT SUM(cw1.quantity) FROM connection_product_wishlist as cw1
+INNER JOIN wish_list as wl1 ON wl1.id = cw1.wish_list_id
+WHERE (wl1.start_date <= '2019-06-30') and (wl1.end_date >= '2019-06-27') AND wl1.godkendt BETWEEN 0 AND 1 AND cw1.school_products_id = sp.id
+GROUP BY cw1.school_products_id
+),0) as quantity
+) as quantity 
+FROM school_products as sp
+INNER JOIN product_unit_e as pe ON sp.id = pe.products_id 
+WHERE 
+pe.current_status_id = 1 
+GROUP BY pe.products_id

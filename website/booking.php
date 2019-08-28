@@ -16,8 +16,13 @@ include 'includes/sidebar.php';
 <div class="container">
 <!-- Tags to test if Timer works -->
 <!-- <div><p>Timer</p> <p id="test">0</p></div> -->
-<div id="display"></div>
-<div id="layer_1" class="layer1" style="display: block" >
+<div id="display">
+
+    <input type="date" id="sdate">     <input type="date" id="edate">     <input type="button" value="GO" id="dateButton">
+</div>
+
+
+    <div id="layer_1" class="layer1" style="display: block" >
 
     <div id="select_list_1">
         <!-- Via Ajax, get products data and send them in between this div. "Booking.js(getProductsFromDB)" -->
