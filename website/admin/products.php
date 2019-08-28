@@ -42,8 +42,11 @@ include '../includes/sidebar.php';
                  );
                  //send request to api and get result
                  $context = stream_context_create($options);
-                 $result = file_get_contents($url, false, $context);
-                 $jsonData = json_decode($result, true);
+
+                     $result = file_get_contents($url, false, $context);
+                     $jsonData = json_decode($result, true);
+
+
 
 
                  if (sizeof($jsonData) > 0) {
@@ -110,3 +113,5 @@ include '../includes/sidebar.php';
     </div>
 
 </div>
+<?php
+ include "../includes/footer.php";

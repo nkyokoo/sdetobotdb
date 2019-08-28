@@ -14,8 +14,9 @@ class DropDownlistProducts_Function{
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
+        echo "<div class='catalog-container'>";
+        echo "<h5 style='color: #d0d0d0'>Featured Products</h5>";
         echo "<div class='Item-list'>";
-        echo "<h5>Featured Products</h5>";
 
 
         //Connect to API
@@ -42,7 +43,7 @@ class DropDownlistProducts_Function{
                 $quantity = $this->createOptionsForSelection($item['quantity']);
 
 
-                echo "<div class='row'> <div class='col'>
+                echo "<div class='row'> <div class='col col-sm-4'>
                           <div class='card text-white bg-dark mb-3' style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
@@ -57,7 +58,7 @@ class DropDownlistProducts_Function{
 
             }
 
-        echo "</div>";
+        echo "</div></div>";
 
 
     }

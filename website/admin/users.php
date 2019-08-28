@@ -9,7 +9,7 @@ include '../includes/sidebar.php';
 
 <div class="container">
 
-    <div class="card" style="width: auto; margin-top: 10px">
+    <div class="card text-white bg-dark mb-3" style="width: auto; margin-top: 10px">
         <table class="table" style="overflow-x: scroll">
             <thead class="thead-dark">
 

@@ -1,4 +1,7 @@
 <?php
+if (isset($_SESSION['user']['user_group_id'])){
+    header('location: ../index.php');
+}
 session_start();
 include '../includes/header.php';
 include '../includes/navbar.php';
