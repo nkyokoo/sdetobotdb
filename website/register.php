@@ -17,7 +17,7 @@ include 'includes/navbar.php'
                 <div class='col'></div>
                 <div class='col'></div>
                 <div class='col'>
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem; margin-top: 1.5rem">
+                    <div class=card style="width: 18rem; margin-top: 1.5rem">
                         <div class="card-header">
                             <img src="assets/images/logo.svg" alt="">
 

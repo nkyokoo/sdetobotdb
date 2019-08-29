@@ -2,7 +2,7 @@
 <content class="info">
     <div class="out-border">
 
-        <div class="card text-white bg-dark mb-3">
+        <div class=let text-white bg-dark mb-3">
             <div class="card-header">
                 <h1>info</h1>
 

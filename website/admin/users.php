@@ -9,7 +9,7 @@ include '../includes/sidebar.php';
 
 <div class="container">
 
-    <div class="card text-white bg-dark mb-3" style="width: auto; margin-top: 10px">
+    <div class="card mb-3" style="width: auto; margin-top: 10px; background: #ededed">
         <table class="table" style="overflow-x: scroll">
             <thead class="thead-dark">
 
@@ -48,7 +48,7 @@ include '../includes/sidebar.php';
 
             </tbody>
         </table>
-        <div class="card-footer">
+        <div class="card-footer" style="background: #ededed">
             <a href="create_user.php" class="btn btn-raised btn-primary"> Tilføj bruger</a>
         </div>
     </div>
