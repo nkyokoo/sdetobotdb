@@ -78,16 +78,16 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                             <form>
                                 <div class="form-group">
                                     <!-- left unspecified, .bmd-form-group will be automatically added (inspect the code) -->
-                                    <label for="password_1" class="bmd-label-floating">Nuværende adgangskode</label>
-                                    <input type="password" class="form-control" id="password_1">
+                                    <label for="currentpassword" class="bmd-label-floating">Nuværende adgangskode</label>
+                                    <input type="password" class="form-control" id="current-password">
                                 </div>
                                 <div class="form-group bmd-form-group"> <!-- manually specified -->
-                                    <label for="password_2" class="bmd-label-floating">Ny adgangskode</label>
-                                    <input type="password" class="form-control" id="password_2">
+                                    <label for="new-password" class="bmd-label-floating">Ny adgangskode</label>
+                                    <input type="password" class="form-control" id="new-password">
                                 </div>
                                 <div class="form-group bmd-form-group"> <!-- manually specified -->
-                                    <label for="password_3" class="bmd-label-floating">Gentag adgangskode</label>
-                                    <input type="password" class="form-control" id="password_3">
+                                    <label for="new-password" class="bmd-label-floating">Gentag adgangskode</label>
+                                    <input type="password" class="form-control" id="new-password">
                                 </div>
                             </form>
                             <button class="btn btn-raised btn-danger" id="change_password">change password
@@ -100,7 +100,7 @@ switch (strval($_SESSION['user']['user_group_id'])) {
             </div>
 
             <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="row">s
+            <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6"></div>
             </div>

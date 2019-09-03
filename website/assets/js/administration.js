@@ -68,7 +68,7 @@ function btnCreateUser() {
                 },
                 error: function (request, status, error) {
                     let options = {
-                        content: request, // text of the snackbar
+                        content: request.responseText, // text of the snackbar
                         style: "toast", // add a custom class to your snackbar
                         timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value

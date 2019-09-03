@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "dependencies": {
     "boom": "latest",
+    "email-validator": "^2.0.4",
     "hapi": "^18.1.0",
     "joi": "latest",
     "jsonwebtoken": "^8.5.1",
     "susie": "^3.0.0",
-    "uuid": "^3.3.2"
-  },
-  "devDependencies": {
+    "uuid": "^3.3.2",
     "hapi-auth-jwt2": "^8.3.0",
     "hapi-mysql2": "^2.2.5"
+  },
+  "devDependencies": {
+
   },
   "main": "index.js",
   "scripts": {
