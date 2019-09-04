@@ -4,7 +4,8 @@ const Joi = require("joi")
 let validator = require("email-validator");
 const uuidv4 = require('uuid/v4');
 
-module.exports = {
+module.exports = [
+    {
     method: 'POST',
     path: '/api/admin/user/create',
     config: {auth: 'jwt'},
@@ -43,4 +44,32 @@ module.exports = {
 
     }
 
-}
+},{
+        method: 'DELETE',
+        path: '/api/admin/user/disable',
+        config: {auth: 'jwt'},
+        handler: async (request, h) => {
+            let credentials = request.auth.credentials;
+            if(credentials.user_group_id !== 1){
+                return h.response({code: 401, error: 'Your token can\'t be used to access this route'}).code(200)
+            }
+            if(credentials.id === request.payload.id){
+                return h.response({code: 401, error: "Du kan ikke deaktivere dig selv!"}).code(200)
+            }
+
+            const pool = request.mysql.pool
+
+            try {
+
+                await pool.query('UPDATE users SET disabled= ? WHERE id = ?', [1, request.payload.id]);
+                return h.response({ code: 200, message: " disabled " }).code(200)
+
+            } catch (e) {
+                console.log(e)
+                return h.response({ code: 500, message: e.message }).code(500)
+            }
+
+        }
+
+    }
+]

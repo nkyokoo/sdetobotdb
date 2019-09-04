@@ -17,7 +17,7 @@ const validate = async function (decoded, request, h) {
         }
     );
     // do your checks to see if the person is valid
-    if (rows.length === 0) {
+    if (rows.length === 0 && rows.disabled === 1) {
         return { isValid: false };
     }
     else {
