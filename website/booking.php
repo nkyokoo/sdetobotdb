@@ -18,7 +18,21 @@ include 'includes/sidebar.php';
 <!-- <div><p>Timer</p> <p id="test">0</p></div> -->
 <div id="display">
 
-    <input type="date" id="sdate">     <input type="date" id="edate">     <input type="button" value="GO" id="dateButton">
+    <?php
+    $currentDate = date('Y-m-d');
+    if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])){
+        echo "hello";
+    echo "<input type='date' id='sdate' min='".  $currentDate ."' value='".  $currentDate ."'>     <input type='date' id='edate' min='".  $currentDate ."' >     <input type='button' value='GO' id='dateButton'>";
+    }
+    else{
+        $startDate = date('Y-m-d',strtotime($_SESSION['sdate']));
+        echo $startDate;
+        echo "<input type='date' id='sdate' min='".$currentDate."' value='". $startDate ."'>     <input type='date' id='edate' min='".  $currentDate ." value='". $_SESSION['edate']."'>     <input type='button' value='GO' id='dateButton'>";
+
+    }
+
+     ?>
+
 </div>
 
 

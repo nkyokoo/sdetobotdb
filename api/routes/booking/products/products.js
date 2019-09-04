@@ -278,23 +278,15 @@ module.exports = [
         }
     },
     {
-
-        /**
-         * SELECT school_products_id,(SELECT COUNT(pe.products_id) from product_unit_e as pe WHERE pe.products_id = cw.school_products_id and pe.current_status_id = 1) - SUM(cw.quantity) as total_quantity FROM connection_product_wishlist as cw
-         INNER JOIN wish_list as wl ON cw.wish_list_id = wl.id
-         WHERE (wl.start_date <= '2019-06-30') and (wl.end_date >= '2019-06-27') AND godkendt = 0
-         GROUP BY school_products_id
-
-         *
-         * */
-
-        method: 'get',
+        method: 'post',
         path: '/api/booking/products/catalog/get',
         config: {auth: 'jwt'},
         handler: async (request, h) => {
             const pool = request.mysql.pool;
             try {
-                const [rows, fields] = await pool.query('SELECT school_products.id,school_products.product_name,school_products.description,school_products.movable, COUNT(product_unit_e.products_id) as quantity FROM product_unit_e INNER JOIN school_products ON school_products.id = product_unit_e.products_id WHERE product_unit_e.current_status_id = 1 GROUP BY product_unit_e.products_id');
+                //console.log("SELECT sp.id,sp.product_name,sp.description,sp.movable, COUNT(pe.products_id) - ( SELECT IFNULL((SELECT SUM(cw1.quantity) FROM connection_product_wishlist as cw1 INNER JOIN wish_list as wl1 ON wl1.id = cw1.wish_list_id WHERE (wl1.start_date <= "+request.payload.sdate+") and (wl1.end_date >= "+request.payload.edate+") AND wl1.godkendt BETWEEN 0 AND 1 AND cw1.school_products_id = sp.id GROUP BY cw1.school_products_id ),0) as quantity ) as quantity  FROM school_products as sp INNER JOIN product_unit_e as pe ON sp.id = pe.products_id  WHERE  pe.current_status_id = 1 GROUP BY pe.products_id");
+                const [rows, fields] = await pool.query("SELECT sp.id,sp.product_name,sp.description,sp.movable, COUNT(pe.products_id) - ( SELECT IFNULL((SELECT SUM(cw1.quantity) FROM connection_product_wishlist as cw1 INNER JOIN wish_list as wl1 ON wl1.id = cw1.wish_list_id WHERE (wl1.start_date <= ?) and (wl1.end_date >= ?) AND wl1.godkendt BETWEEN 0 AND 1 AND cw1.school_products_id = sp.id GROUP BY cw1.school_products_id ),0) as quantity ) as quantity  FROM school_products as sp INNER JOIN product_unit_e as pe ON sp.id = pe.products_id  WHERE  pe.current_status_id = 1 GROUP BY pe.products_id"
+                ,[request.payload[0].edate,request.payload[0].sdate]);
 
                 return rows;
 

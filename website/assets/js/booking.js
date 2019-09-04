@@ -2,8 +2,7 @@
 //Always running when DOM is ready
 $(document).ready(function() {
 
-    //Get products from db and send them to booking.php
-    getProductsFromDB();
+    updateMaxDate();
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
     $("body").on("click", "*[id*='btn-']", function (){
@@ -16,14 +15,40 @@ $(document).ready(function() {
     $('#display').delegate('#dateButton','click',function () {
         updateProductView($('#sdate').val(),$('#edate').val());
     });
+    $('#display').delegate('#sdate','change',function () {
+        updateMaxDate();
+    });
 
 });
+function updateMaxDate() {
+    let date = $('#sdate').val();
+    alert(date);
+    let dt = new Date(date);
+    let day = dt.getDate();
+    if (day < 10){
+        day = "0" + day.toString();
+    }
+    // go to next month, months range from 0-11 where 0 = January
+    dt.setMonth(dt.getMonth() + 1);
+    let month = dt.getMonth();
+    //increment +1 month to show correct month to the client 1-12
+    month++;
+    if (month < 10){
+        month = "0" + month.toString();
+    }
+    let year = dt.getFullYear();
+    let maxDate = year+'-'+month+'-'+day;
+    alert(maxDate);
+    $('#edate').attr('max',maxDate);
+    $('#edate').attr('min',date);
 
+}
 function updateProductView(sdate,edate) {
    let sdateFormat = formatAndCheckDate(sdate);
    let edateFormat = formatAndCheckDate(edate);
     if (edateFormat && sdateFormat){
-
+        //Get products from db and send them to booking.php
+        getProductsFromDB(sdateFormat,edateFormat);
     }
     else {
         alert("pls enter a valid date");
@@ -32,13 +57,13 @@ function updateProductView(sdate,edate) {
 
 function formatAndCheckDate(date) {
    // yyyy/mm/dd database date format
-    let date1 = new  Date();
+    let date1 = new Date();
+    alert(date);
     // Replace all occur and matches
-    let newDate = date.replace(new RegExp("-","g"),"/");
-    let datearr = newDate.split('/');
+    let datearr = date.split('-');
     //check if dd/mm/yy is right
     if ((parseInt(datearr[0]) >= date1.getFullYear()) && (parseInt(datearr[1]) > 0 && parseInt(datearr[1]) <= 12) && (parseInt(datearr[2]) > 0 &&parseInt(datearr[2]) <= 31)){
-        return newDate;
+        return date;
     }
     return false;
 }
@@ -73,15 +98,16 @@ function addToCart(productID) {
     } catch (e) {
     }
 }
-function getProductsFromDB() {
+function getProductsFromDB(sDate, eDate) {
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '../backend_instantiate/int_dropdownlist.php',
+        data: {sdate:sDate,edate:eDate},
         success: function (output) {
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
             let p = document.createElement("div");
             p.innerHTML = output;
-            document.getElementById("select_list_1").appendChild(p);
+            document.getElementById("select_list_1").innerHTML = output;
 
         }
 

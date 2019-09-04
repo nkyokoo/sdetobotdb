@@ -9,23 +9,27 @@ session_start();
 
 class DropDownlistProducts_Function{
 
-    function addProductsForSelection(){
-
+    function addProductsForSelection($sDate, $eDate){
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
         echo "<div class='catalog-container'>";
         echo "<h5 style='color: #d0d0d0'>Featured Products</h5>";
         echo "<div class='Item-list'>";
-
-
+        $newFormat = date("Y-m-d",strtotime($sDate));
+        $newFormat2 = date("Y-m-d",strtotime($eDate));
+        $_SESSION['sdate'] = $newFormat;
+        $_SESSION['edate'] = $newFormat2;
+        $data[] = array('sdate' => $newFormat,'edate' => $newFormat2);
+        $format = json_encode($data);
         //Connect to API
         $url = 'http://localhost:8000/api/booking/products/catalog/get';
         // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
-                'header' => "Content-type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
-                'method'  => 'GET',
+                'header' => "Content-Type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
+                'method'  => 'POST',
+                'content' => $format
             )
         );
         //send request to api and get result
