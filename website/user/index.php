@@ -12,13 +12,13 @@ include '../includes/sidebar.php';
 $userrank = "";
 switch (strval($_SESSION['user']['user_group_id'])) {
     case "1":
-        $userrank = "admin bruger";
+        $userrank = "Super Administrator";
         break;
     case "2":
-        $userrank = "super bruger";
+        $userrank = "Administrator";
         break;
     case "3":
-        $userrank = "almindelig bruger";
+        $userrank = "Almindelig bruger";
 
 }
 ?>
@@ -34,7 +34,7 @@ switch (strval($_SESSION['user']['user_group_id'])) {
             <div class="row">
                 <div class="col"></div>
                 <div class="col">
-                    <div class="card text-white bg-dark mb-3" style="width: 20rem;">
+                    <div class=card style="width: 20rem;">
                         <div class="card-body">
                             <div class="card-top" style="display: flex; align-items:center;">
                                 <img style="display: inline; vertical-align: middle" id="profile-image" height="50"
@@ -42,15 +42,19 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                                      src="../assets/images/admin.png" alt="profile picture">
                                 <h5 id="username_profile" class="card-title"
                                     style="display: inline"><?php echo $_SESSION['user']['name']; ?></h5>
-                                <button id="accept_changes" style="display: none;" class="btn"><i
-                                            style="color: white" class="material-icons">check</i></button>
-                                <button id="cancel_changes" style="display: none;" class="btn"><i
-                                            style="color: white" class="material-icons">cancel</i></button>
-
+                                <button id="accept_changes" style="display: none;" class="btn">
+                                    <i style="color: white" class="material-icons">check</i>
+                                </button>
+                                <button id="cancel_changes" style="display: none;" class="btn">
+                                    <i style="color: white" class="material-icons">cancel</i>
+                                </button>
+                                <button id="unlock_edit_password" style="display: inline;" class="btn">
+                                    <i style="color: white" class="material-icons">edit</i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="card text-white bg-dark mb-3" style="width: 20rem;">
+                    <div class=card style="width: 20rem;">
                         <div class="card-header">
                             User info
                         </div>
@@ -58,36 +62,35 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                             <li class="list-group-item">
                                 id: <?php echo $_SESSION['user']['id']; ?>
                             </li>
-                            <li class="list-group-item"><i
-                                        class="material-icons">email</i><?php echo $_SESSION['user']['email']; ?>
+                            <li class="list-group-item">
+                                <i class="material-icons">email</i><?php echo $_SESSION['user']['email']; ?>
                             </li>
-                            <li class="list-group-item"><i class="material-icons">group_work</i><?php echo $userrank ?>
+                            <li class="list-group-item">
+                                <i class="material-icons">group_work</i><?php echo $userrank ?>
                             </li>
                         </ul>
                     </div>
-                    <div class="card text-white bg-dark mb-3" style="width: 20rem;">
+                    <div class=card style="width: 20rem;">
                         <div class="card-header" style="display: inline">
                             <p style="display: inline; width: 2rem">Password</p>
-                            <button id="unlock_edit_password" style="display: inline; margin-left: 57%" class="btn"><i
-                                        style="color: white" class="material-icons">edit</i></button>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
                                     <!-- left unspecified, .bmd-form-group will be automatically added (inspect the code) -->
-                                    <label for="password_1" class="bmd-label-floating">Nuværende adgangskode</label>
-                                    <input type="password" class="form-control" id="password_1" disabled>
+                                    <label for="currentpassword" class="bmd-label-floating">Nuværende adgangskode</label>
+                                    <input type="password" class="form-control" id="current-password">
                                 </div>
                                 <div class="form-group bmd-form-group"> <!-- manually specified -->
-                                    <label for="password_2" class="bmd-label-floating">Ny adgangskode</label>
-                                    <input type="password" class="form-control" id="password_2" disabled>
+                                    <label for="new-password" class="bmd-label-floating">Ny adgangskode</label>
+                                    <input type="password" class="form-control" id="new-password">
                                 </div>
                                 <div class="form-group bmd-form-group"> <!-- manually specified -->
-                                    <label for="password_3" class="bmd-label-floating">Gentag adgangskode</label>
-                                    <input type="password" class="form-control" id="password_3" disabled>
+                                    <label for="new-password" class="bmd-label-floating">Gentag adgangskode</label>
+                                    <input type="password" class="form-control" id="new-password">
                                 </div>
                             </form>
-                            <button class="btn btn-raised btn-danger" id="change_password" disabled>change password
+                            <button class="btn btn-raised btn-danger" id="change_password">change password
                             </button>
                         </div>
                     </div>
@@ -97,7 +100,7 @@ switch (strval($_SESSION['user']['user_group_id'])) {
             </div>
 
             <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="row">s
+            <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6"></div>
             </div>

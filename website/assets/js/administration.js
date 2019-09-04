@@ -26,22 +26,7 @@
 
     }
 
-$(function () {
 
-    $('ul.tabs li').click(function () {
-        let tab_id = $(this).attr('data-tab');
-
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-
-        $(this).addClass('current');
-        $("#" + tab_id).addClass('current');
-    })
-    $('#createUser_btn').click(function () {
-        btnCreateUser();
-    });
-    getCount()
-});
 
 function btnCreateUser() {
     let rank = document.getElementById('user_type')
@@ -83,7 +68,7 @@ function btnCreateUser() {
                 },
                 error: function (request, status, error) {
                     let options = {
-                        content: request, // text of the snackbar
+                        content: request.responseText, // text of the snackbar
                         style: "toast", // add a custom class to your snackbar
                         timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
@@ -127,3 +112,37 @@ function btnCreateUser() {
     }
 
 }
+   function isInArray(date, dates) {
+       for(let idx = 0, length = dates.length; idx < length; idx++) {
+           let d = dates[idx];
+           if (date.getFullYear() == d.getFullYear() &&
+               date.getMonth() == d.getMonth() &&
+               date.getDate() == d.getDate()) {
+               return true;
+           }
+       }
+
+       return false;
+   }
+
+
+   $(function(){
+   //letiable of the scheduler for function scheduler.select(null);    line: 81
+
+
+   $('ul.tabs li').click(function () {
+           let tab_id = $(this).attr('data-tab');
+
+           $('ul.tabs li').removeClass('current');
+           $('.tab-content').removeClass('current');
+
+           $(this).addClass('current');
+           $("#" + tab_id).addClass('current');
+          });
+       $('#createUser_btn').click(function () {
+           btnCreateUser();
+       });
+
+       getCount()
+
+   });

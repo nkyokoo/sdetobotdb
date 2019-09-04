@@ -34,8 +34,8 @@ if (isset($_SESSION['user']['user_group_id'])){
 					<div class="sidebar" id="sideBar">
 				    <div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../index.php">Hejsa Superuser</a></button></li>
-						<li class="nav-item"><a class="nav-link" href="">Control users</a></li>
+						<li class="nav-item"><a class="nav-link" href="../teachers/products.php">Product</a></li>
+						<li class="nav-item"><a class="nav-link" href="../booking.php">book</a></li>
 						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
 						</ul>
@@ -48,12 +48,11 @@ if (isset($_SESSION['user']['user_group_id'])){
 //User
     else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
-           <div >
+           <div>
 				<content class="border-content">
 					<div class="sidebar"  id="sideBar">
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"> <a class="nav-link" href="../index.php">Hejsa user</a></li>
 						<li class="nav-item"><a class="nav-link" href="../booking.php">book</a></li>
 						<li class="nav-item"> <a class="nav-link" href="">Historik</a></li>
 						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>

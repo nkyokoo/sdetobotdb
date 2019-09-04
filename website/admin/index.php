@@ -22,28 +22,17 @@ if (isset($_GET['logout'])) {
 
 
 <div class="container">
-		<!-- notification message -->
-		<?php if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
-				<h3>
-					<?php
-						echo $_SESSION['success'];
-						unset($_SESSION['success']);
-					?>
-				</h3>
-			</div>
-		<?php endif ?>
         <div class="row">
             <div class="col-sm">
 
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+                    <div class=card style="width: 18rem;">
                         <div class="card-body">
                             <h1 class="card-title">Administrations dashboard</h1>
                         </div>
                     </div>
                 </div>
             <div class="col-sm">
-                <div class="card text-white bg-dark mb-3">
+                <div class=card>
                     <h5 class="card-header">Produkter</h5>
                     <div  class="card-body">
                        <div id="productinfo">
@@ -54,7 +43,7 @@ if (isset($_GET['logout'])) {
                 </div>
             </div>
             <div class="col-sm">
-                <div class="card text-white bg-dark mb-3">
+                <div class=card>
                         <h5 class="card-header">Låne anmodninger</h5>
                         <div class="card-body">
                             <div id="product_requests">
@@ -67,7 +56,7 @@ if (isset($_GET['logout'])) {
         </div>
             <div class="row">
                 <div class="col-sm">
-                    <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+                    <div class=card style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">	<img id="profile-image" height="50" width="50" src="../assets/images/admin.png"><strong><?php echo $_SESSION['user']['name']; ?></strong></br></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><i><?php echo $_SESSION['user']['email']; ?></i></h6>
@@ -75,7 +64,7 @@ if (isset($_GET['logout'])) {
                     </div>
                 </div>
                 <div class="col-sm">
-                    <div class="card text-white bg-dark mb-3">
+                    <div class=card>
                         <h5 class="card-header"> Brugere </h5>
                         <div  class="card-body">
                         <div id="userinfo"></div>
@@ -84,7 +73,7 @@ if (isset($_GET['logout'])) {
                     </div>
                 </div>
                 <div class="col-sm">
-                    <div class="card text-white bg-dark mb-3">
+                    <div class=card>
                         <h5 class="card-header"></h5>
                         <div class="card-body">
                             <a class="list-group-item">

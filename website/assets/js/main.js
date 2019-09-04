@@ -31,19 +31,7 @@ $(document).ready(function () {
 
 
 
-    $('#username_profile').on("dblclick",function() {
-        let $this = $(this);
-        let input = $('<input />', {
-            'type': 'text',
-            'id':'username_profile',
-            'class': 'form-control',
-            'value': $(this).text()
-        });
-        $(this).replaceWith(input);
-        $('#cancel_changes').show()
-        $('#accept_changes').show()
 
-    })
     $('#cancel_changes').on('click', function () {
 
         window.location.reload()
@@ -117,21 +105,18 @@ $(document).ready(function () {
             }
         })
     })
-    const edit_settings = {enabled: false}
     $("#unlock_edit_password").on('click', function () {
-            if (!edit_settings.enabled) {
-                $("#password_1").prop("disabled", false);
-                $("#password_2").prop("disabled", false);
-                $("#password_3").prop("disabled", false);
-                $("#change_password").prop("disabled", false);
-                edit_settings.enabled = true;
-            } else {
-                $("#password_1").prop("disabled", true);
-                $("#password_2").prop("disabled", true);
-                $("#password_3").prop("disabled", true);
-                $("#change_password").prop("disabled", true);
-                edit_settings.enabled = false;
-            }
+                let $this = $('#username_profile');
+                let input = $('<input />', {
+                    'type': 'text',
+                    'id':'username_profile',
+                    'class': 'form-control',
+                    'value': $this.text()
+                });
+                $this.replaceWith(input);
+                $('#cancel_changes').show()
+                $('#accept_changes').show()
+                $(this).hide();
 
 
         }

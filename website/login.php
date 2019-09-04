@@ -14,7 +14,7 @@ include 'includes/navbar.php'
             <div class='col'></div>
             <div class='col'></div>
             <div class='col'>
-                <div class="card text-white bg-dark mb-3"  style="width: 18rem; margin-top: 1.5rem">
+                <div class=card  style="width: 18rem; margin-top: 1.5rem">
                     <div class="card-header">
                         <img src="assets/images/logo.svg" alt="">
 
@@ -35,7 +35,7 @@ include 'includes/navbar.php'
                             </div>
                             <button type="sumbit" id="login-button" style="display: inline; "class="btn btn-primary btn-raised" name="login_btn">Login<i class="material-icons"></i></button>
 
-                            <p style="color: #e5e5e5 !important;">
+                            <p>
                                 Ingen bruger? opret en <a href="register.php">her</a>
                             </p>
                         </form>

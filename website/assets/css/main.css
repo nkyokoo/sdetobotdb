@@ -14,7 +14,7 @@ body {
     /*background-image:url('../images/bg.png');*/
     background-size:100%;
     background-repeat:no-repeat;
-    background-color: #042322;
+    background-color: #c3b8c5;
 }
 
 * {
@@ -54,13 +54,11 @@ body {
 }
 
 .cart-container{
-    background-color: rgb(6, 45, 42);
+    background-color: rgb(208, 208, 208);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-h1{
-    color:whitesmoke;
-}
+
 .card{
     margin: .5rem;
 }
@@ -157,7 +155,7 @@ body {
     cursor: pointer;
 }
 .hasevent{
-    background-color: rgba(0,170,231,0.1);
+    background-color: rgb(208, 208, 208);
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -196,7 +194,7 @@ body {
 }
 .catalog-container{
     margin-top: .5rem;
-    background-color: rgb(6, 45, 42);
+    background-color: rgb(208, 208, 208);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     padding: 1rem;
@@ -205,30 +203,27 @@ body {
 
 .Item-list{
     margin-top: .5rem;
-    background-color: rgb(6, 45, 42);
+    background-color: rgb(208, 208, 208);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 1rem;
     overflow-y: auto;
 }
 .bmd-label-floating{
-    color: #b7b7b7;
+    color: #5863ab;
 }
 .btn{
     margin-top: 0.5rem;
 }
 .form-control{
-    color: whitesmoke;
+    color: #6875cb;
 }
 ::placeholder{
-    color: whitesmoke;
+    color: #6875cb;
 }
 
  textarea:focus, input:focus {
-    color: whitesmoke !important;
+    color: #6875cb !important;
 }
 select:focus{
-    color: whitesmoke!important;
-}
-select{
-    background-color: rgb(75, 75, 75) !important;
+    color: #6875cb !important;
 }

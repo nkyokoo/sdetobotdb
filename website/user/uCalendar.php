@@ -9,7 +9,6 @@ include '../includes/sidebar.php';
 
 ?>
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material-v2.min.css" />
-    <link rel="stylesheet" href="calendar.css"> <!--style I made for the popup box(modal) and for higlighting of dates in date range picker-->
 
     <!-- source library "Kendo UI": https://www.telerik.com/kendo-ui
     specific "Kendo Scheduler" with events: https://demos.telerik.com/kendo-ui/scheduler/events
@@ -17,7 +16,6 @@ include '../includes/sidebar.php';
     documentation with letious "how to" tutorials: https://docs.telerik.com/kendo-ui/controls/scheduling/scheduler/overview
     (navigation of the last one is on the left side, you can find date range pickers configuration there too, it's under DatePicker section if you need it)-->
 
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.2.620/js/angular.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.2.620/js/jszip.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
