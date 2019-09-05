@@ -7,7 +7,7 @@
  */
 session_start();
 
-class DropDownlistProducts_Function{
+class dropdownlist_products{
 
     function addProductsForSelection($sDate, $eDate){
 

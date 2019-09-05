@@ -26,6 +26,116 @@
 
     }
 
+function deactivateUser(id) {
+    try {
+
+        $.ajax({
+                type: 'post',
+                url: '../backend_instantiate/int_disable_user.php',
+                data: { userid: id },
+                success: function (data) {
+                    let options = {
+                        content: data, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            window.location.replace("users.php")
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
+
+
+
+                },
+                error: function (request, status, error) {
+                    let options = {
+                        content: request.responseText, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
+
+
+
+                },
+
+            });
+    } catch (e) {
+        let options = {
+            content: e.errorCode, // text of the snackbar
+            style: "toast", // add a custom class to your snackbar
+            timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+            htmlAllowed: true, // allows HTML as content value
+            onClose: function () {
+
+
+            } // callback called when the snackbar gets closed.
+        }
+        $.snackbar(options);
+    }
+
+
+}
+   function activateUser(id) {
+       try {
+
+           $.ajax({
+               type: 'post',
+               url: '../backend_instantiate/int_enable_user.php',
+               data: { userid: id },
+               success: function (data) {
+                   let options = {
+                       content: data, // text of the snackbar
+                       style: "toast", // add a custom class to your snackbar
+                       timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                       htmlAllowed: true, // allows HTML as content value
+                       onClose: function () {
+                           window.location.replace("users.php")
+                       } // callback called when the snackbar gets closed.
+                   }
+                   $.snackbar(options);
+
+
+
+               },
+               error: function (request, status, error) {
+                   let options = {
+                       content: request.responseText, // text of the snackbar
+                       style: "toast", // add a custom class to your snackbar
+                       timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                       htmlAllowed: true, // allows HTML as content value
+                       onClose: function () {
+
+                       } // callback called when the snackbar gets closed.
+                   }
+                   $.snackbar(options);
+
+
+
+               },
+
+           });
+       } catch (e) {
+           let options = {
+               content: e.errorCode, // text of the snackbar
+               style: "toast", // add a custom class to your snackbar
+               timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+               htmlAllowed: true, // allows HTML as content value
+               onClose: function () {
+
+
+               } // callback called when the snackbar gets closed.
+           }
+           $.snackbar(options);
+       }
+
+
+   }
 
 
 function btnCreateUser() {

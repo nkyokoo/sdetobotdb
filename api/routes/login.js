@@ -15,7 +15,7 @@ const config = require('../util/config')
 
             if (request.payload) {
                 let payload = request.payload;
-         const [rows, fields] = await pool.query('select * from users WHERE email = ?',[payload.email]);
+         const [rows, fields] = await pool.query('select * from users WHERE email = ? AND NOT disabled = 1',[payload.email]);
                         if (rows.length !== 0) {
                             let decrypted;
                             try {
