@@ -58,15 +58,22 @@ module.exports = [
             }
 
             const pool = request.mysql.pool
-
+            const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [request.payload.id]);
+            if(rows[0].disabled !== 1){
             try {
 
-                await pool.query('UPDATE users SET disabled= ? WHERE id = ?', [1, request.payload.id]);
-                return h.response({ code: 200, message: " disabled " }).code(200)
+                    await pool.query('UPDATE users SET disabled= ? WHERE id = ?', [1, request.payload.id]);
 
-            } catch (e) {
-                console.log(e)
-                return h.response({ code: 500, message: e.message }).code(500)
+                    return h.response({ code: 200, message: "Deaktiveret" }).code(200)
+
+                } catch (e) {
+                    console.log(e)
+                    return h.response({ code: 500, message: e.message }).code(500)
+                }
+            }else{
+
+                return h.response({code: 401, error: "Allerede Deaktiveret!"}).code(200)
+
             }
 
         }

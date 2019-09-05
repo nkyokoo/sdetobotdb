@@ -44,6 +44,16 @@ const init = async() => {
             options: clientOpts
         },{
             plugin:require('susie'),
+        },{
+            plugin: require('hapi-rate-limit'),
+            options: {
+                enabled: true,
+                userLimit: 200,
+                userCache: {
+                    segment: "user",
+                    expiresIn: 60000
+                }
+            }
         }
     ]);
 
