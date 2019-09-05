@@ -146,5 +146,32 @@ class user
         $this->message = $sentMessage;
     }
 
+    public function enableUser($userid)
+    {
+
+        $url = 'http://localhost:8000/api/admin/user/enable';
+        $data = array(
+            'id' => $userid,
+
+        );// use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
+                'method' => 'PATCH',
+                'content' => json_encode($data)
+            )
+        );//send request to api and get result
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        $jsondata = json_decode($result, true);
+        if ($jsondata["code"] == 200) {
+            http_response_code($jsondata["code"]);
+            $this->setMessage($jsondata["message"]);
+        } else {
+            http_response_code($jsondata["code"]);
+            $this->setMessage($jsondata["error"]);
+        }
+    }
+
 
 }
