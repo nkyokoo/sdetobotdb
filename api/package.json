@@ -5,16 +5,15 @@
     "boom": "latest",
     "email-validator": "^2.0.4",
     "hapi": "^18.1.0",
+    "hapi-auth-jwt2": "^8.3.0",
+    "hapi-mysql2": "^2.2.5",
+    "hapi-rate-limit": "^4.0.1",
     "joi": "latest",
     "jsonwebtoken": "^8.5.1",
     "susie": "^3.0.0",
-    "uuid": "^3.3.2",
-    "hapi-auth-jwt2": "^8.3.0",
-    "hapi-mysql2": "^2.2.5"
+    "uuid": "^3.3.2"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

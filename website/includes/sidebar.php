@@ -9,7 +9,7 @@ if (isset($_SESSION['user']['user_group_id'])){
         echo '
 
             <div>
-				<content class="border-content">
+				<div class="border-content">
 					<div class="sidebar" id="sideBar">
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
@@ -20,7 +20,7 @@ if (isset($_SESSION['user']['user_group_id'])){
 						</ul>
 					</div>
 					</div>
-				</content>
+				</div>
 				</div>
 
 			';
@@ -30,18 +30,19 @@ if (isset($_SESSION['user']['user_group_id'])){
 
         echo '
             <div >
-				<content class="border-content">
+				<div class="border-content">
 					<div class="sidebar" id="sideBar">
 				    <div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../teachers/products.php">Product</a></li>
-						<li class="nav-item"><a class="nav-link" href="../booking.php">book</a></li>
+						<li class="nav-item"><a class="nav-link" href="../teachers/products.php">Produkter</a></li>
+						<li class="nav-item"><a class="nav-link" href="../teachers/acceptrequests.php">Låne Anmodninger<</a></li>
+						<li class="nav-item"><a class="nav-link" href="../booking.php">Lån</a></li>
 						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
-						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact informatrion</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						</ul>
 					</div>
 					</div>
-				</content>
+				</div>
             </div>
 			';
     }

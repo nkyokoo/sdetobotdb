@@ -7,5 +7,5 @@
  */
 include "../backend_web/dropdownlist_products.php";
 
-$class = new DropDownlistProducts_Function();
-$class->addProductsForSelection($_POST['sdate'],$_POST['edate']);
+$class = new dropdownlist_products();
+$class->addProductsForSelection();

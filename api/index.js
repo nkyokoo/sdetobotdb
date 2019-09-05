@@ -17,7 +17,7 @@ const validate = async function (decoded, request, h) {
         }
     );
     // do your checks to see if the person is valid
-    if (rows.length === 0) {
+    if (rows.length === 0 && rows.disabled === 1) {
         return { isValid: false };
     }
     else {
@@ -44,6 +44,16 @@ const init = async() => {
             options: clientOpts
         },{
             plugin:require('susie'),
+        },{
+            plugin: require('hapi-rate-limit'),
+            options: {
+                enabled: true,
+                userLimit: 200,
+                userCache: {
+                    segment: "user",
+                    expiresIn: 60000
+                }
+            }
         }
     ]);
 
