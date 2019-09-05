@@ -43,13 +43,13 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                                 <h5 id="username_profile" class="card-title"
                                     style="display: inline"><?php echo $_SESSION['user']['name']; ?></h5>
                                 <button id="accept_changes" style="display: none;" class="btn">
-                                    <i style="color: white" class="material-icons">check</i>
+                                    <i  class="material-icons">check</i>
                                 </button>
                                 <button id="cancel_changes" style="display: none;" class="btn">
-                                    <i style="color: white" class="material-icons">cancel</i>
+                                    <i class="material-icons">cancel</i>
                                 </button>
                                 <button id="unlock_edit_password" style="display: inline;" class="btn">
-                                    <i style="color: white" class="material-icons">edit</i>
+                                    <i class="material-icons">edit</i>
                                 </button>
                             </div>
                         </div>
@@ -59,9 +59,6 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                             User info
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                id: <?php echo $_SESSION['user']['id']; ?>
-                            </li>
                             <li class="list-group-item">
                                 <i class="material-icons">email</i><?php echo $_SESSION['user']['email']; ?>
                             </li>
