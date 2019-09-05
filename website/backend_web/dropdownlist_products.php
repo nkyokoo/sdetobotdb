@@ -75,28 +75,19 @@ class DropDownlistProducts_Function{
         $string = '';
         $enhedCounter = 1;
         //Select all Units of specific Product where Status is 1 => Available
-
         //Check if there's any Units/Enhed available
         if ($quantity > 0){
 
             //Fetch Units/Enhed Data from the Database.
                 for ($i = 1; $i <= $quantity;$i++)
                 {
-
-                $string .= '<option value="' . $i . '">' . $i. '</option>';
-                $enhedCounter += 1;
-
+                    $string .= '<option value="' . $i . '">' . $i. '</option>';
+                    $enhedCounter += 1;
                 }
-
         }else{
             $string = '<option value="">Ingen Enheder Ledige</option>';
 
         }
-
-
-
-
-
         return $string;
 
     }

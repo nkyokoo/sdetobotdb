@@ -15,14 +15,24 @@ $(document).ready(function() {
     $('#display').delegate('#dateButton','click',function () {
         updateProductView($('#sdate').val(),$('#edate').val());
     });
-    $('#display').delegate('#sdate','change',function () {
+    $('#display').delegate("*[id*='date_']",'change',function () {
         updateMaxDate();
+        resetCart();
     });
 
 });
+function resetCart() {
+    $.ajax({
+        type: 'POST',
+        url: '../backend_instantiate/int_eventsforcarts.php',
+        data: {clear: "clear"},
+        success: function () {
+            /* reset cart icon to 0 and null */
+        }
+    })
+}
 function updateMaxDate() {
-    let date = $('#sdate').val();
-    alert(date);
+    let date = $('#date_s').val();
     let dt = new Date(date);
     let day = dt.getDate();
     if (day < 10){
@@ -38,9 +48,8 @@ function updateMaxDate() {
     }
     let year = dt.getFullYear();
     let maxDate = year+'-'+month+'-'+day;
-    alert(maxDate);
-    $('#edate').attr('max',maxDate);
-    $('#edate').attr('min',date);
+    $('#date_e').attr('max',maxDate);
+    $('#date_e').attr('min',date);
 
 }
 function updateProductView(sdate,edate) {
@@ -58,7 +67,6 @@ function updateProductView(sdate,edate) {
 function formatAndCheckDate(date) {
    // yyyy/mm/dd database date format
     let date1 = new Date();
-    alert(date);
     // Replace all occur and matches
     let datearr = date.split('-');
     //check if dd/mm/yy is right

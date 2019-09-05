@@ -12,9 +12,7 @@
     "hapi-auth-jwt2": "^8.3.0",
     "hapi-mysql2": "^2.2.5"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
