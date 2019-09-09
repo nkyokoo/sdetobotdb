@@ -21,14 +21,15 @@ include 'includes/sidebar.php';
 <!-- <div><p>Timer</p> <p id="test">0</p></div> -->
 <div id="display">
     <?php
-    $currentDate = date('Y-m-d');
+    $date_raw = date('Y-m-d');
+    $currentDate = date('Y-m-d',strtotime('-1 day', strtotime($date_raw)));
     if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])){
-    echo "<input type='date' id='date_s' min='".  $currentDate ."' value='".  $currentDate ."'>     <input type='date' id='date_e' min='".  $currentDate ."' >     <input type='button' value='GO' id='dateButton'>";
+    echo "<input type='date' id='date_s' min='".  $currentDate ."' value='".  $currentDate ."' required>     <input type='date' id='date_e' min='".  $currentDate ."' required >     <input type='button' value='GO' id='dateButton'>";
     }
     else{
         $startDate = date('Y-m-d',strtotime($_SESSION['sdate']));
         $endDate = date('Y-m-d',strtotime($_SESSION['edate']));
-        echo "<input type='date' id='date_s' min='".$currentDate."' value='". $startDate ."'>     <input type='date' id='date_e' min='".  $currentDate ."' value='".$endDate."'>     <input type='button' value='GO' id='dateButton'>";
+        echo "<input type='date' id='date_s' min='".$currentDate."' value='". $startDate ."' required>     <input type='date' id='date_e' min='".  $currentDate ."' value='".$endDate."' required>     <input type='button' value='GO' id='dateButton'>";
 
     }
      ?>

@@ -13,9 +13,14 @@ $(document).ready(function() {
         addToCart(key);
     });
     $('#display').delegate('#dateButton','click',function () {
-        updateProductView($('#sdate').val(),$('#edate').val());
+        updateProductView($('#date_s').val(),$('#date_e').val());
     });
     $('#display').delegate("*[id*='date_']",'change',function () {
+
+        if (this.id === "date_e"){
+            alert("hey");
+
+        }
         updateMaxDate();
         resetCart();
     });
@@ -50,13 +55,17 @@ function updateMaxDate() {
     let maxDate = year+'-'+month+'-'+day;
     $('#date_e').attr('max',maxDate);
     $('#date_e').attr('min',date);
-
+    if ($('#date_e').val() < $('#date_s').val()){
+        $('#date_e').val($('#date_s').val());
+    }
 }
 function updateProductView(sdate,edate) {
    let sdateFormat = formatAndCheckDate(sdate);
    let edateFormat = formatAndCheckDate(edate);
     if (edateFormat && sdateFormat){
         //Get products from db and send them to booking.php
+        //alert(edateFormat);
+      //  alert(sdateFormat);
         getProductsFromDB(sdateFormat,edateFormat);
     }
     else {

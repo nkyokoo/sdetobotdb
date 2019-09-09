@@ -36,6 +36,7 @@ class BookingSend
                     else {echo "ERROR 22";break;}
 
                 }
+                // Check if products are available
                 $url = 'http://localhost:8000/api/booking/bookingsend/create';
 // use key 'http' even if you send the request to https://...
                 $options = array(
@@ -65,10 +66,10 @@ class BookingSend
                 }
 
             }else{echo "ERROR 21";}
-
+            //if all products are available do the following
             if ($allProductsAreAvailable){
                 // $this->updateStatus($storeIDsFromUnits);
-                //Make a wish list in DB and return ID
+                //Create a new wish list in DB and return ID
                 $wishListID = $this->sendToWishList();
                 //Get ID and products,quantity in a form of string array.
                 $this->connectProductsToWishList($storeIDsFromItems,$storeIDsFromUnitsQuantity,$wishListID);
@@ -84,16 +85,23 @@ class BookingSend
     }
 
     private function sendToWishList(){
-        $date = date('d-m-y');
+        $resdate = date('Y-m-d');
+        $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
+        $edate = date('Y-m-d',strtotime($_SESSION['edate']));
+        $remdate = date($edate, strtotime('-1 day', strtotime($edate)));
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
-
+ // `rerserved_date`, `start_date`, `end_date`, `reminder_date`, `godkendt`, `user_id`
         //Connect to API
         $data  = array(
-            'startdate' => $date,
+            'rerserved_date' => $resdate,
+            'start_date' => $sdate,
+            'end_date' => $edate,
+            'reminder_date' => $remdate,
             'userid' => $_SESSION['user']['id']
 
         );
+        var_dump($data);
         $url = 'http://localhost:8000/api/booking/bookingsend/wishlist/create';
 // use key 'http' even if you send the request to https://...
         $options = array(

@@ -199,9 +199,21 @@ class Cart{
     function displayCart()
     {
         echo "<div class='container'>";
+
         echo "<div class='cart-container'>";
-        echo "<h1 class='title'>Produkter i kurven</h1>";
-        echo "<div class='scrollbar-cart'> ";
+
+        echo "<h1 style='text-align: center' class='title'>Produkter i kurven</h1>";
+        $currentDate = date('Y-m-d');
+        if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])){
+            echo "<input type='date' id='date_s' min='".  $currentDate ."' value='".  $currentDate ."'disabled>     <input type='date' id='date_e' min='".  $currentDate ."' disabled > ";
+        }
+        else{
+            $startDate = date('Y-m-d',strtotime($_SESSION['sdate']));
+            $endDate = date('Y-m-d',strtotime($_SESSION['edate']));
+            echo "<input type='date' id='date_s' min='".$currentDate."' value='". $startDate ."'disabled>     <input type='date' id='date_e' min='".  $currentDate ."' value='".$endDate."' disabled>";
+
+        }
+        echo "<div class='scrollbar-cart' style='width: auto' > ";
 //  echo "product = ".$key. " quantity = ".$quantity." || ";
         if (isset( $_SESSION['cart']) and !empty($_SESSION['cart'])){
             $incart = $_SESSION["cart"];
@@ -236,8 +248,8 @@ class Cart{
             $json = json_decode($result,true);
             foreach ($json as $value ){
 
-            echo "<div id='row-".$value['id']."' class='row'> <div class='col'>
-                  <div class='card text-white bg-dark mb-3' style=' margin-left: 1rem; width: 25rem'>
+            echo "<div id='row-".$value['id']."' class='row'> <div style='width: 300rem'>
+                  <div class='card ' style=' margin-left: 1rem; width: 300rem'>
                   <div class='card-body'>
                   <h5 class='card-title'>" .$value['product_name']."</h5>
                   <h6 class='card-subtitle mb-2 text-muted'>Flytbar: ".$value['movable']."</h6>

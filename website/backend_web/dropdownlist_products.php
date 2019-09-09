@@ -47,7 +47,7 @@ class dropdownlist_products{
                 $quantity = $this->createOptionsForSelection($item['quantity']);
 
 
-                echo "<div class='row'> <div class='col col-sm-4'>
+                echo "<div class='row'> <div style='width: 300rem'>
                           <div class='card style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
