@@ -37,7 +37,7 @@ include '../includes/sidebar.php';
 
             if (sizeof($jsonData) > 0) {
                 foreach ($jsonData as $i) {
-                    echo '<tr><td><button onclick="activateUser(\''.$i['id'].'\')" class="btn btn-success"><i class="material-icons">check</i></button><button onclick="deactivateUser(\''.$i['id'].'\')" class="btn btn-danger"><i class="material-icons">remove_circle</i></button>'.$i['name'].'</td> 
+                    echo '<tr><td><button onclick="activateUser(\''.$i['id'].'\')" class="btn btn-success">Aktivér</button><button onclick="deactivateUser(\''.$i['id'].'\')" class="btn btn-danger">Deaktivér</button>'.$i['name'].'</td> 
                     <td>'.$i['email'].'</td><td>'.$i['user_rank'].'</td>
                     <td>'.($i['disabled'] == 1 ? "ja" :  "nej").'</td></tr>';
 

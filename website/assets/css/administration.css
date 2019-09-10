@@ -14,9 +14,10 @@
 ul.tabs{
     margin: 0px;
     padding: 0px;
-    background: #060606;
+    background: #cb0c2e;
     color: #dfdfdf;
     list-style: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 ul.tabs li{
     background: none;
@@ -27,18 +28,23 @@ ul.tabs li{
 }
 
 ul.tabs li.current{
-    background: #1a1a1a;
+    background: #c00b2c;
     color: #dfdfdf;
+
 }
 
 .tab-content{
     display: none;
     background: #ededed;
     padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
 }
 
 .tab-content.current{
     display: inherit;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
 }
 .scrollbar {
     overflow-x: auto;
