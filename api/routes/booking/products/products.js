@@ -114,10 +114,8 @@ module.exports = [
         handler: async (request, h) => {
             const pool = request.mysql.pool;
             try {
-               const [rows,fields] = await pool.query("INSERT INTO school_products (product_name,  movable , description,school_name_short_id, category_id, supplier_company_id)" +
-                    " VALUES ('"+request.payload.product_name+"','"+request.payload.movable+"','"+request.payload.description+"','"+request.payload.school_name_short_id+"'," +
-                    "'"+request.payload.category_id+"','"+request.payload.supplier_company_id+"')");
 
+               const [rows,fields] = await pool.query("INSERT INTO school_products (product_name,  movable , description,school_name_short_id, category_id, supplier_company_id,created_by) VALUES (?,?,?,?,?,?,?)",[request.payload.product_name,request.payload.movable,request.payload.description,request.payload.school_name_short_id, request.payload.category_id,request.payload.supplier_company_id,request.payload.created_by]);
                 return  h.response(rows).code(200)
 
 
