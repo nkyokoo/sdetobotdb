@@ -8,4 +8,4 @@
 include "../backend_web/dropdownlist_products.php";
 
 $class = new dropdownlist_products();
-$class->addProductsForSelection();
+$class->addProductsForSelection($_POST['sdate'],$_POST['edate']);

@@ -15,7 +15,9 @@ include 'includes/sidebar.php';
 
 
 ?>
-    <div id="display"></div>
+<div id="display">
+
+</div>
 <?php
 
 echo "<script type=\"text/javascript\" src=\"./assets/js/cart.js\"></script>";
