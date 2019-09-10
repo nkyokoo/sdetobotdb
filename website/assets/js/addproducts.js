@@ -23,42 +23,51 @@ $(document).ready(function () {
             success:function (data) {
                 let data2 = JSON.parse(data);
 
+
+                // Prevent Duplicated Jquery Selector
+                let svf_id = $('#svf_id');
+                let thp_id = $('#thp_id');
+                let kategori_id = $('#kategori_id');
+                let lokale_id = $('#lokale_id');
+                let leverandoer_id = $('#leverandoer_id');
+                let virksomhed_id = $('#virksomhed_id');
+
                 //SVF
                 if (data2.d0.length > 0) {
-                    for (i of data2.d0) {
+                    for (let i of data2.d0) {
                         let html = document.createElement("option");
 
                         html.value = i.id;
                         html.text = (i.type + i.nr);
-                        $('#svf_id').append(html);
+                        svf_id.append(html);
                     }
-                    $('#svf_id').append("<option value='andet'>Tilføj Ny</option>");
+                    svf_id.append("<option value='andet'>Tilføj Ny</option>");
 
                 }
                 else{
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#svf_id').append(html);
+                    svf_id.append(html);
                 }
 
                 //THP
                 if (data2.d1.length > 0){
-                    for (i of data2.d1){
+                    for (let i of data2.d1){
                         let html = document.createElement("option");
 
                         html.value = i.id;
                         html.text = (i.type + i.nr);
-                        $('#thp_id').append(html);
+                        thp_id.append(html);
                     }
-                    $('#thp_id').append("<option value='andet'>Tilføj Ny</option>");
+                    thp_id.append("<option value='andet'>Tilføj Ny</option>");
 
                 }
                 else {
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#thp_id').append(html);
+                    thp_id.append(html);
                 }
 
                 //Category
@@ -68,15 +77,15 @@ $(document).ready(function () {
 
                         html.value = i.id;
                         html.text = i.category_name;
-                        $('#kategori_id').append(html);
+                        kategori_id.append(html);
                     }
-                    $('#kategori_id').append("<option value='andet'>Tilføj Ny</option>");
+                    kategori_id.append("<option value='andet'>Tilføj Ny</option>");
                 }
                 else {
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#kategori_id').append(html);
+                    kategori_id.append(html);
                 }
 
                 //Location
@@ -86,16 +95,16 @@ $(document).ready(function () {
 
                         html.value = i.id;
                         html.text = i.room;
-                        $('#lokale_id').append(html);
+                        lokale_id.append(html);
                     }
-                    $('#lokale_id').append("<option value='andet'>Tilføj Ny</option>");
+                    lokale_id.append("<option value='andet'>Tilføj Ny</option>");
 
                 }
                 else {
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#lokale_id').append(html);
+                    lokale_id.append(html);
                 }
 
                 //Supplier
@@ -105,16 +114,16 @@ $(document).ready(function () {
 
                         html.value = i.id;
                         html.text = i.name;
-                        $('#leverandoer_id').append(html);
+                        leverandoer_id.append(html);
                     }
-                    $('#leverandoer_id').append("<option value='_Leverandorandet'>Tilføj Ny</option>");
+                    leverandoer_id.append("<option value='_Leverandorandet'>Tilføj Ny</option>");
 
                 }
                 else {
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#leverandoer_id').append(html);
+                    leverandoer_id.append(html);
                 }
 
                 //SCHOOL_SHORT_ADDRESS
@@ -127,17 +136,17 @@ $(document).ready(function () {
                         html.value = i.id;
                         html.text = i.company_name_short;
                         selectParent.insertBefore(html,lastChild);
-                        $('#virksomhed_id').append(html);
+                        virksomhed_id.append(html);
 
                     }
-                    $('#virksomhed_id').append("<option value='andet'>Tilføj Ny</option>");
+                    virksomhed_id.append("<option value='andet'>Tilføj Ny</option>");
 
                 }
                 else {
                     let html = document.createElement("option");
 
                     html.text = "ERROR Couldn't receive data";
-                    $('#virksomhed_id').append(html);
+                    virksomhed_id.append(html);
                 }
 
                 $('#loading').remove();
