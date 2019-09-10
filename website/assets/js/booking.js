@@ -1,7 +1,7 @@
 
 //Always running when DOM is ready
 $(document).ready(function() {
-
+    //Update max date from start date
     updateMaxDate();
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
@@ -12,15 +12,17 @@ $(document).ready(function() {
         // Run Function
         addToCart(key);
     });
-    $('#display').delegate('#dateButton','click',function () {
+    let display = $('#display');
+    display.delegate('#dateButton','click',function () {
         updateProductView($('#date_s').val(),$('#date_e').val());
     });
-    $('#display').delegate("*[id*='date_']",'change',function () {
+    display.delegate("*[id*='date_']",'change',function () {
 
-        if (this.id === "date_e"){
-            alert("hey");
+/*        if (this.id === "date_e"){
+//            alert("hey");
+            updateProductView($('#date_s').val(),$('#date_e').val());
 
-        }
+        }*/
         updateMaxDate();
         resetCart();
     });
@@ -37,8 +39,9 @@ function resetCart() {
     })
 }
 function updateMaxDate() {
-    let date = $('#date_s').val();
-    let dt = new Date(date);
+    let sdate = $('#date_s');
+    let edate = $('#date_e');
+    let dt = new Date(sdate.val());
     let day = dt.getDate();
     if (day < 10){
         day = "0" + day.toString();
@@ -53,10 +56,10 @@ function updateMaxDate() {
     }
     let year = dt.getFullYear();
     let maxDate = year+'-'+month+'-'+day;
-    $('#date_e').attr('max',maxDate);
-    $('#date_e').attr('min',date);
-    if ($('#date_e').val() < $('#date_s').val()){
-        $('#date_e').val($('#date_s').val());
+    edate.attr('max',maxDate);
+    edate.attr('min',sdate);
+    if (edate.val() < sdate.val()){
+        edate.val(sdate.val());
     }
 }
 function updateProductView(sdate,edate) {
@@ -124,7 +127,11 @@ function getProductsFromDB(sDate, eDate) {
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
             let p = document.createElement("div");
             p.innerHTML = output;
-            document.getElementById("select_list_1").innerHTML = output;
+            let selectList1 = $('#select_list_1');
+            selectList1.empty();
+            selectList1.append(p);
+
+            //document.getElementById("select_list_1").innerHTML = output;
 
         }
 

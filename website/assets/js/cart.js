@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
     displaycart();
-
-    $("body").on("click", "*[id*='button-']", function () {
+    let body = $("body");
+    body.on("click", "*[id*='button-']", function () {
         event.preventDefault();
         let btn = this.id;
         //Trigger instances if it contain this name.
@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
     });
 
-    $("body").on("click", "*[id*='product-quantity-']",function () {
+    body.on("click", "*[id*='product-quantity-']",function () {
         let variable = this.id;
         let key = variable.slice(17);
         //get quantity of <input> tag
