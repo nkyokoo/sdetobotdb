@@ -29,7 +29,7 @@ include '../includes/sidebar.php';
 		 <div class="form-group">
 			<label for="user_type" class="bmd-label-floating">Bruger Gruppe</label>
 			<select class="form-control" name="user_type" id="user_type" >
-                <option value="">Vælg rettighed</option>
+                <option value=""></option>
                 <?php
                 $url = 'http://localhost:8000/api/users/group/get';
                 $options = array(
