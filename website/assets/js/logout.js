@@ -8,7 +8,7 @@ $(document).ready(function() {
             url: "../authenticator.php",
             success: function(output) {
                 alert(output);
-                if (output == 'done') {
+                if (output === 'done') {
                     window.location = '../index.php';
                 }
             }

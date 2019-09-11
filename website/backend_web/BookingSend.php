@@ -29,13 +29,14 @@ class BookingSend
                         $unitQuantity = $quantity;
 
                         //Request to API
-                        $data[] = array('item' => $item,'quantity' => $unitQuantity);
+                        $data[] = array('item' => $item,'quantity' => $unitQuantity, 'sdate' => $_SESSION['sdate'],'edate' => $_SESSION['edate']);
 
 
                     }
                     else {echo "ERROR 22";break;}
 
                 }
+                //var_dump($data);
                 // Check if products are available
                 $url = 'http://localhost:8000/api/booking/bookingsend/create';
 // use key 'http' even if you send the request to https://...
@@ -60,11 +61,11 @@ class BookingSend
                 foreach ($jsondata as $data){
                     $storeIDsFromItems .= $data['item'].",";
                     $storeIDsFromUnitsQuantity .= $data['quantity'].",";
-                    if ($data['available'] == false){
+                    if ($data['available'] === false){
                         $allProductsAreAvailable = $data['available'];
                     }
                 }
-
+            //echo $allProductsAreAvailable;
             }else{echo "ERROR 21";}
             //if all products are available do the following
             if ($allProductsAreAvailable){
@@ -88,7 +89,7 @@ class BookingSend
         $resdate = date('Y-m-d');
         $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
         $edate = date('Y-m-d',strtotime($_SESSION['edate']));
-        $remdate = date($edate, strtotime('-1 day', strtotime($edate)));
+        $remdate = date('Y-m-d', strtotime('yesterday', strtotime($edate)));
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
  // `rerserved_date`, `start_date`, `end_date`, `reminder_date`, `godkendt`, `user_id`
@@ -101,7 +102,7 @@ class BookingSend
             'userid' => $_SESSION['user']['id']
 
         );
-        var_dump($data);
+        //var_dump($data);
         $url = 'http://localhost:8000/api/booking/bookingsend/wishlist/create';
 // use key 'http' even if you send the request to https://...
         $options = array(
