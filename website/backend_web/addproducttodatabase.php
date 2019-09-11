@@ -1,5 +1,4 @@
 <?php
-//echo "INSERT INTO booking.products (`id`, `product_name`, `product_location_id`, `flytbar`, `category_id`, `leverandør_id`, `description`) VALUES (NULL, '".$_POST['produkt_navn'] ."', '".$_POST['']."', '".$_POST['flytbar']."', '".$_POST['kategori']."', '".$_POST['leverandoer']."', '".$_POST['description']."');";
 session_start();
 
 class addProductToDatabase
@@ -607,6 +606,7 @@ class addProductToDatabase
                 'school_name_short_id' => $virksomhed,
                 'category_id' => $category,
                 'supplier_company_id' => $leverandoer,
+                'created_by' => $_SESSION['user']['id']
             );
 
 // use key 'http' even if you send the request to https://...

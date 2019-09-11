@@ -14,7 +14,7 @@ body {
     /*background-image:url('../images/bg.png');*/
     background-size:100%;
     background-repeat:no-repeat;
-    background-color: #ededed;
+    background-color: #204944;
 }
 
 * {
@@ -226,5 +226,5 @@ select:focus{
     color: #6875cb !important;
 }
 .card{
-    background: #ededed;
+    background: #dad4df;
 }
