@@ -42,15 +42,6 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                                      src="../assets/images/admin.png" alt="profile picture">
                                 <h5 id="username_profile" class="card-title"
                                     style="display: inline"><?php echo $_SESSION['user']['name']; ?></h5>
-                                <button id="accept_changes" style="display: none;" class="btn">
-                                    <i  class="material-icons">check</i>
-                                </button>
-                                <button id="cancel_changes" style="display: none;" class="btn">
-                                    <i class="material-icons">cancel</i>
-                                </button>
-                                <button id="unlock_edit_password" style="display: inline;" class="btn">
-                                    <i class="material-icons">edit</i>
-                                </button>
                             </div>
                         </div>
                     </div>

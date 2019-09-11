@@ -106,34 +106,6 @@ class user
         }
     }
 
-    function changeName($name){
-        $url = 'http://localhost:8000/api/user/updatename';
-        $data = array(
-            'name' => $name,
-            'id' => $_SESSION['user']['id'],
-
-
-        );// use key 'http' even if you send the request to https://...
-        $options = array(
-            'http' => array(
-                'header' => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
-                'method' => 'PATCH',
-                'content' => json_encode($data)
-            )
-        );//send request to api and get result
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        $jsondata = json_decode($result, true);
-        if ($jsondata["code"] == 200) {
-            http_response_code($jsondata["code"]);
-            $this->setMessage($jsondata["message"]);
-        } else {
-            http_response_code($jsondata["code"]);
-            $this->setMessage($jsondata["error"]);
-        }
-
-    }
-
     function getMessage()
     {
 
