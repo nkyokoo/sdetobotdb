@@ -210,7 +210,7 @@ class Cart{
         else{
             $startDate = date('Y-m-d',strtotime($_SESSION['sdate']));
             $endDate = date('Y-m-d',strtotime($_SESSION['edate']));
-            echo "<input type='date' id='date_s' min='".$currentDate."' value='". $startDate ."'disabled>     <input type='date' id='date_e' min='".  $currentDate ."' value='".$endDate."' disabled>";
+            echo "<input type='date' id='date_s' style='width: 10rem; display: inline' class='form-control' min='".$currentDate."' value='". $startDate ."'disabled>     <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='".  $currentDate ."' value='".$endDate."' disabled>";
 
         }
         echo "<div class='scrollbar-cart' style='width: auto' > ";

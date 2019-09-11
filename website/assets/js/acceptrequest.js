@@ -61,7 +61,7 @@ function displayRequests() {
                         "<h6>Start dato: "+obj.start_date.substring(0,10)+"</h6>"+
                         "<h6>Slut dato: "+obj.end_date.substring(0,10)+"</h6>"+
                         "<div><ul class='list-group' id='"+obj.id+"'></ul></div>"+
-                        "<button id='btn-accept-"+obj.id+"'>Accepter</button> <button id='btn-deny-"+obj.id+"'>Afslå</button>" +
+                        "<button class='btn btn-primary' id='btn-accept-"+obj.id+"'><i class='material-icons'>done</i></button> <button class='btn btn-danger' id='btn-deny-"+obj.id+"'><i class='material-icons'>cancel</i></button>" +
                         "   </div>" +
                         "   </div>" +
                         "   </div>";

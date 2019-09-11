@@ -13,8 +13,7 @@ class dropdownlist_products{
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
-        echo "<div class='catalog-container'>";
-        echo "<h5>Featured Products</h5>";
+
         echo "<div class='Item-list'>";
         $newFormat = date("Y-m-d",strtotime($sDate));
         $newFormat2 = date("Y-m-d",strtotime($eDate));
@@ -62,7 +61,7 @@ class dropdownlist_products{
 
             }
 
-        echo "</div></div>";
+        echo "</div>";
 
 
     }
