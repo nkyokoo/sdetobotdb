@@ -2,9 +2,7 @@
 
 $(document).ready(function() {
 
-    if (-1 >= 1){
-        alert("ea")
-    }
+
     displaycart();
     let body = $("body");
     body.on("click", "*[id*='button-']", function () {
@@ -31,7 +29,7 @@ $(document).ready(function() {
         }
     });
 
-    body.on("click", "*[id*='product-quantity-']",function () {
+    $('#display').delegate("*[id*='product-quantity-']", "input",function () {
         let variable = this.id;
         let key = variable.slice(17);
         //get quantity of <input> tag
@@ -64,6 +62,7 @@ function onChangeQuantity(qts,pid) {
 
                             if (output){
                                 alert(output);
+
                                 location.reload();
 
                             }

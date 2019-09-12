@@ -36,7 +36,6 @@ function keypress(e) {
     if (code === 13) // Enter Keycode
     {
         updateProductView($('#date_s').val(),$('#date_e').val(),$('#searchInput').val());
-
     }
 }
 function resetCart() {
