@@ -251,12 +251,33 @@ module.exports = [
             const pool = request.mysql.pool;
             try {
 
-                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,name FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id ORDER BY school_products.id ASC ");
+                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.created_by = u.id");
                 return rows
 
             } catch (e) {
                   console.log(e)
                return h.response({'error': e}).code(500)
+            }
+        }
+    },
+    {
+        method: 'get',
+        path: '/api/booking/products/search',
+        config: {auth: 'jwt'},
+        handler: async (request, h) => {
+            const pool = request.mysql.pool;
+            try {
+
+                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.created_by = u.id  WHERE product_name LIKE CONCAT('%',?,'%')",[request.query.q]);
+                if(rows.size === 0){
+                    return h.response({code: 404, error: 'kunne ikke finde noget'}).code(200)
+                }else{
+                    return rows
+                }
+
+            } catch (e) {
+                console.log(e)
+                return h.response({'error': e}).code(500)
             }
         }
     },

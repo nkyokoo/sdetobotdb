@@ -24,7 +24,6 @@ module.exports = [
              const pool = request.mysql.pool
              const hPayload = { ...request.payload }
               const [count] = await pool.query("SELECT email as count FROM users WHERE email = ?",[hPayload.email])
-            console.log(count)
             if(count.length !== 0){
                 return h.response({ code: 400, error: ` an user with ${hPayload.email} email already exists!` }).code(200)
             }

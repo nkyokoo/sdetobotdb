@@ -10,47 +10,8 @@ include '../includes/sidebar.php';
 <div class="container">
 
     <div class="card mb-3" style="width: auto; margin-top: 10px; background: #ededed">
-        <table class="table" style="overflow-x: scroll">
-            <thead class="thead-dark">
+        <div id="usergrid" style="height: 600px;" class="ag-theme-material"></div>
 
-            <tr>
-                <th scope="col">Navn</th>
-                <th scope="col">Email</th>
-                <th scope="col">Rank</th>
-                <th scope="col">Deaktiveret</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-
-            $url = 'http://localhost:8000/api/users/get';
-            $options = array(
-                'http' => array(
-                    'method' => 'GET',
-                    'header' => 'Authorization: '.$_SESSION['user']['token'],
-                )
-            );
-            $context = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
-            $jsonData = json_decode($result, true);
-
-
-            if (sizeof($jsonData) > 0) {
-                foreach ($jsonData as $i) {
-                    echo '<tr><td><button onclick="activateUser(\''.$i['id'].'\')" class="btn btn-success">Aktivér</button><button onclick="deactivateUser(\''.$i['id'].'\')" class="btn btn-danger">Deaktivér</button>'.$i['name'].'</td> 
-                    <td>'.$i['email'].'</td><td>'.$i['user_rank'].'</td>
-                    <td>'.($i['disabled'] == 1 ? "ja" :  "nej").'</td></tr>';
-
-                }
-
-            }else{
-                echo "well.. this is weird, no users got returned. How are you even logged in?";
-            }
-
-            ?>
-
-            </tbody>
-        </table>
         <div class="card-footer" style="background: #ededed">
             <a href="create_user.php" class="btn btn-raised btn-primary"> Tilføj bruger</a>
         </div>
