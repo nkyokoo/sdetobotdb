@@ -12,6 +12,7 @@ include 'includes/sidebar.php';
 
 ?>
 
+
     <div class="container">
         <!-- Tags to test if Timer works -->
         <!-- <div><p>Timer</p> <p id="test">0</p></div> -->
@@ -20,8 +21,7 @@ include 'includes/sidebar.php';
             <p class="card-subtitle" style="font-size: .8rem">Vælg dato du vil låne produkter og klik på knappen for at se ledige produkter.</p>
             <div id="display" style="display: inline">
                 <?php
-                $date_raw = date('Y-m-d');
-                $currentDate = date('Y-m-d', strtotime('-1 day', strtotime($date_raw)));
+                $currentDate = date('Y-m-d');
                 if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
                     echo "<input style='width: 10rem; display: inline' type='date' class='form-control' id='date_s' min='" . $currentDate . "' value='" . $currentDate . "' required>    
              <input  style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' required >    

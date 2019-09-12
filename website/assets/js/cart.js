@@ -1,6 +1,10 @@
 //Always running when DOM is ready
 
 $(document).ready(function() {
+
+    if (-1 >= 1){
+        alert("ea")
+    }
     displaycart();
     let body = $("body");
     body.on("click", "*[id*='button-']", function () {
@@ -102,7 +106,6 @@ function removeProduct(pid) {
 }
 
 function clearCart() {
-    var d = new Date();
     //The input from Confirm is saved in a variable.
     $choice = confirm("Do you really want to Clear the Cart ?");
     //If confirm input variable is true
@@ -135,7 +138,9 @@ function booking() {
                         url: '../backend_instantiate/int_eventsforcarts.php',
                         data: {clear: "clear"}
                     });
-                }else {alert(output);}
+                }else {
+                    alert(output);
+                }
                 location.reload();
 
             }

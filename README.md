@@ -79,3 +79,4 @@ INNER JOIN product_unit_e as pe ON sp.id = pe.products_id
 WHERE 
 pe.current_status_id = 1 
 GROUP BY pe.products_id
+
