@@ -21,7 +21,6 @@ class dropdownlist_products{
         $_SESSION['edate'] = $newFormat2;
         $options = [];
         $url = "";
-        var_dump($search);
         //If you're searching
         if (isset($search)){
             $data[] = array('sdate' => $newFormat,'edate' => $newFormat2, 'search' => $search);
