@@ -35,6 +35,7 @@ include 'includes/sidebar.php';
 
                 }
                 ?>
+                <input  aria-label="search" id="searchInput" type="text" placeholder="Search">
             </div>
 
 

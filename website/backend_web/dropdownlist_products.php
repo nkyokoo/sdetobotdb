@@ -9,7 +9,7 @@ session_start();
 
 class dropdownlist_products{
 
-    function addProductsForSelection($sDate, $eDate){
+    function addProductsForSelection($sDate, $eDate, $search = null){
 
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
@@ -19,18 +19,43 @@ class dropdownlist_products{
         $newFormat2 = date("Y-m-d",strtotime($eDate));
         $_SESSION['sdate'] = $newFormat;
         $_SESSION['edate'] = $newFormat2;
-        $data[] = array('sdate' => $newFormat,'edate' => $newFormat2);
-        $format = json_encode($data);
-        //Connect to API
-        $url = 'http://localhost:8000/api/booking/products/catalog/get';
-        // use key 'http' even if you send the request to https://...
-        $options = array(
-            'http' => array(
-                'header' => "Content-Type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
-                'method'  => 'POST',
-                'content' => $format
-            )
-        );
+        $options = [];
+        $url = "";
+        //If you're searching
+        if (isset($search)){
+            $data[] = array('sdate' => $newFormat,'edate' => $newFormat2, 'search' => $search);
+
+            $format = json_encode($data);
+            //Connect to API
+            $url = 'http://localhost:8000/api/booking/products/catalog/search/get';
+            // use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header' => "Content-Type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
+                    'method'  => 'POST',
+                    'content' => $format
+                )
+            );
+        }
+        // if you're chosing 2 dates
+        else{
+            $data[] = array('sdate' => $newFormat,'edate' => $newFormat2);
+
+            $format = json_encode($data);
+            //Connect to API
+            $url = 'http://localhost:8000/api/booking/products/catalog/get';
+            // use key 'http' even if you send the request to https://...
+            $options = array(
+                'http' => array(
+                    'header' => "Content-Type: application/json \r\nAuthorization: ".$_SESSION['user']['token'],
+                    'method'  => 'POST',
+                    'content' => $format
+                )
+            );
+        }
+       // var_dump($options);
+       // var_dump($url);
+
         //send request to api and get result
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);

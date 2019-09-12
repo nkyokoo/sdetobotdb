@@ -2,6 +2,7 @@
 //Always running when DOM is ready
 $(document).ready(function() {
     //Update max date from start date
+    $('#searchInput').bind('keypress', {}, keypress);
     updateMaxDate();
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
@@ -28,6 +29,16 @@ $(document).ready(function() {
     });
 
 });
+
+function keypress(e) {
+
+    let code = (e.keyCode ? e.keyCode : e.which);
+    if (code === 13) // Enter Keycode
+    {
+        updateProductView($('#date_s').val(),$('#date_e').val(),$('#searchInput').val());
+
+    }
+}
 function resetCart() {
     $.ajax({
         type: 'POST',
@@ -62,14 +73,20 @@ function updateMaxDate() {
         edate.val(sdate.val());
     }
 }
-function updateProductView(sdate,edate) {
+function updateProductView(sdate,edate, search = null) {
    let sdateFormat = formatAndCheckDate(sdate);
    let edateFormat = formatAndCheckDate(edate);
     if (edateFormat && sdateFormat){
         //Get products from db and send them to booking.php
         //alert(edateFormat);
       //  alert(sdateFormat);
-        getProductsFromDB(sdateFormat,edateFormat);
+        if (search){
+            getProductsFromDB(sdateFormat,edateFormat,search);
+
+        }else {
+
+            getProductsFromDB(sdateFormat,edateFormat);
+        }
     }
     else {
         alert("pls enter a valid date");
@@ -118,11 +135,17 @@ function addToCart(productID) {
     } catch (e) {
     }
 }
-function getProductsFromDB(sDate, eDate) {
+function getProductsFromDB(sDate, eDate, search = null) {
+    let obj = {};
+    obj.sdate = sDate;
+    obj.edate = eDate;
+    if (search){
+        obj.search = search;
+    }
     $.ajax({
         type: 'POST',
         url: '../backend_instantiate/int_dropdownlist.php',
-        data: {sdate:sDate,edate:eDate},
+        data: obj,
         success: function (output) {
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
             let p = document.createElement("div");
