@@ -1,6 +1,6 @@
 const cryptoFuncs = require("../backend/cryptoFuncs")
 
-module.exports = [{
+module.exports = {
     method: 'PATCH',
     path: '/api/user/updatepassword',
     config: {auth: 'jwt'},
@@ -30,22 +30,5 @@ module.exports = [{
             return h.response({code: 400, error: "this is empty!"}).code(200)
         }
     }
-},
-    module.exports = {
-        method: 'PATCH',
-        path: '/api/user/updatename',
-        config: {auth: 'jwt'},
-        handler: async (request, h) => {
-            const pool = request.mysql.pool
+}
 
-            if (request.payload) {
-                await pool.query('UPDATE users SET users.name = ? WHERE id = ?', [request.payload.name, request.payload.id]);
-                return h.response({code: 200, message: "changed"}).code(200)
-
-            } else {
-                return h.response({code: 400, error: "this is empty!"}).code(200)
-            }
-
-        }
-    }
-]

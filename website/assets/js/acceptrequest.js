@@ -52,7 +52,7 @@ function displayRequests() {
 
                 }
                 else {
-                    let div = document.createElement("div");
+                    const div = document.createElement("div");
                     let html = "<div id='container_"+obj.id+"' class='row'> <div class='col'>" +
                         "   <div class='card' style=' margin-left: 1rem; width: 25rem'>" +
                         "   <div class='card-body'>" +
@@ -80,8 +80,8 @@ function displayRequests() {
 }
 
 function acceptRequest(wishlistID) {
-    $choice = confirm("Do you really want to ACCEPT this request");
-    if ($choice) {
+    let choice = confirm("Do you really want to ACCEPT this request");
+    if (choice) {
         $.ajax({
             type: "POST",
             url: "../backend_instantiate/int_wishlistrequests.php",
@@ -94,8 +94,8 @@ function acceptRequest(wishlistID) {
 }
 
 function denyRequest(wishlistID) {
-    $choice = confirm("Do you really, REALLY want to DENY this request");
-    if ($choice){
+    let choice = confirm("Do you really, REALLY want to DENY this request");
+    if (choice){
         $.ajax({
             type: "POST",
             url: "../backend_instantiate/int_wishlistrequests.php",

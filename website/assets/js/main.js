@@ -30,66 +30,6 @@ $(document).ready(function () {
     }).trigger('mouseleave');
 
 
-
-
-    $('#cancel_changes').on('click', function () {
-
-        window.location.reload()
-    })
-    $('#accept_changes').on('click', function () {
-        const newname = $('#username_profile').val();
-        console.log(newname);
-        if (newname !== "") {
-            $.ajax({
-                type: 'POST',
-                url: '../backend_instantiate/int_user_changename.php',
-                data: {name: newname},
-                success: function (output) {
-                        let options =  {
-                        content: "Din navn er ændret, du skal logge ind igen før at ændringerne bliver vist.", // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function(){
-                            window.location.reload();
-
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
-                },
-                error: function (output) {
-                    let options =  {
-                        content: output.responseText, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function(){
-
-
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
-                }
-            })
-        }
-        else
-        {
-            let options =  {
-                content: "Adgangskoderne er ikke ens", // text of the snackbar
-                style: "toast", // add a custom class to your snackbar
-                timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                htmlAllowed: true, // allows HTML as content value
-                onClose: function(){
-
-
-                } // callback called when the snackbar gets closed.
-            }
-            $.snackbar(options);
-        }
-
-    })
-
-
     $("#callPhplogout").click(function () {
         $.ajax({
             type: "POST",
@@ -105,22 +45,7 @@ $(document).ready(function () {
             }
         })
     })
-    $("#unlock_edit_password").on('click', function () {
-                let $this = $('#username_profile');
-                let input = $('<input />', {
-                    'type': 'text',
-                    'id':'username_profile',
-                    'class': 'form-control',
-                    'value': $this.text()
-                });
-                $this.replaceWith(input);
-                $('#cancel_changes').show()
-                $('#accept_changes').show()
-                $(this).hide();
 
-
-        }
-    )
     $('#change_password').on('click', function (e) {
        const confirmpassword = $('#password_3').val()
        const newpassword = $('#password_2').val()
