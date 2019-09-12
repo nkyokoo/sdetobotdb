@@ -293,5 +293,24 @@ module.exports = [
                 return h.response({'error': e}).code(500)
             }
         }
+    },
+    {
+        method: 'post',
+        path: '/api/booking/products/catalog/search/get',
+        config: {auth: 'jwt'},
+        handler: async (request, h) => {
+            const pool = request.mysql.pool;
+
+            try {
+                let search = "%"+request.payload[0].search+"%";
+                const [rows, fields] = await pool.query("SELECT sp.id,sp.product_name,sp.description,sp.movable, COUNT(pe.products_id) - ( SELECT IFNULL((SELECT SUM(cw1.quantity) FROM connection_product_wishlist as cw1 INNER JOIN wish_list as wl1 ON wl1.id = cw1.wish_list_id WHERE (wl1.start_date <= ?) and (wl1.end_date >= ?) AND wl1.godkendt BETWEEN 0 AND 1 AND cw1.school_products_id = sp.id GROUP BY cw1.school_products_id ),0) as quantity ) as quantity  FROM school_products as sp INNER JOIN product_unit_e as pe ON sp.id = pe.products_id  WHERE  pe.current_status_id = 1 AND  sp.product_name LIKE ? GROUP BY pe.products_id",[request.payload[0].edate,request.payload[0].sdate,search]);
+                return rows;
+
+            } catch (e) {
+                console.log(e);
+                return h.response({'error': e}).code(500)
+            }
+
+        }
     }
 ]
