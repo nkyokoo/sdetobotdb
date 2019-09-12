@@ -25,7 +25,7 @@ include 'includes/sidebar.php';
                 if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
                     echo "<input style='width: 10rem; display: inline' type='date' class='form-control' id='date_s' min='" . $currentDate . "' value='" . $currentDate . "' required>    
              <input  style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' required >    
-              <button style='display: inline' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
+              <button style='display: inline'  class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
                 } else {
                     $startDate = date('Y-m-d', strtotime($_SESSION['sdate']));
                     $endDate = date('Y-m-d', strtotime($_SESSION['edate']));

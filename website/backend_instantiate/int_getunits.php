@@ -1,0 +1,11 @@
+<?php
+include_once '../backend_web/products.php';
+
+try{
+    $class = new Products();
+
+    $class->getUnits();
+
+}
+catch (Exception $e){
+}

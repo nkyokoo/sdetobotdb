@@ -1,70 +1,67 @@
+function getCount() {
 
-   function getCount(){
+    $.ajax({
+        type: 'post',
+        url: '../backend_instantiate/int_dashboard.php',
+        data: {getItem: 'dashboard'},
+        success: function (data) {
+            let jsondata = JSON.parse(data)
+            let productinfo = $('#productinfo')
+            productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkter: ${jsondata.total_products.product_count}</span></a>`)
+            productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkt enheder: ${jsondata.total_product_units.unit_count}</span></a>`)
+            let product_requests = $('#product_requests')
+            product_requests.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal anmodninger: ${jsondata.total_requests.request_count}</span></a>`)
+            let total_users = $('#userinfo')
+            total_users.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal brugere: ${jsondata.total_users.user_count}</span></a>`)
+        },
+        error: function (request, status, error) {
 
-        $.ajax({
-            type: 'post',
-            url: '../backend_instantiate/int_dashboard.php',
-            data: { getItem: 'dashboard' },
-            success: function (data) {
-                let jsondata  = JSON.parse(data)
-               let productinfo = $('#productinfo')
-                productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkter: ${jsondata.total_products.product_count}</span></a>`)
-                productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkt enheder: ${jsondata.total_product_units.unit_count}</span></a>`)
-                let product_requests = $('#product_requests')
-                product_requests.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal anmodninger: ${jsondata.total_requests.request_count}</span></a>`)
-                let total_users = $('#userinfo')
-                total_users.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal brugere: ${jsondata.total_users.user_count}</span></a>`)
-            },
-            error: function (request, status, error) {
-
-                console.log(error)
+            console.log(error)
 
 
-            },
+        },
 
-        });
+    });
 
-    }
+}
 
 function deactivateUser(id) {
     try {
 
         $.ajax({
-                type: 'post',
-                url: '../backend_instantiate/int_disable_user.php',
-                data: { userid: id },
-                success: function (data) {
-                    let options = {
-                        content: data, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
-                            window.location.replace("users.php")
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
+            type: 'post',
+            url: '../backend_instantiate/int_disable_user.php',
+            data: {userid: id},
+            success: function (data) {
+                let options = {
+                    content: data, // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
+                        window.location.replace("users.php")
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
 
 
+            },
+            error: function (request, status, error) {
+                let options = {
+                    content: request.responseText, // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
 
-                },
-                error: function (request, status, error) {
-                    let options = {
-                        content: request.responseText, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
-
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
-
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
 
 
-                },
+            },
 
-            });
+        });
     } catch (e) {
         let options = {
             content: e.errorCode, // text of the snackbar
@@ -81,61 +78,60 @@ function deactivateUser(id) {
 
 
 }
-   function activateUser(id) {
-       try {
 
-           $.ajax({
-               type: 'post',
-               url: '../backend_instantiate/int_enable_user.php',
-               data: { userid: id },
-               success: function (data) {
-                   let options = {
-                       content: data, // text of the snackbar
-                       style: "toast", // add a custom class to your snackbar
-                       timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                       htmlAllowed: true, // allows HTML as content value
-                       onClose: function () {
-                           window.location.replace("users.php")
-                       } // callback called when the snackbar gets closed.
-                   }
-                   $.snackbar(options);
+function activateUser(id) {
+    try {
 
-
-
-               },
-               error: function (request, status, error) {
-                   let options = {
-                       content: request.responseText, // text of the snackbar
-                       style: "toast", // add a custom class to your snackbar
-                       timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                       htmlAllowed: true, // allows HTML as content value
-                       onClose: function () {
-
-                       } // callback called when the snackbar gets closed.
-                   }
-                   $.snackbar(options);
+        $.ajax({
+            type: 'post',
+            url: '../backend_instantiate/int_enable_user.php',
+            data: {userid: id},
+            success: function (data) {
+                let options = {
+                    content: data, // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
+                        window.location.replace("users.php")
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
 
 
+            },
+            error: function (request, status, error) {
+                let options = {
+                    content: request.responseText, // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
 
-               },
-
-           });
-       } catch (e) {
-           let options = {
-               content: e.errorCode, // text of the snackbar
-               style: "toast", // add a custom class to your snackbar
-               timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-               htmlAllowed: true, // allows HTML as content value
-               onClose: function () {
-
-
-               } // callback called when the snackbar gets closed.
-           }
-           $.snackbar(options);
-       }
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
 
 
-   }
+            },
+
+        });
+    } catch (e) {
+        let options = {
+            content: e.errorCode, // text of the snackbar
+            style: "toast", // add a custom class to your snackbar
+            timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+            htmlAllowed: true, // allows HTML as content value
+            onClose: function () {
+
+
+            } // callback called when the snackbar gets closed.
+        }
+        $.snackbar(options);
+    }
+
+
+}
 
 
 function btnCreateUser() {
@@ -158,7 +154,7 @@ function btnCreateUser() {
             $.ajax({
                 type: 'post',
                 url: '../backend_instantiate/int_user.php',
-                data: { name: array[0], email: array[1], user_type: array[2], password1: array[3], password2: array[4] },
+                data: {name: array[0], email: array[1], user_type: array[2], password1: array[3], password2: array[4]},
                 success: function (data) {
                     $('#createUser_btn').attr("disabled", true);
                     let options = {
@@ -167,12 +163,11 @@ function btnCreateUser() {
                         timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function () {
-                           // $('#product_registration_form')[0].reset();
+                            // $('#product_registration_form')[0].reset();
                             window.location.replace("users.php")
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);
-
 
 
                 },
@@ -189,7 +184,6 @@ function btnCreateUser() {
                     $.snackbar(options);
 
 
-
                 },
 
             });
@@ -200,7 +194,8 @@ function btnCreateUser() {
                 style: "toast", // add a custom class to your snackbar
                 timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
                 htmlAllowed: true, // allows HTML as content value
-                onClose: function () { }
+                onClose: function () {
+                }
 
 
                 // callback called when the snackbar gets closed.
@@ -222,37 +217,190 @@ function btnCreateUser() {
     }
 
 }
-   function isInArray(date, dates) {
-       for(let idx = 0, length = dates.length; idx < length; idx++) {
-           let d = dates[idx];
-           if (date.getFullYear() == d.getFullYear() &&
-               date.getMonth() == d.getMonth() &&
-               date.getDate() == d.getDate()) {
-               return true;
-           }
-       }
 
-       return false;
-   }
+function isInArray(date, dates) {
+    for (let idx = 0, length = dates.length; idx < length; idx++) {
+        let d = dates[idx];
+        if (date.getFullYear() == d.getFullYear() &&
+            date.getMonth() == d.getMonth() &&
+            date.getDate() == d.getDate()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+let produktGridOptions;
+let unitGridOptions;
+let userGridOptions;
+
+$(function () {
+    //letiable of the scheduler for function scheduler.select(null);    line: 81
 
 
-   $(function(){
-   //letiable of the scheduler for function scheduler.select(null);    line: 81
+    $('#material-tabs').each(function () {
+
+        let $active, $content, $links = $(this).find('a');
+
+        $active = $($links[0]);
+        $active.addClass('active');
+
+        $content = $($active[0].hash);
+
+        $links.not($active).each(function () {
+            $(this.hash).hide();
+        });
+
+        $(this).on('click', 'a', function (e) {
+
+            $active.removeClass('active');
+            $content.hide();
+
+            $active = $(this);
+            $content = $(this.hash);
+
+            $active.addClass('active');
+            $content.show();
+
+            e.preventDefault();
+        });
+    });
+
+    $('#createUser_btn').click(function () {
+        btnCreateUser();
+    });
+    $('#product-search-btn').on('click', function () {
+        let searchVal = $('#product-search').val()
+        console.log(searchVal)
+        if (searchVal !== "") {
+            agGrid.simpleHttpRequest({url: `../backend_instantiate/int_search.php?q=${searchVal}&type=product`}).then(function (data) {
+                produktGridOptions.api.setRowData(data);
+            });
+
+        }
 
 
-   $('ul.tabs li').click(function () {
-           let tab_id = $(this).attr('data-tab');
+    })
+    $('#tab2-tab').on('click', function () {
+        unitGridOptions.api.sizeColumnsToFit();
 
-           $('ul.tabs li').removeClass('current');
-           $('.tab-content').removeClass('current');
+    })
 
-           $(this).addClass('current');
-           $("#" + tab_id).addClass('current');
-          });
-       $('#createUser_btn').click(function () {
-           btnCreateUser();
-       });
+    if ($('#productinfo').length !== 0) {
+        getCount()
+    }
 
-       getCount()
 
-   });
+    if ($('#productgrid').length !== 0) {
+        createProductsDataGrid()
+        createUnitsDataGrid()
+
+    }
+    if ($('#usergrid').length !== 0) {
+        createUserDataGrid()
+
+    }
+
+
+});
+
+let createProductsDataGrid = () => {
+    let columnDefs = [
+        {headerName: "Product navn", field: "product_name", filter: true, sortable: true,},
+        {headerName: "Kategori", field: "category_name", filter: true, sortable: true,},
+        {headerName: "Flytbar", field: "movable", filter: true, sortable: true},
+        {headerName: "Virksomhed", field: "school_name", filter: true, sortable: true},
+        {headerName: "Leverandør", field: "name", filter: true, sortable: true},
+        {headerName: "Beskrivelse", field: "description", filter: true, sortable: true},
+        {headerName: "Oprettet af", field: "created_by", filter: true, sortable: true},
+
+    ];
+
+    // specify the data
+
+
+    // let the grid know which columns and what data to use
+    produktGridOptions = {
+        columnDefs: columnDefs,
+    };
+
+    // lookup the container we want the Grid to use
+    let eGridDiv = document.querySelector('#productgrid');
+
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, produktGridOptions);
+    agGrid.simpleHttpRequest({url: '../backend_instantiate/int_getproducts.php',}).then(function (data) {
+        produktGridOptions.api.setRowData(data);
+    });
+
+    produktGridOptions.api.sizeColumnsToFit();
+
+
+}
+let createUnitsDataGrid = () => {
+    let columnDefs = [
+        {headerName: "Product navn", field: "product_name", filter: true, sortable: true,},
+        {headerName: "Enhed nummer", field: "unit_number", filter: true, sortable: true,},
+        {headerName: "svf type", field: "svf_type", filter: true, sortable: true},
+        {headerName: "svf nummer", field: "svf_number", filter: true, sortable: true},
+        {headerName: "thp type", field: "thp_type", filter: true, sortable: true},
+        {headerName: "thp nummer", field: "thp_number", filter: true, sortable: true},
+        {headerName: "Rum/Lokale", field: "room", filter: true, sortable: true},
+        {headerName: "Tilgængelighed", field: "status_name", filter: true, sortable: true}
+    ];
+
+    // specify the data
+
+
+    // let the grid know which columns and what data to use
+    unitGridOptions = {
+        columnDefs: columnDefs,
+    };
+
+    // lookup the container we want the Grid to use
+    let eGridDiv = document.querySelector('#unitgrid');
+
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, unitGridOptions);
+
+    agGrid.simpleHttpRequest({url: '../backend_instantiate/int_getunits.php'}).then(function (data) {
+        unitGridOptions.api.setRowData(data);
+    });
+
+
+}
+
+let createUserDataGrid = () => {
+    let columnDefs = [
+        {headerName: "Navn", field: "name", filter: true, sortable: true,},
+        {headerName: "Email", field: "email", filter: true, sortable: true,},
+        {headerName: "Rank", field: "user_rank", filter: true, sortable: true},
+        {headerName: "Deaktiveret", field: "disabled", filter: true, sortable: true},
+        {headerName: "Handling", field: "actions", filter: false, sortable: false}
+
+
+    ];
+
+
+
+
+    // let the grid know which columns and what data to use
+    userGridOptions = {
+        columnDefs: columnDefs,
+    };
+
+
+    // lookup the container we want the Grid to use
+    let eGridDiv = document.querySelector('#usergrid');
+
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, userGridOptions);
+
+    agGrid.simpleHttpRequest({url: '../backend_instantiate/int_get_users.php'}).then(function (data) {
+        userGridOptions.api.setRowData(data);
+    });
+
+    userGridOptions.api.sizeColumnsToFit();
+
+}
