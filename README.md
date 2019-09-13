@@ -66,6 +66,7 @@ SELECT school_products_id,sp.product_name,sp.description,sp.movable,(SELECT COUN
 
 
 
+ Check if product/enheder are available
 SELECT sp.id,sp.product_name,sp.description,sp.movable, COUNT(pe.products_id) -
 (
 SELECT IFNULL((SELECT SUM(cw1.quantity) FROM connection_product_wishlist as cw1

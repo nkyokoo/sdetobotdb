@@ -149,10 +149,11 @@ class Cart{
     }
     //Get Total Units in stock and return it
     function productUnitsInStock($pid){
-
+        $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
+        $edate = date('Y-m-d',strtotime($_SESSION['edate']));
         //Request to API
         $url = 'http://localhost:8000/api/booking/eventsforcart/productinstock/get';
-        $data = array('pid' => $pid);
+        $data = array('pid' => $pid,'sdate' => $sdate, 'edate' => $edate);
 
 // use key 'http' even if you send the request to https://...
         $options = array(

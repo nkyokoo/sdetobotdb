@@ -27,9 +27,10 @@ class BookingSend
                     if (!empty($pid) and !empty($quantity)) {
                         $item = $pid;
                         $unitQuantity = $quantity;
-
+                        $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
+                        $edate = date('Y-m-d',strtotime($_SESSION['edate']));
                         //Request to API
-                        $data[] = array('item' => $item,'quantity' => $unitQuantity, 'sdate' => $_SESSION['sdate'],'edate' => $_SESSION['edate']);
+                        $data[] = array('item' => $item,'quantity' => $unitQuantity, 'sdate' => $edate,'edate' => $sdate);
 
 
                     }
@@ -89,7 +90,14 @@ class BookingSend
         $resdate = date('Y-m-d');
         $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
         $edate = date('Y-m-d',strtotime($_SESSION['edate']));
-        $remdate = date('Y-m-d', strtotime('yesterday', strtotime($edate)));
+        $remdate = "";
+        if ($edate > $resdate){
+
+            $remdate = date('Y-m-d', strtotime('yesterday', strtotime($edate)));
+        }
+        else{
+            $remdate = $resdate;
+        }
         // As tinyint is a 0 = false, 1 = true integer
         //user_id in LIVE Database needs to be taken from SESSION OF USER.
  // `rerserved_date`, `start_date`, `end_date`, `reminder_date`, `godkendt`, `user_id`

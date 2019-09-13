@@ -29,7 +29,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#display').delegate("*[id*='product-quantity-']", "input",function () {
+    $('#display').delegate("*[id*='product-quantity-']", "blur",function () {
         let variable = this.id;
         let key = variable.slice(17);
         //get quantity of <input> tag
@@ -55,7 +55,7 @@ function onChangeQuantity(qts,pid) {
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
                         if (output === "total0"){
-                            $('#row-'+pid).html('');
+                            $('#product-quantity-'+pid).val(1);
 
                         }
                         else {

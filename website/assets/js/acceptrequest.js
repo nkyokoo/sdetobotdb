@@ -39,6 +39,7 @@ function displayRequests() {
         }
             * */
             output = JSON.parse(output);
+           // alert(output);
             console.log(output);
             let prevID = 0;
             for (obj of output){

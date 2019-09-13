@@ -34,7 +34,7 @@ const init = async() => {
             verifyOptions: { algorithms: [ 'HS256' ] }
         });
     const clientOpts = {
-        settings: `mysql://${config.getDBuser()}@${config.getDBHost()}/${config.getDB()}`,
+        settings: `mysql://${config.getDBuser()}@${config.getDBHost()}/${config.getDB()}?dateStrings=date`,
         decorate: true
     };
 
