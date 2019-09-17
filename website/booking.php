@@ -22,16 +22,19 @@ include 'includes/sidebar.php';
             <div id="display" style="display: inline">
                 <?php
                 $currentDate = date('Y-m-d');
+                $threeYearFromNow = date('Y-m-d',strtotime('+3 year',strtotime($currentDate)));
                 if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
-                    echo "<input style='width: 10rem; display: inline' type='date' class='form-control' id='date_s' min='" . $currentDate . "' value='" . $currentDate . "' required>    
-             <input  style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' required >    
-              <button style='display: inline'  class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
+                    //If you haven't chosen a date yet
+                    echo "<input style='width: 10rem; display: inline' type='date' class='form-control' id='date_s' min='" . $currentDate . "' value='" . $currentDate . "' max='".$threeYearFromNow."' required>    
+                          <input  style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' required >    
+                          <button style='display: inline'  class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
                 } else {
+                    // If you've chosen a date before
                     $startDate = date('Y-m-d', strtotime($_SESSION['sdate']));
                     $endDate = date('Y-m-d', strtotime($_SESSION['edate']));
-                    echo "<input style='width: 10rem; display: inline' class='form-control' type='date' id='date_s' min='" . $currentDate . "' value='" . $startDate . "' required>   
-             <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' value='" . $endDate . "' required>    
-             <button  style='display: inline' class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
+                    echo "<input style='width: 10rem; display: inline' class='form-control' type='date' id='date_s' min='".$currentDate."' value='" . $startDate . "'  required max='".$threeYearFromNow."'>   
+                          <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='". $currentDate ."' value='" . $endDate . "' required>    
+                          <button  style='display: inline' class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
 
                 }
                 ?>
