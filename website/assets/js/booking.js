@@ -1,3 +1,6 @@
+
+
+
 //Always running when DOM is ready
 $(document).ready(function() {
     //Update max date from start date
@@ -9,9 +12,12 @@ $(document).ready(function() {
     $("body").on("click", "*[id*='btn-']", function (){
         let variable = this.id;
         let key = variable.slice(4);
-        alert("adding to cart");
+
+        //alert("adding to cart");
         // Run Function
         addToCart(key);
+
+
     });
     let display = $('#display');
     display.delegate('#dateButton','click',function () {
@@ -19,11 +25,11 @@ $(document).ready(function() {
     });
     display.delegate("*[id*='date_']",'change',function () {
 
-/*        if (this.id === "date_e"){
-//            alert("hey");
-            updateProductView($('#date_s').val(),$('#date_e').val());
+        /*        if (this.id === "date_e"){
+        //            alert("hey");
+                    updateProductView($('#date_s').val(),$('#date_e').val());
 
-        }*/
+                }*/
         updateMaxDate();
         resetCart();
     });
@@ -74,33 +80,92 @@ function updateMaxDate() {
     let year = dt.getFullYear();
     let maxDate = year+'-'+month+'-'+day;
     edate.attr('max',maxDate);
-    edate.attr('min',sdate);
+    edate.attr('min',sdate.val());
     if (edate.val() < sdate.val()){
         edate.val(sdate.val());
     }
 }
 function updateProductView(sdate,edate, search = null) {
-   let sdateFormat = formatAndCheckDate(sdate);
-   let edateFormat = formatAndCheckDate(edate);
+    let sdateFormat = formatAndCheckDate(sdate);
+    let edateFormat = formatAndCheckDate(edate);
+    let sdateMinValue = document.getElementById("date_s").min;
+    let edateMaxValue = document.getElementById("date_e").max;
     if (edateFormat && sdateFormat){
         //Get products from db and send them to booking.php
         //alert(edateFormat);
-      //  alert(sdateFormat);
+        //  alert(sdateFormat);
         if (search){
             getProductsFromDB(sdateFormat,edateFormat,search);
+        }
+        else
+        {
+            if (sdateFormat >= sdateMinValue && edateFormat >= sdateMinValue)
+            {
+                if (edateFormat >= sdateFormat)
+                {
+                    if (edateMaxValue >= edateFormat)
+                    {
+                        getProductsFromDB(sdateFormat,edateFormat);
+                    }
+                    else
+                    {
+                        let options = {
+                            content: "You can only book 1 month ahead", // text of the snackbar
+                            style: "toast", // add a custom class to your snackbar
+                            timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                            htmlAllowed: true, // allows HTML as content value
+                            onClose: function () {
 
-        }else {
+                            } // callback called when the snackbar gets closed.
+                        };
+                        $.snackbar(options);
+                    }
+                }
+                else
+                {
+                    let options = {
+                        content: "Wrong end date selected", // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
 
-            getProductsFromDB(sdateFormat,edateFormat);
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
+                }
+            }
+            else
+            {
+                let options = {
+                    content: "You can only book from Today onward "+sdateMinValue, // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
+
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
+            }
         }
     }
     else {
-        alert("pls enter a valid date");
+        let options = {
+            content: "Please enter a valid date", // text of the snackbar
+            style: "toast", // add a custom class to your snackbar
+            timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+            htmlAllowed: true, // allows HTML as content value
+            onClose: function () {
+
+            } // callback called when the snackbar gets closed.
+        }
+        $.snackbar(options);
     }
 }
 
 function formatAndCheckDate(date) {
-   // yyyy/mm/dd database date format
+    // yyyy/mm/dd database date format
     let date1 = new Date();
     // Replace all occur and matches
     let datearr = date.split('-');
@@ -120,13 +185,33 @@ function addToCart(productID) {
         let getChosenValueOfProduct = product.value;
         //
         if (getChosenValueOfProduct > 0) {
+            let options = {
+                content: "Adding to cart", // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function () {
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
             $.ajax({
                 type: 'POST',
                 url: '../backend_instantiate/int_eventsforcarts.php',
                 data: {PID: productID,quantity: getChosenValueOfProduct, submit:'submit'},
                 success: function (output) {
-                    if (output)
-                        alert(output);
+                    if (output) {
+                        let options = {
+                            content: output, // text of the snackbar
+                            style: "toast", // add a custom class to your snackbar
+                            timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                            htmlAllowed: true, // allows HTML as content value
+                            onClose: function () {
+
+                            } // callback called when the snackbar gets closed.
+                        }
+                        $.snackbar(options);
+                    }
                     else {
                         let btn = document.getElementById('btn-' + productID);
                         btn.innerHTML = 'Added';
@@ -136,7 +221,16 @@ function addToCart(productID) {
                 }
             })
         } else {
-            alert("You've not chosen an Amount Yet");
+            let options = {
+                content: "You've not chosen an amount yet", // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function () {
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
         }
     } catch (e) {
     }

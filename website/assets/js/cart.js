@@ -1,5 +1,3 @@
-//Always running when DOM is ready
-
 $(document).ready(function() {
 
 
@@ -41,7 +39,7 @@ $(document).ready(function() {
 
 });
 
- //JS Functions
+//JS Functions
 function onChangeQuantity(qts,pid) {
     //$qts = quantity || $pid = product id
     try {
@@ -54,6 +52,7 @@ function onChangeQuantity(qts,pid) {
                     url: '../backend_instantiate/int_eventsforcarts.php',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
+                        //if total is under 0
                         if (output === "total0"){
                             $('#product-quantity-'+pid).val(1);
 
@@ -61,8 +60,16 @@ function onChangeQuantity(qts,pid) {
                         else {
 
                             if (output){
-                                alert(output);
+                                let options = {
+                                    content: output, // text of the snackbar
+                                    style: "toast", // add a custom class to your snackbar
+                                    timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                                    htmlAllowed: true, // allows HTML as content value
+                                    onClose: function () {
 
+                                    } // callback called when the snackbar gets closed.
+                                }
+                                $.snackbar(options);
                                 location.reload();
 
                             }
@@ -71,13 +78,31 @@ function onChangeQuantity(qts,pid) {
                     }
                 })
             }else {
-                alert("No Doubles!");
-                location.reload();
+                let options = {
+                    content: "No doubles!", // text of the snackbar
+                    style: "toast", // add a custom class to your snackbar
+                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                    htmlAllowed: true, // allows HTML as content value
+                    onClose: function () {
+                        location.reload();
+
+                    } // callback called when the snackbar gets closed.
+                }
+                $.snackbar(options);
             }
 
         } else {
-            alert("We don't take Negative numbers or Characters!");
-            location.reload();
+            let options = {
+                content: "We don't take negative numbers or characters", // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function () {
+                    location.reload();
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
         }
     } catch (e) {
     }
@@ -91,13 +116,13 @@ function removeProduct(pid) {
         data: {remove: "remove", PID: pid},
         success: function () {
             //reload page if successful
-           //
+            //
 
-                    $('#row-'+pid).html('');
-                    /*
-                    let e = document.createElement("div");
-                    e.innerHTML = output;
-                    document.getElementById("display").appendChild(e);*/
+            $('#row-'+pid).html('');
+            /*
+            let e = document.createElement("div");
+            e.innerHTML = output;
+            document.getElementById("display").appendChild(e);*/
 
 
         }
@@ -129,23 +154,42 @@ function booking() {
             url:'../backend_instantiate/int_cartsend.php',
             success:function (output) {
                 //Clear cart after sending to wishlist
+                alert(output)
                 if (!output){
-                    alert("Your wishlist has been made");
+                    let options = {
+                        content: "Your wishlist has been made", // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            $.ajax({
+                                type: 'POST',
+                                url: '../backend_instantiate/int_eventsforcarts.php',
+                                data: {clear: "clear"}
+                            });
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
 
-                    $.ajax({
-                        type: 'POST',
-                        url: '../backend_instantiate/int_eventsforcarts.php',
-                        data: {clear: "clear"}
-                    });
+
                 }else {
-                    alert(output);
+                    let options = {
+                        content: output, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
                 }
-                location.reload();
+                // location.reload();
 
             }
 
 
-        })
+        });
     }
 }
 function displaycart() {
