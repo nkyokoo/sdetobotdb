@@ -42,11 +42,12 @@ include 'includes/sidebar.php';
                         }
                         ?>
                     </div>
-                    <div style="display: inline" class="form-group">
-                        <label for="searchInput" class="bmd-label-floating">Søg</label>
-                        <input style="width: 10rem; display: inline" aria-label="search" id="searchInput" type="text"
-                               class='form-control'>
-                    </div>
+                        <div style="display: inline" class="form-group">
+                            <label for="searchInput" class="bmd-label-floating">Søg</label>
+                            <input style="width: 10rem; display: inline" aria-label="search" id="searchInput"
+                                   type="text"
+                                   class='form-control'>
+                        </div>
                 </form>
 
             </div>
