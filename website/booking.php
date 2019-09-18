@@ -37,8 +37,8 @@ include 'includes/sidebar.php';
                         echo "<input style='width: 10rem; display: inline' class='form-control' type='date' id='date_s' min='" . $currentDate . "' value='" . $startDate . "' required>   
              <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' value='" . $endDate . "' required>    
              <button  style='display: inline' class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
-
-
+                    }
+                ?>
                     </div>
                     <div style="display: inline" class="form-group">
                         <label for="searchInput" class="bmd-label-floating">Søg</label>
