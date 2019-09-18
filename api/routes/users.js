@@ -7,13 +7,6 @@ module.exports = [{
 
         try {
             const [rows, fields] = await pool.query('SELECT users.id,name,email,user_rank,disabled FROM users INNER JOIN user_group ug on users.user_group_id = ug.id ORDER BY user_rank')
-            for(i of rows){
-                if(i.disabled ===1){
-                    i.disabled = "ja"
-                }else{
-                    i.disabled = "nej"
-                }
-            }
             return rows
         } catch (e) {
             return h.response({error: e.message}).code(500);
