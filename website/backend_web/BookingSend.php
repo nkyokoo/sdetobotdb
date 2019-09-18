@@ -7,7 +7,7 @@ class BookingSend
 
         try {
 
-            $allProductsAreAvailable = false;
+            $allProductsAreAvailable = true;
             //   $storeIDsFromUnits = "";
             $storeIDsFromUnitsQuantity = "";
             $storeIDsFromItems = "";
@@ -18,19 +18,17 @@ class BookingSend
             //Layer 1 or 2
             //Loop The Selections and send to Database if the Selection has Value
             // for ($i = $layer == 1 ? 1:11; $i < $length; $i++) {
-            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
+            if (isset($_SESSION['cart'])){
                 $cart = $_SESSION['cart'];
                 $data = array();
-                $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
-                $edate = date('Y-m-d',strtotime($_SESSION['edate']));
-
                 foreach ($cart as $pid => $quantity){
                     // $enhedCounter = 0;
                     //Check if items and its units aren't empty
                     if (!empty($pid) and !empty($quantity)) {
                         $item = $pid;
                         $unitQuantity = $quantity;
-
+                        $sdate = date('Y-m-d',strtotime($_SESSION['sdate']));
+                        $edate = date('Y-m-d',strtotime($_SESSION['edate']));
                         //Request to API
                         $data[] = array('item' => $item,'quantity' => $unitQuantity, 'sdate' => $edate,'edate' => $sdate);
 
@@ -39,7 +37,7 @@ class BookingSend
                     else {echo "ERROR 22";break;}
 
                 }
-                var_dump(json_encode($data));
+                //var_dump($data);
                 // Check if products are available
                 $url = 'http://localhost:8000/api/booking/bookingsend/create';
 // use key 'http' even if you send the request to https://...
@@ -64,32 +62,26 @@ class BookingSend
                 foreach ($jsondata as $data){
                     $storeIDsFromItems .= $data['item'].",";
                     $storeIDsFromUnitsQuantity .= $data['quantity'].",";
-
-                    if ($data['available'] === true){
+                    if ($data['available'] === false){
                         $allProductsAreAvailable = $data['available'];
-
                     }
-
-                }
-
-
-                if ($allProductsAreAvailable){
-                    // $this->updateStatus($storeIDsFromUnits);
-                    //Create a new wish list in DB and return ID
-                    $wishListID = $this->sendToWishList();
-                    //Get ID and products,quantity in a form of string array.
-                    $this->connectProductsToWishList($storeIDsFromItems,$storeIDsFromUnitsQuantity,$wishListID);
-
-                    //This is a test to run the whole Cycle and should not be here.
-                }
-                else{
-                    //Products Unavailable Message
-                    echo "Some of the Products are Unavailable!";
                 }
             //echo $allProductsAreAvailable;
-            }else{echo "ERROR 21 : You don't have products to make a wish list";}
+            }else{echo "ERROR 21";}
             //if all products are available do the following
+            if ($allProductsAreAvailable){
+                // $this->updateStatus($storeIDsFromUnits);
+                //Create a new wish list in DB and return ID
+                $wishListID = $this->sendToWishList();
+                //Get ID and products,quantity in a form of string array.
+                $this->connectProductsToWishList($storeIDsFromItems,$storeIDsFromUnitsQuantity,$wishListID);
 
+                //This is a test to run the whole Cycle and should not be here.
+            }
+            else{
+                //Products Unavailable Message
+                echo "Some of the Products are Unavailable!";
+            }
         } catch (Exception $e) {
         }
     }

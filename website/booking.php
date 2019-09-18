@@ -24,7 +24,10 @@ include 'includes/sidebar.php';
                 <form style="display: inline; margin-left: 1rem" class="form-group">
                     <div style="display: inline" class="form-group">
                     <?php
+<<<<<<< HEAD
                     $threeYearFromNow = date('Y-m-d',strtotime('+3 year',strtotime($currentDate)));
+=======
+>>>>>>> parent of 20b9ef7... Merge branch 'developement' into valon
                     $currentDate = date('Y-m-d');
                     if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
                         echo "<input style='width: 10rem; display: inline' type='date' class='form-control' id='date_s' min='" . $currentDate . "' value='" . $currentDate . "' required>    
@@ -36,8 +39,14 @@ include 'includes/sidebar.php';
                         echo "<input style='width: 10rem; display: inline' class='form-control' type='date' id='date_s' min='" . $currentDate . "' value='" . $startDate . "' required>   
              <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='" . $currentDate . "' value='" . $endDate . "' required>    
              <button  style='display: inline' class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
+<<<<<<< HEAD
                     }
                 ?>
+=======
+
+                    }
+                    ?>
+>>>>>>> parent of 20b9ef7... Merge branch 'developement' into valon
                     </div>
                     <div style="display: inline" class="form-group">
                         <label for="searchInput" class="bmd-label-floating">Søg</label>
