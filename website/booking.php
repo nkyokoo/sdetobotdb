@@ -49,8 +49,7 @@ include 'includes/sidebar.php';
                                    class='form-control'>
                         </div>
                 </form>
-
-            </div>
+        </div>
 
 
             <div id="layer_1" class="layer1" style="display: block">
