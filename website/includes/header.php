@@ -4,7 +4,7 @@
   <head>
 
       <meta charset='utf-8'>
-      <meta http-equiv='x-ua-compatible' content='ie=edge'>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <meta name='description' content='sde udlånsystem til automation og robot teknologi '>
       <meta name='theme-color' content='#2196F3'>
@@ -24,6 +24,7 @@
       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-material.css">
       <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
       <script src="../assets/js/jquery.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
       <script src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
 
       <link rel="cors" href="https://cors-anywhere.herokuapp.com/">

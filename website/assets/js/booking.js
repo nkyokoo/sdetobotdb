@@ -1,7 +1,7 @@
-
 //Always running when DOM is ready
 $(document).ready(function() {
     //Update max date from start date
+    checkForSupportedDatePicker();
     $('#searchInput').bind('keypress', {}, keypress);
     updateMaxDate();
     //Trigger instances if it contain this name.
@@ -29,7 +29,14 @@ $(document).ready(function() {
     });
 
 });
-
+function checkForSupportedDatePicker() {
+    let sDate = $('#date_s');
+    let eDate = $('#date_e');
+    if (sDate[0].type === "text"){
+        sDate.datepicker();
+        eDate.datepicker();
+    }
+}
 function keypress(e) {
 
     let code = (e.keyCode ? e.keyCode : e.which);
