@@ -54,7 +54,6 @@ function onChangeQuantity(qts,pid) {
                     url: '../backend_instantiate/int_eventsforcarts.php',
                     data: {onChangeQuantity: qts, PID: pid},
                     success: function (output) {
-                        //if total is under 0
                         if (output === "total0"){
                             $('#product-quantity-'+pid).val(1);
 
@@ -62,16 +61,8 @@ function onChangeQuantity(qts,pid) {
                         else {
 
                             if (output){
-                                let options = {
-                                    content: output, // text of the snackbar
-                                    style: "toast", // add a custom class to your snackbar
-                                    timeout: 3000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                                    htmlAllowed: true, // allows HTML as content value
-                                    onClose: function () {
+                                alert(output);
 
-                                    } // callback called when the snackbar gets closed.
-                                }
-                                $.snackbar(options);
                                 location.reload();
 
                             }
@@ -80,31 +71,13 @@ function onChangeQuantity(qts,pid) {
                     }
                 })
             }else {
-                let options = {
-                    content: "No doubles!", // text of the snackbar
-                    style: "toast", // add a custom class to your snackbar
-                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                    htmlAllowed: true, // allows HTML as content value
-                    onClose: function () {
-                        location.reload();
-
-                    } // callback called when the snackbar gets closed.
-                }
-                $.snackbar(options);
+                alert("No Doubles!");
+                location.reload();
             }
 
         } else {
-            let options = {
-                content: "We don't take negative numbers or characters", // text of the snackbar
-                style: "toast", // add a custom class to your snackbar
-                timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                htmlAllowed: true, // allows HTML as content value
-                onClose: function () {
-                    location.reload();
-
-                } // callback called when the snackbar gets closed.
-            }
-            $.snackbar(options);
+            alert("We don't take Negative numbers or Characters!");
+            location.reload();
         }
     } catch (e) {
     }
@@ -156,42 +129,23 @@ function booking() {
             url:'../backend_instantiate/int_cartsend.php',
             success:function (output) {
                 //Clear cart after sending to wishlist
-                alert(output)
                 if (!output){
-                    let options = {
-                        content: "Your wishlist has been made", // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
-                            $.ajax({
-                                type: 'POST',
-                                url: '../backend_instantiate/int_eventsforcarts.php',
-                                data: {clear: "clear"}
-                            });
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
+                    alert("Your wishlist has been made");
 
-
+                    $.ajax({
+                        type: 'POST',
+                        url: '../backend_instantiate/int_eventsforcarts.php',
+                        data: {clear: "clear"}
+                    });
                 }else {
-                    let options = {
-                        content: output, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
-
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
+                    alert(output);
                 }
-               // location.reload();
+                location.reload();
 
             }
 
 
-        });
+        })
     }
 }
 function displaycart() {
