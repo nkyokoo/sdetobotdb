@@ -24,7 +24,6 @@ include 'includes/sidebar.php';
                 <form style="display: inline; margin-left: 1rem" class="form-group">
                     <div style="display: inline" class="form-group">
                     <?php
-                    $currentDate = date('Y-m-d');
                     $threeYearFromNow = date('Y-m-d',strtotime('+3 year',strtotime($currentDate)));
                     $currentDate = date('Y-m-d');
                     if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
