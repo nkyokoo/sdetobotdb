@@ -19,6 +19,7 @@ include 'includes/sidebar.php';
 
 </div>
 <?php
+
 echo "<script type=\"text/javascript\" src=\"./assets/js/cart.js\"></script>";
 include "includes/footer.php";
 ?>
