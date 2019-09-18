@@ -105,7 +105,27 @@ class Cart{
             // else remove the item
             else {
                 //Remove Product
-                $this->remove($pid);
+                //Change Product quantity to 1
+                if (isset($_SESSION["cart"])) {
+                    //get the products from cart
+
+                    $productsInCart = $this->showSavedInCart();
+
+                    foreach ($productsInCart as $productID => $quantity) {
+                        if ($productID == $pid) {
+                            //Unset element in array
+                            //unset($this->products[$productID]);
+                            $this->products[$productID] = 1;
+                        } else {
+                            //override old quantity
+                            $this->products[$productID] = $quantity;
+                        }
+
+
+                    }
+
+                }
+                //$this->remove($pid);
                 echo "total0";
             }
             //save
