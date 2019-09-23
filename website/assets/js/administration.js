@@ -404,3 +404,4 @@ let createUserDataGrid = () => {
     userGridOptions.api.sizeColumnsToFit();
 
 }
+

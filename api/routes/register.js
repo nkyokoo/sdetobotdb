@@ -25,6 +25,7 @@ module.exports = {
 
       } catch (e) {
         console.log(e)
+        return h.response({code:500, error:'server error'}).code(200)
       }
 
     }
