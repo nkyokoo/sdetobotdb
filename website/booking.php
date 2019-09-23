@@ -17,7 +17,10 @@ include 'includes/sidebar.php';
             <h5>Produkter</h5>
             <p class="card-subtitle" style="font-size: .8rem">Vælg dato du vil låne produkter og klik på knappen for at se ledige produkter.</p>
             <div id="display" style="display: inline">
-                <?php
+                <form style="display: inline; margin-left: 1rem" class="form-group">
+                    <div style="display: inline" class="form-group">
+
+                    <?php
                 $currentDate = date('Y-m-d');
                 $threeYearFromNow = date('Y-m-d',strtotime('+3 year',strtotime($currentDate)));
                 if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])) {
@@ -33,8 +36,11 @@ include 'includes/sidebar.php';
                           <input style='width: 10rem; display: inline' class='form-control' type='date' id='date_e' min='". $currentDate ."' value='" . $endDate . "' required>    
                           <button  style='display: inline' class='btn btn-raised btn-primary' type='button'id='dateButton'><i class='material-icons'>send</i></button>";
                 }
-                ?>
+                    ?></div>
+                    <div style="display: inline" class="form-group">
                 <input  aria-label="search" id="searchInput" type="text" placeholder="Search">
+                    </div>
+                </form>
             </div>
 
 
