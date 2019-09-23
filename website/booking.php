@@ -38,7 +38,8 @@ include 'includes/sidebar.php';
                 }
                     ?></div>
                     <div style="display: inline" class="form-group">
-                <input  aria-label="search" id="searchInput" type="text" placeholder="Search">
+                 <label for="searchInput" class="bmd-label-floating">søg</label>
+                <input style="display: inline; width: 12rem;" class="form-control"  aria-label="search" id="searchInput" type="text">
                     </div>
                 </form>
             </div>
