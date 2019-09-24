@@ -25,112 +25,115 @@ function getCount() {
 
 }
 
-function deactivateUser(id) {
-    try {
+function usercontrol(id,action) {
+    if (action === 'disable') {
+        try {
 
-        $.ajax({
-            type: 'post',
-            url: '../backend_instantiate/int_disable_user.php',
-            data: {userid: id},
-            success: function (data) {
-                let options = {
-                    content: data, // text of the snackbar
-                    style: "toast", // add a custom class to your snackbar
-                    timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                    htmlAllowed: true, // allows HTML as content value
-                    onClose: function () {
-                        window.location.replace("users.php")
-                    } // callback called when the snackbar gets closed.
-                }
-                $.snackbar(options);
-
-
-            },
-            error: function (request, status, error) {
-                let options = {
-                    content: request.responseText, // text of the snackbar
-                    style: "toast", // add a custom class to your snackbar
-                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                    htmlAllowed: true, // allows HTML as content value
-                    onClose: function () {
-
-                    } // callback called when the snackbar gets closed.
-                }
-                $.snackbar(options);
+            $.ajax({
+                type: 'post',
+                url: '../backend_instantiate/int_disable_user.php',
+                data: {userid: id},
+                success: function (data) {
+                    let options = {
+                        content: data, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            window.location.reload()
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
 
 
-            },
+                },
+                error: function (request, status, error) {
+                    let options = {
+                        content: request.responseText, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            window.location.reload()
 
-        });
-    } catch (e) {
-        let options = {
-            content: e.errorCode, // text of the snackbar
-            style: "toast", // add a custom class to your snackbar
-            timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-            htmlAllowed: true, // allows HTML as content value
-            onClose: function () {
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
 
 
-            } // callback called when the snackbar gets closed.
+                },
+
+            });
+        } catch (e) {
+            let options = {
+                content: e.errorCode, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function () {
+                    window.location.reload()
+
+
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
         }
-        $.snackbar(options);
-    }
+
+    } else if (action === 'enable'){
+
+        try {
+
+            $.ajax({
+                type: 'post',
+                url: '../backend_instantiate/int_enable_user.php',
+                data: {userid: id},
+                success: function (data) {
+                    let options = {
+                        content: data, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            window.location.reload()
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
 
 
-}
+                },
+                error: function (request, status, error) {
+                    let options = {
+                        content: request.responseText, // text of the snackbar
+                        style: "toast", // add a custom class to your snackbar
+                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                        htmlAllowed: true, // allows HTML as content value
+                        onClose: function () {
+                            window.location.reload()
 
-function activateUser(id) {
-    try {
-
-        $.ajax({
-            type: 'post',
-            url: '../backend_instantiate/int_enable_user.php',
-            data: {userid: id},
-            success: function (data) {
-                let options = {
-                    content: data, // text of the snackbar
-                    style: "toast", // add a custom class to your snackbar
-                    timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                    htmlAllowed: true, // allows HTML as content value
-                    onClose: function () {
-                        window.location.replace("users.php")
-                    } // callback called when the snackbar gets closed.
-                }
-                $.snackbar(options);
+                        } // callback called when the snackbar gets closed.
+                    }
+                    $.snackbar(options);
 
 
-            },
-            error: function (request, status, error) {
-                let options = {
-                    content: request.responseText, // text of the snackbar
-                    style: "toast", // add a custom class to your snackbar
-                    timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                    htmlAllowed: true, // allows HTML as content value
-                    onClose: function () {
+                },
 
-                    } // callback called when the snackbar gets closed.
-                }
-                $.snackbar(options);
+            });
+        } catch (e) {
+            let options = {
+                content: e.errorCode, // text of the snackbar
+                style: "toast", // add a custom class to your snackbar
+                timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                htmlAllowed: true, // allows HTML as content value
+                onClose: function () {
 
 
-            },
-
-        });
-    } catch (e) {
-        let options = {
-            content: e.errorCode, // text of the snackbar
-            style: "toast", // add a custom class to your snackbar
-            timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
-            htmlAllowed: true, // allows HTML as content value
-            onClose: function () {
+                } // callback called when the snackbar gets closed.
+            }
+            $.snackbar(options);
 
 
-            } // callback called when the snackbar gets closed.
         }
-        $.snackbar(options);
     }
-
-
 }
 
 
@@ -372,22 +375,56 @@ let createUnitsDataGrid = () => {
 }
 
 let createUserDataGrid = () => {
+    function disableEditor() {
+
+    }
+    function DisabledRenderer() {}
+
+// init method gets the details of the cell to be rendere
+    DisabledRenderer.prototype.init = function(params) {
+        console.log(params)
+        this.eGui = document.createElement('select');
+        this.eGui.setAttribute('class', 'form-control')
+        this.eGui.setAttribute('onchange',`usercontrol('${params.data.id}', '${params.value === 'ja' ? 'enable' : 'disable'}')`)
+        let option = document.createElement('option')
+        option.setAttribute('value',params.value === 'ja' ? '1':'0');
+        option.innerHTML = params.value === 'ja' ? 'ja':'nej'
+        let option2 = document.createElement('option')
+        option2.setAttribute('value',params.value !== 'ja' ? '1':'0');
+        option2.innerHTML = params.value !== 'ja' ? 'ja':'nej'
+
+        console.log(option, option2)
+        this.eGui.appendChild(option)
+        this.eGui.appendChild(option2)
+
+
+    };
+
+    DisabledRenderer.prototype.getGui = function() {
+        return this.eGui;
+    };
     let columnDefs = [
         {headerName: "Navn", field: "name", filter: true, sortable: true,},
         {headerName: "Email", field: "email", filter: true, sortable: true,},
         {headerName: "Rank", field: "user_rank", filter: true, sortable: true},
-        {headerName: "Deaktiveret", field: "disabled", filter: true, sortable: true},
-        {headerName: "Handling", field: "actions", filter: false, sortable: false}
+        {
+            headerName: "Deaktiveret",
+            field: "disabled",
+            filter: true,
+            sortable: true,
+            cellRenderer: 'DisabledRenderer',
+        },
 
 
     ];
 
 
-
-
     // let the grid know which columns and what data to use
     userGridOptions = {
         columnDefs: columnDefs,
+        components: {
+            'DisabledRenderer': DisabledRenderer,
+        },
     };
 
 
@@ -404,4 +441,3 @@ let createUserDataGrid = () => {
     userGridOptions.api.sizeColumnsToFit();
 
 }
-
