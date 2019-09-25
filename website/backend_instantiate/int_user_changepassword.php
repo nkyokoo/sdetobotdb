@@ -3,9 +3,10 @@ include_once("../backend_web/user.php");
 
 $usr = new user();
 
-$name =$_POST['currentpassword'];
-$email=$_POST['newpassword'];
+$currentpassword =$_POST['currentpassword'];
+$newpassword =$_POST['newpassword'];
 
 
-$usr->changePassword($name,$email);
+
+$usr->changePassword($currentpassword,$newpassword);
 echo $usr->getMessage();

@@ -13,7 +13,6 @@ module.exports = {
             try {
                 decrypted = cryptoFuncs.decrypt(rows[0].password)
                 if (decrypted === request.payload.currentpassword) {
-                    console.log(request.payload)
                     const hashed_password = cryptoFuncs.encrypt(request.payload.newpassword)
                     await pool.query('UPDATE users SET password = ? WHERE id = ?', [hashed_password, request.payload.id]);
                     return h.response({code: 200, message: "changed"}).code(200)

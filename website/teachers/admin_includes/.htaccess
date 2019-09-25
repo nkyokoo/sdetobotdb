@@ -1,0 +1,4 @@
+# Disable directory browsing
+Options -Indexes
+Deny from all
+ErrorDocument 403 "forbidden"

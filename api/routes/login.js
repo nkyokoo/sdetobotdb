@@ -44,10 +44,10 @@ const config = require('../util/config')
 
                                }
                             } else {
-                                return h.response({code: 401, error: "password incorrect"}).code(401)
+                                return h.response({code: 401, error: "password incorrect"}).code(200)
                             }
                         } else {
-                            return h.response({code: 401, error: "email doesn't exist"}).code(401)
+                            return h.response({code: 401, error: "email doesn't exist"}).code(200)
 
                         }
 

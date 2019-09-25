@@ -23,7 +23,7 @@ include 'includes/navbar.php'
 
                         </div>
                         <div class="card-body">
-                            <form id="regid" method="post" action="authenticator.php">
+                            <form id="regid" method="post" action="backend_instantiate/authenticator.php">
                                 <?php /* echo display_error();*/ ?>
                                 <div class="form-group">
                                     <label for="registerName" class="bmd-label-floating">Navn</label>
@@ -36,17 +36,17 @@ include 'includes/navbar.php'
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password_1" class="bmd-label-floating">Password</label>
-                                    <input type="password" id="password_1" class="form-control" name="password_1"
+                                    <label for="new-password" class="bmd-label-floating">Password</label>
+                                    <input type="password" id=registerPassword class="form-control" name="password_1"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password_2" class="bmd-label-floating">Bekræft password</label>
-                                    <input type="password" id="password_2" class="form-control" name="password_2"
+                                    <label for="repeat-password" class="bmd-label-floating">Bekræft password</label>
+                                    <input type="password" id="RegisterPasswordRepeat" class="form-control" name="password_2"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" id="register_btn" class="btn btn-primary btn-raised"
+                                    <button type="button" id="register_btn" class="btn btn-primary btn-raised"
                                             name="register_btn">Register
                                     </button>
 

@@ -1,9 +1,10 @@
 <?php
-if (isset($_SESSION['user']['user_group_id'])) {
+session_start();
+
+if (!isset($_SESSION['user']['user_group_id'])) {
     header('location: ../index.php');
 }
 
-session_start();
 include '../includes/header.php';
 include '../includes/navbar.php';
 include '../includes/sidebar.php';
@@ -74,11 +75,11 @@ switch (strval($_SESSION['user']['user_group_id'])) {
                                     <input type="password" class="form-control" id="new-password">
                                 </div>
                                 <div class="form-group bmd-form-group"> <!-- manually specified -->
-                                    <label for="new-password" class="bmd-label-floating">Gentag adgangskode</label>
-                                    <input type="password" class="form-control" id="new-password">
+                                    <label for="repeat-password" class="bmd-label-floating">Gentag adgangskode</label>
+                                    <input type="password" class="form-control" id="repeat-password">
                                 </div>
                             </form>
-                            <button class="btn btn-raised btn-danger" id="change_password">change password
+                            <button class="btn btn-raised btn-danger" id="change_password">skift adgangskode
                             </button>
                         </div>
                     </div>

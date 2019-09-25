@@ -1,11 +1,8 @@
 <?php
 include 'admin_includes/adminprotection.php';
-
 include '../includes/header.php';
 include '../includes/navbar.php';
 include '../includes/sidebar.php';
-
-
 ?>
     <link rel="stylesheet" href="../assets/css/administration.css">
     <script src="../assets/js/administration.js"></script>
