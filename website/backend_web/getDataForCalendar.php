@@ -6,7 +6,7 @@ class getDataForCalendar
 
     function getWishlists(){
 
-        $url = 'http://localhost:8000/api/booking/bookingsend/wishlist/create';
+        $url = 'http://localhost:8000/api/calendar/wishlists/get';
 // use key 'http' even if you send the request to https://...
         $options = array(
             'http' => array(
