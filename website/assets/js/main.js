@@ -216,7 +216,7 @@ const login = () => {
                         timeout: 500, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function () {
-                            window.location.reload()
+                           // window.location.reload()
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);
