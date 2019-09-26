@@ -17,6 +17,8 @@
 
       <title>SDE AUTOMATION OG ROBOTTEKNOLOGI</title>
 
+      <link href='../fullcalendar/packages/core/main.css' rel='stylesheet' />
+      <link href='../fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
       <link rel='icon' type='image/x-icon' href='../favicon.ico'>
       <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
@@ -25,8 +27,12 @@
       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-material.css">
       <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
       <script src="../assets/js/jquery.min.js"></script>
+      <script src='../fullcalendar/packages/core/main.js'></script>
+      <script src='../fullcalendar/packages/daygrid/main.js'></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
       <script src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+
+
 
       <link rel="cors" href="https://cors-anywhere.herokuapp.com/">
 

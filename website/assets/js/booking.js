@@ -1,6 +1,4 @@
 
-
-
 //Always running when DOM is ready
 $(document).ready(function() {
     //Update max date from start date
