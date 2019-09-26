@@ -163,9 +163,11 @@ class user
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         $jsondata = json_decode($result, true);
+
         if ($jsondata['code'] == 200) {
 
             $_SESSION['user'] = $jsondata['user'][0];
+            $_SESSION['LAST_ACTIVITY'] = time();
             http_response_code($jsondata["code"]);
             $this->setMessage($jsondata["message"]);
 
@@ -173,6 +175,7 @@ class user
         } else {
             http_response_code($jsondata["code"]);
             $this->setMessage($jsondata["error"]);
+
 
 
         }
@@ -216,7 +219,6 @@ class user
         unset($_SESSION);
         session_destroy();
         session_write_close();
-        echo "done";
         exit();
     }
 

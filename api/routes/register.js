@@ -1,6 +1,7 @@
-const cryptoFuncs = require("../backend/cryptoFuncs")
+const saltRounds = 10;
 const Boom = require('boom');
 const Joi = require("joi")
+const bcrypt = require('bcryptjs')
 const uuidv4 = require('uuid/v4');
 
 
@@ -15,12 +16,19 @@ module.exports = {
 
       const hPayload = { ...request.payload }
 
-      const hashed_password = cryptoFuncs.encrypt(request.payload.password)
 
-      hPayload.password = hashed_password;
       let id = uuidv4();
       try {
-       await pool.query(`INSERT INTO users(id,name, email, password, user_group_id) VALUES  ('${id}','${hPayload.name}','${hPayload.email}','${hPayload.password}','3')`);
+        await bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(hPayload.password, salt, function(err, hash) {
+            if(err){
+              throw err;
+            }
+             pool.query(`INSERT INTO users(id,name, email, password, user_group_id) VALUES  ('${id}','${hPayload.name}','${hPayload.email}','${hash}','3')`);
+
+          });
+        });
+
         return { code: 200, message: " registered user " };
 
       } catch (e) {

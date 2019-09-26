@@ -2,6 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "boom": "latest",
     "email-validator": "^2.0.4",
     "hapi": "^18.1.0",
@@ -10,9 +11,9 @@
     "hapi-rate-limit": "^4.0.1",
     "joi": "latest",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.3.0",
     "susie": "^3.0.0",
-    "uuid": "^3.3.2",
-    "nodemailer": "^6.3.0"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "main": "index.js",
