@@ -4,7 +4,7 @@ include '../backend_web/getDataForCalendar.php';
 try{
     $class = new getDataForCalendar();
 
-    $class->getWishlists();
+    echo $class->getWishlists();
 
 }
 catch (Exception $e){

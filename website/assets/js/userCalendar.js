@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-        drawCalendar();
+    drawCalendar();
 });
 
 
 function drawCalendar() {
-    let calendarEl = document.getElementById("calendar");
+    let calendarEl = document.getElementById("userCalendar");
 
     //Create and Configure the Calendar
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -19,7 +19,7 @@ function drawCalendar() {
             alert(info.event.title +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.extendedProps.description);
         },
         //Data for view
-        events:'../backend_instantiate/int_getDataForCalendar.php',
+        events:'../backend_instantiate/int_getUserCalendar.php',
         timeFormat: 'H(:mm)',
         displayEventTime: false,
     });
