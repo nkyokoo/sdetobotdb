@@ -35,6 +35,8 @@ function drawCalendar(productID, productName) {
         weekNumbers: true,
         locale: 'da',
         weekLabel: 'uge',
+        firstDay: 1,
+        hiddenDays: [0, 6],
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events
@@ -47,7 +49,7 @@ function drawCalendar(productID, productName) {
           extraParams: {
               productID: productID
           },
-            failure: function (output) {
+            failure: function () {
                 alert("Der er noget galt med forbindelsen. Prøv igen senere eller kontakt it service");
             }
         },

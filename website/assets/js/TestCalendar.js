@@ -15,7 +15,8 @@ function drawCalendar() {
         weekNumbers: true,
         locale: 'da',
         weekLabel: 'uge',
-
+        firstDay: 1,
+        hiddenDays: [0, 6],
         eventLimit: true, // for all non-TimeGrid views
 
         eventClick: function(info) { //Start Event when you click on event boxes.
