@@ -12,6 +12,10 @@ function drawCalendar() {
         plugins: [ 'dayGrid' ],
         header: {center: 'dayGridMonth,dayGridWeek'},
         defaultView: 'dayGridWeek',
+        weekNumbers: true,
+        locale: 'da',
+        weekLabel: 'uge',
+
         eventLimit: true, // for all non-TimeGrid views
 
         eventClick: function(info) { //Start Event when you click on event boxes.

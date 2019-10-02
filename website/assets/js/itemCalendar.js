@@ -32,10 +32,13 @@ function drawCalendar(productID, productName) {
         plugins: [ 'dayGrid' ],
         //header: {center: 'dayGridMonth'},
         titleFormat: { year: 'numeric', month: 'short'},
+        weekNumbers: true,
+        locale: 'da',
+        weekLabel: 'uge',
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events
-            alert(info.event.title +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.extendedProps.description);
+            alert(info.event.extendedProps.description +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.title);
         },
         //Data for view
         events:{
@@ -45,7 +48,7 @@ function drawCalendar(productID, productName) {
               productID: productID
           },
             failure: function (output) {
-                alert("Der er noget galt med Kalenderen. Prøv igen senere");
+                alert("Der er noget galt med forbindelsen. Prøv igen senere eller kontakt it service");
             }
         },
         timeFormat: 'H(:mm)',
