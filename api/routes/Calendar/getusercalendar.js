@@ -19,7 +19,7 @@ module.exports = {
 
             if (prevWL === i.id){
 
-                object.description += "\nProduct: "+i.product_name+ "  Quantity: "+i.quantity;
+                object.description += "\nProdukt: "+i.product_name+ "  Kvantitet: "+i.quantity;
                 // let products = {
                 //     productname:i.product_name,
                 //     quantity:i.quantity
@@ -33,7 +33,7 @@ module.exports = {
                 object.undertitle = "Fra "+ i.start_date + " til "+ i.end_date;
                 object.start = i.start_date;
                 object.end = i.end_date+"T23:59:00";
-                object.description = "Product: "+i.product_name+ "  Quantity: "+i.quantity;
+                object.description = "Produkt: "+i.product_name+ "  Kvantitet: "+i.quantity;
 
                 // object.description = [];
                 // let products = {

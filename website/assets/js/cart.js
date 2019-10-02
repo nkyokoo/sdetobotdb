@@ -154,7 +154,6 @@ function booking() {
             url:'../backend_instantiate/int_cartsend.php',
             success:function (output) {
                 //Clear cart after sending to wishlist
-                alert(output)
                 if (!output){
                     let options = {
                         content: "Your wishlist has been made", // text of the snackbar
@@ -167,6 +166,7 @@ function booking() {
                                 url: '../backend_instantiate/int_eventsforcarts.php',
                                 data: {clear: "clear"}
                             });
+                            location.reload();
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);
@@ -179,7 +179,7 @@ function booking() {
                         timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function () {
-
+                            location.reload();
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);

@@ -78,7 +78,12 @@ class dropdownlist_products{
                           <h6 class='card-subtitle mb-2 text-muted' style='color: #b7b7b7'>Moveable: ".$item['movable']."</h6>
                           <p class='card-text'>".$item['description'].".</p>
                           <label for=\"'product-unit-".$item['id']."'\" class=\"bmd-label-floating\">Vælg antal enheder</label>
-                          <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select><button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button></div>
+                          <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select>
+                          <button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button>
+                          <div style='text-align: right'>
+                          <button id='rendCal' data-product='".$item['id']."' name='".$item['product_name']."' type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">History</button>
+                            </div>
+                          </div>
                           </div>
                           </div>
                           </div>";
