@@ -246,15 +246,45 @@ function getProductsFromDB(sDate, eDate, search = null) {
         data: obj,
         success: function (output) {
             //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
-            let p = document.createElement("div");
-            p.innerHTML = output;
             let selectList1 = $('#select_list_1');
+            let p = document.createElement("div");
+            p.css("class","Item-list");
+            for (let product of output){
+                p.append(output);
+                total_Products++;
+            }
             selectList1.empty();
             selectList1.append(p);
-
+            $('#pagination').css("display","block");
             //document.getElementById("select_list_1").innerHTML = output;
 
         }
 
     })
 }
+
+
+//Pagination
+let total_Products = 0;
+let products_pr_page = 2;
+function changePage(newPage) {
+
+}
+
+function prevPage() {
+    let currentPage = document.getElementById("currentPage").innerText;
+    if (parseInt(currentPage) !== 1){
+        changePage(-1);
+    }
+
+}
+function nextPage() {
+    let currentPage = document.getElementById("currentPage").innerText;
+    if (parseInt(currentPage) !== totalPages()){
+        changePage(1);
+    }
+}
+function totalPages() {
+    return Math.ceil(total_Products/products_pr_page);
+}
+

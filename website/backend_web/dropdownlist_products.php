@@ -14,7 +14,6 @@ class dropdownlist_products{
         //Select products to Selection box which you haven't choosing yet
         // WHERE id NOT IN () is a feature of excluding specific IDs, can query without.
 
-        echo "<div class='Item-list'>";
         $newFormat = date("Y-m-d",strtotime($sDate));
         $newFormat2 = date("Y-m-d",strtotime($eDate));
         $_SESSION['sdate'] = $newFormat;
@@ -65,13 +64,15 @@ class dropdownlist_products{
             var_dump($result);
         }
             //Populate Selection box with data from DB
-            foreach ($json as $item) {
+       // echo "<div class='Item-list'>";
+        $productArr = array();
+        foreach ($json as $item) {
 
 
                 $quantity = $this->createOptionsForSelection($item['quantity']);
 
 
-                echo "<div class='row'> <div style='width: 300rem'>
+                $productArr[] = "<div class='row'> <div style='width: 300rem'>
                           <div class='card style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
@@ -91,8 +92,8 @@ class dropdownlist_products{
 
             }
 
-        echo "</div>";
-
+      //  echo "</div>";
+        return $productArr;
 
     }
 
