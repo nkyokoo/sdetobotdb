@@ -1,7 +1,11 @@
 <?php
+session_start();
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+if (isset($_SESSION['user'])) {
+    header('location: ../index.php');
+}
 $jsondata = null;
 if(!isset($_GET['key'])){
     header("Location: /index");
@@ -40,13 +44,38 @@ include '../includes/sidebar.php';
                 </div>
                 <div class="card-body">
                     <?php
-                        if($jsondata["code"] === 400){
+                        if($jsondata["code"] !== 200){
                             echo "<p>".$jsondata['error']."<p>";
-                        }else if($jsondata["code"] == 200){
+                        }else{
                             echo"<p>Hej, ".$jsondata['data']['name']."<p>";
-                            echo"<p>klik på knappen for aktivér din bruger";
-                            echo "<form action='../backend_instantiate/int_user.php' method='post'>";
-                            echo"<button class='btn btn-raised btn-primary' type='button' id='verifybutton'>aktivér bruger</button>";
+                            $url = 'http://localhost:8000/api/users/verify';
+                            $data = array(
+                                'email' => $jsondata['data']['email'],
+                            );
+
+// use key 'http' even if you send the request to https://...
+                            $options = array(
+                                'http' => array(
+                                    'header' => "Content-type: application/json",
+                                    'method' => 'POST',
+                                    'content' => json_encode($data)
+                                )
+                            );
+//send request to api and get result
+                            $context = stream_context_create($options);
+                            $result = file_get_contents($url, false, $context);
+                            $jsondata = json_decode($result, true);
+
+                            if ($jsondata['code'] == 200) {
+
+                                echo $jsondata['message'];
+
+
+                            } else {
+
+                                echo $jsondata['error'];
+
+                            }
                         }
                     ?>
                 </div>

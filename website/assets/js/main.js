@@ -104,48 +104,52 @@ const register = () => {
         let name = $("#registerName").val();
         let email = $("#registerEmail").val();
         let password = $("#registerPassword").val();
-        let array = [name,email, password];
-        let arrayName = ["#registerName","#registerEmail", "#new-password",];
+        let repeatpassword = $("#RegisterPasswordRepeat").val();
+
+        let array = [name,email, password,repeatpassword];
+        let arrayName = ["#registerName","#registerEmail", "#new-password","#RegisterPasswordRepeat"];
         //Looping the array to check for condition.
         //Check if it has any value
 
 
-        if (array[0] && array[1]) {
-            $.ajax({
-                type: 'post',
-                url: '../backend_instantiate/int_register.php',
-                data: {name:array[0],email: array[1], password: array[2]},
-                success: function (data) {
-                    $('#register_btn').attr("disabled", true);
-                    let options = {
-                        content: data, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 500, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
-                            //window.location.replace("./login")
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
+        if (array[0] && array[1] && array[2] && array[3]) {
+            if (password === repeatpassword) {
+                $.ajax({
+                    type: 'post',
+                    url: '../backend_instantiate/int_register.php',
+                    data: {name: array[0], email: array[1], password: array[2]},
+                    success: function (data) {
+                        $('#register_btn').attr("disabled", true);
+                        let options = {
+                            content: data, // text of the snackbar
+                            style: "toast", // add a custom class to your snackbar
+                            timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                            htmlAllowed: true, // allows HTML as content value
+                            onClose: function () {
+                                //window.location.replace("./login")
+                            } // callback called when the snackbar gets closed.
+                        }
+                        $.snackbar(options);
 
 
-                },
-                error: function (request, status, error) {
-                    let options = {
-                        content: request.responseText, // text of the snackbar
-                        style: "toast", // add a custom class to your snackbar
-                        timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
-                        htmlAllowed: true, // allows HTML as content value
-                        onClose: function () {
+                    },
+                    error: function (request, status, error) {
+                        let options = {
+                            content: request.responseText, // text of the snackbar
+                            style: "toast", // add a custom class to your snackbar
+                            timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
+                            htmlAllowed: true, // allows HTML as content value
+                            onClose: function () {
 
-                        } // callback called when the snackbar gets closed.
-                    }
-                    $.snackbar(options);
+                            } // callback called when the snackbar gets closed.
+                        }
+                        $.snackbar(options);
 
 
-                },
+                    },
 
-            });
+                });
+            }
         } else {
 
             let options = {

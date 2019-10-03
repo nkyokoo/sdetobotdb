@@ -37,15 +37,15 @@ module.exports = [{
         }
     }
 }, {
-    method: 'POST',
+    method: 'PATCH',
     path: '/api/users/verify',
     config: {auth: false},
     handler: async (request, h) => {
         const pool = request.mysql.pool
 
         try {
-          await pool.query('UPDATE users SET users.disabled = 0 AND users.verified = 1 WHERE email = ?',[request.payload.email])
-            return h.response({message: 'verified user'})
+          await pool.query('UPDATE users SET users.disabled = 0, users.verified = 1 WHERE email = ?',[request.payload.email])
+            return h.response({code:200, message: 'verified user'})
         } catch (e) {
             return h.response(e).code(500);
         }
@@ -63,10 +63,11 @@ module.exports = [{
             if(rows.length !==0){
                 if(rows[0].verified === 1){
                     return h.response({code:401, error: "already verified"})
+                }else{
+                    const keydata = JWT.verify(request.payload.key, config.getSecret());
+                    console.log(keydata)
+                    return h.response({code:200, data:keydata}).code(200)
                 }
-                const keydata = JWT.verify(request.payload.key, config.getSecret());
-                console.log(keydata)
-                return h.response({code:200, data:keydata}).code(200)
             }else{
                 return h.response({code:400, error: 'invalid key'}).code(200)
             }
