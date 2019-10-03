@@ -17,10 +17,10 @@ module.exports = {
             let payload = request.payload;
             const [rows, fields] = await pool.query('select * from users WHERE email = ?', [payload.email]);
             if(rows[0].verified === 0){
-              return  h.response({ errorid:"USER_NOT_ACTIVATED", code:403,error:'Din konto er ikke verificeret, se din inbox for mail!'})
+              return  h.response({errorid:"USER_NOT_VERIFIED", code:403,error:'Din konto er ikke verificeret, se din inbox for mail!'})
             }
             if(rows[0].disabled === 1){
-               return h.response({error:"denne konto er deaktiveret, hvis det er en fejl så kontakt IT OG DATA SKP"})
+               return h.response({errorid:"USER_NOT_ACTIVATED", code:1, error:"denne konto er deaktiveret, hvis det er en fejl så kontakt IT OG DATA SKP"})
 
             }
             if (rows.length !== 0) {

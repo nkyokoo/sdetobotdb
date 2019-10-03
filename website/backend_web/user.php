@@ -175,9 +175,6 @@ class user
         } else {
             http_response_code($jsondata["code"]);
             $this->setMessage($jsondata["error"]);
-
-
-
         }
     }
 
