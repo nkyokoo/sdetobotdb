@@ -31,7 +31,6 @@ class BookingSend
                     }
                     else {echo "ERROR 22";break;}
                 }
-                var_dump(json_encode($data));
                 // Check if products are available
                 $url = 'http://localhost:8000/api/booking/bookingsend/create';
 // use key 'http' even if you send the request to https://...

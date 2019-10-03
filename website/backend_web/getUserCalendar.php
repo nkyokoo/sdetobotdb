@@ -1,20 +1,20 @@
 <?php
 session_start();
 
-class getDataForCalendar
+class getUserCalendar
 {
-
-    function getWishlists(){
-
-        $url = 'http://localhost:8000/api/calendar/wishlists/get';
+    function getUserWishlistData(){
+        $url = 'http://localhost:8000/api/calendar/user/wishlists/get';
 // use key 'http' even if you send the request to https://...
+        $data = array("userId" => $_SESSION['user']['id']);
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json \r\nAuthorization: " . $_SESSION['user']['token'],
-                'method'  => 'GET'
+                'method'  => 'POST',
+                'content' => json_encode($data)
             )
         );
-//send request to api and get result
+//send hrequest to api and get result
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         if ($result === FALSE) { /* Handle error */

@@ -1,5 +1,3 @@
-
-
 <!--we have split the header and footer up. scripts in footer and end on body-->
 
     <script src="../assets/js/popper.js" ></script>

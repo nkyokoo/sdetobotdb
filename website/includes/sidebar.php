@@ -14,7 +14,9 @@ if (isset($_SESSION['user']['user_group_id'])){
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
 				    	<li class="nav-item"><a class="nav-link" href="../admin">Admin Dashboard</a></li>
-						<li class="nav-item"><a class="nav-link" href="../booking.php">book</a></li>
+						<li class="nav-item"><a class="nav-link" href="../booking">book</a></li>
+						<li class="nav-item"> <a class="nav-link" href="../admin/adminCalendar">Alle Historik</a></li>
+					    <li class="nav-item"> <a class="nav-link" href="../userCalendar">Historik</a></li>
 						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
 						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
@@ -29,16 +31,19 @@ if (isset($_SESSION['user']['user_group_id'])){
     else if ($_SESSION['user']['user_group_id'] == 2) {
 
         echo '
-            <div >
+            <div>
 				<div class="border-content">
 					<div class="sidebar" id="sideBar">
 				    <div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../teachers/products.php">Produkter</a></li>
-						<li class="nav-item"><a class="nav-link" href="../teachers/acceptrequests.php">Låne Anmodninger<</a></li>
-						<li class="nav-item"><a class="nav-link" href="../booking.php">Lån</a></li>
-						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
+						<li class="nav-item"><a class="nav-link" href="../teachers/products">Produkter</a></li>
+						<li class="nav-item"><a class="nav-link" href="../teachers/acceptrequests">Låne Anmodninger<</a></li>
+						<li class="nav-item"><a class="nav-link" href="../booking">Lån</a></li>
+						<li class="nav-item"> <a class="nav-link" href="../admin/adminCalendar">Alle Historik</a></li>
+						<li class="nav-item"> <a class="nav-link" href="../userCalendar">Min Historik</a></li>
+
 						<li class="nav-item"><a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
+						<li class="nav-item"><a class="nav-link" id="callPhplogout" name="logout_btn" href="">Log ud</a></li>
 						</ul>
 					</div>
 					</div>
@@ -50,18 +55,18 @@ if (isset($_SESSION['user']['user_group_id'])){
     else if ($_SESSION['user']['user_group_id'] == 3) {
         echo '
            <div>
-				<content class="border-content">
+				<slot class="border-content">
 					<div class="sidebar"  id="sideBar">
 					<div id="sidebarcontent">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link" href="../booking.php">book</a></li>
-						<li class="nav-item"> <a class="nav-link" href="">Historik</a></li>
-						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
+						<li class="nav-item"><a class="nav-link" href="../booking">book</a></li>
+						<li class="nav-item"> <a class="nav-link" href="../userCalendar">Min Historik</a></li>
 						<li class="nav-item"> <a class="nav-link" href="https://www.sde.dk/kontakt/kontakt/?">contact information</a></li>
+						<li class="nav-item"> <a class="nav-link" id="callPhplogout" name="logout_btn" href="#">Log ud</a></li>
 						</ul>
 					</div>
 					</div>
-				</content>
+				</slot>
             </div>
 
 			';

@@ -22,10 +22,10 @@ if (isset($_SESSION['user'])) {
           </button>
           <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
-              	<li class='nav-item'><a class='nav-link' href='../index.php'>Home</a></li>
+              	<li class='nav-item'><a class='nav-link' href='../index'>Home</a></li>
 						<li class='nav-item'><a class='nav-link' href=''>Contact</a></li>
-						<li class='nav-item'><a class='nav-link' href='../login.php'>Log på</a></li>
-						<li class='nav-item'><a class='nav-link' href='../register.php'>Register</a></li>
+						<li class='nav-item'><a class='nav-link' href='../login'>Log på</a></li>
+						<li class='nav-item'><a class='nav-link' href='../register'>Register</a></li>
 						<li class='nav-item'><a class='nav-link' href='https://www.sde.dk/kontakt/kontakt/?'>contact information</a></li>
               </ul>
           </div>
