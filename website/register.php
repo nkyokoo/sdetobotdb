@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_SESSION['user'])){
     header("Location: ./");
 }
@@ -23,7 +24,7 @@ include 'includes/navbar.php'
 
                         </div>
                         <div class="card-body">
-                            <form id="regid" method="post" action="backend_instantiate/authenticator.php">
+                            <form id="regid">
                                 <?php /* echo display_error();*/ ?>
                                 <div class="form-group">
                                     <label for="registerName" class="bmd-label-floating">Navn</label>

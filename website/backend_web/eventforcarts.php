@@ -176,7 +176,7 @@ class Cart{
         echo "<h1 style='text-align: center' class='title'>Produkter i kurven</h1>";
         $currentDate = date('Y-m-d');
         if (!isset($_SESSION['sdate']) || empty($_SESSION['sdate'])){
-            echo "<input type='date' id='date_s' min='".  $currentDate ."' value='".  $currentDate ."'disabled>     <input type='date' id='date_e' min='".  $currentDate ."' disabled > ";
+            echo "<input type='date' style='width: 10rem; display: inline' class='form-control'  id='date_s' min='".  $currentDate ."' value='".  $currentDate ."'disabled>     <input type='date'  style='width: 10rem; display: inline' class='form-control' id='date_e' min='".  $currentDate ."' disabled > ";
         }
         else{
             $startDate = date('Y-m-d',strtotime($_SESSION['sdate']));
