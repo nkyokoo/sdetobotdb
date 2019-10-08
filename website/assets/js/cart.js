@@ -23,6 +23,7 @@ $(document).ready(function() {
         //trigger onChange attribute on <input> tag
 
         if (btn.includes("button-booking")){
+            document.getElementById(btn).setAttribute("disabled","disabled");
             booking();
         }
     });

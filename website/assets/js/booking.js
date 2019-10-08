@@ -31,7 +31,12 @@ $(document).ready(function() {
         updateMaxDate();
         resetCart();
     });
-
+    $("#pagination").delegate("#prevBtn","click",function () {
+        prevPage();
+    });
+    $("#pagination").delegate("#nextBtn","click",function () {
+        nextPage();
+    });
 });
 function checkForSupportedDatePicker() {
     let sDate = $('#date_s');
@@ -245,18 +250,15 @@ function getProductsFromDB(sDate, eDate, search = null) {
         url: '../backend_instantiate/int_dropdownlist.php',
         data: obj,
         success: function (output) {
-            //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
-            let selectList1 = $('#select_list_1');
-            let p = document.createElement("div");
-            p.css("class","Item-list");
-            for (let product of output){
-                p.append(output);
-                total_Products++;
-            }
-            selectList1.empty();
-            selectList1.append(p);
-            $('#pagination').css("display","block");
-            //document.getElementById("select_list_1").innerHTML = output;
+          //   //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
+
+            output = output.slice(0,-1);
+             output = output.split(",");
+            total_Products = output;
+
+            changePage(1);
+
+          //   //document.getElementById("select_list_1").innerHTML = output;
 
         }
 
@@ -265,26 +267,94 @@ function getProductsFromDB(sDate, eDate, search = null) {
 
 
 //Pagination
-let total_Products = 0;
-let products_pr_page = 2;
+let total_Products;
+let current_Page;
+let products_pr_page = 7;
 function changePage(newPage) {
+
+    let selectList1 = $('#select_list_1');
+    let prevBtn = $("#prevBtn");
+    let nextBtn = $("#nextBtn");
+    let currentPage = $("#currentPage");
+    let pageTwo = $("#2ndPage");
+    let pageThree = $("#3rdPage");
+    let pagination = $('#pagination');
+    let p = document.createElement("div");
+    p.setAttribute("class","Item-list");
+
+
+    for (let i =(newPage-1)*products_pr_page; i < newPage*products_pr_page;i++) {
+        let x = document.createElement("div");
+        if (total_Products[i] !== undefined){
+            x.innerHTML = total_Products[i];
+        }
+
+        p.append(x);
+    }
+
+    if (newPage < totalPages()){
+
+        prevBtn.parent().removeClass("disabled");
+        nextBtn.parent().removeClass("disabled");
+
+        pageTwo.parent().css("display", "block");
+        pageThree.parent().css("display", "block");
+
+
+
+    }
+    if (newPage === 1){
+
+        prevBtn.parent().addClass("disabled");
+        nextBtn.parent().removeClass("disabled");
+
+    }
+    if (newPage === totalPages()) {
+
+        prevBtn.parent().removeClass("disabled");
+        nextBtn.parent().addClass("disabled");
+
+        pageTwo.parent().css("display", "none");
+        pageThree.parent().css("display", "none");
+    }
+
+    if (newPage === (totalPages() -1))
+    {
+        pageTwo.parent().css("display", "block");
+        pageThree.parent().css("display", "none");
+
+        currentPage.html(newPage);
+        pageTwo.html(newPage+1);
+        pageThree.html(newPage+2);
+    }
+
+
+    currentPage.html(newPage);
+    pageTwo.html(newPage+1);
+    pageThree.html(newPage+2);
+    current_Page = newPage;
+
+    selectList1.empty();
+    selectList1.append(p);
+    pagination.css("display","block");
 
 }
 
 function prevPage() {
-    let currentPage = document.getElementById("currentPage").innerText;
-    if (parseInt(currentPage) !== 1){
-        changePage(-1);
+    if (parseInt(current_Page)-1 >= 1){
+
+
+        changePage(current_Page -1);
     }
 
 }
 function nextPage() {
-    let currentPage = document.getElementById("currentPage").innerText;
-    if (parseInt(currentPage) !== totalPages()){
-        changePage(1);
+    if (parseInt(current_Page)+1 <= totalPages()){
+
+        changePage(current_Page +1);
     }
 }
 function totalPages() {
-    return Math.ceil(total_Products/products_pr_page);
+    return Math.ceil(total_Products.length/products_pr_page);
 }
 
