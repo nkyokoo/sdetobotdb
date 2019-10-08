@@ -20,7 +20,12 @@ function drawCalendar() {
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events
-            alert(info.event.title +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.extendedProps.description);
+
+            let item =  document.createElement("div")
+            item.setAttribute("id","kalenderitem")
+            item.innerHTML = "<h1>"+info.event.title+"<h1>" +'\n <h4>'+ info.event.extendedProps.undertitle +'</h4>\n<p>'+ info.event.extendedProps.description+"</p>";
+            $('#usermodal').modal('show')
+
         },
         //Data for view
         events:'../backend_instantiate/int_getUserCalendar.php',

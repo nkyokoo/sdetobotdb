@@ -25,8 +25,8 @@
       <link rel="stylesheet" href="../assets/css/main.css">
       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
       <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-material.css">
-      <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
       <script src="../assets/js/jquery.min.js"></script>
+      <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
       <script src='../fullcalendar/packages/core/main.js'></script>
       <script src='../fullcalendar/packages/daygrid/main.js'></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>

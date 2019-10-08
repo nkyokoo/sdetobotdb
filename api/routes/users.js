@@ -44,7 +44,7 @@ module.exports = [{
         const pool = request.mysql.pool
 
         try {
-          await pool.query('UPDATE users SET users.disabled = 0, users.verified = 1 WHERE email = ?',[request.payload.email])
+          await pool.query('UPDATE users SET users.verified = 1 WHERE email = ?',[request.payload.email])
             return h.response({code:200, message: 'verified user'})
         } catch (e) {
             return h.response(e).code(500);
