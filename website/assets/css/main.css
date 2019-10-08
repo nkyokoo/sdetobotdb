@@ -225,3 +225,7 @@ select:focus{
 .card {
     background: #f9f9f9;
 }
+.fc-content:hover{
+    background-color: rgb(52, 128, 203);
+    cursor: pointer;
+}
