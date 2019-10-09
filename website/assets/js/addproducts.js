@@ -326,7 +326,8 @@ function addNewInputOfAndet(CurrentEventId) {
 
             }
         }
-    } catch (e) {
+    }
+    catch (e) {
     }
 }
 

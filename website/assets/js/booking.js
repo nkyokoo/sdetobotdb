@@ -267,9 +267,10 @@ function getProductsFromDB(sDate, eDate, search = null) {
 
 
 //Pagination
+
 let total_Products;
 let current_Page;
-let products_pr_page = 7;
+let products_pr_page = 1;
 function changePage(newPage) {
 
     let selectList1 = $('#select_list_1');
@@ -297,41 +298,62 @@ function changePage(newPage) {
         prevBtn.parent().removeClass("disabled");
         nextBtn.parent().removeClass("disabled");
 
-        pageTwo.parent().css("display", "block");
-        pageThree.parent().css("display", "block");
+        currentPage.parent().addClass("active");
+        pageThree.parent().removeClass("active");
+        pageTwo.parent().removeClass("active");
+        if (newPage === 1){
 
+            prevBtn.parent().addClass("disabled");
+            nextBtn.parent().removeClass("disabled");
 
-
-    }
-    if (newPage === 1){
-
-        prevBtn.parent().addClass("disabled");
-        nextBtn.parent().removeClass("disabled");
-
-    }
-    if (newPage === totalPages()) {
-
-        prevBtn.parent().removeClass("disabled");
-        nextBtn.parent().addClass("disabled");
-
-        pageTwo.parent().css("display", "none");
-        pageThree.parent().css("display", "none");
-    }
-
-    if (newPage === (totalPages() -1))
-    {
-        pageTwo.parent().css("display", "block");
-        pageThree.parent().css("display", "none");
-
+        }
         currentPage.html(newPage);
         pageTwo.html(newPage+1);
         pageThree.html(newPage+2);
     }
 
+    if (newPage === totalPages()) {
 
-    currentPage.html(newPage);
-    pageTwo.html(newPage+1);
-    pageThree.html(newPage+2);
+        prevBtn.parent().removeClass("disabled");
+        nextBtn.parent().addClass("disabled");
+
+        pageThree.parent().addClass("active");
+        pageTwo.parent().removeClass("active");
+
+        currentPage.html(newPage-2);
+        pageTwo.html(newPage-1);
+        pageThree.html(newPage);
+    }
+
+    if (newPage === (totalPages() -1))
+    {
+
+        currentPage.parent().removeClass("active");
+        pageTwo.parent().addClass("active");
+        if (newPage-1 < 1){
+            currentPage.parent().css("display","none");
+        }
+        else {
+            currentPage.parent().css("display","block");
+
+        }
+        currentPage.html(newPage-1);
+        pageTwo.html(newPage);
+        pageThree.html(newPage+1);
+
+    }
+
+    if (newPage === 1 && newPage === totalPages())
+    {
+        prevBtn.parent().addClass("disabled");
+        nextBtn.parent().addClass("disabled");
+
+        pageThree.parent().css("display","none");
+        pageTwo.parent().css("display","none");
+
+        currentPage.html(newPage);
+    }
+
     current_Page = newPage;
 
     selectList1.empty();

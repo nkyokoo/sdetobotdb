@@ -115,7 +115,7 @@ module.exports = [
             const pool = request.mysql.pool;
             try {
 
-               const [rows,fields] = await pool.query("INSERT INTO school_products (product_name,  movable , description,school_name_short_id, category_id, supplier_company_id,created_by) VALUES (?,?,?,?,?,?,?)",[request.payload.product_name,request.payload.movable,request.payload.description,request.payload.school_name_short_id, request.payload.category_id,request.payload.supplier_company_id,request.payload.created_by]);
+               const [rows,fields] = await pool.query("INSERT INTO school_products (product_name,  movable , description,school_name_short_id, category_id, supplier_company_id,userID) VALUES (?,?,?,?,?,?,?)",[request.payload.product_name,request.payload.movable,request.payload.description,request.payload.school_name_short_id, request.payload.category_id,request.payload.supplier_company_id,request.payload.created_by]);
                 return  h.response(rows).code(200)
 
 
@@ -252,7 +252,7 @@ module.exports = [
             const pool = request.mysql.pool;
             try {
 
-                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.created_by = u.id");
+                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.userID = u.id");
                 return rows
 
             } catch (e) {
@@ -269,7 +269,7 @@ module.exports = [
             const pool = request.mysql.pool;
             try {
 
-                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.created_by = u.id  WHERE product_name COLLATE UTF8_GENERAL_CI LIKE CONCAT('%',?,'%')",[request.query.q]);
+                const [rows, fields] =  await pool.query("SELECT school_products.id,movable, product_name, description ,category_name, school_name,s.name,u.name as created_by FROM school_products INNER JOIN category AS c ON c.id = category_id INNER JOIN supplier_company AS s ON s.id = supplier_company_id INNER JOIN product_school_address as sch on sch.id = school_name_short_id INNER join users u on school_products.userID = u.id  WHERE product_name COLLATE UTF8_GENERAL_CI LIKE CONCAT('%',?,'%')",[request.query.q]);
                 if(rows.size === 0){
                     return h.response({code: 404, error: 'kunne ikke finde noget'}).code(200)
                 }else{
