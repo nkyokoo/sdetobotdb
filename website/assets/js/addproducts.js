@@ -10,7 +10,7 @@ $(document).ready(function () {
     };
 
 // if the button with this id is clicked on
-    $('#button').click(function(){
+    $('#createButton').click(function(){
         btnAddProductToDB();
     });
 
@@ -182,15 +182,18 @@ function btnAddProductToDB() {myBlock:{
         //get the values of all Selection boxes into an array
         let array = [kategori,virksomhed,lokale,svf,thp,leverandoer];
         //Easy way to check large data and conditions with array
-        let arrayName = ["#kategori_id_andet","#virksomhed_id_Virksomhedandet","#lokale_id_andet","#svf_id_andet","#thp_id_andet","#leverandoer_id_Leverandorandet"];
+        let arrayName = ["#kategori_id_andet","#virksomhed_id_andet","#lokale_id_andet","#svf_id_andet","#thp_id_andet","#leverandoer_id_Leverandorandet"];
         //Looping the array to check for condition.
         for (let i = 0; i < array.length; i++) {
             //Check if there's a "_andet" chosen
+
             if (array[i] === "andet" || array[i] === "_Leverandorandet" || array[i] === "_Virksomhedandet") {
+
                 //check if the value in andet is a int, if it isn't continue
                 if (!parseInt($(arrayName[i]).val()) || i === 0) {
                     //check if the value is this or that
                     if(array[i] === "_Leverandorandet"){
+
                         //Input with more than one textbox require another way of doing things-
                         let container1 = $('#leverandoer_id_Leverandorandet').val();
                         let container2 = $('#leverandoer_id_andet_adress').val();
@@ -224,9 +227,9 @@ function btnAddProductToDB() {myBlock:{
                 type:'post',
                 url:'../backend_instantiate/api_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
-                success:function (data) {
+                success:function () {
                     $('#button').attr("disabled", true);
-                    // alert("You've succeed in creating a new product!");
+                     //alert("You've succeed in creating a new product!");
                     let options =  {
                         content: "Produkt tilføjet, sender dig til produkt liste", // text of the snackbar
                         style: "toast", // add a custom class to your snackbar

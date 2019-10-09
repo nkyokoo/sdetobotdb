@@ -65,35 +65,32 @@ class dropdownlist_products{
         }
             //Populate Selection box with data from DB
        // echo "<div class='Item-list'>";
-        $productArr = array();
         foreach ($json as $item) {
 
 
                 $quantity = $this->createOptionsForSelection($item['quantity']);
-
-
-                $productArr[] = "<div class='row'> <div style='width: 300rem'>
+                echo "<div class='row'> <div style='width: 300rem'>
                           <div class='card style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
                           <h6 class='card-subtitle mb-2 text-muted' style='color: #b7b7b7'>Moveable: ".$item['movable']."</h6>
                           <p class='card-text'>".$item['description'].".</p>
-                          <label for=\"'product-unit-".$item['id']."'\" class=\"bmd-label-floating\">Vælg antal enheder</label>
-                          <select class=\"form-control\" id='product-unit-".$item['id']."'>".$quantity."</select>
+                          <label for='product-unit-".$item['id']."' class='bmd-label-floating'>Vælg antal enheder</label>
+                          <select class='form-control' id='product-unit-".$item['id']."'>".$quantity."</select>
                           <button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button>
                           <div style='text-align: right'>
-                          <button id='rendCal' data-product='".$item['id']."' name='".$item['product_name']."' type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">History</button>
+                          <button id='rendCal' data-product='".$item['id']."' name='".$item['product_name']."' type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal'>History</button>
                             </div>
                           </div>
                           </div>
                           </div>
-                          </div>";
+                          </div>,";
+
 
 
             }
 
       //  echo "</div>";
-        return $productArr;
 
     }
 

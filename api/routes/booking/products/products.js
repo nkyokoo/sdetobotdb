@@ -130,9 +130,10 @@ module.exports = [
         path: '/api/booking/products/units/create',
         config: {auth: 'jwt'},
         handler: async (request, h) => {
-            const pool = request.mysql.pool;
+            const pool = request.mysql.pool;it
             try {
-                await pool.query("INSERT INTO product_unit_e (`products_id`, `location_room_id`, `product_location_type_svf_id`, `product_location_type_thp_id`, `unit_number`, `current_status_id`) VALUES ('"+request.payload.products_id+"', '"+request.payload.location_room_id+"', '"+request.payload.product_location_type_svf_id+"', '"+request.payload.product_location_type_thp_id+"', '"+request.payload.unit_number+"', 1)")
+                await pool.query("INSERT INTO product_unit_e (`products_id`, `location_room_id`, `product_location_type_svf_id`, `product_location_type_thp_id`, `unit_number`, `current_status_id`) VALUES (?,?,?,?,?, 1)",
+                    [request.payload.products_id,request.payload.location_room_id,request.payload.product_location_type_svf_id,request.payload.product_location_type_thp_id,request.payload.unit_number])
                 return h.response({'unit':'created'}).code(200)
             } catch (e) {
                 console.log(e)

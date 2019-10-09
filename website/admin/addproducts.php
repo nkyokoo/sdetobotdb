@@ -89,7 +89,7 @@ include '../includes/sidebar.php';
         </div>
             <label for="description_id" class="bmd-label-floating">Produkt beskrivelse</label>
         <textarea id="description_id" class="form-control" rows="6" cols="30" required></textarea>
-            <button id="button" type="button"  class="btn btn-primary btn-raised" style="display: flex">
+            <button id="createButton" type="button"  class="btn btn-primary btn-raised" style="display: flex">
                         <i class="material-icons" style="display: flex; ">add_box</i>
                         <p id="text">tilføj</p>
             </button>
