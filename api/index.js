@@ -1,10 +1,10 @@
-
-const Hapi        = require('hapi');
+const Hapi        = require('@hapi/hapi');
+const Nes         = require('@hapi/nes');
 const hapiAuthJWT = require('hapi-auth-jwt2');
 const JWT         = require('jsonwebtoken');
-const Boom = require('boom');
-const routes = require("./routemanager");
-const config = require("./util/config");
+const Boom        = require('boom');
+const routes      = require("./routemanager");
+const config      = require("./util/config");
 
 
 
@@ -54,6 +54,8 @@ const init = async() => {
                     expiresIn: 60000
                 }
             }
+        },{
+            plugin: Nes,
         }
     ]);
 
