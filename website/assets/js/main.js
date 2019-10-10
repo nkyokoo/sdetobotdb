@@ -16,6 +16,7 @@ $(document).ready(function () {
         });
     }, 1000)
 
+
     $('#sideBar').hover(function () {
         $(this).animate({width: '10rem'}, 100, function () {
             $("#sidebarcontent").css({'display': 'block'})

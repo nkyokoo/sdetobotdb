@@ -9,7 +9,7 @@ function drawCalendar() {
 
     //Create and Configure the Calendar
     let calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'dayGrid' ],
+        plugins: [ 'dayGrid','bootstrap' ],
         header: {center: 'dayGridMonth,dayGridWeek'},
         defaultView: 'dayGridWeek',
         weekNumbers: true,

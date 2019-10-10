@@ -15,7 +15,7 @@ module.exports = {
             returnedObject.total_product_units = unit_count[0];
             returnedObject.total_requests = request_count[0];
 
-            return returnedObject
+            return h.response(returnedObject)
         } catch (e) {
             return e
         }

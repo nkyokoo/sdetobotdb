@@ -1,7 +1,8 @@
 function getCount() {
 
+
     $.ajax({
-        type: 'post',
+        type: 'get',
         url: '../backend_instantiate/int_dashboard.php',
         data: {getItem: 'dashboard'},
         success: function (data) {
@@ -25,7 +26,7 @@ function getCount() {
 
 }
 
-function usercontrol(id,action) {
+const usercontrol = (id,action) => {
     if (action === 'disable') {
         try {
 
@@ -137,7 +138,7 @@ function usercontrol(id,action) {
 }
 
 
-function btnCreateUser() {
+const btnCreateUser = () => {
     let rank = document.getElementById('user_type')
 
     try {
