@@ -40,8 +40,13 @@ function drawCalendar(productID, productName) {
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events
-            alert(info.event.extendedProps.description +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.title);
-        },
+            let content = $("#user_modal_content")
+            content.empty();
+            let item =  document.createElement("div")
+            item.setAttribute("id","kalenderitem")
+            item.innerHTML = "<h1>"+info.event.title+"<h1>" +'\n <h4>'+ info.event.extendedProps.undertitle +'</h4>\n<p>'+ info.event.extendedProps.description+"</p>";
+            content.append(item);
+            $('#usermodal').modal('show')        },
         //Data for view
         events:{
           url: '../backend_instantiate/int_getItemCalendar.php',

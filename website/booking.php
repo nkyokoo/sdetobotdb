@@ -50,8 +50,8 @@ include 'includes/sidebar.php';
                 <div id="select_list_1">
                     <!-- Via Ajax, get products data and send them in between this div. "Booking.js(getProductsFromDB)" -->
                 </div>
-                <div id="pagination" style="display: none">
-                    <nav aria-label="Page navigation example">
+                <div id="pagination" style="display: none; margin-top: 1rem">
+                    <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-end">
                             <li class="page-item"><a id="prevBtn" class="page-link" href="#">Previous</a></li>
                             <li class="page-item active"><a id="currentPage"  class="page-link" href="#">1</a></li>
@@ -62,7 +62,6 @@ include 'includes/sidebar.php';
                     </nav>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -80,6 +79,21 @@ include 'includes/sidebar.php';
                 <div style="background-color: white" id="itemCalendar"></div>
             </div>
             <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<div aria-hidden="true" aria-labelledby="ModalLabel" class="modal fade" id="usermodal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lån</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="user_modal_content" class="modal-body">
             </div>
         </div>
     </div>
