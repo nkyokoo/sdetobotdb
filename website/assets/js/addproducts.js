@@ -139,7 +139,7 @@ $(document).ready(function () {
                         virksomhed_id.append(html);
 
                     }
-                    virksomhed_id.append("<option value='andet'>Tilføj Ny</option>");
+                    virksomhed_id.append("<option value='_Virksomhedandet'>Tilføj Ny</option>");
 
                 }
                 else {
@@ -182,7 +182,7 @@ function btnAddProductToDB() {myBlock:{
         //get the values of all Selection boxes into an array
         let array = [kategori,virksomhed,lokale,svf,thp,leverandoer];
         //Easy way to check large data and conditions with array
-        let arrayName = ["#kategori_id_andet","#virksomhed_id_andet","#lokale_id_andet","#svf_id_andet","#thp_id_andet","#leverandoer_id_Leverandorandet"];
+        let arrayName = ["#kategori_id_andet","#virksomhed_id_Virksomhedandet","#lokale_id_andet","#svf_id_andet","#thp_id_andet","#leverandoer_id_Leverandorandet"];
         //Looping the array to check for condition.
         for (let i = 0; i < array.length; i++) {
             //Check if there's a "_andet" chosen
@@ -199,6 +199,14 @@ function btnAddProductToDB() {myBlock:{
                         let container2 = $('#leverandoer_id_andet_adress').val();
                         let container3 = $('#leverandoer_id_andet_phonenr').val();
                         array[i]= container1+","+container2+","+container3;
+                    }
+                    else if (array[i] === "_Virksomhedandet") {
+                        let con1 = $('#virksomhed_id_Virksomhedandet').val();
+                        let con2 = $('#virksomhed_id_andet_short').val();
+                        let con3 = $('#virksomhed_id_andet_city').val();
+                        let con4 = $('#virksomhed_id_andet_post').val();
+                        let con5 = $('#virksomhed_id_andet_address').val();
+                        array[i] = con1 +","+con2+","+con3+","+con4+","+con5;
                     }
                     else {
 
@@ -223,11 +231,13 @@ function btnAddProductToDB() {myBlock:{
         }
         //Check if it has any value
         if (array[0] && array[1] && array[2] && array[3] && array[4] && array[5] && produkt_navn && antal && flytbar){
+            alert(array[1]);
             $.ajax({
                 type:'post',
-                url:'../backend_instantiate/api_addproductstodb.php',
+                url:'../backend_instantiate/int_addproductstodb.php',
                 data: {kategori: array[0],produkt_navn: produkt_navn,virksomhed: array[1],lokale: array[2],SVF: array[3],THP: array[4],antal: antal,description: description,flytbar:flytbar,leverandoer:array[5]},
-                success:function () {
+                success:function (data) {
+                    alert(data);
                     $('#button').attr("disabled", true);
                      //alert("You've succeed in creating a new product!");
                     let options =  {
@@ -238,7 +248,7 @@ function btnAddProductToDB() {myBlock:{
                         onClose: function(){
 
 
-                            $('#product_registration_form')[0].reset();
+                            $('#product_registration_forms')[0].reset();
                             window.location.replace("products.php")
                         } // callback called when the snackbar gets closed.
                     }
@@ -294,8 +304,10 @@ function addNewInputOfAndet(CurrentEventId) {
 
     try {
         if (CurrentEventId === "leverandoer_id") {
-
-            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny leverandoer navn' required><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse' required><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr' required>";
+            let andetPlaceHolderName = CurrentEventId;
+            //slice the last 3 index
+            andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
+            let addHTML = "<input type='text' id='" + CurrentEventId + "_Leverandorandet' placeholder='Ny " + andetPlaceHolderName + "'><input type='text' id='" + CurrentEventId + "_andet_adress' placeholder='Ny adresse'><input type='text' id='" + CurrentEventId + "_andet_phonenr' placeholder='Ny telefon nr'>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "_Leverandorandet") {
                 let container = document.getElementById(CurrentEventId);
@@ -310,10 +322,31 @@ function addNewInputOfAndet(CurrentEventId) {
 
             }
         }
+        else if (CurrentEventId === "virksomhed_id"){
+            let andetPlaceHolderName = CurrentEventId;
+            andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
+            let addHTML = "<input type='text' id='" + CurrentEventId + "_Virksomhedandet' placeholder='Ny " + andetPlaceHolderName + "'><input type='text' id='" + CurrentEventId + "_andet_short' placeholder='Virksomhed forkortelse'><input type='text' id='" + CurrentEventId + "_andet_city' placeholder='Bynavn'><input type='text' id='" + CurrentEventId + "_andet_post' placeholder='Ny Post nummer'><input type='text' id='"+ CurrentEventId +"_andet_address' placeholder='Ny addresse'>";
+            let CurrentValue = document.getElementById(CurrentEventId).value;
+            if (CurrentValue === "_Virksomhedandet") {
+                let container = document.getElementById(CurrentEventId);
+                let createdElement = document.createElement('span');
+                createdElement.innerHTML = addHTML;
+                container.insertAdjacentElement("afterend", createdElement);
+            } else {
+                $("#" + CurrentEventId + "_Virksomhedandet").remove();
+                $("#" + CurrentEventId + "_andet_short").remove();
+                $("#" + CurrentEventId + "_andet_city").remove();
+                $("#" + CurrentEventId + "_andet_post").remove();
+                $("#" + CurrentEventId + "_andet_address").remove();
+
+
+
+            }
+        }
         else {
             let andetPlaceHolderName = CurrentEventId;
             andetPlaceHolderName = andetPlaceHolderName.slice(0, -3);
-            let addHTML = "<input type='text' class=\"form-control\" id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "' required>";
+            let addHTML = "<input type='text' id='" + CurrentEventId + "_andet' placeholder='Ny " + andetPlaceHolderName + "'>";
             let CurrentValue = document.getElementById(CurrentEventId).value;
             if (CurrentValue === "andet") {
                 let container = document.getElementById(CurrentEventId);
@@ -326,8 +359,6 @@ function addNewInputOfAndet(CurrentEventId) {
 
             }
         }
-    }
-    catch (e) {
+    } catch (e) {
     }
 }
-

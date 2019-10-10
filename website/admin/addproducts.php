@@ -29,7 +29,7 @@ include '../includes/sidebar.php';
             <h5 class="card-title">Produkt registrerings form</h5>
         </div>
         <div class="card-body">
-        <form id="product_registration_form" method="post" action="addproducts.php">
+        <form id="product_registration_forms" method="post" action="addproducts.php">
             <div class="form-group">
                 <label for="kategori_id" class="bmd-label-floating">kategori</label>
                 <select id="kategori_id" class="form-control" onchange="addNewInputOfAndet(this.id)" required>

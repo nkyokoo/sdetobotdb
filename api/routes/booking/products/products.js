@@ -79,11 +79,12 @@ module.exports = [
         handler: async (request, h) => {
             const pool = request.mysql.pool;
             try {
-                const [rows,fields] = await pool.query("INSERT INTO product_school_address (school_name,city,zip_code,address) VALUES ('"+request.payload.schoolname+"','"+request.payload.city+"','"+request.payload.address+"')");
-                const [rows2,fields3] =await pool.query("INSERT INTO school_address_short (company_name_short,product_school_address_id) VALUES ('"+request.payload.short+"','"+rows.insertID+"')");
-                const returningjson = [rows,rows2]
-                return h.response(returningjson).code(200)
-
+                console.log(request.payload.schoolname+" "+request.payload.city+" "+request.payload.zipcode+" "+request.payload.address);
+                const [rows,fields] = await pool.query("INSERT INTO product_school_address (school_name,city,zip_code,address) VALUES (?,?,?,?)",[request.payload.schoolname,request.payload.city,request.payload.zipcode,request.payload.address]);
+                const [rows2,fields3] =await pool.query("INSERT INTO school_address_short (company_name_short,product_school_address_id) VALUES (?,?)",[request.payload.short,rows.insertId]);
+                //const returningjson = [rows,rows2]
+                return h.response(rows2.insertId).code(200)
+                //return rows.insertId + rows2.insertId;
 
             } catch (e) {
                 console.log(e)
@@ -130,10 +131,10 @@ module.exports = [
         path: '/api/booking/products/units/create',
         config: {auth: 'jwt'},
         handler: async (request, h) => {
-            const pool = request.mysql.pool;it
+            const pool = request.mysql.pool;
             try {
                 await pool.query("INSERT INTO product_unit_e (`products_id`, `location_room_id`, `product_location_type_svf_id`, `product_location_type_thp_id`, `unit_number`, `current_status_id`) VALUES (?,?,?,?,?, 1)",
-                    [request.payload.products_id,request.payload.location_room_id,request.payload.product_location_type_svf_id,request.payload.product_location_type_thp_id,request.payload.unit_number])
+                    [request.payload.products_id,request.payload.location_room_id,request.payload.svf_id,request.payload.thp_id,request.payload.unit_number])
                 return h.response({'unit':'created'}).code(200)
             } catch (e) {
                 console.log(e)
@@ -201,7 +202,8 @@ module.exports = [
         handler: async (request, h) => {
             const pool = request.mysql.pool;
             try {
-                const [rows, fields] =  await pool.query("SELECT school_address_short.id as school_short_id, product_school_address.id FROM school_address_short INNER JOIN product_school_address ON school_address_short.product_school_address_id = '" + request.payload.id + "'");
+                //SELECT school_address_short.id as school_short_id, product_school_address.id FROM school_address_short INNER JOIN product_school_address ON school_address_short.product_school_address_id =
+                const [rows, fields] =  await pool.query("SELECT * FROM `school_address_short` WHERE id = ?",[request.payload.id]);
                 return rows
 
             } catch (e) {
