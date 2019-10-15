@@ -21,7 +21,13 @@ function drawCalendar() {
 
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events
-            alert(info.event.title +'\n'+ info.event.extendedProps.undertitle +'\n'+ info.event.extendedProps.description);
+            let content = $("#user_modal_content")
+            content.empty();
+            let item =  document.createElement("div")
+            item.setAttribute("id","kalenderitem")
+            item.innerHTML = "<h1>"+info.event.title+"<h1>" +'\n <h4>'+ info.event.extendedProps.undertitle +'</h4>\n<p>'+ info.event.extendedProps.description+"</p>";
+            content.append(item);
+            $('#usermodal').modal('show')
         },
         //Data for view
         events:'../backend_instantiate/int_getDataForCalendar.php',

@@ -24,7 +24,6 @@ if (isset($_GET['logout'])) {
 <div class="container">
         <div class="row">
             <div class="col-sm">
-
                     <div class=card style="width: 18rem;">
                         <div class="card-body">
                             <h1 class="card-title">Administrations dashboard</h1>

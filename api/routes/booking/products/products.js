@@ -259,7 +259,7 @@ module.exports = [
 
             } catch (e) {
                   console.log(e)
-               return h.response({'error': e}).code(500)
+               return h.response({}).code(500)
             }
         }
     },
