@@ -8,7 +8,6 @@
 ?>
 <div class="container">
 	<?php
-    echo $_SESSION['user']['token'];
 	include 'info.php';
 	?>
 </div>
