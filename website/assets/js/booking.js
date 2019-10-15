@@ -31,21 +31,29 @@ $(document).ready(function() {
         updateMaxDate();
         resetCart();
     });
-    $("#pagination").delegate("#prevBtn","click",function () {
+    let pagination = $("#pagination");
+    pagination.delegate("[id^=page]","click",function () {
+        changePage(parseInt(this.innerText));
+    });
+    pagination.delegate("#prevBtn","click",function () {
         prevPage();
     });
-    $("#pagination").delegate("#nextBtn","click",function () {
+    pagination.delegate("#nextBtn","click",function () {
         nextPage();
     });
 });
-function checkForSupportedDatePicker() {
+function checkForSupportedDatePicker()
+{
     let sDate = $('#date_s');
     let eDate = $('#date_e');
-    if (sDate[0].type === "text"){
+    if (sDate[0].type === "text")
+    {
         sDate.datepicker();
         eDate.datepicker();
     }
 }
+
+//search with enter key
 function keypress(e) {
 
     let code = (e.keyCode ? e.keyCode : e.which);
@@ -276,9 +284,9 @@ function changePage(newPage) {
     let selectList1 = $('#select_list_1');
     let prevBtn = $("#prevBtn");
     let nextBtn = $("#nextBtn");
-    let currentPage = $("#currentPage");
-    let pageTwo = $("#2ndPage");
-    let pageThree = $("#3rdPage");
+    let currentPage = $("#pageOne");
+    let pageTwo = $("#pageTwo");
+    let pageThree = $("#pageThree");
     let pagination = $('#pagination');
     let p = document.createElement("div");
     p.setAttribute("class","Item-list");

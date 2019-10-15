@@ -54,9 +54,9 @@ include 'includes/sidebar.php';
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <li class="page-item"><a id="prevBtn" class="page-link" href="#">Previous</a></li>
-                            <li class="page-item active"><a id="currentPage"  class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a id="2ndPage" class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a id="3rdPage" class="page-link" href="#">3</a></li>
+                            <li class="page-item active"><a id="pageOne"  class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a id="pageTwo" class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a id="pageThree" class="page-link" href="#">3</a></li>
                             <li class="page-item"><a id="nextBtn" class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
