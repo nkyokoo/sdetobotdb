@@ -190,11 +190,10 @@ function formatAndCheckDate(date) {
 function addToCart(productID) {
     try {
         //Get the input
-
         let product = document.getElementById( "product-unit-"+productID);
         //Get the Value of input
         let getChosenValueOfProduct = product.value;
-        //
+
         if (getChosenValueOfProduct > 0) {
             let options = {
                 content: "Adding to cart", // text of the snackbar
@@ -258,7 +257,7 @@ function getProductsFromDB(sDate, eDate, search = null) {
         url: '../backend_instantiate/int_dropdownlist.php',
         data: obj,
         success: function (output) {
-          //   //We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
+          //   We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
 
             output = output.slice(0,-1);
              output = output.split(",");

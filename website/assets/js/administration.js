@@ -12,6 +12,8 @@ function getCount() {
             productinfo.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal produkt enheder: ${jsondata.total_product_units.unit_count}</span></a>`)
             let product_requests = $('#product_requests')
             product_requests.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal anmodninger: ${jsondata.total_requests.request_count}</span></a>`)
+            product_requests.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal aktive anmodninger: ${jsondata.total_requests.request_activeCount}</span></a>`)
+
             let total_users = $('#userinfo')
             total_users.append(`<a  class="list-group-item"><span class="label label-default label-pill">Antal brugere: ${jsondata.total_users.user_count}</span></a>`)
         },
