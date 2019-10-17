@@ -80,7 +80,7 @@ class dropdownlist_products{
                           <button class='btn btn-raised btn-primary' id='btn-".$item['id']."')> Tilføj til kurv</button>
                           <div style='text-align: right'>
                           <button id='rendCal' data-product='".$item['id']."' name='".$item['product_name']."' type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal'>History</button>
-                            </div>
+                          </div>
                           </div>
                           </div>
                           </div>

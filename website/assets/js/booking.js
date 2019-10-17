@@ -290,7 +290,6 @@ function changePage(newPage) {
     let p = document.createElement("div");
     p.setAttribute("class","Item-list");
 
-
     for (let i =(newPage-1)*products_pr_page; i < newPage*products_pr_page;i++) {
         let x = document.createElement("div");
         if (total_Products[i] !== undefined){
@@ -299,15 +298,16 @@ function changePage(newPage) {
 
         p.append(x);
     }
+    pageThree.parent().removeClass("active");
+    pageTwo.parent().removeClass("active");
+    currentPage.parent().removeClass("active");
 
-    if (newPage < totalPages()){
-
+    if (newPage < totalPages() -1){
         prevBtn.parent().removeClass("disabled");
         nextBtn.parent().removeClass("disabled");
 
         currentPage.parent().addClass("active");
-        pageThree.parent().removeClass("active");
-        pageTwo.parent().removeClass("active");
+
         if (newPage === 1){
 
             prevBtn.parent().addClass("disabled");
@@ -320,12 +320,10 @@ function changePage(newPage) {
     }
 
     if (newPage === totalPages()) {
-
         prevBtn.parent().removeClass("disabled");
         nextBtn.parent().addClass("disabled");
 
         pageThree.parent().addClass("active");
-        pageTwo.parent().removeClass("active");
 
         currentPage.html(newPage-2);
         pageTwo.html(newPage-1);
@@ -334,9 +332,8 @@ function changePage(newPage) {
 
     if (newPage === (totalPages() -1))
     {
-
-        currentPage.parent().removeClass("active");
         pageTwo.parent().addClass("active");
+
         if (newPage-1 < 1){
             currentPage.parent().css("display","none");
         }
