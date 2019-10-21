@@ -7,7 +7,9 @@ $(document).ready(function() {
     updateMaxDate();
 
     $('#searchInput').keypress(function (e) {
+        //Key Code 13 is Enter
         if (e.which === 13) {
+            // prevent default events such as Refresh DOM after keypress
             e.preventDefault();
 
             updateProductView($('#date_s').val(),$('#date_e').val(),$('#searchInput').val());
@@ -21,7 +23,6 @@ $(document).ready(function() {
         let variable = this.id;
         let key = variable.slice(4);
 
-        //alert("adding to cart");
         // Run Function
         addToCart(key);
 
