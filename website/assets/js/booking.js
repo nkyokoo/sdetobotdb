@@ -3,8 +3,16 @@
 $(document).ready(function() {
     //Update max date from start date
     checkForSupportedDatePicker();
-    $('#searchInput').bind('keypress', {}, keypress);
+    $('#searchInput').keypress(function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+
+            updateProductView($('#date_s').val(),$('#date_e').val(),$('#searchInput').val());
+
+        }
+    });
     updateMaxDate();
+
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
     $("body").on("click", "*[id*='btn-']", function (){
@@ -17,21 +25,26 @@ $(document).ready(function() {
 
 
     });
+
+
     let display = $('#display');
     display.delegate('#dateButton','click',function () {
         updateProductView($('#date_s').val(),$('#date_e').val());
     });
-    display.delegate("*[id*='date_']",'change',function () {
+    display.delegate("*[id*='date_']",'blur',function (e) {
+        e.preventDefault();
 
-        /*        if (this.id === "date_e"){
-        //            alert("hey");
-                    updateProductView($('#date_s').val(),$('#date_e').val());
-
-                }*/
         updateMaxDate();
         resetCart();
+
     });
     let pagination = $("#pagination");
+    pagination.delegate("#lastBtn","click",function () {
+        changePage(totalPages());
+    });
+    pagination.delegate("#firstBtn","click",function () {
+       changePage(1);
+    });
     pagination.delegate("[id^=page]","click",function () {
         changePage(parseInt(this.innerText));
     });
@@ -53,21 +66,13 @@ function checkForSupportedDatePicker()
     }
 }
 
-//search with enter key
-function keypress(e) {
-
-    let code = (e.keyCode ? e.keyCode : e.which);
-    if (code === 13) // Enter Keycode
-    {
-        updateProductView($('#date_s').val(),$('#date_e').val(),$('#searchInput').val());
-    }
-}
 function resetCart() {
     $.ajax({
         type: 'POST',
         url: '../backend_instantiate/int_eventsforcarts.php',
         data: {clear: "clear"},
         success: function () {
+            alert("reset cart");
             /* reset cart icon to 0 and null */
         }
     })
@@ -103,8 +108,7 @@ function updateProductView(sdate,edate, search = null) {
     let edateMaxValue = document.getElementById("date_e").max;
     if (edateFormat && sdateFormat){
         //Get products from db and send them to booking.php
-        //alert(edateFormat);
-        //  alert(sdateFormat);
+
         if (search){
             getProductsFromDB(sdateFormat,edateFormat,search);
         }
@@ -259,9 +263,17 @@ function getProductsFromDB(sDate, eDate, search = null) {
         success: function (output) {
           //   We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
 
-            output = output.slice(0,-1);
-             output = output.split(",");
-            total_Products = output;
+           // output = output.slice(0,-1);
+             //output = output.split(",");
+            //total_Products = output;
+
+            let selectList1 = $('#select_list_1');
+            selectList1.empty();
+            let div = document.createElement("div");
+            div.innerHTML = output;
+            selectList1.append(div);
+            //Count the grandchildren elements from selectList1
+            total_Products = selectList1.children().children().length;
 
             changePage(1);
 
@@ -280,7 +292,6 @@ let current_Page;
 let products_pr_page = 1;
 function changePage(newPage) {
 
-    let selectList1 = $('#select_list_1');
     let prevBtn = $("#prevBtn");
     let nextBtn = $("#nextBtn");
     let currentPage = $("#pageOne");
@@ -288,49 +299,64 @@ function changePage(newPage) {
     let pageThree = $("#pageThree");
     let pagination = $('#pagination');
     let p = document.createElement("div");
-    p.setAttribute("class","Item-list");
+    //p.setAttribute("class","Item-list");
 
+    $("[id^=item_]").css("display","none");
     for (let i =(newPage-1)*products_pr_page; i < newPage*products_pr_page;i++) {
-        let x = document.createElement("div");
-        if (total_Products[i] !== undefined){
-            x.innerHTML = total_Products[i];
-        }
+      //  let x = document.createElement("div");
 
-        p.append(x);
+        $("#item_"+i).css("display","block");
+        //if (total_Products[i] !== undefined){
+          //  x.innerHTML = total_Products[i];
+        //}
+
+        //p.append(x);
     }
+    //Reset Active Anchors
     pageThree.parent().removeClass("active");
     pageTwo.parent().removeClass("active");
     currentPage.parent().removeClass("active");
 
-    if (newPage < totalPages() -1){
-        prevBtn.parent().removeClass("disabled");
-        nextBtn.parent().removeClass("disabled");
+    //Reset Buttons
+    prevBtn.parent().removeClass("disabled");
+    nextBtn.parent().removeClass("disabled");
 
-        currentPage.parent().addClass("active");
+    //If next page is below second to last
 
-        if (newPage === 1){
 
-            prevBtn.parent().addClass("disabled");
-            nextBtn.parent().removeClass("disabled");
+    //If the current page is the first and last page
+ if (newPage === 1 && newPage === totalPages())
+    {
+
+        prevBtn.parent().addClass("disabled");
+        nextBtn.parent().addClass("disabled");
+
+        pageThree.parent().css("display","none");
+        pageTwo.parent().css("display","none");
+
+        //Change pagination anchor number display
+        currentPage.html(newPage);
+    }
+    //If next page is the last
+    else if (newPage === totalPages() || newPage === 3) {
+
+        if (newPage === totalPages()){
+
+            nextBtn.parent().addClass("disabled");
+            //Change pagination anchor number display
 
         }
-        currentPage.html(newPage);
-        pageTwo.html(newPage+1);
-        pageThree.html(newPage+2);
-    }
-
-    if (newPage === totalPages()) {
-        prevBtn.parent().removeClass("disabled");
-        nextBtn.parent().addClass("disabled");
+         currentPage.html(newPage-2);
+         pageTwo.html(newPage-1);
+         pageThree.html(newPage);
 
         pageThree.parent().addClass("active");
 
-        currentPage.html(newPage-2);
-        pageTwo.html(newPage-1);
-        pageThree.html(newPage);
-    }
+        //Change pagination anchor number display
 
-    if (newPage === (totalPages() -1))
+    }
+        //If next page is second to last
+   else if (newPage === (totalPages() -1) || newPage === 2)
     {
         pageTwo.parent().addClass("active");
 
@@ -341,27 +367,39 @@ function changePage(newPage) {
             currentPage.parent().css("display","block");
 
         }
+        //Change pagination anchor number display
         currentPage.html(newPage-1);
         pageTwo.html(newPage);
         pageThree.html(newPage+1);
 
     }
+    else if (newPage < totalPages() -1){
 
-    if (newPage === 1 && newPage === totalPages())
-    {
-        prevBtn.parent().addClass("disabled");
-        nextBtn.parent().addClass("disabled");
+        currentPage.parent().addClass("active");
 
-        pageThree.parent().css("display","none");
-        pageTwo.parent().css("display","none");
+        if (newPage === 1)
+        {
 
-        currentPage.html(newPage);
+            prevBtn.parent().addClass("disabled");
+            //Change pagination anchor number display
+            currentPage.html(newPage);
+            pageTwo.html(newPage+1);
+            pageThree.html(newPage+2);
+        }
+        else {
+            //Change pagination anchor number display
+            currentPage.html(newPage-1);
+            pageTwo.html(newPage);
+            pageThree.html(newPage+1);
+        }
+
     }
-
+    else {
+        alert("error");
+ }
     current_Page = newPage;
 
-    selectList1.empty();
-    selectList1.append(p);
+    //Display Pagination
     pagination.css("display","block");
 
 }
@@ -381,6 +419,6 @@ function nextPage() {
     }
 }
 function totalPages() {
-    return Math.ceil(total_Products.length/products_pr_page);
+    return Math.ceil(total_Products/products_pr_page);
 }
 

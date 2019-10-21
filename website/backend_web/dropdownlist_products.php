@@ -65,11 +65,12 @@ class dropdownlist_products{
         }
             //Populate Selection box with data from DB
        // echo "<div class='Item-list'>";
+        $counter = 0;
+        $string = "";
         foreach ($json as $item) {
 
-
                 $quantity = $this->createOptionsForSelection($item['quantity']);
-                echo "<div class='row'> <div style='width: 300rem'>
+                echo "<div id='item_".$counter."' class='row' > <div style='width: 100%'>
                           <div class='card style='width: 30rem'>
                           <div class='card-body'>
                           <h5 class='card-title'>" .$item['product_name']."</h5>
@@ -84,9 +85,10 @@ class dropdownlist_products{
                           </div>
                           </div>
                           </div>
-                          </div>,";
+                          </div>";
 
 
+            $counter++;
 
             }
 

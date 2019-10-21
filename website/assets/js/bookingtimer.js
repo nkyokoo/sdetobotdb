@@ -43,7 +43,7 @@ function checkIfIdle() {
             //popup message or Timeout box if any if clicked Reload Page.
 
             //Reload Page.
-            location.reload();
+            window.location.replace("../index.php");
 
 
         }
