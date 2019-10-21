@@ -3,6 +3,9 @@
 $(document).ready(function() {
     //Update max date from start date
     checkForSupportedDatePicker();
+    //Update max date from start date
+    updateMaxDate();
+
     $('#searchInput').keypress(function (e) {
         if (e.which === 13) {
             e.preventDefault();
@@ -11,7 +14,6 @@ $(document).ready(function() {
 
         }
     });
-    updateMaxDate();
 
     //Trigger instances if it contain this name.
     //Jquery cannot see Innerhtml, so it cannot call innerhtml text normally.
@@ -22,7 +24,6 @@ $(document).ready(function() {
         //alert("adding to cart");
         // Run Function
         addToCart(key);
-
 
     });
 
@@ -38,19 +39,26 @@ $(document).ready(function() {
         resetCart();
 
     });
+
+    //Pagination Events
     let pagination = $("#pagination");
+
     pagination.delegate("#lastBtn","click",function () {
         changePage(totalPages());
     });
+
     pagination.delegate("#firstBtn","click",function () {
        changePage(1);
     });
+
     pagination.delegate("[id^=page]","click",function () {
         changePage(parseInt(this.innerText));
     });
+
     pagination.delegate("#prevBtn","click",function () {
         prevPage();
     });
+
     pagination.delegate("#nextBtn","click",function () {
         nextPage();
     });
