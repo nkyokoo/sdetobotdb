@@ -67,6 +67,7 @@ function checkForSupportedDatePicker()
 {
     let sDate = $('#date_s');
     let eDate = $('#date_e');
+    //Check for Supported Datepicker or Convert
     if (sDate[0].type === "text")
     {
         sDate.datepicker();
@@ -89,6 +90,8 @@ function updateMaxDate() {
     let edate = $('#date_e');
     let dt = new Date(sdate.val());
     let day = dt.getDate();
+
+    //if day is under 10 then add 0 char before number. example 9 -> 09 to become a valid day;
     if (day < 10){
         day = "0" + day.toString();
     }
@@ -97,13 +100,16 @@ function updateMaxDate() {
     let month = dt.getMonth();
     //increment +1 month to show correct month to the client 1-12
     month++;
+    //if month is under 10 then add 0 char before number. example 9 -> 09 to become a valid month;
     if (month < 10){
         month = "0" + month.toString();
     }
     let year = dt.getFullYear();
     let maxDate = year+'-'+month+'-'+day;
+    //Give end date a max and min Attribute
     edate.attr('max',maxDate);
     edate.attr('min',sdate.val());
+    //if end date is smaller than start date, reset end date to become start date
     if (edate.val() < sdate.val()){
         edate.val(sdate.val());
     }
@@ -121,10 +127,13 @@ function updateProductView(sdate,edate, search = null) {
         }
         else
         {
+            //if start date is bigger or same as Today and end date is bigger og same Today
             if (sdateFormat >= sdateMinValue && edateFormat >= sdateMinValue)
             {
+                //If end date is bigger or same as start date
                 if (edateFormat >= sdateFormat)
                 {
+                    //If end date is max 1 month away from start date
                     if (edateMaxValue >= edateFormat)
                     {
                         getProductsFromDB(sdateFormat,edateFormat);
@@ -204,7 +213,7 @@ function addToCart(productID) {
         let product = document.getElementById( "product-unit-"+productID);
         //Get the Value of input
         let getChosenValueOfProduct = product.value;
-
+        //If you add more than 0 value of the product
         if (getChosenValueOfProduct > 0) {
             let options = {
                 content: "Adding to cart", // text of the snackbar
@@ -260,9 +269,11 @@ function getProductsFromDB(sDate, eDate, search = null) {
     let obj = {};
     obj.sdate = sDate;
     obj.edate = eDate;
+    //if you're searching add search data to Object
     if (search){
         obj.search = search;
     }
+
     $.ajax({
         type: 'POST',
         url: '../backend_instantiate/int_dropdownlist.php',
@@ -275,9 +286,14 @@ function getProductsFromDB(sDate, eDate, search = null) {
             //total_Products = output;
 
             let selectList1 = $('#select_list_1');
+
+            //Empty selectList1
             selectList1.empty();
+            //Create Child node
             let div = document.createElement("div");
             div.innerHTML = output;
+
+            //Append div with html output to selectList1
             selectList1.append(div);
             //Count the grandchildren elements from selectList1
             total_Products = selectList1.children().children().length;
@@ -331,7 +347,7 @@ function changePage(newPage) {
     //If next page is below second to last
 
 
-    //If the current page is the first and last page
+    //If the current page is the first and last page a.k.a there's only 1 page
  if (newPage === 1 && newPage === totalPages())
     {
 
@@ -344,7 +360,7 @@ function changePage(newPage) {
         //Change pagination anchor number display
         currentPage.html(newPage);
     }
-    //If next page is the last
+    //If next page is the last or 3
     else if (newPage === totalPages() || newPage === 3) {
 
         if (newPage === totalPages()){
@@ -362,7 +378,7 @@ function changePage(newPage) {
         //Change pagination anchor number display
 
     }
-        //If next page is second to last
+        //If next page is second to last or 2
    else if (newPage === (totalPages() -1) || newPage === 2)
     {
         pageTwo.parent().addClass("active");
@@ -380,6 +396,7 @@ function changePage(newPage) {
         pageThree.html(newPage+1);
 
     }
+   //if next page isn't last page and all above conditions doens't trigger
     else if (newPage < totalPages() -1){
 
 
@@ -416,7 +433,6 @@ function changePage(newPage) {
 function prevPage() {
     if (parseInt(current_Page)-1 >= 1){
 
-
         changePage(current_Page -1);
     }
 
@@ -427,6 +443,8 @@ function nextPage() {
         changePage(current_Page +1);
     }
 }
+
+//Total pages needed to be created to contain all items
 function totalPages() {
     return Math.ceil(total_Products/products_pr_page);
 }
