@@ -1,7 +1,7 @@
 
 //Always running when DOM is ready
 $(document).ready(function() {
-    //Update max date from start date
+    //Check for supported native datepicker
     checkForSupportedDatePicker();
     //Update max date from start date
     updateMaxDate();
@@ -382,10 +382,10 @@ function changePage(newPage) {
     }
     else if (newPage < totalPages() -1){
 
-        currentPage.parent().addClass("active");
 
         if (newPage === 1)
         {
+            currentPage.parent().addClass("active");
 
             prevBtn.parent().addClass("disabled");
             //Change pagination anchor number display
@@ -394,6 +394,8 @@ function changePage(newPage) {
             pageThree.html(newPage+2);
         }
         else {
+            pageTwo.parent().addClass("active");
+
             //Change pagination anchor number display
             currentPage.html(newPage-1);
             pageTwo.html(newPage);
