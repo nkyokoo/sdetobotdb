@@ -72,7 +72,6 @@ function resetCart() {
         url: '../backend_instantiate/int_eventsforcarts.php',
         data: {clear: "clear"},
         success: function () {
-            alert("reset cart");
             /* reset cart icon to 0 and null */
         }
     })
