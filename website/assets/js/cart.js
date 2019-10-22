@@ -116,14 +116,10 @@ function removeProduct(pid) {
         url: '../backend_instantiate/int_eventsforcarts.php',
         data: {remove: "remove", PID: pid},
         success: function () {
-            //reload page if successful
-            //
 
+            //Delete the product html data.
             $('#row-'+pid).html('');
-            /*
-            let e = document.createElement("div");
-            e.innerHTML = output;
-            document.getElementById("display").appendChild(e);*/
+
 
 
         }
@@ -185,7 +181,6 @@ function booking() {
                     }
                     $.snackbar(options);
                 }
-                // location.reload();
 
             }
 

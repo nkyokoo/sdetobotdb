@@ -6,6 +6,7 @@ $(document).ready(function() {
     //Update max date from start date
     updateMaxDate();
 
+    // Key press event
     $('#searchInput').keypress(function (e) {
         //Key Code 13 is Enter
         if (e.which === 13) {
@@ -30,9 +31,12 @@ $(document).ready(function() {
 
 
     let display = $('#display');
+    //Click on Date Button event
     display.delegate('#dateButton','click',function () {
         updateProductView($('#date_s').val(),$('#date_e').val());
     });
+
+    //If Date selection is out of focus event
     display.delegate("*[id*='date_']",'blur',function (e) {
         e.preventDefault();
 
@@ -44,6 +48,7 @@ $(document).ready(function() {
     //Pagination Events
     let pagination = $("#pagination");
 
+
     pagination.delegate("#lastBtn","click",function () {
         changePage(totalPages());
     });
@@ -51,7 +56,7 @@ $(document).ready(function() {
     pagination.delegate("#firstBtn","click",function () {
        changePage(1);
     });
-
+    //If you chose a number
     pagination.delegate("[id^=page]","click",function () {
         changePage(parseInt(this.innerText));
     });
@@ -280,11 +285,8 @@ function getProductsFromDB(sDate, eDate, search = null) {
         url: '../backend_instantiate/int_dropdownlist.php',
         data: obj,
         success: function (output) {
-          //   We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
+            //   We're using appendchild instead of innerhtml so it doesn't cause a complete rebuild of the DOM.
 
-           // output = output.slice(0,-1);
-             //output = output.split(",");
-            //total_Products = output;
 
             let selectList1 = $('#select_list_1');
 
@@ -301,7 +303,6 @@ function getProductsFromDB(sDate, eDate, search = null) {
 
             changePage(1);
 
-          //   //document.getElementById("select_list_1").innerHTML = output;
 
         }
 
@@ -322,20 +323,20 @@ function changePage(newPage) {
     let pageTwo = $("#pageTwo");
     let pageThree = $("#pageThree");
     let pagination = $('#pagination');
-    let p = document.createElement("div");
+    let firstBtn = $("#firstBtn");
+    let lastBtn = $("#lastBtn");
     //p.setAttribute("class","Item-list");
 
+    // Change all Items to display none
     $("[id^=item_]").css("display","none");
+
     for (let i =(newPage-1)*products_pr_page; i < newPage*products_pr_page;i++) {
-      //  let x = document.createElement("div");
 
+        //Change chosen ID to display block
         $("#item_"+i).css("display","block");
-        //if (total_Products[i] !== undefined){
-          //  x.innerHTML = total_Products[i];
-        //}
-
-        //p.append(x);
     }
+
+
     //Reset Active Anchors
     pageThree.parent().removeClass("active");
     pageTwo.parent().removeClass("active");
@@ -344,7 +345,8 @@ function changePage(newPage) {
     //Reset Buttons
     prevBtn.parent().removeClass("disabled");
     nextBtn.parent().removeClass("disabled");
-
+    firstBtn.parent().removeClass("disabled");
+    lastBtn.parent().removeClass("disabled");
     //If next page is below second to last
 
 
@@ -352,6 +354,8 @@ function changePage(newPage) {
  if (newPage === 1 && newPage === totalPages())
     {
 
+        firstBtn.parent().addClass("disabled");
+        lastBtn.parent().addClass("disabled");
         prevBtn.parent().addClass("disabled");
         nextBtn.parent().addClass("disabled");
 
@@ -365,15 +369,14 @@ function changePage(newPage) {
     else if (newPage === totalPages() || newPage === 3) {
 
         if (newPage === totalPages()){
-
+            lastBtn.parent().addClass("disabled");
             nextBtn.parent().addClass("disabled");
-            //Change pagination anchor number display
 
         }
-         currentPage.html(newPage-2);
-         pageTwo.html(newPage-1);
-         pageThree.html(newPage);
-
+        //Change pagination anchor number display
+        currentPage.html(newPage-2);
+        pageTwo.html(newPage-1);
+        pageThree.html(newPage);
         pageThree.parent().addClass("active");
 
         //Change pagination anchor number display
@@ -384,13 +387,7 @@ function changePage(newPage) {
     {
         pageTwo.parent().addClass("active");
 
-        if (newPage-1 < 1){
-            currentPage.parent().css("display","none");
-        }
-        else {
-            currentPage.parent().css("display","block");
 
-        }
         //Change pagination anchor number display
         currentPage.html(newPage-1);
         pageTwo.html(newPage);
@@ -403,9 +400,11 @@ function changePage(newPage) {
 
         if (newPage === 1)
         {
+            firstBtn.parent().addClass("disabled");
+            prevBtn.parent().addClass("disabled");
+
             currentPage.parent().addClass("active");
 
-            prevBtn.parent().addClass("disabled");
             //Change pagination anchor number display
             currentPage.html(newPage);
             pageTwo.html(newPage+1);

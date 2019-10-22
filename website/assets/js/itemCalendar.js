@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-
         //if clicking on show product booking history
         $(document).delegate("#rendCal","click",function () {
             if (calendar){
 
                 destroyCalendar();
             }
+
             drawCalendar(this.dataset.product,this.name);
 
 

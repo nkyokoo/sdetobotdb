@@ -16,7 +16,7 @@ module.exports = {
 
         for (let i of rows){
                 object = {};
-                object.title =  "Kvantitet: "+i.quantity;
+                object.title =  i.quantity + " stk.";
                 object.undertitle = "Fra "+ i.start_date + " til "+ i.end_date;
                 object.start = i.start_date;
                 object.end = i.end_date+"T23:59:00";
