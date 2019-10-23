@@ -76,6 +76,7 @@ function checkForSupportedDatePicker()
     //Check for Supported Datepicker or Convert
     if (sDate[0].type === "text")
     {
+        //change Date field to Clients native supported date field
         sDate.datepicker();
         eDate.datepicker();
     }

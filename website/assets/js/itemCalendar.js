@@ -31,12 +31,12 @@ function drawCalendar(productID, productName) {
     calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: [ 'dayGrid' ],
         //header: {center: 'dayGridMonth'},
-        titleFormat: { year: 'numeric', month: 'short'},
-        weekNumbers: true,
-        locale: 'da',
-        weekLabel: 'uge',
-        firstDay: 1,
-        hiddenDays: [0, 6],
+        titleFormat: { year: 'numeric', month: 'short'}, // specify Date
+        weekNumbers: true, // activate Week numbers
+        locale: 'da', // Local Language
+        weekLabel: 'uge', // Label Week number
+        firstDay: 1, // Start at Monday
+        hiddenDays: [0, 6], // Hide Sunday and saturday
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events

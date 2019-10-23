@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     displaycart();
     let body = $("body");
-    body.on("click", "*[id*='button-']", function () {
+    body.on("click", "*[id*='button-']", function (event) {
         event.preventDefault();
         let btn = this.id;
         //Trigger instances if it contain this name.
@@ -46,6 +46,7 @@ function onChangeQuantity(qts,pid) {
     try {
         //if the quantity you want to change is over -1
         if (qts >= 0) {
+            //Check if the quantity is a whole number
             if (qts % 1 === 0){
 
                 $.ajax({
@@ -59,7 +60,7 @@ function onChangeQuantity(qts,pid) {
 
                         }
                         else {
-
+                            //Error message
                             if (output){
                                 let options = {
                                     content: output, // text of the snackbar
@@ -151,6 +152,7 @@ function booking() {
             url:'../backend_instantiate/int_cartsend.php',
             success:function (output) {
                 //Clear cart after sending to wishlist
+                //if there isn't an Error message
                 if (!output){
                     let options = {
                         content: "Your wishlist has been made", // text of the snackbar

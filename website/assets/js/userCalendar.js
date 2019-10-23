@@ -12,11 +12,11 @@ function drawCalendar() {
         plugins: [ 'dayGrid','bootstrap' ],
         header: {center: 'dayGridMonth,dayGridWeek'},
         defaultView: 'dayGridWeek',
-        weekNumbers: true,
-        locale: 'da',
-        weekLabel: 'uge',
-        firstDay: 1,
-        hiddenDays: [0, 6],
+        weekNumbers: true,        //Activate Week number
+        locale: 'da',        //Local language for calendar
+        weekLabel: 'uge',        //Label Wee
+        firstDay: 1,        //Start from Monday
+        hiddenDays: [0, 6],        //Hide sunday and saturday
         eventLimit: true, // for all non-TimeGrid views
         eventClick: function(info) { //Start Event when you click on event boxes.
             //Events

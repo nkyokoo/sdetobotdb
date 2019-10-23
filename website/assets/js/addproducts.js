@@ -121,7 +121,6 @@ $(document).ready(function () {
                 }
                 else {
                     let html = document.createElement("option");
-
                     html.text = "ERROR Couldn't receive data";
                     leverandoer_id.append(html);
                 }
@@ -132,7 +131,6 @@ $(document).ready(function () {
                     let selectParent = document.getElementById("virksomhed_id");
                     for (i of data2.d5){
                         let html = document.createElement("option");
-
                         html.value = i.id;
                         html.text = i.company_name_short;
                         selectParent.insertBefore(html,lastChild);
@@ -154,7 +152,7 @@ $(document).ready(function () {
 
             },
             error:function (error) {
-
+                alert("Error 500: please contact Support about your problem")
             }
 
         });
@@ -191,10 +189,11 @@ function btnAddProductToDB() {myBlock:{
 
                 //check if the value in andet is a int, if it isn't continue
                 if (!parseInt($(arrayName[i]).val()) || i === 0) {
-                    //check if the value is this or that
+
+                    //check if the element is this or that
                     if(array[i] === "_Leverandorandet"){
 
-                        //Input with more than one textbox require another way of doing things-
+                        //Input fields with more than one textbox require another method-
                         let container1 = $('#leverandoer_id_Leverandorandet').val();
                         let container2 = $('#leverandoer_id_andet_adress').val();
                         let container3 = $('#leverandoer_id_andet_phonenr').val();
@@ -225,6 +224,7 @@ function btnAddProductToDB() {myBlock:{
 
                         } // callback called when the snackbar gets closed.
                     }
+                    $.snackbar(options);
                     break myBlock;
                 }
             }
@@ -246,18 +246,12 @@ function btnAddProductToDB() {myBlock:{
                         timeout: 1000, // time in milliseconds after the snackbar autohides, 0 is disabled
                         htmlAllowed: true, // allows HTML as content value
                         onClose: function(){
-
-
                             $('#product_registration_forms')[0].reset();
                             window.location.replace("products.php")
                         } // callback called when the snackbar gets closed.
                     }
                     $.snackbar(options);
-
-
-
                 },
-
             });
         } else {
             //Check for errors and display them
@@ -266,18 +260,15 @@ function btnAddProductToDB() {myBlock:{
             errorArray.push(produkt_navn,antal,flytbar);
             let errorMessage = "Something is missing or in the wrong format on the following fields : \n";
             for (let i = 0; i<errorArray.length; i++){
-
+                //if the error is in leverandor input fields
                 if (i === 5){
                     if (!$('#leverandoer_id_Leverandorandet').val() || !$('#leverandoer_id_andet_adress').val() || !$('#leverandoer_id_andet_phonenr').val()) {
                         errorMessage += errorArrayName[i]+" ";
-
                     }
                 }
                 else {
                     if (!errorArray[i]){
-
                         errorMessage += errorArrayName[i]+" ";
-
                     }
                 }
             }
@@ -287,8 +278,6 @@ function btnAddProductToDB() {myBlock:{
                 timeout: 5000, // time in milliseconds after the snackbar autohides, 0 is disabled
                 htmlAllowed: true, // allows HTML as content value
                 onClose: function(){
-
-
                 } // callback called when the snackbar gets closed.
             }
             $.snackbar(options);
@@ -318,8 +307,6 @@ function addNewInputOfAndet(CurrentEventId) {
                 $("#" + CurrentEventId + "_Leverandorandet").remove();
                 $("#" + CurrentEventId + "_andet_adress").remove();
                 $("#" + CurrentEventId + "_andet_phonenr").remove();
-
-
             }
         }
         else if (CurrentEventId === "virksomhed_id"){
@@ -338,9 +325,6 @@ function addNewInputOfAndet(CurrentEventId) {
                 $("#" + CurrentEventId + "_andet_city").remove();
                 $("#" + CurrentEventId + "_andet_post").remove();
                 $("#" + CurrentEventId + "_andet_address").remove();
-
-
-
             }
         }
         else {
@@ -354,9 +338,7 @@ function addNewInputOfAndet(CurrentEventId) {
                 createdElement.innerHTML = addHTML;
                 container.insertAdjacentElement("afterend", createdElement);
             } else {
-
                 $("#" + CurrentEventId + "_andet").remove();
-
             }
         }
     } catch (e) {
